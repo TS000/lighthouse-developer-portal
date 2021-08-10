@@ -224,6 +224,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#update-backstage-workflow-jobs" class="md-nav__link">
+    Update Backstage Workflow Jobs
+  </a>
+  
+    <nav class="md-nav" aria-label="Update Backstage Workflow Jobs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-for-existing-update" class="md-nav__link">
+    check-for-existing-update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link-pr" class="md-nav__link">
+    link-pr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-backstage" class="md-nav__link">
+    update-backstage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -243,7 +287,33 @@
                 
                 
                 <h1 id="automated-backstage-update">Automated Backstage Update<a class="headerlink" href="#automated-backstage-update" title="Permanent link">&para;</a></h1>
-<p><a href="../.github/workflows/backstage-update.yml">Backstage Update Workflow</a></p>
+<p><a href="../.github/workflows/backstage-update.yml">Backstage Update Workflow file</a></p>
+<h2 id="update-backstage-workflow-jobs">Update Backstage Workflow Jobs<a class="headerlink" href="#update-backstage-workflow-jobs" title="Permanent link">&para;</a></h2>
+<h3 id="check-for-existing-update">check-for-existing-update<a class="headerlink" href="#check-for-existing-update" title="Permanent link">&para;</a></h3>
+<p>Description:
+Before upgrade process begins, this job checks if there is currently an open pull request to update backstage. 
+Inputs: None
+Outputs: 
+  - exists
+    - flag to check whether open PR currently exists
+  - url
+    - url to open pull request
+Steps:
+  - Checkout
+    - Uses: <a href="https://github.com/actions/checkout">actions/checkout@v2</a>
+    - Description: Checkout github repository so workflow can access it
+  - Check for existing auto-update PR
+    - Uses command line to make cURL request to GitHub API for all open pull requests using the "auto-update-backstage" branch
+    - Stores url to open pull request as output</p>
+<h3 id="link-pr">link-pr<a class="headerlink" href="#link-pr" title="Permanent link">&para;</a></h3>
+<p>Description:
+Inputs: </p>
+<p>If there is an open pull request to update backstage, this job will output a link to the open pull request
+Steps:</p>
+<h3 id="update-backstage">update-backstage<a class="headerlink" href="#update-backstage" title="Permanent link">&para;</a></h3>
+<p>Description:
+If there is no open pull request to update backstage, this job will create a branch, perform the upgrade process, and create a pull request with the new changes.
+Steps:</p>
                 
               
               
