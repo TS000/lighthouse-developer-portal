@@ -271,7 +271,7 @@
   - Update Backstage
     - Runs npm script "backstage-update" which runs "yarn backstage-cli versions:bump 2&gt;&amp;1 | tee backstage-update-log.txt"
   - Compare Create App versions
-    - Uses command line to get current version from package.json and most recent version from NPM registry
+    - Uses command line to get current version of "@backstage/create-app" from package.json and most recent version from NPM registry
   - Format PR body
     - Uses command line to format a summary of the update log to the pull request body
   - Set output variables
@@ -279,6 +279,7 @@
   - Create Pull Request
     - Uses: <a href="https://github.com/peter-evans/create-pull-request">peter-evans/create-pull-request@v3</a>
     - Creates pull request containing the changes from running "backstage-update"
+    - Pull request body also contains a summary of the update log, outputs from the error log, current and most recent versions of "@backstage/create-app" and a link to the create-app changelog
   - Check outputs
     - Logs the number and url of the newly generated Pull Request</p>
                 
