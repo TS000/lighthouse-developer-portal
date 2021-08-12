@@ -15,7 +15,7 @@
     
     
       
-        <title>Title - example-docs</title>
+        <title>RFC Doc Generator - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#title" class="md-skip">
+        <a href="#rfc-documentation-generator" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Title
+              RFC Doc Generator
             
           </span>
         </div>
@@ -219,6 +219,88 @@
   </li>
 
     
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RFC Doc Generator
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="RFC Doc Generator" class="md-nav__link md-nav__link--active">
+      RFC Doc Generator
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jsdoc" class="md-nav__link">
+    JSDoc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typedoc" class="md-nav__link">
+    TypeDoc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    Recommendation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -245,36 +327,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tldr" class="md-nav__link">
-    tl;dr
+  <a href="#background" class="md-nav__link">
+    Background
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#history" class="md-nav__link">
-    History
+  <a href="#goal" class="md-nav__link">
+    Goal
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pros" class="md-nav__link">
-    Pros
+  <a href="#jsdoc" class="md-nav__link">
+    JSDoc
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#cons" class="md-nav__link">
-    Cons
+  <a href="#typedoc" class="md-nav__link">
+    TypeDoc
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    Decision
+  <a href="#recommendation" class="md-nav__link">
+    Recommendation
   </a>
   
 </li>
@@ -291,7 +373,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR-template.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/rfc-doc-generator.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -299,52 +381,101 @@
                   
                 
                 
-                <h1 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h1>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Decision Made:</td>
-<td>yes/no</td>
-<td>Decision Date:</td>
-<td>mo year</td>
-</tr>
-<tr>
-<td>Revisit Decision:</td>
-<td>yes/no</td>
-<td>Date</td>
-<td>mo year</td>
-</tr>
-<tr>
-<td><strong>Revisit criteria:</strong></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>Decision Made:  No, but open to revisiting  Decision Date:  12/2018
-Revisit Decision:   Yes Revisit Date:   July 2019
-Revisit Criteria: If a developer is interested in Jest and has time or suggestions for fixing the speed issues, we should revisit this.</p>
-<p>Decision Makers: @githubusername, @githubsername</p>
-<h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>Summary of problem and decision </p>
-<h2 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h2>
-<p>Dates, links to the PRs, notes- anything relevant to understand the decision making process / evolution. Important to list what you tried here so avoid retreading </p>
-<h2 id="pros">Pros<a class="headerlink" href="#pros" title="Permanent link">&para;</a></h2>
-<p>upside</p>
-<h2 id="cons">Cons<a class="headerlink" href="#cons" title="Permanent link">&para;</a></h2>
-<p>downside </p>
-<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Detailed reasoning about decision </p>
-<p><a href="https://department-of-veterans-affairs.github.io/veteran-facing-services-tools/platform/front-end-standards/documented-decisions/jest/">Example</a></p>
+                <h1 id="rfc-documentation-generator">[RFC] Documentation Generator<a class="headerlink" href="#rfc-documentation-generator" title="Permanent link">&para;</a></h1>
+<p><strong>Summary</strong>: Allow documentation to be generated from code comments.</p>
+<p>Most documentation generators have a fairly similar syntax. So the main purpose of this RFC is to help decide between which syntax we would like more. I was able to find two generators that I think we should choose between, JSDoc and TypeDoc. Both of these generators have <code>eslint-plugins</code> that would allow us to require comments, and other nitpicking. They also allow us to generate documentation within GitHub Actions which is great. Like I said, the main difference is how the syntax will work with TypeScript.</p>
+<blockquote>
+<p>Note: Please feel free to let me know if there is another doc generator that you think we should consider.</p>
+</blockquote>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>Why do we need a documentation generator? I think I speak for everyone when I say that documenting everything can become a huge pain and can take up time a lot of our time. A documentation generator can take our commented code and build a good looking HTML website, so long as we make good explanatory comments. Automating documentation is just another thing that can save us a ton of time and allow us to work on more important/fun features.</p>
+<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
+<p>To decide on which documentation generator, JSDoc or TypeDoc, should be used when adding comments to the codebase. Similar to the summary both generators have similar syntax, eslint support, and GitHub Actions. The only real decision to make is which syntax we'd rather use.</p>
+<h2 id="jsdoc">JSDoc<a class="headerlink" href="#jsdoc" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/jsdoc/jsdoc">JSDoc GitHub</a></p>
+<p><a href="https://www.typescriptlang.org/play#example/jsdoc-support">JSDoc + TypeScript Playground</a></p>
+<p>JSDoc has a lot of support and is quite popular. Documenting code can be incredibly easy and provide a lot of information about what's going on in a file. It's been a great way to add <code>typing</code> to JavaScript without using TypeScript.</p>
+<p>Supported Types:</p>
+<ul>
+<li>@type</li>
+<li>@param (or @arg or @argument)</li>
+<li>@returns (or @return)</li>
+<li>@typedef</li>
+<li>@callback</li>
+<li>@template</li>
+<li>@class (or @constructor)</li>
+<li>@this</li>
+<li>@extends (or @augments)</li>
+<li>@enum</li>
+<li>@deprecated</li>
+</ul>
+<p>In JSDoc types are listed within the comment.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>  <span class="cm">/** @type {string} */</span>
+  <span class="kd">let</span> <span class="nx">s</span><span class="p">;</span>
+
+  <span class="cm">/**</span>
+<span class="cm"> * @param {string}  p1 - A string param.</span>
+<span class="cm"> * @param {string=} p2 - An optional param (Closure syntax)</span>
+<span class="cm"> * @param {string} [p3] - Another optional param (JSDoc syntax).</span>
+<span class="cm"> * @param {string} [p4=&quot;test&quot;] - An optional param with a default value</span>
+<span class="cm"> * @return {string} This is the result</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">stringsStringStrings</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">,</span> <span class="nx">p4</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// TODO</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>Unfortunately, JSDoc doesn't support TypeScript out of the box. There are some plugins like <a href="https://github.com/SoftwareBrothers/better-docs">better-docs</a> that can parse <code>.ts | .tsx</code> files. However, types aren't displayed correctly within the generated documentation. Meaning that we'd have to list out types within the comments and within the code. There is a way around it (I've done it before) but it requires some extra time and monkey-patching to get it to work correctly.</p>
+<h2 id="typedoc">TypeDoc<a class="headerlink" href="#typedoc" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/TypeStrong/TypeDoc">TypeDoc GitHub</a></p>
+<p>It appears that TypeDoc can do everything that JSDoc can, but with out of the box support for TypeScript files. It also uses the <code>tsconfig</code> file to figure out where it should look for <code>.ts | .tsx</code> files.</p>
+<p>All comments are parsed as Markdown which adds additional styling for us!</p>
+<p>TypeDoc doesn't support all the tags that JSDoc does, but that's because it infers more information from the TypeScript code. So you are more than welcome to type regular TypeScript without needing to declare types within comments.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * @param text  Comment for parameter ´text´.</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">doSomething</span><span class="p">(</span><span class="nx">target</span><span class="o">:</span> <span class="nx">any</span><span class="p">,</span> <span class="nx">text</span><span class="o">:</span> <span class="nx">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">number</span><span class="p">;</span>
+</code></pre></div>
+</td></tr></table>
+<p>Supported Tags:</p>
+<ul>
+<li>@param <code>&lt;param name&gt;</code></li>
+<li>@typeParam <code>&lt;param name&gt;</code> or @template <code>&lt;param name&gt;</code></li>
+<li>@return(s)</li>
+<li>@event</li>
+<li>@hidden and @ignore</li>
+<li>@internal</li>
+<li>@category</li>
+<li>@module</li>
+<li>@typedef, @callback</li>
+<li>@public, @protected, and @private</li>
+</ul>
+<p>TypeDoc can also support <code>.js | .jsx</code> files if the <code>allowJS</code> option is set to true in the <code>tsconfig</code>. Just note that it can't derive the type from the code so they would need to be explicitly stated within the comment.</p>
+<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
+<p>Considering everything that we would want for a documentation generator.</p>
+<ul>
+<li>Linting</li>
+<li>Syntax Highlighting</li>
+<li>Doc Generation with CI/CD</li>
+<li>JavaScript/TypeScript Support</li>
+<li>Tags</li>
+</ul>
+<p>I believe that TypeDoc is the best choice considering it supports TypeScript out of the box. The syntax isn't very different from JSDoc, we just omit the types after the <code>@param</code> and <code>@returns</code> because it's written within the code!</p>
                 
               
               
@@ -359,6 +490,27 @@ Revisit Criteria: If a developer is interested in Jest and has time or suggestio
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../backstage-update/" title="Backstage Update" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Backstage Update
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
