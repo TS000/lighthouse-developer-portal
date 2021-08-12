@@ -15,7 +15,7 @@
     
     
       
-        <title>Automated Backstage Update - example-docs</title>
+        <title>Backstage Update - example-docs</title>
       
     
     
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Automated Backstage Update
+              Backstage Update
             
           </span>
         </div>
@@ -207,6 +207,27 @@
   </li>
 
     
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Backstage Update" class="md-nav__link md-nav__link--active">
+      Backstage Update
+    </a>
+    
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -247,41 +268,75 @@
 <h1 id="update-backstage-workflow-jobs">Update Backstage Workflow Jobs<a class="headerlink" href="#update-backstage-workflow-jobs" title="Permanent link">&para;</a></h1>
 <h2 id="check-for-existing-update">check-for-existing-update<a class="headerlink" href="#check-for-existing-update" title="Permanent link">&para;</a></h2>
 <p>Description: Before upgrade process begins, this job checks if there is currently an open pull request to update backstage. </p>
-<p>Steps:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Steps:
   - Checkout
-    - Uses: <a href="https://github.com/actions/checkout">actions/checkout@v2</a>
+    - Uses: [actions/checkout@v2](https://github.com/actions/checkout)
     - Checkout github repository so workflow can access it
   - Check for existing auto-update PR
-    - Uses command line to make cURL request to GitHub API for all open pull requests using the "auto-update-backstage" branch
-    - Stores url to open pull request as output</p>
+    - Uses command line to make cURL request to GitHub API for all open pull requests using the &quot;auto-update-backstage&quot; branch
+    - Stores url to open pull request as output
+</code></pre></div>
+</td></tr></table>
 <h2 id="link-pr">link-pr<a class="headerlink" href="#link-pr" title="Permanent link">&para;</a></h2>
 <p>Description: If there is an open pull request to update backstage, this job will output a link to the open pull request.</p>
-<p>Steps:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Steps:
   - Failed to Update Backstage
-    - Uses: <a href="https://github.com/actions/github-script">actions/github-script@v3</a>
-    - Outputs the open pull request url retrieved from GitHub API request</p>
+    - Uses: [actions/github-script@v3](https://github.com/actions/github-script)
+    - Outputs the open pull request url retrieved from GitHub API request
+</code></pre></div>
+</td></tr></table>
 <h2 id="update-backstage">update-backstage<a class="headerlink" href="#update-backstage" title="Permanent link">&para;</a></h2>
 <p>Description: If there is no open pull request to update backstage, this job will create a branch, perform the upgrade process, and create a pull request with the new changes.</p>
-<p>Steps:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>Steps:
   - Checkout
-    - Uses: <a href="https://github.com/actions/checkout">actions/checkout@v2</a>
+    - Uses: [actions/checkout@v2](https://github.com/actions/checkout)
     - Checkout github repository so workflow can access it
   - Install Dependencies
     - Uses yarn install to install dependencies for backstage upgrade process
   - Update Backstage
-    - Runs npm script "backstage-update" which runs "yarn backstage-cli versions:bump 2&gt;&amp;1 | tee backstage-update-log.txt"
+    - Runs npm script &quot;backstage-update&quot; which runs &quot;yarn backstage-cli versions:bump 2&gt;&amp;1 | tee backstage-update-log.txt&quot;
   - Compare Create App versions
-    - Uses command line to get current version of "@backstage/create-app" from package.json and most recent version from NPM registry
+    - Uses command line to get current version of &quot;@backstage/create-app&quot; from package.json and most recent version from NPM registry
   - Format PR body
     - Uses command line to format a summary of the update log to the pull request body
   - Set output variables
     - Sets variables for PR title and current date
   - Create Pull Request
-    - Uses: <a href="https://github.com/peter-evans/create-pull-request">peter-evans/create-pull-request@v3</a>
-    - Creates pull request containing the changes from running "backstage-update"
-    - Pull request body also contains a summary of the update log, outputs from the error log, current and most recent versions of "@backstage/create-app" and a link to the create-app changelog
+    - Uses: [peter-evans/create-pull-request@v3](https://github.com/peter-evans/create-pull-request)
+    - Creates pull request containing the changes from running &quot;backstage-update&quot;
+    - Pull request body also contains a summary of the update log, outputs from the error log, current and most recent versions of &quot;@backstage/create-app&quot; and a link to the create-app changelog
   - Check outputs
-    - Logs the number and url of the newly generated Pull Request</p>
+    - Logs the number and url of the newly generated Pull Request
+</code></pre></div>
+</td></tr></table>
                 
               
               
@@ -296,6 +351,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../running-locally/" title="Running Locally" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Running Locally
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

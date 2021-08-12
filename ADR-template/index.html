@@ -15,7 +15,7 @@
     
     
       
-        <title>Running Locally - example-docs</title>
+        <title>Title - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#open-a-codespace-preferred-work-in-progress" class="md-skip">
+        <a href="#title" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Running Locally
+              Title
             
           </span>
         </div>
@@ -199,63 +199,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Running Locally
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Running Locally" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../running-locally/" title="Running Locally" class="md-nav__link">
       Running Locally
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#open-a-codespace-preferred-work-in-progress" class="md-nav__link">
-    Open a Codespace (preferred- work in progress)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-and-run-locally-with-docker-work-in-progress" class="md-nav__link">
-    Install and run locally with Docker (work in progress)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-and-run-locally-tbd" class="md-nav__link">
-    Install and run locally (TBD)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -285,6 +233,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
@@ -295,22 +245,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#open-a-codespace-preferred-work-in-progress" class="md-nav__link">
-    Open a Codespace (preferred- work in progress)
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-and-run-locally-with-docker-work-in-progress" class="md-nav__link">
-    Install and run locally with Docker (work in progress)
+  <a href="#history" class="md-nav__link">
+    History
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-and-run-locally-tbd" class="md-nav__link">
-    Install and run locally (TBD)
+  <a href="#pros" class="md-nav__link">
+    Pros
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cons" class="md-nav__link">
+    Cons
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Decision
   </a>
   
 </li>
@@ -327,7 +291,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/running-locally.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR-template.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -335,46 +299,52 @@
                   
                 
                 
-                  <h1>Running Locally</h1>
-                
-                <h2 id="open-a-codespace-preferred-work-in-progress">Open a Codespace (preferred- work in progress)<a class="headerlink" href="#open-a-codespace-preferred-work-in-progress" title="Permanent link">&para;</a></h2>
-<p>This repo is configured to run a production-like environment in a GitHub <a href="https://github.com/features/codespaces">Codespace</a>.</p>
-<ol>
-<li>Open a Codespace</li>
-<li>Run application:</li>
-</ol>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>yarn dev
-</code></pre></div>
-</td></tr></table>
-<h2 id="install-and-run-locally-with-docker-work-in-progress">Install and run locally with Docker (work in progress)<a class="headerlink" href="#install-and-run-locally-with-docker-work-in-progress" title="Permanent link">&para;</a></h2>
-<p><strong>Prerequisites</strong></p>
-<ul>
-<li>Install git</li>
-<li>
-<p>Install Docker Desktop: <a href="https://docs.docker.com/docker-for-mac/install/">Mac</a>, <a href="https://docs.docker.com/docker-for-windows/install/">Windows</a></p>
-</li>
-<li>
-<p>Run</p>
-</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sh local.sh start
-</code></pre></div>
-</td></tr></table>
-<ol>
-<li>After the application runs for the first time, copy <code>node_modules</code>. While the application is running, run this is a separate terminal:</li>
-</ol>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sh local.sh copy
-</code></pre></div>
-</td></tr></table>
-<p><strong>Caveats</strong>
-- <em>What does this do</em>: This will install the application and its dependencies and then run the backend and frontend in the same container. To ensure fast hot-reloading, <code>node_modules</code> and <code>postgreSQL db</code> are stored in a docker <a href="https://docs.docker.com/storage/volumes/">volume</a> and your local source files are mounted into the container.
-- <em>Why do you need to copy after the first run</em>: The application uses <code>node_modules</code> from Docker volume not your local files. Copy these locally so that dependencies resolve correctly in your editor.</p>
-<h2 id="install-and-run-locally-tbd">Install and run locally (TBD)<a class="headerlink" href="#install-and-run-locally-tbd" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Use <a href="https://github.com/nvm-sh/nvm">nvm</a> to install node</li>
-<li>You will need to update the Backstage <a href="https://backstage.io/docs/conf/#docsNav">configuration</a> for running locally. Update these instructions if you try this out.</li>
-<li><code>app-config.yaml</code> is used for Codespaces and it is merged with <code>app-config.production.yaml</code> in production environments. Supporting Codespaces is the priorty so consider that when changing the way configurations are organized.</li>
-</ul>
+                <h1 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision Made:</td>
+<td>yes/no</td>
+<td>Decision Date:</td>
+<td>mo year</td>
+</tr>
+<tr>
+<td>Revisit Decision:</td>
+<td>yes/no</td>
+<td>Date</td>
+<td>mo year</td>
+</tr>
+<tr>
+<td><strong>Revisit criteria:</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Decision Made:  No, but open to revisiting  Decision Date:  12/2018
+Revisit Decision:   Yes Revisit Date:   July 2019
+Revisit Criteria: If a developer is interested in Jest and has time or suggestions for fixing the speed issues, we should revisit this.</p>
+<p>Decision Makers: @githubusername, @githubsername</p>
+<h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
+<p>Summary of problem and decision </p>
+<h2 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h2>
+<p>Dates, links to the PRs, notes- anythign relevant to understand the decision making process / evolution. Important to list what you tried here so avoid retreading </p>
+<h2 id="pros">Pros<a class="headerlink" href="#pros" title="Permanent link">&para;</a></h2>
+<p>upside</p>
+<h2 id="cons">Cons<a class="headerlink" href="#cons" title="Permanent link">&para;</a></h2>
+<p>downside </p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>Detailed reasoning about decision </p>
+<p><a href="https://department-of-veterans-affairs.github.io/veteran-facing-services-tools/platform/front-end-standards/documented-decisions/jest/">Example</a></p>
                 
               
               
@@ -389,41 +359,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../deployment/" title="Deployment" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Deployment
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../backstage-update/" title="Backstage Update" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Backstage Update
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
