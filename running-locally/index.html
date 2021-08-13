@@ -366,9 +366,11 @@
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sh local.sh copy
 </code></pre></div>
 </td></tr></table>
-<p><strong>Caveats</strong>
-- <em>What does this do</em>: This will install the application and its dependencies and then run the backend and frontend in the same container. To ensure fast hot-reloading, <code>node_modules</code> and <code>postgreSQL db</code> are stored in a docker <a href="https://docs.docker.com/storage/volumes/">volume</a> and your local source files are mounted into the container.
-- <em>Why do you need to copy after the first run</em>: The application uses <code>node_modules</code> from Docker volume not your local files. Copy these locally so that dependencies resolve correctly in your editor.</p>
+<p><strong>Caveats</strong></p>
+<ul>
+<li><em>What does this do</em>: This will install the application and its dependencies and then run the backend and frontend in the same container. To ensure fast hot-reloading, <code>node_modules</code> and <code>postgreSQL db</code> are stored in a docker <a href="https://docs.docker.com/storage/volumes/">volume</a> and your local source files are mounted into the container.</li>
+<li><em>Why do you need to copy after the first run</em>: The application uses <code>node_modules</code> from Docker volume not your local files. Copy these locally so that dependencies resolve correctly in your editor.</li>
+</ul>
 <h2 id="install-and-run-locally-tbd">Install and run locally (TBD)<a class="headerlink" href="#install-and-run-locally-tbd" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Use <a href="https://github.com/nvm-sh/nvm">nvm</a> to install node</li>
