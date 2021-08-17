@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Test
-        run: echo testing
       - name: Check for existing auto-update PR
         id: pr
         run: |
