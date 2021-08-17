@@ -346,6 +346,7 @@
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>yarn dev
 </code></pre></div>
 </td></tr></table>
+
 <h2 id="install-and-run-locally-with-docker-work-in-progress">Install and run locally with Docker (work in progress)<a class="headerlink" href="#install-and-run-locally-with-docker-work-in-progress" title="Permanent link">&para;</a></h2>
 <p><strong>Prerequisites</strong></p>
 <ul>
@@ -360,12 +361,14 @@
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sh local.sh start
 </code></pre></div>
 </td></tr></table>
+
 <ol>
 <li>After the application runs for the first time, copy <code>node_modules</code>. While the application is running, run this is a separate terminal:</li>
 </ol>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sh local.sh copy
 </code></pre></div>
 </td></tr></table>
+
 <p><strong>Caveats</strong></p>
 <ul>
 <li><em>What does this do</em>: This will install the application and its dependencies and then run the backend and frontend in the same container. To ensure fast hot-reloading, <code>node_modules</code> and <code>postgreSQL db</code> are stored in a docker <a href="https://docs.docker.com/storage/volumes/">volume</a> and your local source files are mounted into the container.</li>
