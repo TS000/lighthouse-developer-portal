@@ -7,3 +7,5 @@ FROM mcr.microsoft.com/vscode/devcontainers/universal:1-linux
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 #
 # USER codespace
+USER root
+RUN go install github.com/nektos/act@latest
