@@ -481,8 +481,8 @@ If we were able to get Zero Install + Plug n Play our install time would be almo
 <p>Zero install can get confusing when configuring zero install for Lerna + TypeScript. Additional configuration settings will need to be applied in order for the linter to recognize the package locations.</p>
 <p><a href="https://yarnpkg.com/features/plugins">Plugins</a></p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Detailed reasoning about decision</p>
-<p><a href="https://department-of-veterans-affairs.github.io/veteran-facing-services-tools/platform/front-end-standards/documented-decisions/jest/">Example</a></p>
+<p>Adding Yarn Zero Installs will allow CI/CD and local development to get running faster. Currently, it takes about 2+ minutes to install all the necessary packages by running <code>yarn install</code>. Zero Install should allow us to cut that time down to less than one minute by caching packages. If we decide to also setup Plug N Play, we could cut that time down to almost instantaneous speeds.</p>
+<p>The only thing that is holding us back is <code>@backstage/cli</code> which uses an incompatible package, <code>@yarnpkg/lockfile</code>, to parse the <code>yarn.lock</code> file.</p>
                 
               
               
