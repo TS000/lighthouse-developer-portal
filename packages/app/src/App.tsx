@@ -34,6 +34,8 @@ import { Root } from './components/Root';
 import { HomePage } from './components/homepage';
 import { searchPage } from './components/search/SearchPage';
 import { lightThemeVA, darkThemeVA } from './themes';
+import { FeatureFlagsPage } from '@internal/plugin-feature-flags';
+import { FeatureFlagRegistry } from './FeatureFLagRegistry';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -108,11 +110,13 @@ const routes = (
     <Route path="/catalog-import" element={<CatalogImportPage />} />
     <Route path="/search" element={<SearchPage />} />
     <Route path="/settings" element={<UserSettingsPage />} />
+    <Route path="/feature-flags" element={<FeatureFlagsPage />} />
   </FlatRoutes>
 );
 
 const App = () => (
   <AppProvider>
+    <FeatureFlagRegistry />
     <AlertDisplay />
     <OAuthRequestDialog />
     <AppRouter>
