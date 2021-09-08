@@ -1,0 +1,3 @@
+name: backstage-fe
+runtime: nodejs
+description: test fe with pulumi
