@@ -21,6 +21,7 @@ import {
 import { Config } from '@backstage/config';
 import auth from './plugins/auth';
 import catalog from './plugins/catalog';
+import healthcheck from './plugins/healthcheck';
 import scaffolder from './plugins/scaffolder';
 import proxy from './plugins/proxy';
 import techdocs from './plugins/techdocs';
@@ -52,6 +53,7 @@ async function main() {
   });
   const createEnv = makeCreateEnv(config);
 
+  const healthcheckEnv = useHotMemoize(module, () => createEnv('healthcheck'));
   const catalogEnv = useHotMemoize(module, () => createEnv('catalog'));
   const scaffolderEnv = useHotMemoize(module, () => createEnv('scaffolder'));
   const authEnv = useHotMemoize(module, () => createEnv('auth'));
@@ -70,6 +72,7 @@ async function main() {
 
   const service = createServiceBuilder(module)
     .loadConfig(config)
+    .addRouter('', await healthcheck(healthcheckEnv))
     .addRouter('/api', apiRouter);
 
   await service.start().catch(err => {
