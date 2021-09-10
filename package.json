@@ -24,8 +24,7 @@
     "remove-plugin": "backstage-cli remove-plugin",
     "release": "heroku container:push web -a lighthouse-backstage && heroku container:release web -a lighthouse-backstage",
     "prettier:check": "prettier --check .",
-    "yarn release": "yarn changeset publish",
-    "yarn version": "yarn changeset version",
+    "version": "yarn changeset version",
     "pulumi": "cd ./pulumi && ./start.sh",
     "swap-codespaces": "./pulumi/swap-codespaces.sh"
   },

@@ -23,10 +23,13 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 12.x
-      - name: 'cat package.json'
-        run: cat ./package.json
       - name: Install Dependencies
         run: yarn install
+      # - name: Generate changelogs
+      #   run: |
+      #     yarn version
+      # - name: Version bump
+      #     yarn version --
       - name: Create Release Pull Request
         uses: changesets/action@master
         with:
@@ -36,27 +39,3 @@ jobs:
           commit: Test commit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: 'cat package.json'
-        run: cat ./package.json
-  
-  version-bump:
-    name: Version Bump
-    runs-on: ubuntu-latest
-    needs: Release
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-        with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
-          fetch-depth: 0
-      - name:  'Automated Version Bump'
-        uses:  'phips28/gh-action-bump-version@master'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          minor-wording:  'add,Adds,new'
-          major-wording:  'MAJOR,cut-major'
-          patch-wording:  'patch,fixes'     
-          rc-wording:     'RELEASE,alpha'
-          target-branch: 'changesets'
-
