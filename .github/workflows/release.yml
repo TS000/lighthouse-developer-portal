@@ -25,9 +25,8 @@ jobs:
           node-version: 12.x
       - name: Install Dependencies
         run: yarn install
-      # - name: Generate changelogs
-      #   run: |
-      #     yarn version
+      - name: Generate changelogs
+        run: yarn run version
       # - name: Version bump
       #     yarn version --
       - name: Create Release Pull Request
