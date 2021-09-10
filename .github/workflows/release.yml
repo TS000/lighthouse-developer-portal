@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - changesets
   workflow_dispatch:
 
 jobs:
