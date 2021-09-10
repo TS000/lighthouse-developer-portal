@@ -1,0 +1,66 @@
+# This is a basic workflow to help you get started with Actions
+name: Main Branch Unit Test Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  get-test-results:
+    runs-on: ubuntu-latest
+    outputs:
+      url: ${{ steps.workflow.outputs.url }}
+      conclusion: ${{ steps.workflow.outputs.conclusion }}
+      SHA: ${{ steps.commit.outputs.SHA }}
+    steps:
+    - uses: actions/checkout@v1
+    - name: Get commit SHA
+      id: commit
+      run: |
+        commit=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/department-of-veterans-affairs/lighthouse-backstage/commits/main/status )
+        SHA=$(echo $commit | jq .sha)
+        echo ::set-output name=SHA::$SHA
+    - name: Filter workflow runs
+      env:
+        UNIT_TEST_WF_ID: '12460361'
+        COMMIT_SHA: ${{ steps.commit.outputs.SHA }}
+      id: workflow
+      run: |
+        workflow=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/department-of-veterans-affairs/lighthouse-backstage/actions/workflows/${{env.UNIT_TEST_WF_ID}}/runs | jq  -r --arg SHA ${{env.COMMIT_SHA}} '.workflow_runs | map(select(.head_branch=="main")) | map(select(.head_sha==$SHA)) | .[]')
+        url=$(echo $workflow | jq -r .html_url)
+        conclusion=$(echo $workflow | jq -r .conclusion)
+        echo ::set-output name=conclusion::$conclusion
+        echo ::set-output name=url::$url
+   
+    
+  tests-successful:
+    runs-on: ubuntu-latest
+    needs: get-test-results
+    if: needs.get-test-results.outputs.conclusion == 'success'
+    steps:
+    - name: Log html link
+      env:
+        link: ${{ needs.get-test-results.outputs.url }}
+      uses: actions/github-script@v3
+      with:
+        script: console.log("All unit tests successful!", "${{ env.link }}")
+
+  tests-failure:
+    runs-on: ubuntu-latest
+    needs: get-test-results
+    if: needs.get-test-results.outputs.conclusion == 'failure'
+    steps:
+      - name: Slack notification
+        run: |
+          curl -X POST --data-urlencode "payload={\"channel\": \"#team-bandicoot\", \"username\": \"webhookbot\", \"text\": \"Merged Failing Pull Request to Main Branch!\n<https://github.com/department-of-veterans-affairs/lighthouse-backstage/commit/${{ needs.get-test-results.outputs.SHA }}|View Pull Request>\n<${{ needs.get-test-results.outputs.url }}|View Unit Test Results>\n<@${{secrets.SLACK_UID_FOWLER}}> <@${{secrets.SLACK_UID_LOVENDAHL}}> <@${{secrets.SLACK_UID_LUCKEY}}> \n\", \"icon_emoji\": \":robot_face:\"}" ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  tests-pending:
+    runs-on: ubuntu-latest
+    needs: get-test-results
+    if: needs.get-test-results.outputs.conclusion == 'pending'
+    steps:
+    - name: Do stuff on pending
+      run: echo "test results pending"

@@ -4,7 +4,11 @@ name: Release
 on:
   push:
     branches:
+<<<<<<< HEAD
       - main
+=======
+      - master
+>>>>>>> main
   workflow_dispatch:
 
 jobs:
@@ -22,16 +26,30 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 12.x
-
+      - name: 'cat package.json'
+        run: cat ./package.json
       - name: Install Dependencies
-        run: yarn install
-
+        run: | 
+          yarn install
+          npm install actions-toolkit
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          minor-wording:  'add,Adds,new'
+          major-wording:  'MAJOR,cut-major'
+          patch-wording:  'patch,fixes'     # Providing patch-wording will override commits
+                                            # defaulting to a patch bump.
+          rc-wording:     'RELEASE,alpha'
       - name: Create Release Pull Request
         uses: changesets/action@master
         with:
           version: yarn changeset version
           publish: yarn release
           title: Test PR for Release
-          commit: Test commit message
+          commit: Test commit patch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'cat package.json'
+        run: cat ./package.json

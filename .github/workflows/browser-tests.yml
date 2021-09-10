@@ -1,0 +1,53 @@
+name: Browser Tests
+
+# This action was built using the cypress-io/github-action
+# @see https://github.com/marketplace/actions/cypress-io
+
+# Runs all tests located within packages/app using Cypress
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  browser-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          project: ./packages/app
+          build: yarn run build
+          command: yarn run test:e2e:ci
+          working-directory: packages/app
+
+  browser-tests-chrome:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          project: ./packages/app
+          build: yarn run build
+          command: yarn run test:e2e:ci
+          working-directory: packages/app
+
+  browser-tests-edge:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: edge
+          project: ./packages/app
+          build: yarn run build
+          command: yarn run test:e2e:ci
+          working-directory: packages/app

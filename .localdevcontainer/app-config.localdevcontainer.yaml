@@ -1,8 +1,14 @@
-app:
-  baseUrl: http://0.0.0.0:3000
+frontend:
+  baseUrl: http://localhost:3000
 
 backend:
-  baseUrl: http://0.0.0.0:7000
+  baseUrl: http://localhost:7000
   database:
     connection:
       host: db
+      user: postgres
+      password: postgres
+  cors:
+    origin: '*'
+    methods: [GET, POST, PUT, DELETE]
+    credentials: true

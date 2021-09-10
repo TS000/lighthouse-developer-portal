@@ -7,6 +7,7 @@ import {
   InfoCard,
   Page,
 } from '@backstage/core';
+import { useFeatureFlags } from '@internal/plugin-feature-flags';
 
 export default {
   title: 'DVP Portal Homepage',
@@ -21,16 +22,31 @@ const Wrapper = ({ children }: PropsWithChildren<{}>) => (
   </Grid>
 );
 
-export const HomePage = () => (
-  <Page themeId="home">
-    <Header title="DVP Developer Portal Homepage" />
-    <Content>
-      {'cool stuff' && <ContentHeader title="more cool stuff" />}
-      <Wrapper>
-        <InfoCard title="Information Card" subheader="Subheader">
-          'This is the home page'
-        </InfoCard>
-      </Wrapper>
-    </Content>
-  </Page>
-);
+export const HomePage = () => {
+  const { isActive } = useFeatureFlags();
+
+  return (
+    <Page themeId="home">
+      <Header title="DVP Developer Portal Homepage" />
+      <Content>
+        {'cool stuff' && <ContentHeader title="more cool stuff" />}
+        <Wrapper>
+          <InfoCard title="Information Card" subheader="Subheader">
+            'This is the home page'
+          </InfoCard>
+        </Wrapper>
+        <Wrapper>
+          {isActive('home-feature') ? (
+            <InfoCard title="Home Feature" subheader="Some cool new feature!">
+              'This component was shown because the Home Feature is enabled!'
+            </InfoCard>
+          ) : (
+            <InfoCard title="Home Feature" subheader="A safe expected feature.">
+              'This component was shown because the Home Feature is disabled!'
+            </InfoCard>
+          )}
+        </Wrapper>
+      </Content>
+    </Page>
+  );
+};

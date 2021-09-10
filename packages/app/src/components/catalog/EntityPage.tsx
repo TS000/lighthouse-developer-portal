@@ -30,7 +30,6 @@ import {
   EntityDependsOnResourcesCard,
   EntitySystemDiagramCard,
   EntityHasComponentsCard,
-  EntityHasResourcesCard,
   EntityHasSubcomponentsCard,
   EntityHasSystemsCard,
   EntityLayout,

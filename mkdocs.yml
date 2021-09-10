@@ -6,6 +6,11 @@ nav:
   - Deployment: deployment.md
   - Running Locally: running-locally.md
   - Backstage Update: backstage-update.md
+  - Generate K8s YAML Files: pulumi-k8s.md
+  - Allstar: allstar.md
+  - RFCs and decision records:
+      - RFC Doc Generator: rfc-doc-generator.md
+      - Yarn Zero Install(ADR): zero-install-adr.md
 
 plugins:
   - techdocs-core
