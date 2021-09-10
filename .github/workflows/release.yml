@@ -4,11 +4,7 @@ name: Release
 on:
   push:
     branches:
-<<<<<<< HEAD
       - main
-=======
-      - master
->>>>>>> main
   workflow_dispatch:
 
 jobs:
