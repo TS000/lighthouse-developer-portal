@@ -34,7 +34,6 @@ jobs:
         uses: changesets/action@master
         with:
           version: yarn version
-          publish: yarn release
           title: Test PR for Release
           commit: Test commit
         env:
