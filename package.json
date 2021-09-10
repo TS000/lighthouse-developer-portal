@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "engines": {
     "node": "12 || 14"
@@ -63,6 +63,6 @@
     "backstage-create-app-version": "0.3.35"
   },
   "jest": {
-    "coverageDirectory":"../../../logs/coverage"
+    "coverageDirectory": "../../../logs/coverage"
   }
 }
