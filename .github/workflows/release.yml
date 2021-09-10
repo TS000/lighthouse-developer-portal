@@ -26,16 +26,6 @@ jobs:
         run: cat ./package.json
       - name: Install Dependencies
         run: yarn install
-      - name:  'Automated Version Bump'
-        uses:  'phips28/gh-action-bump-version@master'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          minor-wording:  'add,Adds,new'
-          major-wording:  'MAJOR,cut-major'
-          patch-wording:  'patch,fixes'     # Providing patch-wording will override commits
-                                            # defaulting to a patch bump.
-          rc-wording:     'RELEASE,alpha'
       - name: Create Release Pull Request
         uses: changesets/action@master
         with:
@@ -47,3 +37,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'cat package.json'
         run: cat ./package.json
+  
+  version-bump:
+    name: Version Bump
+    runs-on: ubuntu-latest
+    needs: Release
+    steps:
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          minor-wording:  'add,Adds,new'
+          major-wording:  'MAJOR,cut-major'
+          patch-wording:  'patch,fixes'     
+          rc-wording:     'RELEASE,alpha'
+
