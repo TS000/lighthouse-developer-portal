@@ -47,10 +47,6 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [3000, 5432],
   // "oryx build" will automatically install your dependencies and attempt to build your project
-<<<<<<< HEAD
-  "postCreateCommand": "oryx build -p virtualenv_name=.venv --log-file /tmp/oryx-build.log --manifest-dir /tmp || echo 'Could not auto-build. Skipping.' && ln -sf /workspaces/.codespaces/shared/.env /workspaces/lighthouse-backstage",
+  "postCreateCommand": "/bin/bash ./.devcontainer/start-up.sh 2>&1 | tee ~/post-create.log",
   "postStartCommand":"echo \"-P ubuntu-latest=catthehacker/ubuntu:js-latest\n-P ubuntu-20.04=catthehacker/ubuntu:js-20.04\n-P ubuntu-18.04=catthehacker/ubuntu:js-18.04\n-s GITHUB_TOKEN=$GITHUB_TOKEN\" > /home/codespace/.actrc"
-=======
-  "postCreateCommand": "/bin/bash ./.devcontainer/start-up.sh 2>&1 | tee ~/post-create.log"
->>>>>>> main
 }
