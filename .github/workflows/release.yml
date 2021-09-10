@@ -32,7 +32,7 @@ jobs:
           version: yarn changeset version
           publish: yarn release
           title: Test PR for Release
-          commit: Test commit patch
+          commit: Test commit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 'cat package.json'
