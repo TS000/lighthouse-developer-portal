@@ -1,5 +1,12 @@
 # backend
 
+## 0.1.1
+
+### Patch Changes
+
+- 8d2295e: 20210601 backstage upgrade that add improvements to catalog UI and caching configuration to the backend
+- 539a797: 20210701 backstage upgrade
+
 ## 0.1.0
 
 ### Minor Changes
