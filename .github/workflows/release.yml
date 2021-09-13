@@ -27,8 +27,16 @@ jobs:
         run: yarn install
       - name: Generate changelogs
         run: yarn run version
-      # - name: Version bump
-      #     yarn version --
+      - name: Build & test
+        run: | 
+          echo "Building and testing..."
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            LICENSE.txt
+            *.jar
       - name: Create Release Pull Request
         uses: changesets/action@master
         with:
