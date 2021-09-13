@@ -520,7 +520,7 @@
 <h3 id="source-code">Source Code<a class="headerlink" href="#source-code" title="Permanent link">&para;</a></h3>
 <p>Merging to the "main" branch initiates the CI/CD Pipeline so those changes can be deployed to the production environment. Depending on what types of changes are being introduced, the developer can manually determine what type of version bump is appropriate for the new release.</p>
 <h3 id="build-stage">Build Stage<a class="headerlink" href="#build-stage" title="Permanent link">&para;</a></h3>
-<p>This stage is responsible for building the containers for our application and storing these containers in a container registry. It is important that we build only once during the CI/CD process to reduce time/resources because the build process is lengthy. </p>
+<p>This stage is responsible for building the containers for our application and storing these containers in a container registry. It is important that we build only once during the CI/CD process to reduce time/resources because the build process is lengthy. Once an image is built, subsequent steps of the CI/CD process that require an image can utilize the already built artifact instead of spending time/resources on rebuilding the image.</p>
 <h3 id="testing-stage">Testing Stage<a class="headerlink" href="#testing-stage" title="Permanent link">&para;</a></h3>
 <p>This stage is responsible for running a variety of automated tests and checks to catch potential errors early and provide feedback to the developer. </p>
 <h3 id="deployment-stage">Deployment Stage<a class="headerlink" href="#deployment-stage" title="Permanent link">&para;</a></h3>
