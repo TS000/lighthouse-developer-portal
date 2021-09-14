@@ -11,6 +11,7 @@ nav:
   - RFCs and decision records:
       - RFC Doc Generator: rfc-doc-generator.md
       - Yarn Zero Install(ADR): zero-install-adr.md
+      - RFC CI/CD Modifications: rfc-ci-cd.md
 
 plugins:
   - techdocs-core
