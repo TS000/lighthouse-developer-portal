@@ -43,7 +43,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # And make it available for the builds
-      - name: Build and push Backend
+      - name: Build and push Backend image
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -51,6 +51,15 @@ jobs:
           tags: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/backend:latest
           cache-from: type=local,src=/tmp/backend/.buildx-cache
           cache-to: type=local,dest=/tmp/backend/.buildx-cache-new
+      - name: Build and push Frontend image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: false
+          file: Dockerfile.dockerbuild
+          tags: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/frontend:latest
+          cache-from: type=local,src=/tmp/frontend/.buildx-cache
+          cache-to: type=local,dest=/tmp/frontend/.buildx-cache-new
         # This ugly bit is necessary if you don't want your cache to grow forever
         # till it hits GitHub's limit of 5GB.
         # Temp fix
@@ -60,14 +69,16 @@ jobs:
         run: |
           rm -rf /tmp/backend/.buildx-cache
           mv /tmp/backend/.buildx-cache-new /tmp/backend/.buildx-cache
+          rm -rf /tmp/frontend/.buildx-cache
+          mv /tmp/frontend/.buildx-cache-new /tmp/frontend/.buildx-cache
 
       # - name: Build backend image
       #   run: |
       #     yarn install --frozen-lockfile && yarn tsc
       #     yarn build && docker build . -f Dockerfile --tag $IMAGE_NAME/backend --label "runnumber=${GITHUB_RUN_ID}"
 
-      - name: Build frontend image
-        run: docker build . -f Dockerfile.dockerbuild --tag $IMAGE_NAME/frontend --label "runnumber=${GITHUB_RUN_ID}"
+      # - name: Build frontend image
+      #   run: docker build . -f Dockerfile.dockerbuild --tag $IMAGE_NAME/frontend --label "runnumber=${GITHUB_RUN_ID}"
 
 
       - name: Log in to registry
