@@ -19,6 +19,9 @@ jobs:
     permissions:
       packages: write
       contents: read
+    strategy:
+      matrix:
+        type: [backend, frontend]
 
     steps:
       - uses: actions/checkout@v2
@@ -40,34 +43,34 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # And make it available for the builds
-      - name: Build and push Backend image
+      - name: Build and push ${{ matrix.type }} image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: false
-          tags: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/backend:latest
-          cache-from: type=local,src=/tmp/backend/.buildx-cache
-          cache-to: type=local,dest=/tmp/backend/.buildx-cache-new
-      - name: Build and push Frontend image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: false
-          file: Dockerfile.dockerbuild
-          tags: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/frontend:latest
-          cache-from: type=local,src=/tmp/frontend/.buildx-cache
-          cache-to: type=local,dest=/tmp/frontend/.buildx-cache-new
+          tags: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:latest
+          cache-from: type=local,src=/tmp/${{ matrix.type }}/.buildx-cache
+          cache-to: type=local,dest=/tmp/${{ matrix.type }}/.buildx-cache-new
+      # - name: Build and push Frontend image
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: .
+      #     push: false
+      #     file: Dockerfile.dockerbuild
+      #     tags: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/frontend:latest
+      #     cache-from: type=local,src=/tmp/frontend/.buildx-cache
+      #     cache-to: type=local,dest=/tmp/frontend/.buildx-cache-new
         # This ugly bit is necessary if you don't want your cache to grow forever
         # till it hits GitHub's limit of 5GB.
         # Temp fix
         # https://github.com/docker/build-push-action/issues/252
         # https://github.com/moby/buildkit/issues/1896
-      - name: Move cache
+      - name: Move cache for ${{ matrix.type }}
         run: |
-          rm -rf /tmp/backend/.buildx-cache
-          mv /tmp/backend/.buildx-cache-new /tmp/backend/.buildx-cache
-          rm -rf /tmp/frontend/.buildx-cache
-          mv /tmp/frontend/.buildx-cache-new /tmp/frontend/.buildx-cache
+          rm -rf /tmp/${{ matrix.type }}/.buildx-cache
+          mv /tmp/${{ matrix.type }}/.buildx-cache-new /tmp/${{ matrix.type }}/.buildx-cache
+        #  rm -rf /tmp/frontend/.buildx-cache
+        #  mv /tmp/frontend/.buildx-cache-new /tmp/frontend/.buildx-cache
 
       # - name: Build backend image
       #   run: |
@@ -84,24 +87,36 @@ jobs:
 
       - name: Push images
         run: |
-          IMAGE_ID_FRONTEND=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/frontend
-          IMAGE_ID_BACKEND=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/backend
-      
-          IMAGE_ID_FRONTEND=$(echo $IMAGE_ID_FRONTEND | tr '[A-Z]' '[a-z]')
-          IMAGE_ID_BACKEND=$(echo $IMAGE_ID_BACKEND | tr '[A-Z]' '[a-z]')
-          
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-        
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
           # Use Docker `latest` tag convention
           [ "$VERSION" == "main" ] && VERSION=latest
-          echo IMAGE_ID_FRONTEND=$IMAGE_ID_FRONTEND
-          echo IMAGE_ID_BACKEND=$IMAGE_ID_BACKEND
+          echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
-          docker tag ${{ env.IMAGE_NAME }}/frontend $IMAGE_ID_FRONTEND:$VERSION
-          docker tag ${{ env.IMAGE_NAME }}/backend $IMAGE_ID_BACKEND:$VERSION
-          docker push $IMAGE_ID_FRONTEND:$VERSION
-          docker push $IMAGE_ID_BACKEND:$VERSION
+          docker tag ${{ env.IMAGE_NAME }}/frontend $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
+
+        # run: |
+        #   IMAGE_ID_FRONTEND=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/frontend
+        #   IMAGE_ID_BACKEND=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/backend
+      
+        #   IMAGE_ID_FRONTEND=$(echo $IMAGE_ID_FRONTEND | tr '[A-Z]' '[a-z]')
+        #   IMAGE_ID_BACKEND=$(echo $IMAGE_ID_BACKEND | tr '[A-Z]' '[a-z]')
+          
+        #   VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+        
+        #   [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+        #   # Use Docker `latest` tag convention
+        #   [ "$VERSION" == "main" ] && VERSION=latest
+        #   echo IMAGE_ID_FRONTEND=$IMAGE_ID_FRONTEND
+        #   echo IMAGE_ID_BACKEND=$IMAGE_ID_BACKEND
+        #   echo VERSION=$VERSION
+        #   docker tag ${{ env.IMAGE_NAME }}/frontend $IMAGE_ID_FRONTEND:$VERSION
+        #   docker tag ${{ env.IMAGE_NAME }}/backend $IMAGE_ID_BACKEND:$VERSION
+        #   docker push $IMAGE_ID_FRONTEND:$VERSION
+        #   docker push $IMAGE_ID_BACKEND:$VERSION
 
   release:
     name: Release
