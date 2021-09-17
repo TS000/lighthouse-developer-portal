@@ -47,13 +47,14 @@ jobs:
         id: file_name
         run: |
           file_name=env.${{ matrix.type }}_file
-          echo ::set-output name=file_name::$file_name
+          name=${{ file_name }}
+          echo ::set-output name=name::$name
       # And make it available for the builds
       - name: Build and push ${{ matrix.type }} image
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ${{ steps.file_name.outputs.file_name }}
+          file: ${{ steps.file_name.outputs.name }}
           push: false
           tags: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:latest
           cache-from: type=local,src=/tmp/${{ matrix.type }}/.buildx-cache
