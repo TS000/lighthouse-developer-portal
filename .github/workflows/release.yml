@@ -24,7 +24,6 @@ jobs:
       matrix:
         type: [backend, frontend]
 
-
     steps:
       - uses: actions/checkout@v2
       # This is the a separate action that sets up buildx runner
@@ -44,12 +43,17 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get File name
+        id: file_name
+        run: |
+          file_name=env.${{ matrix.type }}_file
+          echo ::set-output name=file_name::$file_name
       # And make it available for the builds
       - name: Build and push ${{ matrix.type }} image
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ${{ env.${{ matrix.file }}_file }}
+          file: ${{ steps.file_name.outputs.file_name }}
           push: false
           tags: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:latest
           cache-from: type=local,src=/tmp/${{ matrix.type }}/.buildx-cache
