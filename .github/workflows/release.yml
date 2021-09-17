@@ -96,7 +96,7 @@ jobs:
           [ "$VERSION" == "main" ] && VERSION=latest
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
-          docker tag ${{ env.IMAGE_NAME }}/frontend $IMAGE_ID:$VERSION
+          docker tag ${{ env.IMAGE_NAME }}/${{ matrix.type }} $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
 
         # run: |
