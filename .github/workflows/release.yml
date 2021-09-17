@@ -26,32 +26,36 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build images
-        # run: |
-        #   yarn && yarn tsc
-        #   yarn build && docker build . -f Dockerfile --tag $IMAGE_NAME
-        
-        run: docker build . -f Dockerfile.dockerbuild --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+        run: |
+          yarn && yarn tsc
+          yarn build && docker build . -f Dockerfile --tag $IMAGE_NAME/backend --label "runnumber=${GITHUB_RUN_ID}"
+          docker build . -f Dockerfile.dockerbuild --tag $IMAGE_NAME/frontend --label "runnumber=${GITHUB_RUN_ID}"
+
 
       - name: Log in to registry
         # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Push image
+      - name: Push frontend image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
-
-          # Change all uppercase to lowercase
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-          # Strip git ref prefix from version
+          IMAGE_ID_FRONTEND=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME/frontend
+          IMAGE_ID_BACKEND=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME/backend
+      
+          IMAGE_ID_FRONTEND=$(echo $IMAGE_ID_FRONTEND | tr '[A-Z]' '[a-z]')
+          IMAGE_ID_BACKEND=$(echo $IMAGE_ID_BACKEND | tr '[A-Z]' '[a-z]')
+          
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          # Strip "v" prefix from tag name
+        
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
           # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
-          echo IMAGE_ID=$IMAGE_ID
+          [ "$VERSION" == "main" ] && VERSION=latest
+          echo IMAGE_ID_FRONTEND=$IMAGE_ID_FRONTEND
+          echo IMAGE_ID_BACKEND=$IMAGE_ID_BACKEND
           echo VERSION=$VERSION
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+          docker tag $IMAGE_NAME_FRONTEND $IMAGE_ID_FRONTEND:$VERSION
+          docker tag $IMAGE_NAME_BACKEND $IMAGE_ID_BACKEND:$VERSION
+          docker push $IMAGE_ID_FRONTEND:$VERSION
+          docker push $IMAGE_ID_BACKEND:$VERSION
 
   release:
     name: Release
