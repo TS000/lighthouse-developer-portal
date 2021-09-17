@@ -10,13 +10,11 @@ on:
       - "v*"
   workflow_dispatch:
 
-
 env:
   IMAGE_NAME: lighthouse-backstage
 
 jobs:
-
-  push:
+  build-and-push:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -24,7 +22,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
       # This is the a separate action that sets up buildx runner
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -87,8 +84,8 @@ jobs:
 
       - name: Push images
         run: |
-          IMAGE_ID_FRONTEND=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME/frontend
-          IMAGE_ID_BACKEND=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME/backend
+          IMAGE_ID_FRONTEND=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/frontend
+          IMAGE_ID_BACKEND=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/backend
       
           IMAGE_ID_FRONTEND=$(echo $IMAGE_ID_FRONTEND | tr '[A-Z]' '[a-z]')
           IMAGE_ID_BACKEND=$(echo $IMAGE_ID_BACKEND | tr '[A-Z]' '[a-z]')
@@ -101,8 +98,8 @@ jobs:
           echo IMAGE_ID_FRONTEND=$IMAGE_ID_FRONTEND
           echo IMAGE_ID_BACKEND=$IMAGE_ID_BACKEND
           echo VERSION=$VERSION
-          docker tag $IMAGE_NAME/frontend $IMAGE_ID_FRONTEND:$VERSION
-          docker tag $IMAGE_NAME/backend $IMAGE_ID_BACKEND:$VERSION
+          docker tag ${{ env.IMAGE_NAME }}/frontend $IMAGE_ID_FRONTEND:$VERSION
+          docker tag ${{ env.IMAGE_NAME }}/backend $IMAGE_ID_BACKEND:$VERSION
           docker push $IMAGE_ID_FRONTEND:$VERSION
           docker push $IMAGE_ID_BACKEND:$VERSION
 
