@@ -26,7 +26,7 @@ RUN mkdir /app
 COPY . /app
 WORKDIR /app
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 RUN yarn workspace app build
 
 FROM nginx:mainline
