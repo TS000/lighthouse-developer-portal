@@ -11,6 +11,44 @@ on:
   workflow_dispatch:
 
 jobs:
+
+  push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build images
+        # run: |
+        #   yarn && yarn tsc
+        #   yarn build && docker build . -f Dockerfile --tag $IMAGE_NAME
+        
+        run: docker build . -f Dockerfile.dockerbuild --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+
+      - name: Log in to registry
+        # This is where you will update the PAT to GITHUB_TOKEN
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push image
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          # Use Docker `latest` tag convention
+          [ "$VERSION" == "master" ] && VERSION=latest
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
+
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -32,14 +70,14 @@ jobs:
       - name: Build & test
         run: | 
           echo "Building and testing..."
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: latest
-          prerelease: false
-          files: |
-            LICENSE.txt
-            *.jar
+      # - uses: "marvinpinto/action-automatic-releases@latest"
+      #   with:
+      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
+      #     automatic_release_tag: latest
+      #     prerelease: false
+      #     files: |
+      #       LICENSE.txt
+      #       *.jar
       - name: Create Release Pull Request
         uses: changesets/action@master
         with:
