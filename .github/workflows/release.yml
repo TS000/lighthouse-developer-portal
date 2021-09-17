@@ -47,7 +47,7 @@ jobs:
         id: file_name
         run: |
           file_name=env.${{ matrix.type }}_file
-          name=${{ file_name }}
+          name=${{ $file_name }}
           echo ::set-output name=name::$name
       # And make it available for the builds
       - name: Build and push ${{ matrix.type }} image
