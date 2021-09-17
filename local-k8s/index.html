@@ -343,8 +343,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#expose-and-view-the-application" class="md-nav__link">
-    Expose and View the Application
+  <a href="#expose-and-view-the-application-with-minikube-tunnel" class="md-nav__link">
+    Expose and View the Application with minikube tunnel
   </a>
   
 </li>
@@ -563,8 +563,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#expose-and-view-the-application" class="md-nav__link">
-    Expose and View the Application
+  <a href="#expose-and-view-the-application-with-minikube-tunnel" class="md-nav__link">
+    Expose and View the Application with minikube tunnel
   </a>
   
 </li>
@@ -611,10 +611,12 @@
                 
                 <h1 id="deploying-backstage-to-local-kubernetes-cluster">Deploying Backstage to local Kubernetes Cluster<a class="headerlink" href="#deploying-backstage-to-local-kubernetes-cluster" title="Permanent link">&para;</a></h1>
 <h2 id="using-minikube-and-kubernetes">Using minikube and Kubernetes<a class="headerlink" href="#using-minikube-and-kubernetes" title="Permanent link">&para;</a></h2>
-<p><strong>Prerequisites</strong>
-- <a href="https://minikube.sigs.k8s.io/docs/start/">Install Minikube</a>
-- Install Docker Desktop: <a href="https://docs.docker.com/docker-for-mac/install/">Mac</a>, <a href="https://docs.docker.com/docker-for-windows/install/">Windows</a>
-- <a href="https://kubernetes.io/docs/tasks/tools/">Install Kubectl</a></p>
+<p><strong>Prerequisites</strong></p>
+<ul>
+<li><a href="https://minikube.sigs.k8s.io/docs/start/">Install Minikube</a></li>
+<li>Install Docker Desktop: <a href="https://docs.docker.com/docker-for-mac/install/">Mac</a>, <a href="https://docs.docker.com/docker-for-windows/install/">Windows</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/">Install Kubectl</a></li>
+</ul>
 <h2 id="configure-app-configyaml-for-postgres-service">Configure app-config.yaml for postgres service<a class="headerlink" href="#configure-app-configyaml-for-postgres-service" title="Permanent link">&para;</a></h2>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -660,21 +662,23 @@ packages/*/node_modules
 </blockquote>
 <h2 id="load-images-for-minikube">Load Images for minikube<a class="headerlink" href="#load-images-for-minikube" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Note: Only need to do this if you are rebuilding images locally
-- Check the image name or image ID you want to load to minikube with: 
+<p>Note: Only need to do this if you are rebuilding images locally</p>
+</blockquote>
+<ul>
+<li>Check the image name or image ID you want to load to minikube with: 
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>docker images
 </code></pre></div>
-</td></tr></table>
-- Load the image with:
+</td></tr></table></li>
+<li>Load the images with:
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>minikube image load &lt;IMAGE_NAME or IMAGE_ID&gt;
 </code></pre></div>
-</td></tr></table>
-- Optional: you can verify minikube has access to the local image by checking its docker-env by opening a new terminal and running the commands below. If you don't see the image in the list, then you'll need to load it again or wait for it to finish loading.
+</td></tr></table></li>
+<li>Optional: you can verify minikube has access to the local image by checking its docker-env by opening a new terminal and running the commands below. If you don't see the image in the list, then you'll need to load it again or wait for it to finish loading.
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>eval $(minikube docker-env) &amp;&amp; docker images
 </code></pre></div>
-</td></tr></table>
-- When you're done close the terminal or be sure to keep track of which terminal this is so you don't accidentally run commands using the docker daemon inside of the VM minikube uses.</p>
-</blockquote>
+</td></tr></table></li>
+<li>When you're done, be sure to close this terminal or keep track of which terminal this is so you don't accidentally run commands using the docker daemon inside of the VM minikube uses.</li>
+</ul>
 <h2 id="view-k8s-dashboard">View K8s Dashboard<a class="headerlink" href="#view-k8s-dashboard" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Open a new terminal and run: 
@@ -701,34 +705,29 @@ packages/*/node_modules
 </td></tr></table></li>
 <li>Now you can check your deployments, pods, and services using the minikube dashboard.</li>
 </ul>
-<h2 id="expose-and-view-the-application">Expose and View the Application<a class="headerlink" href="#expose-and-view-the-application" title="Permanent link">&para;</a></h2>
+<h2 id="expose-and-view-the-application-with-minikube-tunnel">Expose and View the Application with minikube tunnel<a class="headerlink" href="#expose-and-view-the-application-with-minikube-tunnel" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Create LoadBalancer service to expose the deployment
+<li>Open a new terminal and start minikube tunnel
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ minikube tunnel
+</code></pre></div>
+</td></tr></table></li>
+<li>In a different terminal, create LoadBalancer service to expose the deployment
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ kubectl expose deployment backstage --type=LoadBalancer --port=80 --target-port=3000
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ kubectl expose deployment backstage --type=LoadBalancer --name=backstage-svc
 service/backstage exposed
 </code></pre></div>
 </td></tr></table></li>
-<li>View application in browser with minikube
+<li>Check the service's external ip
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ minikube service backstage --url
-🏃  Starting tunnel for service backstage.
-|-----------|-----------|-------------|------------------------|
-| NAMESPACE |   NAME    | TARGET PORT |          URL           |
-|-----------|-----------|-------------|------------------------|
-| default   | backstage |             | http://127.0.0.1:60133 |
-|-----------|-----------|-------------|------------------------|
-http://127.0.0.1:60133
-❗  Because you are using a Docker driver on windows, the terminal needs to be open to run it.
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ kubectl get svc
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
+backstage-svc   LoadBalancer   10.96.231.234    127.0.0.1     3000:30197/TCP,7000:30343/TCP   3s
+postgres     ClusterIP      10.108.231.136   &lt;none&gt;        5432/TCP                        2m6s
 </code></pre></div>
 </td></tr></table></li>
+<li>View the application running at <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a></li>
 </ul>
 <p><strong>Caveats</strong>
 This deployment creates 2 pods: one pod has a single container for the postgres db, and the second pod has 2 containers: one container for the frontend and another container for the backend. Right now with this configuration the frontend/backend containers are able to stay up and running, and the backend is able to connect to the postgres pod. The backend is failing to load anything (catalog imports, techdocs, etc.) because of a variety of errors related to catalog import urls.</p>
