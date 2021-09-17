@@ -32,10 +32,10 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          path: /tmp/${{ matrix.type }}/.buildx-cache
+          key: ${{ runner.os }}-${{ matrix.type }}-buildx-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-
+            ${{ runner.os }}-${{ matrix.type }}-buildx-
       - name: Login to ghcr
         uses: docker/login-action@v1
         with:
