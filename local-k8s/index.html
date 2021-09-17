@@ -711,13 +711,7 @@ packages/*/node_modules
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ minikube tunnel
 </code></pre></div>
 </td></tr></table></li>
-<li>In a different terminal, create LoadBalancer service to expose the deployment
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ kubectl expose deployment backstage --type=LoadBalancer --name=backstage-svc
-service/backstage exposed
-</code></pre></div>
-</td></tr></table></li>
-<li>Check the service's external ip
+<li>In a separate terminal, check the service's external ip
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -730,7 +724,7 @@ postgres     ClusterIP      10.108.231.136   &lt;none&gt;        5432/TCP       
 <li>View the application running at <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a></li>
 </ul>
 <p><strong>Caveats</strong>
-This deployment creates 2 pods: one pod has a single container for the postgres db, and the second pod has 2 containers: one container for the frontend and another container for the backend. Right now with this configuration the frontend/backend containers are able to stay up and running, and the backend is able to connect to the postgres pod. The backend is failing to load anything (catalog imports, techdocs, etc.) because of a variety of errors related to catalog import urls.</p>
+This deployment creates 2 pods: one pod has a single container for the postgres db, and the second pod has 2 containers: one container for the frontend and another container for the backend. Right now with this configuration, <code>backstage-svc</code> is created as a LoadBalancer service so it is designated its own IP address that can be exposed with <code>minikube tunnel</code>. Running the command <code>minikube tunnel</code> creates a network route from the host to the service CIDR of the cluster using the cluster's IP address as a gateway. This exposes the external IP directly to any process running on the host operating system. </p>
 <h2 id="running-pulumi-to-deploy-fe-to-kubernetes">Running Pulumi to Deploy FE to Kubernetes<a class="headerlink" href="#running-pulumi-to-deploy-fe-to-kubernetes" title="Permanent link">&para;</a></h2>
 <h3 id="through-codespaces">Through Codespaces<a class="headerlink" href="#through-codespaces" title="Permanent link">&para;</a></h3>
 <ol>
