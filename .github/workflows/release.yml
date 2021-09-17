@@ -22,6 +22,7 @@ jobs:
     strategy:
       matrix:
         type: [backend, frontend]
+        file: [Dockerfile, Dockerfile.dockerbuild]
 
     steps:
       - uses: actions/checkout@v2
@@ -47,6 +48,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: ${{ matrix.file }}
           push: false
           tags: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:latest
           cache-from: type=local,src=/tmp/${{ matrix.type }}/.buildx-cache
