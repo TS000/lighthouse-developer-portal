@@ -32,10 +32,10 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
-          path: /tmp/${{ matrix.type }}/.buildx-cache
-          key: ${{ runner.os }}-${{ matrix.type }}-buildx-${{ github.sha }}
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.type }}-buildx-
+            ${{ runner.os }}-buildx-
       - name: Login to ghcr
         uses: docker/login-action@v1
         with:
@@ -55,17 +55,17 @@ jobs:
           file: Dockerfile.${{ matrix.type }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=local,src=/tmp/${{ matrix.type }}/.buildx-cache
-          cache-to: type=local,dest=/tmp/${{ matrix.type }}/.buildx-cache-new
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
         # This ugly bit is necessary if you don't want your cache to grow forever
         # till it hits GitHub's limit of 5GB.
         # Temp fix
         # https://github.com/docker/build-push-action/issues/252
         # https://github.com/moby/buildkit/issues/1896
-      - name: Move cache for ${{ matrix.type }}
+      - name: Move cache 
         run: |
-          rm -rf /tmp/${{ matrix.type }}/.buildx-cache
-          mv /tmp/${{ matrix.type }}/.buildx-cache-new /tmp/${{ matrix.type }}/.buildx-cache
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
       # - name: Build images
       #   run: |
