@@ -33,14 +33,11 @@ FROM node:14-buster-slim AS build
 COPY --from=packages /app .
 WORKDIR /app
 
-RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
+# RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
 
-COPY . .
+# COPY . .
 
-RUN yarn tsc
-# Why do we need this for the back end?
-# RUN yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencies
-
+# RUN yarn tsc
 
 # FROM node:14-buster 
 # # RUN mkdir /app
@@ -49,8 +46,8 @@ RUN yarn tsc
 # # RUN mkdir /app
 # # COPY . /app
 # WORKDIR /app
-
-RUN yarn install --frozen-lockfile
+RUN yarn cache dir
+RUN yarn install --frozen-lockfile --verbose
 COPY . .
 
 RUN yarn workspace app build
