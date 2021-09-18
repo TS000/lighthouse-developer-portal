@@ -47,7 +47,7 @@ WORKDIR /app
 # # COPY . /app
 # WORKDIR /app
 RUN yarn cache dir
-RUN yarn install --frozen-lockfile --verbose
+RUN yarn install --frozen-lockfile
 COPY . .
 
 RUN yarn workspace app build
