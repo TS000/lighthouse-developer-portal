@@ -53,7 +53,7 @@ jobs:
         with:
           context: .
           file: Dockerfile.${{ matrix.type }}
-          push: false
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=local,src=/tmp/${{ matrix.type }}/.buildx-cache
           cache-to: type=local,dest=/tmp/${{ matrix.type }}/.buildx-cache-new
