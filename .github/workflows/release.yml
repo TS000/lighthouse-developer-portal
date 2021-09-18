@@ -57,7 +57,7 @@ jobs:
           context: .
           file: Dockerfile.${{ matrix.type }}
           load: true
-          tags: ${{ steps.meta.outputs.tags }}
+        #  tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
         # This ugly bit is necessary if you don't want your cache to grow forever
@@ -80,7 +80,8 @@ jobs:
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }} $IMAGE_ID:$VERSION
+          echo $VERSION
+          docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }} $IMAGE_ID:changesets
           docker push $IMAGE_ID:changesets
       # - name: Build images
       #   run: |
