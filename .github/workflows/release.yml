@@ -77,7 +77,11 @@ jobs:
         # This is where you will update the PAT to GITHUB_TOKEN
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Push image
-        run: docker push ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:${{ github.ref }}
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }} $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
       # - name: Build images
       #   run: |
       #     yarn install --frozen-lockfile && yarn tsc
