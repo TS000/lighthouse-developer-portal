@@ -59,7 +59,7 @@ jobs:
         with:
           context: .
           file: Dockerfile.${{ matrix.type }}
-          push: true
+          load: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
@@ -72,7 +72,10 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-
+      - name: Sanity Check
+        run: docker images
+      - name: Push image
+        run: docker push ${{ steps.meta.outputs.tags }}
       # - name: Build images
       #   run: |
       #     yarn install --frozen-lockfile && yarn tsc
@@ -80,7 +83,6 @@ jobs:
 
       # - name: Build frontend image
       #   run: docker build . -f Dockerfile.dockerbuild --tag $IMAGE_NAME/frontend --label "runnumber=${GITHUB_RUN_ID}"
-
       
 
       # - name: Push images
