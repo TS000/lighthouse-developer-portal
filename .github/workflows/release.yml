@@ -51,25 +51,27 @@ jobs:
         with:
           images: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
       # And make it available for the builds
-      # - name: Build and push ${{ matrix.type }} image
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: .
-      #     file: Dockerfile.${{ matrix.type }}
-      #     load: true
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     cache-from: type=local,src=/tmp/.buildx-cache
-      #     cache-to: type=local,dest=/tmp/.buildx-cache-new
-      - name: Log in to registry
-        # This is where you will update the PAT to GITHUB_TOKEN
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      - name: Build images
-        run: |
-          yarn install --frozen-lockfile && yarn tsc
-          yarn build && docker build . -f Dockerfile --tag $IMAGE_NAME/backend --label "runnumber=${GITHUB_RUN_ID}"
+      - name: Build and push ${{ matrix.type }} image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile.${{ matrix.type }}
+          load: true
+          tags: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:changesets
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
+      # - name: Log in to registry
+      #   # This is where you will update the PAT to GITHUB_TOKEN
+      #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      # - name: Build images
+      #   if: ${{ matrix.type == 'backend' }} 
+      #   run: |
+      #     yarn install --frozen-lockfile && yarn tsc
+      #     yarn build && docker build . -f Dockerfile --tag $IMAGE_NAME/backend --label "runnumber=${GITHUB_RUN_ID}"
 
-      - name: Build frontend image
-        run: docker build . -f Dockerfile.dockerbuild --tag $IMAGE_NAME/frontend --label "runnumber=${GITHUB_RUN_ID}"
+      # - name: Build frontend image
+      #   if: ${{ matrix.type == 'frontend' }}
+      #   run: docker build . -f Dockerfile.dockerbuild --tag $IMAGE_NAME/frontend --label "runnumber=${GITHUB_RUN_ID}"
       
 
       - name: Push images
