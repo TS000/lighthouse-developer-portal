@@ -27,8 +27,9 @@ COPY . /app
 WORKDIR /app
 
 RUN yarn install --frozen-lockfile
-RUN yarn workspace app build
+COPY . .
 
+RUN yarn workspace app build
 COPY . .
 
 FROM nginx:mainline
