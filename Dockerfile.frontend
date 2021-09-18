@@ -17,14 +17,38 @@
 # - In your project root, run:
 #
 #       docker build -t backstage-frontend -f Dockerfile.dockerbuild .
+FROM node:14-buster-slim AS packages
 
-
-
-FROM node:14-buster AS build
-
-RUN mkdir /app
-COPY . /app
 WORKDIR /app
+COPY package.json yarn.lock ./
+
+COPY packages packages
+COPY plugins plugins
+
+RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
+
+# Stage 2 - Install dependencies and build packages
+FROM node:14-buster-slim AS build
+
+COPY --from=packages /app .
+WORKDIR /app
+
+RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
+
+COPY . .
+
+RUN yarn tsc
+# Why do we need this for the back end?
+# RUN yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencies
+
+
+# FROM node:14-buster 
+# # RUN mkdir /app
+# COPY --from=build /app .
+
+# # RUN mkdir /app
+# # COPY . /app
+# WORKDIR /app
 
 RUN yarn install --frozen-lockfile
 COPY . .
