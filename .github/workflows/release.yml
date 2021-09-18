@@ -82,7 +82,7 @@ jobs:
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           echo $VERSION
           docker images
-          docker push $IMAGE_ID:changesets
+          docker push ${{ steps.meta.outputs.tags }}
         # docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }} $IMAGE_ID:changesets
         # docker push $IMAGE_ID:changesets
         
