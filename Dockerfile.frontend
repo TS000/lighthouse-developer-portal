@@ -17,6 +17,7 @@
 # - In your project root, run:
 #
 #       docker build -t backstage-frontend -f Dockerfile.dockerbuild .
+# Stage 1 - Create yarn install skeleton layer
 FROM node:14-buster-slim AS packages
 
 WORKDIR /app
@@ -28,28 +29,15 @@ COPY plugins plugins
 RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {} \+
 
 # Stage 2 - Install dependencies and build packages
-FROM node:14-buster-slim AS build
+FROM node:14-buster AS build
 
-COPY --from=packages /app .
 WORKDIR /app
+COPY --from=packages /app .
 
-# RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
-
-# COPY . .
-
-# RUN yarn tsc
-
-# FROM node:14-buster 
-# # RUN mkdir /app
-# COPY --from=build /app .
-
-# # RUN mkdir /app
-# # COPY . /app
-# WORKDIR /app
-RUN yarn cache dir
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
 COPY . .
 
+RUN yarn tsc
 RUN yarn workspace app build
 COPY . .
 
