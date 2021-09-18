@@ -73,9 +73,11 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
       - name: Sanity Check
-        run: docker images
+        run: |
+          docker images
+          echo ${{steps.meta.outputs.labels.version}}
       - name: Push image
-        run: docker push ${{ steps.meta.outputs.tags }}
+        run: docker push ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:${{ steps.meta.outputs.labels.version }}
       # - name: Build images
       #   run: |
       #     yarn install --frozen-lockfile && yarn tsc
