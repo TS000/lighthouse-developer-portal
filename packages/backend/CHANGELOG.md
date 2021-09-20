@@ -1,5 +1,11 @@
 # backend
 
+## 0.2.0
+
+### Minor Changes
+
+- 602ea74: Test changelog for release workflow
+
 ## 0.1.1
 
 ### Patch Changes

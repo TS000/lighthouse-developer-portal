@@ -1,5 +1,13 @@
 # app
 
+## 0.2.1
+
+### Patch Changes
+
+- 602ea74: Test changelog for release workflow
+- Updated dependencies [602ea74]
+  - @internal/plugin-feature-flags@0.1.2
+
 ## 0.2.0
 
 ### Minor Changes
