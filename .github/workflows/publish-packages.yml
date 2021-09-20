@@ -1,12 +1,9 @@
 name: Publish Packages
 
 on:
-  push:
-    branches: [changesets]
-  workflow_dispatch:
   release:
-    types: [published]
-
+    types: [published, released, edited]
+  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
@@ -66,6 +63,8 @@ jobs:
             tags: ${{ env.IMAGE_REF }}
             cache-from: type=gha
             cache-to: type=gha,mode=max
+            # For some reason using this doesn't properly add the image manifest to the tagged version of the image
+            # so trying to pull the image causes an error
             # cache-from: type=registry,ref=${{ env.IMAGE_REF }}
             # cache-to: type=registry,ref=${{ env.IMAGE_REF }},mode=max
           
