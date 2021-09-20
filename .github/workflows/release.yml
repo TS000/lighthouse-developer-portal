@@ -14,11 +14,39 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: lighthouse-backstage
   CACHE_TAG: changesets
-
+  SEMVER_TYPE: patch
 
 jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@master
+      with:
+        # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+        fetch-depth: 0
+
+    - name: Setup Node.js 12.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+    - name: Install Dependencies
+      run: yarn install
+    - name: Generate changelogs
+      run: yarn run version
+    - name: Create Release Pull Request
+      uses: changesets/action@master
+      with:
+        version: yarn version
+        title: Test PR for Release
+        commit: Test commit
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   build-and-push:
     runs-on: ubuntu-latest
+    needs: release
     permissions:
       packages: write
       contents: read
@@ -39,7 +67,7 @@ jobs:
         uses: actions/cache@v2
         with:      
           path: |
-            node_modules
+            node_modules/**
             packages/*/node_modules/**
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
           # restore-keys: |
@@ -72,106 +100,5 @@ jobs:
           cache-from: type=registry,ref=${{ env.IMAGE_REF }}
           cache-to: type=registry,ref=${{ env.IMAGE_REF }},mode=max
         
-      # - name: Log in to registry
-      #   # This is where you will update the PAT to GITHUB_TOKEN
-      #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      # - name: Build images
-      #   if: ${{ matrix.type == 'backend' }} 
-      #   run: |
-      #     yarn install --frozen-lockfile && yarn tsc
-      #     yarn build && docker build . -f Dockerfile --tag $IMAGE_NAME/backend --label "runnumber=${GITHUB_RUN_ID}"
 
-      # - name: Build frontend image
-      #   if: ${{ matrix.type == 'frontend' }}
-      #   run: docker build . -f Dockerfile.dockerbuild --tag $IMAGE_NAME/frontend --label "runnumber=${GITHUB_RUN_ID}"
-      
-
-      # - name: Push images
-      #   run: |
-      #     IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}
-      #     IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-      #     VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-      #     [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-      #     [ "$VERSION" == "main" ] && VERSION=latest
-      #     echo IMAGE_ID=$IMAGE_ID
-      #     echo VERSION=$VERSION
-      #     docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }} $IMAGE_ID:$VERSION
-      #     docker push $IMAGE_ID:$VERSION
-
-
-      # We don't need this because we're not storing a local cache, right?
-        # This ugly bit is necessary if you don't want your cache to grow forever
-        # till it hits GitHub's limit of 5GB.
-        # Temp fix
-        # https://github.com/docker/build-push-action/issues/252
-        # https://github.com/moby/buildkit/issues/1896
-      # - name: Move cache 
-      #   run: |
-      #     rm -rf /tmp/.buildx-cache
-      #     mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-
-      
-    
-        # docker tag ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }} $IMAGE_ID:changesets
-        # docker push $IMAGE_ID:changesets
-        
-          
-      
-
-        # run: |
-        #   IMAGE_ID_FRONTEND=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/frontend
-        #   IMAGE_ID_BACKEND=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/backend
-      
-        #   IMAGE_ID_FRONTEND=$(echo $IMAGE_ID_FRONTEND | tr '[A-Z]' '[a-z]')
-        #   IMAGE_ID_BACKEND=$(echo $IMAGE_ID_BACKEND | tr '[A-Z]' '[a-z]')
-          
-        #   VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-        
-        #   [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-        #   # Use Docker `latest` tag convention
-        #   [ "$VERSION" == "main" ] && VERSION=latest
-        #   echo IMAGE_ID_FRONTEND=$IMAGE_ID_FRONTEND
-        #   echo IMAGE_ID_BACKEND=$IMAGE_ID_BACKEND
-        #   echo VERSION=$VERSION
-        #   docker tag ${{ env.IMAGE_NAME }}/frontend $IMAGE_ID_FRONTEND:$VERSION
-        #   docker tag ${{ env.IMAGE_NAME }}/backend $IMAGE_ID_BACKEND:$VERSION
-        #   docker push $IMAGE_ID_FRONTEND:$VERSION
-        #   docker push $IMAGE_ID_BACKEND:$VERSION
-
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-        with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
-          fetch-depth: 0
-
-      - name: Setup Node.js 12.x
-        uses: actions/setup-node@master
-        with:
-          node-version: 12.x
-      - name: Install Dependencies
-        run: yarn install
-      - name: Generate changelogs
-        run: yarn run version
-      - name: Build & test
-        run: | 
-          echo "Building and testing..."
-      # - uses: "marvinpinto/action-automatic-releases@latest"
-      #   with:
-      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
-      #     automatic_release_tag: latest
-      #     prerelease: false
-      #     files: |
-      #       LICENSE.txt
-      #       *.jar
-      - name: Create Release Pull Request
-        uses: changesets/action@master
-        with:
-          version: yarn version
-          title: Test PR for Release
-          commit: Test commit
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
