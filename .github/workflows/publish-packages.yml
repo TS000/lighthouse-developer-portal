@@ -1,8 +1,6 @@
 name: Publish Packages
 
 on:
-  push:
-    branches: [changesets]
   release:
     types: [published, released, edited]
   workflow_dispatch:
@@ -53,21 +51,16 @@ jobs:
             registry: ghcr.io
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
-        - name: Extract metadata (tags, labels) for Docker
-          id: meta
-          uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-          with:
-            images: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
         - name: Build and push ${{ matrix.type }} image
           uses: docker/build-push-action@v2
-          #env:
-            #IMAGE_REF: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:${{ github.tag_name }}
+          env:
+            IMAGE_REF: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:${{ github.tag_name }}
           with:
             context: .
             file: Dockerfile.${{ matrix.type }}
             push: true
             platforms: linux/amd64
-            tags: ${{ steps.meta.outputs.tags }}
+            tags: ${{ IMAGE_REF }}
             cache-from: type=gha, scope=${{ matrix.type }}
             cache-to: type=gha, scope=${{ matrix.type }}, mode=max
 
