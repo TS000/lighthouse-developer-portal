@@ -1,0 +1,75 @@
+name: Publish Packages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: lighthouse-backstage
+
+jobs:
+  build-and-push:
+      runs-on: ubuntu-latest
+      permissions:
+        packages: write
+        contents: read
+      strategy:
+        matrix:
+          type: [backend, frontend]
+
+      steps:
+        - uses: actions/checkout@v2
+        - name: Set up QEMU
+          uses: docker/setup-qemu-action@v1
+        - name: Set up Docker Buildx
+          id: buildx
+          uses: docker/setup-buildx-action@v1
+          with:
+            buildkitd-flags: --debug
+            config-inline: |
+              [registry."docker.io"]
+                mirrors = ["mirror.gcr.io"]
+        # Cache every node_modules folder inside the monorepo
+        - name: cache all node_modules
+          id: cache-modules
+          uses: actions/cache@v2
+          with:
+            path: '**/node_modules'
+            key: ${{ runner.os }}-${{ matrix.type }}-node_modules-${{ hashFiles('yarn.lock', '**/package.json') }}
+        - name: find location of global yarn cache
+          id: yarn-cache
+          if: steps.cache-modules.outputs.cache-hit != 'true'
+          run: echo "::set-output name=dir::$(yarn cache dir)"
+        - name: cache global yarn cache
+          uses: actions/cache@v2
+          if: steps.cache-modules.outputs.cache-hit != 'true'
+          with:
+            path: ${{ steps.yarn-cache.outputs.dir }}
+            key: ${{ runner.os }}-${{ matrix.type }}-yarn-${{ hashFiles('yarn.lock') }}
+            restore-keys: |
+              ${{ runner.os }}-yarn-
+        - name: Login to ghcr
+          uses: docker/login-action@v1
+          with:
+            registry: ghcr.io
+            username: ${{ github.repository_owner }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+        - name: Extract metadata (tags, labels) for Docker
+          id: meta
+          uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+          with:
+            images: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}
+        - name: Build and push ${{ matrix.type }} image
+          uses: docker/build-push-action@v2
+          with:
+            context: .
+            file: Dockerfile.${{ matrix.type }}
+            push: true
+            platforms: linux/amd64
+            tags: ghcr.io/${{ steps.meta.outputs.tags }}
+            cache-from: type=gha, scope=${{ matrix.type }}
+            cache-to: type=gha, scope=${{ matrix.type }}, mode=max
+            secrets: |
+              GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
