@@ -12,7 +12,7 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: lighthouse-backstage
   CACHE_TAG: 1.0.3
-  SEMVER_TYPE: patch
+
 
 jobs:
   release:
@@ -100,8 +100,10 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: ${{ env.IMAGE_REF }}
-          cache-from: type=registry,ref=${{ env.IMAGE_REF }}
-          cache-to: type=registry,ref=${{ env.IMAGE_REF }},mode=max
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          # cache-from: type=registry,ref=${{ env.IMAGE_REF }}
+          # cache-to: type=registry,ref=${{ env.IMAGE_REF }},mode=max
         
 
   
