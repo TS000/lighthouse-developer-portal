@@ -95,7 +95,7 @@ jobs:
           context: .
           file: Dockerfile.${{ matrix.type }}
           push: true
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           tags: ${{ env.IMAGE_REF }}
           cache-from: type=registry,ref=${{ env.IMAGE_REF }}
           cache-to: type=registry,ref=${{ env.IMAGE_REF }},mode=max
