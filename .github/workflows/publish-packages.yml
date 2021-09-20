@@ -60,7 +60,7 @@ jobs:
             file: Dockerfile.${{ matrix.type }}
             push: true
             platforms: linux/amd64
-            tags: ${{ IMAGE_REF }}
+            tags: ${{ env.IMAGE_REF }}
             cache-from: type=gha, scope=${{ matrix.type }}
             cache-to: type=gha, scope=${{ matrix.type }}, mode=max
 
