@@ -51,6 +51,8 @@ jobs:
             key: ${{ runner.os }}-${{ matrix.type }}-yarn-${{ hashFiles('yarn.lock') }}
             restore-keys: |
               ${{ runner.os }}-yarn-
+        - name: Install Dependencies
+          run: yarn install --frozen-lockfile
         - name: Login to ghcr
           uses: docker/login-action@v1
           with:

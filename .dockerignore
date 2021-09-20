@@ -1,5 +1,4 @@
 node_modules
-packages/backend/dist
 packages/*/node_modules
 plugins/*/dist
 plugins/*/node_modules
