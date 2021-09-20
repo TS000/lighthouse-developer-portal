@@ -1,8 +1,6 @@
 name: Publish Packages
 
 on:
-  push:
-    branches: [changesets]
   release:
     types: [published, released, edited]
   workflow_dispatch:
@@ -28,15 +26,12 @@ jobs:
         - name: Set up Docker Buildx
           id: buildx
           uses: docker/setup-buildx-action@v1
-        
         # Cache every node_modules folder inside the monorepo
         - name: cache all node_modules
           id: cache-modules
           uses: actions/cache@v2
           with:
             path: '**/node_modules'
-            # We use both yarn.lock and package.json as cache keys to ensure that
-            # changes to local monorepo packages bust the cache.
             key: ${{ runner.os }}-node_modules-${{ hashFiles('yarn.lock', '**/package.json') }}
         - name: find location of global yarn cache
           id: yarn-cache
@@ -50,13 +45,6 @@ jobs:
             key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
             restore-keys: |
               ${{ runner.os }}-yarn-
-        # - name: Cache Docker layers
-        #   uses: actions/cache@v2
-        #   with:      
-        #     path: |
-        #         **/node_modules
-        #         **/packages/*/node_modules
-        #     key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
         - name: Login to ghcr
           uses: docker/login-action@v1
           with:
@@ -66,8 +54,7 @@ jobs:
         - name: Build and push ${{ matrix.type }} image
           uses: docker/build-push-action@v2
           env:
-            IMAGE_REF: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:1.0.5
-            #IMAGE_REF: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:${{ github.tag_name }}
+            IMAGE_REF: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:${{ github.tag_name }}
           with:
             context: .
             file: Dockerfile.${{ matrix.type }}
