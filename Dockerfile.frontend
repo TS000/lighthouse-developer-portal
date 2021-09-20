@@ -35,14 +35,13 @@ WORKDIR /app
 COPY --from=packages /app .
 
 RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
-
+COPY . .
 RUN yarn tsc
 RUN yarn workspace app build
-
+COPY . .
 FROM nginx:mainline
-
 RUN apt-get update && apt-get -y install jq && rm -rf /var/lib/apt/lists/*
-
+COPY . .
 COPY --from=build /app/packages/app/dist /usr/share/nginx/html
 COPY docker/default.conf.template /etc/nginx/templates/default.conf.template
 
