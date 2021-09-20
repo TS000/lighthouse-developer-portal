@@ -1,0 +1,54 @@
+# kubernetes/backstage.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+    spec:
+      containers:
+        - name: frontend
+          image: frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+          livenessProbe:
+            initialDelaySeconds: 5
+            httpGet:
+              path: /healthcheck/liveness
+              port: 3000
+          readinessProbe:
+            initialDelaySeconds: 5
+            httpGet:
+              path: /healthcheck/readiness
+              port: 3000
+        - name: backend
+          image: backstage:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 7000
+          envFrom:
+            - secretRef:
+                name: postgres-secrets
+            - secretRef:
+                name: backstage-secrets
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            httpGet:
+              path: /healthcheck
+              port: 7000
+          readinessProbe:
+            initialDelaySeconds: 5
+            httpGet:
+              path: /healthcheck
+              port: 7000
