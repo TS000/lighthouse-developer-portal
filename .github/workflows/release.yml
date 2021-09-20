@@ -8,11 +8,6 @@ on:
       - changesets
   workflow_dispatch:
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: lighthouse-backstage
-  CACHE_TAG: 1.0.3
-
 
 jobs:
   release:
@@ -40,70 +35,5 @@ jobs:
         title: Test PR for Release
         commit: Test commit
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  build-and-push:
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
-    strategy:
-      matrix:
-        type: [backend, frontend]
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      # This is the a separate action that sets up buildx runner
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
-      - name: check platforms
-        run: echo ${{ steps.buildx.output.platforms }}
-      # So now you can use Actions' own caching!
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:      
-          path: |
-              **/node_modules
-              **/packages/*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-      - name: Login to ghcr
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-        with:
-          images: ${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
-      # Grab version number from?
-      - name: Get version
-        id: version
-        run: |
-          echo "get tag version for next step"
-          echo ${{ steps.meta.outputs.tags }}
-          echo ${{ steps.meta.outputs.labels.version }}
-      - name: Build and push ${{ matrix.type }} image
-        uses: docker/build-push-action@v2
-        env:
-          IMAGE_REF: ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}:${{ env.CACHE_TAG }}
-        with:
-          context: .
-          file: Dockerfile.${{ matrix.type }}
-          push: true
-          platforms: linux/amd64
-          tags: ${{ env.IMAGE_REF }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          # cache-from: type=registry,ref=${{ env.IMAGE_REF }}
-          # cache-to: type=registry,ref=${{ env.IMAGE_REF }},mode=max
-        
-
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
   
