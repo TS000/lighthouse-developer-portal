@@ -34,9 +34,11 @@ FROM node:14-buster AS build
 WORKDIR /app
 COPY --from=packages /app .
 
-RUN yarn install --frozen-lockfile --network-timeout 600000 
+RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
+
 RUN yarn tsc
 RUN yarn workspace app build
+
 FROM nginx:mainline
 
 RUN apt-get update && apt-get -y install jq && rm -rf /var/lib/apt/lists/*
