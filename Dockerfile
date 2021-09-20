@@ -1,6 +1,6 @@
-# Stage 0 - Set the ssm-parent and ssm-get-parameter as a Docker stage
-FROM springload/ssm-parent@sha256:4f97e29ec5726f685c092320bc909e857cf8840677bb9c92d5d8235e3037fc42 as ssm-parent
-FROM binxio/ssm-get-parameter@sha256:f41ad114581ab9426606e0001e743c6641919e3f761a121cfd8566ff6c36a373 as ssm-get-parameter
+# Stage 0 - Set Chamber as a Docker stage, https://github.com/segmentio/chamber/wiki/Installation
+FROM segment/chamber:2 AS chamber
+FROM scratch
 
 # Stage 1 - Create yarn install skeleton layer
 FROM node:14-buster-slim AS packages
@@ -63,9 +63,10 @@ RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 # Copy any other files that we need at runtime
 COPY app-config.yaml ./
 COPY app-config.production.yaml ./
-COPY --from=ssm-parent /usr/bin/ssm-parent /usr/local/bin/
-COPY --from=ssm-get-parameter /ssm-get-parameter /usr/local/bin/
+COPY --from=chamber /chamber /bin/chamber
+
+ENTRYPOINT [ "/bin/chamber", "exec", "lighthouse-backstage", "--", "packages/backend" ]
 
 # Configs are merged with left-lower right-higher priority
 # see https://backstage.io/docs/conf/writing#configuration-files
-CMD ["ssm-parent", "--plain-path", "/lighthouse/staging/backstage_backend/ENV", "run", "--", "node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
+CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]

@@ -33,6 +33,12 @@ sh local.sh copy
 - _What does this do_: This will install the application and its dependencies and then run the backend and frontend in separate containers. To ensure fast hot-reloading, `node_modules` and `postgreSQL db` are stored in a docker [volume](https://docs.docker.com/storage/volumes/) and your local source files are mounted into the container.
 - _Why do you need to copy after the first run_: The application uses `node_modules` from Docker volume not your local files. Copy these locally so that dependencies resolve correctly in your editor.
 
+**Environment Variable Injection**
+
+The local dev environment is setup to use [chamber](https://github.com/segmentio/chamber) for environment variable injection. A few changes need to be made before this will work.
+
+First you'll need to add a `.env` file within the `.localdevcontainer` folder. An `example.env` is available to copy from. Then, you need to uncomment the `ENTRYPOINT` located at the bottom of the local-Dockerfile, and comment `ENTRYPOINT [ "/entrypoint.sh" ]`. Running `sh local.sh.start` should now inject any environment variables stored within the SSM Parameter Store based on the values within `.env`. It'll grab any variables that start with `lighthouse-backstage`.
+
 ## Install and run locally (TBD)
 
 - Use [nvm](https://github.com/nvm-sh/nvm) to install node
