@@ -13,7 +13,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: lighthouse-backstage
-  CACHE_TAG: changesets
+  CACHE_TAG: 1.0.3
   SEMVER_TYPE: patch
 
 jobs:
