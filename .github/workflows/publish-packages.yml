@@ -57,7 +57,7 @@ jobs:
         - name: yarn tsc
           run: yarn tsc
         - name: Create build
-          run: yarn run "build ${{ matrix.type }}""
+          run: yarn run "build ${{ matrix.type }}"
         - name: Login to ghcr
           uses: docker/login-action@v1
           with:
