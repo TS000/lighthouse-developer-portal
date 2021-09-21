@@ -53,7 +53,9 @@ jobs:
               ${{ runner.os }}-yarn-
         - name: Install Dependencies
           if: steps.cache-modules.outputs.cache-hit != 'true'
-          run: yarn install --frozen-lockfile && yarn tsc
+          run: yarn install --frozen-lockfile 
+        - name: yarn tsc
+          run: yarn tsc
         - name: Create build
           run: yarn build
         - name: Login to ghcr
