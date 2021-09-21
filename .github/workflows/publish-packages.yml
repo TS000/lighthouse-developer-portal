@@ -53,6 +53,7 @@ jobs:
               ${{ runner.os }}-yarn-
         - name: Cache frontend static files
           if: matrix.type == 'frontend'
+          id: cache-static
           uses: actions/cache@v2
           with: 
             path: |
@@ -65,6 +66,7 @@ jobs:
         - name: yarn tsc
           run: yarn tsc
         - name: Create build
+          if: (matrix.type =='frontend' && steps.cache-static.outputs.cache-hit != 'true') || matrix.type == 'backend'
           run: yarn run "build ${{ matrix.type }}"
         - name: Login to ghcr
           uses: docker/login-action@v1
