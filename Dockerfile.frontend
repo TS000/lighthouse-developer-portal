@@ -32,7 +32,7 @@ RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -exec rm -rf {
 FROM node:14-buster AS build
 
 WORKDIR /app
-COPY --from=packages /app .
+COPY --from=packages /app/yarn.lock /app/package.json /app .
 
 RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
 COPY . .
