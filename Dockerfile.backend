@@ -1,7 +1,4 @@
 # # Stage 0 - Set the ssm-parent and ssm-get-parameter as a Docker stage
-# FROM springload/ssm-parent@sha256:4f97e29ec5726f685c092320bc909e857cf8840677bb9c92d5d8235e3037fc42 as ssm-parent
-# FROM binxio/ssm-get-parameter@sha256:f41ad114581ab9426606e0001e743c6641919e3f761a121cfd8566ff6c36a373 as ssm-get-parameter
-
 # # Stage 1 - Create yarn install skeleton layer
 # FROM node:14-buster-slim AS packages
 
