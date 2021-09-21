@@ -2,3 +2,4 @@ node_modules
 packages
 !packages/app/dist
 !packages/backend/dist
+packages
