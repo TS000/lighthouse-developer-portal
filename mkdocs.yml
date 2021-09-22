@@ -13,6 +13,7 @@ nav:
       - Cypress e2e Tests(ADR): cypress-e2e-tests.md
       - RFC Doc Generator: rfc-doc-generator.md
       - RFC CI/CD Modifications: rfc-ci-cd.md
+      - RFC Catalog Import Research: catalog-import-research.md
       - RFC Node App Logging: rfc-node-app-logging.md
 
 plugins:
