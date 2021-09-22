@@ -11,6 +11,8 @@
     "start-backend": "yarn workspace backend start",
     "backstage-update": "yarn backstage-cli versions:bump 2>&1 | tee backstage-update-log.txt",
     "build": "lerna run build",
+    "build backend": "yarn workspace backend backstage-cli backend:bundle",
+    "build frontend": "yarn workspace app backstage-cli app:build",
     "build-image": "yarn workspace backend build-image",
     "tsc": "tsc",
     "tsc:full": "tsc --skipLibCheck false --incremental false",
