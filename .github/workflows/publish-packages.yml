@@ -57,9 +57,9 @@ jobs:
           uses: actions/cache@v2
           with: 
             path: |
-              **/packages/app/dist/static/*
+              **/packages/app/dist
             key:
-              ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app/dist/static/*') }}
+              ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app') }}
             #  ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app/package.json') }}
         - name: Install Dependencies
           if: steps.cache-modules.outputs.cache-hit != 'true'
