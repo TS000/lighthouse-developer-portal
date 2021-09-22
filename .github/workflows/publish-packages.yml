@@ -60,7 +60,6 @@ jobs:
               **/packages/app/dist
             key:
               ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app') }}
-            #  ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app/package.json') }}
         - name: Install Dependencies
           if: steps.cache-modules.outputs.cache-hit != 'true'
           run: yarn install --frozen-lockfile 
