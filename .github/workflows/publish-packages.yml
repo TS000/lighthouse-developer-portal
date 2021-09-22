@@ -57,9 +57,10 @@ jobs:
           uses: actions/cache@v2
           with: 
             path: |
-              **/packages/app/dist
+              **/packages/app/dist/static/*
             key:
-              ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app/package.json') }}
+              ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app/dist/static/*') }}
+            #  ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app/package.json') }}
         - name: Install Dependencies
           if: steps.cache-modules.outputs.cache-hit != 'true'
           run: yarn install --frozen-lockfile 
