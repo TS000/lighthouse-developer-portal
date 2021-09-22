@@ -38,7 +38,7 @@ jobs:
           with:
             path: |
               **/node_modules
-            key: ${{ runner.os }}-${{ matrix.type }}-v1-node_modules-${{ hashFiles('yarn.lock', '**/package.json') }}
+            key: ${{ runner.os }}-${{ matrix.type }}-v1-node_modules-${{ hashFiles('yarn.lock') }}
         - name: find location of global yarn cache
           id: yarn-cache
           if: steps.cache-modules.outputs.cache-hit != 'true'
