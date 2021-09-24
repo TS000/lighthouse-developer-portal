@@ -20,45 +20,68 @@ This is a rough sequence diagram of the CI/CD pipeline to illustrate the role of
 
 ```plantuml
 actor Developer as dev
-participant "Source Code" as source
-participant "Build Stage" as build
-participant "Testing Stage" as test
-participant "Deploy Stage" as deploy
+participant "GitHub Repository" as source
+participant "Initial Test and Build" as ci
+database "GitHub Packages" as registry
+participant "Integration Testing" as int_test
+participant "Nonprod Environment" as nonprod
 
 dev->source: Merge changes to "main" branch
-source->source: Automatically generate\nnew release
-source->build: Merge triggers Build Stage
-source->test: Merge triggers Testing Stage
-build->build: Build docker image
-alt Build Failed
-    build->dev: Feedback: Image failed to build
+source->ci: Merge triggers CI workflow
+ci->ci: Setup for CI process\nGet dependencies from cache
+alt Dependency Cache Miss
+    ci->ci: Install dependencies
 end
-build->build: Update container registry
-alt Update Container Registry Failed
-    build->dev: Feedback: Unable to upload image to container registry
+ci->ci: Get packages from cache
+alt Package Cache Miss
+    ci->ci: Rebuild packages 
 end
-build->dev: Successful Build
-test->test: Unit tests
+ci->ci:Run unit tests\nCheck test coverage\nBrowser Tests
 alt Unit Tests Failed
-    test->dev: Feedback: Unit tests failed
+    ci->dev: Feedback: Unit tests failed
 end
-test->test: Check test coverage
 alt Test Coverage Below Threshold
-    test->dev: Feedback: Insufficient Test Coverage
+    ci->dev: Feedback: Insufficient test coverage
 end
-test->test: Integration tests
-alt Integration Tests Failed
-    test->dev: Feedback: Integration tests failed
+alt Browser Tests Failed
+    ci->dev: Feedback: Browser tests failed
 end
-test->dev: All tests Passed
-dev->dev: Create Kubernetes Assets with Lightkeeper
+ci->ci: Determine new tag/version number
+ci->ci: Build images
+alt Build Failed
+    ci->dev: Feedback: Image failed to build
+end
+ci->registry: Update Container Registry w/\nAssigned tag/version number
+alt Update Container Registry Failed
+    ci->dev: Feedback: Unable to upload image to container registry
+end
+ci->source: Creates Release 
+source->int_test: "Release Created" Webhook triggers GitHub Action for integration tests
+int_test->int_test: AWS Integration Tests\nS3 & PostgreSQL
+alt AWS Integration Tests Failed
+    int_test->dev: Feedback: AWS Integration tests failed
+end
+
+int_test->int_test: Create K8s Assets For Nonprod\n Cluster With Lightkeeper
 alt Lightkeeper error
-    dev->dev: Feedback: Lightkeeper failed to build assets
+    int_test->dev: Feedback: Lightkeeper failed to build assets
 end
-dev->deploy: Deploy to Production Environment
-alt Deployment failed
-    deploy->dev: Feedback: Failed to update production environment
+int_test->int_test: K8s Integration Tests
+alt K8s integration tests failed
+    int_test->dev: Feedback: K8s nonprod cluster failed integration tests
 end
+int_test->nonprod: Deploy Nonprod Cluster to Nonprod Env
+alt Failed to deploy to nonprod env
+    nonprod->dev: Feedback: Failed to deploy to nonprod env
+end
+dev->nonprod: Smoke Test Nonprod Deployment
+alt Smoke Test Failed
+    nonprod->dev: Feedback: Some kind of critical error 
+end
+nonprod->nonprod: Other Tests to Determine Stability?
+nonprod->dev: Determination: Draft release is stable
+dev->source: Publish release
+source->registry: Release is published to GitHub Packages
 ```
 
 > Note: Still a work in progress and needs more steps or more stages to reflect multiple deployment environments
