@@ -9,10 +9,12 @@ import {
 } from '@backstage/core';
 import { useFeatureFlags } from '@internal/plugin-feature-flags';
 
-export default {
+const homepage: any = {
   title: 'DVP Portal Homepage',
   component: InfoCard,
 };
+
+export default homepage;
 
 const Wrapper = ({ children }: PropsWithChildren<{}>) => (
   <Grid container spacing={4}>

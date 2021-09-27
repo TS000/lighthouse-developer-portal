@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Spotify AB
+ * Copyright 2020 The Backstage Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  */
 import React from 'react';
 import { Button, Grid } from '@material-ui/core';
-import { EmptyState } from '@backstage/core';
 import {
   EntityApiDefinitionCard,
   EntityConsumedApisCard,
@@ -30,6 +29,7 @@ import {
   EntityDependsOnResourcesCard,
   EntitySystemDiagramCard,
   EntityHasComponentsCard,
+  EntityHasResourcesCard,
   EntityHasSubcomponentsCard,
   EntityHasSystemsCard,
   EntityLayout,
@@ -53,9 +53,7 @@ import {
   EntityOwnershipCard,
 } from '@backstage/plugin-org';
 import { EntityTechdocsContent } from '@backstage/plugin-techdocs';
-import { EntityGithubInsightsContent } from '@roadiehq/backstage-plugin-github-insights';
-import { EntityGithubPullRequestsContent } from '@roadiehq/backstage-plugin-github-pull-requests';
-import { Router as SecurityInsightsRouter } from '@roadiehq/backstage-plugin-security-insights';
+import { EmptyState } from '@backstage/core-components';
 
 const cicdContent = (
   // This is an example of how you can implement your company's logic in entity page.
@@ -84,8 +82,8 @@ const cicdContent = (
   </EntitySwitch>
 );
 
-const overviewContent = (
-  <Grid container spacing={3} alignItems="stretch">
+const entityWarningContent = (
+  <>
     <EntitySwitch>
       <EntitySwitch.Case if={isOrphan}>
         <Grid item xs={12}>
@@ -101,7 +99,12 @@ const overviewContent = (
         </Grid>
       </EntitySwitch.Case>
     </EntitySwitch>
+  </>
+);
 
+const overviewContent = (
+  <Grid container spacing={3} alignItems="stretch">
+    {entityWarningContent}
     <Grid item md={6}>
       <EntityAboutCard variant="gridItem" />
     </Grid>
@@ -126,11 +129,22 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/api" title="API">
       <Grid container spacing={3} alignItems="stretch">
-        <Grid item md={6} xs={12}>
+        <Grid item md={6}>
           <EntityProvidedApisCard />
         </Grid>
-        <Grid item md={6} xs={12}>
+        <Grid item md={6}>
           <EntityConsumedApisCard />
+        </Grid>
+      </Grid>
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/dependencies" title="Dependencies">
+      <Grid container spacing={3} alignItems="stretch">
+        <Grid item md={6}>
+          <EntityDependsOnComponentsCard variant="gridItem" />
+        </Grid>
+        <Grid item md={6}>
+          <EntityDependsOnResourcesCard variant="gridItem" />
         </Grid>
       </Grid>
     </EntityLayout.Route>
@@ -150,6 +164,7 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
     </EntityLayout.Route>
+
     <EntityLayout.Route path="/dependencies" title="Dependencies">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={6}>
@@ -164,20 +179,15 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       <EntityTechdocsContent />
     </EntityLayout.Route>
-
-    <EntityLayout.Route path="/code-insights" title="Code Insights">
-      <EntityGithubInsightsContent />
-    </EntityLayout.Route>
-
-    <EntityLayout.Route path="/pull-requests" title="Pull Requests">
-      <EntityGithubPullRequestsContent />
-    </EntityLayout.Route>
-
-    <EntityLayout.Route path="/security-insights" title="Security Insights">
-      <SecurityInsightsRouter />
-    </EntityLayout.Route>
   </EntityLayout>
 );
+
+/**
+ * NOTE: This page is designed to work on small screens such as mobile devices.
+ * This is based on Material UI Grid. If breakpoints are used, each grid item must set the `xs` prop to a column size or to `true`,
+ * since this does not default. If no breakpoints are used, the items will equitably share the available space.
+ * https://material-ui.com/components/grid/#basic-grid.
+ */
 
 const defaultEntityPage = (
   <EntityLayout>
@@ -209,14 +219,18 @@ const apiPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3}>
-        <Grid item md={6} xs={12}>
+        {entityWarningContent}
+        <Grid item md={6}>
           <EntityAboutCard />
         </Grid>
+        <Grid item md={4} xs={12}>
+          <EntityLinksCard />
+        </Grid>
         <Grid container item md={12}>
-          <Grid item md={6} xs={12}>
+          <Grid item md={6}>
             <EntityProvidingComponentsCard />
           </Grid>
-          <Grid item md={6} xs={12}>
+          <Grid item md={6}>
             <EntityConsumingComponentsCard />
           </Grid>
         </Grid>
@@ -237,6 +251,7 @@ const userPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3}>
+        {entityWarningContent}
         <Grid item xs={12} md={6}>
           <EntityUserProfileCard variant="gridItem" />
         </Grid>
@@ -252,6 +267,7 @@ const groupPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3}>
+        {entityWarningContent}
         <Grid item xs={12} md={6}>
           <EntityGroupProfileCard variant="gridItem" />
         </Grid>
@@ -270,14 +286,18 @@ const systemPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3} alignItems="stretch">
-        <Grid item md={6} xs={12}>
+        {entityWarningContent}
+        <Grid item md={6}>
           <EntityAboutCard variant="gridItem" />
         </Grid>
-        <Grid item md={6} xs={12}>
+        <Grid item md={6}>
           <EntityHasComponentsCard variant="gridItem" />
         </Grid>
-        <Grid item md={6} xs={12}>
+        <Grid item md={6}>
           <EntityHasApisCard variant="gridItem" />
+        </Grid>
+        <Grid item md={6}>
+          <EntityHasResourcesCard variant="gridItem" />
         </Grid>
       </Grid>
     </EntityLayout.Route>
@@ -291,10 +311,11 @@ const domainPage = (
   <EntityLayout>
     <EntityLayout.Route path="/" title="Overview">
       <Grid container spacing={3} alignItems="stretch">
-        <Grid item md={6} xs={12}>
+        {entityWarningContent}
+        <Grid item md={6}>
           <EntityAboutCard variant="gridItem" />
         </Grid>
-        <Grid item md={6} xs={12}>
+        <Grid item md={6}>
           <EntityHasSystemsCard variant="gridItem" />
         </Grid>
       </Grid>

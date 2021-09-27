@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": "12 || 14"
+    "node": "14 || 16"
   },
   "scripts": {
     "dev": "concurrently \"yarn start\" \"yarn start-backend\"",
@@ -60,9 +60,9 @@
     "@changesets/cli": "^2.16.0"
   },
   "metadata": {
-    "backstage-create-app-version": "0.3.35"
+    "backstage-create-app-version": "0.3.42"
   },
   "jest": {
-    "coverageDirectory":"../../../logs/coverage"
+    "coverageDirectory": "../../../logs/coverage"
   }
 }

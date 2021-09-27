@@ -4,9 +4,6 @@
   "main": "dist/index.cjs.js",
   "types": "src/index.ts",
   "private": true,
-  "engines": {
-    "node": "12 || 14"
-  },
   "scripts": {
     "build": "backstage-cli backend:bundle",
     "build-image": "docker build ../.. -f Dockerfile --tag backstage",
@@ -17,13 +14,13 @@
     "migrate:create": "knex migrate:make -x ts"
   },
   "dependencies": {
-    "@backstage/backend-common": "^0.8.0",
-    "@backstage/catalog-client": "^0.3.10",
+    "@backstage/backend-common": "^0.9.4",
+    "@backstage/catalog-client": "^0.4.0",
     "@backstage/catalog-model": "^0.9.0",
     "@backstage/cli": "^0.7.7",
     "@backstage/config": "^0.1.4",
-    "@backstage/plugin-auth-backend": "^0.3.8",
-    "@backstage/plugin-catalog-backend": "^0.13.1",
+    "@backstage/plugin-auth-backend": "^0.4.1",
+    "@backstage/plugin-catalog-backend": "^0.14.0",
     "@backstage/plugin-proxy-backend": "^0.2.6",
     "@backstage/plugin-scaffolder-backend": "^0.15.0",
     "@backstage/plugin-search-backend": "^0.2.1",
@@ -49,7 +46,7 @@
     "dist"
   ],
   "jest": {
-    "coverageThreshold" : {
+    "coverageThreshold": {
       "global": {
         "branches": 50,
         "functions": 50,

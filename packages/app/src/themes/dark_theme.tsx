@@ -11,7 +11,7 @@ const darkTheme: SimpleThemeOptions = {
     type: 'dark',
     background: {
       default: '#263238',
-      paper: '#323a45', 
+      paper: '#323a45',
     },
     status: {
       ok: "#1DB954",
@@ -27,6 +27,9 @@ const darkTheme: SimpleThemeOptions = {
       backgroundColor: {
         default: "#7C3699"
       },
+      gradient: {
+        linear: 'linear-gradient(-137deg, #4BB8A5 0%, #187656 100%)'
+      }
     },
     primary: {
       main: '#94bfa2',

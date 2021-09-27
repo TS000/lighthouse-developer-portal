@@ -27,6 +27,9 @@ const lightTheme: SimpleThemeOptions = {
       backgroundColor: {
         default: "#7C3699"
       },
+      gradient: {
+        linear: 'linear-gradient(-137deg, #4BB8A5 0%, #187656 100%)'
+      }
     },
     primary: {
       main: blue[900]
