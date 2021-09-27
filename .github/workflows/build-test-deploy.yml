@@ -24,7 +24,7 @@ jobs:
         run: docker image build -t backstage/staging/runner .
       - name: Push to ECR
         id: ecr
-        uses: jwalton/gh-ecr-push@v1
+        uses: jwalton/gh-ecr-push@5c8dff7f31948b22222e5f2aac5a19074dbb9fa4 # pin@v1
         with:
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

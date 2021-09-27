@@ -42,7 +42,7 @@ jobs:
         with:
           name: logs
           path: ./logs
-      - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+      - uses: VeryGoodOpenSource/very_good_coverage@03275e99cea6981679254681dbdb65b52155b88c # pin@v1.1.1
         with:
           path: "./logs/coverage/lcov.info"
           min_coverage: 0
