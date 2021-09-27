@@ -15,7 +15,7 @@
     
     
       
-        <title>Allstar - example-docs</title>
+        <title>RFC Node App Logging - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#allstar-configuration-files" class="md-skip">
+        <a href="#rfc-node-app-logging" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Allstar
+              RFC Node App Logging
             
           </span>
         </div>
@@ -235,20 +235,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Allstar" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../allstar/" title="Allstar" class="md-nav__link">
       Allstar
     </a>
-    
   </li>
 
     
@@ -256,10 +247,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
     
     <label class="md-nav__link" for="nav-7">
       RFCs and decision records
@@ -353,11 +346,87 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../rfc-node-app-logging/" title="RFC Node App Logging" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RFC Node App Logging
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="RFC Node App Logging" class="md-nav__link md-nav__link--active">
       RFC Node App Logging
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    Recommendation
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommendation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging-levels" class="md-nav__link">
+    Logging Levels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#be-descriptive" class="md-nav__link">
+    Be Descriptive
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -383,6 +452,57 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    Recommendation
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommendation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging-levels" class="md-nav__link">
+    Logging Levels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#be-descriptive" class="md-nav__link">
+    Be Descriptive
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -393,7 +513,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/allstar.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/rfc-node-app-logging.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -401,29 +521,60 @@
                   
                 
                 
-                <h1 id="allstar-configuration-files">Allstar Configuration Files<a class="headerlink" href="#allstar-configuration-files" title="Permanent link">&para;</a></h1>
-<p>Allstar is a GitHub App ran by OpenSSF that helps set and enforce security policies for GitHub Repositories. </p>
-<p>Our repository uses a <a href="https://github.com/ossf/allstar/blob/main/quick-start.md#repository-level">Repository Level Opt In Strategy</a>. This means our repository contains our own .allstar directory to manage our security policies instead of using an organizational level .allstar directory. Inside the .allstar directory are several configuration files that outline our security policies and what <code>Actions</code> to take in the event of a security violation.</p>
-<h1 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h1>
-<p><code>log</code>: This is the default action, and actually takes place for all actions. All policy run results and details are logged. Logs are currently only visible to the app operator, plans to expose these are under discussion.
-<code>issue</code>: This action creates a GitHub issue. Only one issue is created per policy, and the text describes the details of the policy violation. If the issue is already open, it is pinged with a comment every 24 hours (not currently user configurable). Once the violation is addressed, the issue will be automatically closed by Allstar within 5-10 minutes.
-<code>fix</code>: This action is policy specific. The policy will make the changes to the GitHub settings to correct the policy violation. Not all policies will be able to support this (see below).</p>
-<h1 id="configuration-files-in-allstar-directory">Configuration Files in .allstar Directory<a class="headerlink" href="#configuration-files-in-allstar-directory" title="Permanent link">&para;</a></h1>
-<h2 id="allstaryaml">allstar.yaml<a class="headerlink" href="#allstaryaml" title="Permanent link">&para;</a></h2>
-<h3 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h3>
-<p>Configures whether our repository will opt in or opt out of using Allstar app for reporting security violations. Since our organization does not contain a .allstar directory, the default Allstar strategy for all repositories is assumed requiring each repository to <code>opt in</code> to manage security policies. </p>
-<h2 id="binary_artifactsyaml">binary_artifacts.yaml<a class="headerlink" href="#binary_artifactsyaml" title="Permanent link">&para;</a></h2>
-<h3 id="purpose_1">Purpose<a class="headerlink" href="#purpose_1" title="Permanent link">&para;</a></h3>
-<p>This policy uses <a href="https://github.com/ossf/scorecard/#scorecard-checks">check from scorecard</a>. Remove the binary artifact from the repository to achieve compliance. As the scorecard results can be verbose, you may need to run scorecard itself to see all the detailed information.</p>
-<h2 id="branch_protectionyaml">branch_protection.yaml<a class="headerlink" href="#branch_protectionyaml" title="Permanent link">&para;</a></h2>
-<h3 id="purpose_2">Purpose<a class="headerlink" href="#purpose_2" title="Permanent link">&para;</a></h3>
-<p>This policy checks if our repository's branch protection settings match with the branch protection settings outlined in this file.</p>
-<h2 id="outsideyaml">outside.yaml<a class="headerlink" href="#outsideyaml" title="Permanent link">&para;</a></h2>
-<h3 id="purpose_3">Purpose<a class="headerlink" href="#purpose_3" title="Permanent link">&para;</a></h3>
-<p>By default this policy checks that only organizational members have administrative or push access to the repository.</p>
-<h2 id="securityyaml">security.yaml<a class="headerlink" href="#securityyaml" title="Permanent link">&para;</a></h2>
-<h3 id="purpose_4">Purpose<a class="headerlink" href="#purpose_4" title="Permanent link">&para;</a></h3>
-<p>This policy checks that the repository has a security policy file in <code>SECURITY.md</code> and it is not empty. </p>
+                <h1 id="rfc-node-app-logging">[RFC] Node App Logging<a class="headerlink" href="#rfc-node-app-logging" title="Permanent link">&para;</a></h1>
+<p><strong>Summary</strong>:</p>
+<p>Logging provides numerous benefits to applications. Mainly to help provide visibility into how our applications are running on each of the various infrastructure components.</p>
+<p>There are three major concerns for choosing a suitable logging library: recording, formatting, and storing messages. We need to make sure that our library of choice addresses all three concerns in a satisfactory manner.</p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>Backstage comes with <a href="https://github.com/winstonjs/winston#readme">Winston</a> already included which is nice as Winston is a popular logger for node applications. The logger is being used within various points of the <code>src/backend</code>. Routes seem to be the only thing being logged at the moment.
+Backstage initiate's the logger within the <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/packages/backend/src/index.ts#L32">makeCreateEnv()</a> function.</p>
+<p>Whether we decide to use Winston or another logging service (<a href="https://github.com/trentm/node-bunyan#readme">Bunyan</a>) we should decouple the various import statements for winston and only use it within a single file. Any file wanting to use the logger should then import from our controlled logger making it easy to manage and/or change in the future.</p>
+<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
+<p>Our goal is to utilize a logger in order to provide a viewpoint into the backstage backend application. This will help to locate errors, catch bugs, and gather general information on how our application is used.</p>
+<p>We should also decide on how or what should be logged within the application, and what logging levels should be used.</p>
+<p>Either way logs will need to be output to <code>stdout</code> for easy consumption for services like <a href="https://www.datadoghq.com/">Datadog</a>.</p>
+<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/winstonjs/winston#readme">Winston</a> is designed to be a simple and universal logging library with support for multiple storage devices. Each logger can have multiple transports configured at different levels. Winston also allows for flexibility and configuration for logging levels, formats, and interpolation of error messages. It's also one of the more popular logging libraries which means that others give it a lot of trust as well.</p>
+<p>All current instances of importing the logger from backstage should be replaced with an import from a single file that we can name <code>logger.js</code>. This will decouple the logger from our code and make iterations or changing services much easier.</p>
+<p>For logging levels, and usage I think it'd be best to be as vanilla as possible. Logging levels should conform to the severity ordering specified by <a href="https://datatracker.ietf.org/doc/html/rfc5424">RFC5424</a>: severity of all levels is assumed to be numerically ascending from most important to least important.</p>
+<h3 id="logging-levels">Logging Levels<a class="headerlink" href="#logging-levels" title="Permanent link">&para;</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">// Default logging levels</span>
+<span class="kd">const</span> <span class="nx">levels</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">error</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+  <span class="nx">warn</span><span class="o">:</span> <span class="mf">1</span><span class="p">,</span>
+  <span class="nx">info</span><span class="o">:</span> <span class="mf">2</span><span class="p">,</span>
+  <span class="nx">http</span><span class="o">:</span> <span class="mf">3</span><span class="p">,</span>
+  <span class="nx">verbose</span><span class="o">:</span> <span class="mf">4</span><span class="p">,</span>
+  <span class="nx">debug</span><span class="o">:</span> <span class="mf">5</span><span class="p">,</span>
+  <span class="nx">silly</span><span class="o">:</span> <span class="mf">6</span><span class="p">,</span>
+<span class="p">};</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Logging Level Descriptions</p>
+<ul>
+<li>ERROR - Represents an error condition in the system that happens to halt a specific operation, but not the overall system.</li>
+<li>WARN - Indicates runtime conditions that are undesirable or unusual, but not necessarily errors. An example could be using a backup data source when the primary source is unavailable.</li>
+<li>INFO - Info messages are purely informative. Events that are user-driven or application-specific may be logged at this level. A common use of this level is to log interesting runtime events, such ast he startup or shutdown of a service.</li>
+<li>DEBUG - Used to represent diagnostic information that may be needed for troubleshooting.</li>
+</ul>
+<p>Example usage.</p>
+<p><code>logger.info("Informative Message") // {"message":"Informative Message", "level":"info"}</code></p>
+<h3 id="be-descriptive">Be Descriptive<a class="headerlink" href="#be-descriptive" title="Permanent link">&para;</a></h3>
+<p>Log entries should adequately describe the events that they represent. Each message should be unique to the situation and should clearly explain the event that occurred at that point.</p>
+<p>Bad Example
+"Request Failed, will retry."</p>
+<p>Good Example
+"POST" request to "<a href="https://example.com/api">https://example.com/api</a>" failed. Response code: "429", response message: "too many requests". Retrying after "60" seconds.</p>
                 
               
               
@@ -442,7 +593,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../local-k8s/" title="Deploy Local K8s Cluster" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../rfc-ci-cd/" title="RFC CI/CD Modifications" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -451,25 +602,11 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Deploy Local K8s Cluster
+                RFC CI/CD Modifications
               </div>
             </div>
           </a>
         
-        
-          <a href="../zero-install-adr/" title="Yarn Zero Install(ADR)" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Yarn Zero Install(ADR)
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
         
       </nav>
     </div>

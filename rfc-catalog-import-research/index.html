@@ -15,7 +15,7 @@
     
     
       
-        <title>Generate K8s YAML Files - example-docs</title>
+        <title>[RFC] Catalog Import Research - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#running-pulumi-to-deploy-fe-to-kubernetes" class="md-skip">
+        <a href="#rfc-catalog-import-research" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Generate K8s YAML Files
+              [RFC] Catalog Import Research
             
           </span>
         </div>
@@ -223,53 +223,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Generate K8s YAML Files
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Generate K8s YAML Files" class="md-nav__link md-nav__link--active">
-      Generate K8s YAML Files
+  <li class="md-nav__item">
+    <a href="../local-k8s/" title="Deploy Local K8s Cluster" class="md-nav__link">
+      Deploy Local K8s Cluster
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#through-codespaces" class="md-nav__link">
-    Through Codespaces
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -316,18 +274,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../rfc-doc-generator/" title="RFC Doc Generator" class="md-nav__link">
-      RFC Doc Generator
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../zero-install-adr/" title="Yarn Zero Install(ADR)" class="md-nav__link">
       Yarn Zero Install(ADR)
     </a>
@@ -340,8 +286,68 @@
 
 
   <li class="md-nav__item">
+    <a href="../split-fe-be-adr/" title="Split FE/BE(ADR)" class="md-nav__link">
+      Split FE/BE(ADR)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cypress-e2e-tests/" title="Cypress e2e Tests(ADR)" class="md-nav__link">
+      Cypress e2e Tests(ADR)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rfc-doc-generator/" title="RFC Doc Generator" class="md-nav__link">
+      RFC Doc Generator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../rfc-ci-cd/" title="RFC CI/CD Modifications" class="md-nav__link">
       RFC CI/CD Modifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../catalog-import-research.md" title="RFC Catalog Import Research" class="md-nav__link">
+      RFC Catalog Import Research
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rfc-node-app-logging/" title="RFC Node App Logging" class="md-nav__link">
+      RFC Node App Logging
     </a>
   </li>
 
@@ -377,8 +383,56 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#through-codespaces" class="md-nav__link">
-    Through Codespaces
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information" class="md-nav__link">
+    Information
+  </a>
+  
+    <nav class="md-nav" aria-label="Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integrations" class="md-nav__link">
+    Integrations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#catalog-plugin" class="md-nav__link">
+    Catalog-Plugin
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    Recommendation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions" class="md-nav__link">
+    Questions
   </a>
   
 </li>
@@ -395,7 +449,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/pulumi-k8s.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/rfc-catalog-import-research.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -403,28 +457,122 @@
                   
                 
                 
-                <h1 id="running-pulumi-to-deploy-fe-to-kubernetes">Running Pulumi to Deploy FE to Kubernetes<a class="headerlink" href="#running-pulumi-to-deploy-fe-to-kubernetes" title="Permanent link">&para;</a></h1>
-<h2 id="through-codespaces">Through Codespaces<a class="headerlink" href="#through-codespaces" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Switch <code>.devcontainer</code> with <code>.pulumidevcontainer</code><ul>
-<li>Run <code>yarn swap-codespaces</code> from the root directory to swap devcontainers</li>
-<li>If a <code>.pulumidevcontainer</code> is present, this script will rename <code>.devcontainer</code> to <code>.devcontainer_main</code> and rename <code>.pulumidevcontainer</code> to <code>.devcontainer</code></li>
-<li>If there is no <code>.pulumidevcontainer</code>, then the script will rename <code>.devcontainer</code> to <code>.pulumidevcontainer</code> and rename <code>.devcontainer_main</code> to <code>.devcontainer</code></li>
-<li>Note: Changing the configuration of the Codespaces container will require the Codespaces container to be rebuilt. <strong>Rebuilding your container will delete any current changes you've made to the container</strong></li>
+                <h1 id="rfc-catalog-import-research">[RFC] Catalog Import Research<a class="headerlink" href="#rfc-catalog-import-research" title="Permanent link">&para;</a></h1>
+<p><strong>Summary</strong>:</p>
+<p>Users can add GitHub and GitHub Enterprise repositories to the backstage catalog. We need to also check if it's possible to add repositories from other sources like GitLab.</p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>The GitHub integration supports loading catalog entities from github.com or GitHub Enterprise. Entities can be added to <a href="https://backstage.io/docs/features/software-catalog/configuration">static catalog configuration</a>, registered with the <a href="https://github.com/backstage/backstage/tree/master/plugins/catalog-import">catalog-import</a> plugin, or <a href="https://backstage.io/docs/integrations/github/discovery">discovered</a> from a GitHub organization. Users and Groups can also be <a href="https://backstage.io/docs/integrations/github/org">loaded from an organization</a>.</p>
+<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
+<p>Our goal is to allow multiple repository hosting services, like GitHub/GitLab, to import repositories using the catalog-plugin.</p>
+<h2 id="information">Information<a class="headerlink" href="#information" title="Permanent link">&para;</a></h2>
+<h3 id="integrations">Integrations<a class="headerlink" href="#integrations" title="Permanent link">&para;</a></h3>
+<p>Backstage supports integrations from multiple repository hosting websites. GitHub is supported by default. Integrations are required in order to understand how to retrieve a given URL.</p>
+<p>Adding an <a href="https://backstage.io/docs/integrations/">integration</a> can be done by editing the <code>app-config.yml</code> file manually, or adding via the backstage API.</p>
+<p>For Example if we had this location within our <code>app-config.yml</code> file:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>catalog:
+  locations:
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/artist-lookup-component.yaml
+</code></pre></div>
+</td></tr></table>
+
+<p>We would also need to list GitHub under integrations.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+</code></pre></div>
+</td></tr></table>
+
+<p>Example adding a <a href="https://backstage.io/docs/integrations/gitlab/locations">GitLab integration</a>:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
+  gitlab:
+    - host: gitlab.com
+      token: ${GITLAB_TOKEN}
+</code></pre></div>
+</td></tr></table>
+
+<p>Each integration has options configurations.</p>
+<ul>
+<li>host - The host fo the instance, e.g. github.com</li>
+<li>token (optional) - An authentication token as expected by the host. IF this is no supplied, anonymous access will be used</li>
+<li>apiBaseUrl (optional) - The URL fo the GitHub/GitLab API. For self-hosted installations, it is commonly at <code>https://&lt;host&gt;/api/</code>. For gitlab.com, this configuration is not needed as it can be inferred.</li>
+<li>baseUrl (optional) - The base URL for this provider, e.g. <code>https://gitlab.com</code>. If this is not provided, it is assumed to be <code>https://&lt;host&gt;</code></li>
 </ul>
-</li>
-<li>Rebuild the Codespaces container<ul>
-<li>Use the Command Palette or the Codespaces extension to rebuild the container with the new <code>.devcontainer</code></li>
-</ul>
-</li>
-<li>Start Up Pulumi<ul>
-<li>Run <code>yarn pulumi</code> from the root directory to use the Pulumi start up script</li>
-<li>This script will check if minikube is running, check if a frontend image is created and create a frontend image if it doesn't exist. Finally, the script will run the pulumi start up commands to generate &amp; apply k8s manifest files and then forward ports with <code>kubectl</code> </li>
-<li>After the script finishes, you should be able to see the FE running at localhost:3000</li>
-<li>Note: this will require creating a Pulumi account </li>
-</ul>
-</li>
-</ol>
+<blockquote>
+<p>Note: You need to supply either apiBaseUrl or rawBaseUrl or both (except for public GitHub, for which we can infer them). The apiBaseUrl will always be preferred over the other if a token is given, otherwise rawBaseUrl will be preferred.</p>
+</blockquote>
+<h2 id="catalog-plugin">Catalog-Plugin<a class="headerlink" href="#catalog-plugin" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/backstage/backstage/tree/master/plugins/catalog-import">catalog-plugin</a></p>
+<p>The Catalog Import Plugin provides a wizard to onboard projects with existing catalog-info.yaml files. It also assists by creating pull requests in repositories where no catalog-info.yaml exists.</p>
+<p>The plugin can import any <code>catalog-info.yml</code> file that is listed within one of our integrations.</p>
+<blockquote>
+<p>GitHub Only: The plugin can also search for all <code>catalog-info.yml</code> files along with analyse, generate a Component Entity, and create pull requests.</p>
+</blockquote>
+<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
+<p>It seems like the best idea would be to add GitHub Enterprise and GitLab to the integrations section of <code>app-config.yml</code>. Then, we could provide a way for users to request additional integrations.</p>
+<p>Otherwise it doesn't look like we will need to make any updates to the catalog-plugin, or to even create our own. The only reason I could think to add our own is if we want special behavior. Other things like titles, descriptions, and other wording can be changed manually.</p>
+<h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
+<p>Q: Do we need to make a catalog import plugin to support multiple instances of GitHub?
+A: No, a <a href="https://github.com/backstage/backstage/tree/master/plugins/catalog-import">catalog-import</a> plugin is already included within backstage.</p>
+<p>This plugin provides a wizard to onboard projects with existing <code>catalog-info.yml</code> files, or creates a pull request with an example <code>catalog-info.yml</code> if none are found.</p>
+<p>Integrations from other repositories can be included within the <code>app-config.yml</code> config.</p>
+<p>Q: How might we support importing catalog entries that aren't in GitHub?
+A: Other repository hosting services can be added by adding them to integrations within <code>app-config.yml</code>.</p>
+<p>For example to add support for GitLab we would add:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
+  gitlab:
+    - host: gitlab.com
+      token: ${GITLAB_TOKEN}
+</code></pre></div>
+</td></tr></table>
+
+<p>Q: How does it determine what credentials to use?
+A: Credentials are based off of the configuration set in <code>app-config.yml</code> or added using the <code>catalog-import</code> plugin.</p>
+<p>A <code>token</code> can be applied for authentication. Anonymous access will be used if none is applied.</p>
+<p>Q: Do we need to modify the starter kit UI?
+A: I don't believe so.</p>
+<p>Per, <a href="https://backstage.io/docs/integrations/">Backstage Integrations</a></p>
+<blockquote>
+<p>Integrations are configured at the root level of app-config.yaml since integrations are used by many Backstage core features and other plugins.
+Each key under integrations is a separate configuration for a single external provider. Providers each have different configuration; here's an example of configuration to use both GitHub and Bitbucket:</p>
+</blockquote>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+  bitbucket:
+    - host: bitbucket.org
+      username: ${BITBUCKET_USERNAME}
+      appPassword: ${BITBUCKET_APP_PASSWORD}
+</code></pre></div>
+</td></tr></table>
+
+<p>Q: Would we have naming conflicts?
+A: Yes, but only for specific situations.</p>
+<p>Per the Backstage <a href="https://backstage.io/docs/features/software-catalog/configuration">catalog configuration</a>:</p>
+<blockquote>
+<p>When multiple catalog-info.yaml files with the same metadata.name property are discovered, one will be processed and all others will be skipped. This action is logged for further investigation.</p>
+</blockquote>
                 
               
               
@@ -439,41 +587,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../backstage-update/" title="Backstage Update" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Backstage Update
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../allstar/" title="Allstar" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Allstar
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
