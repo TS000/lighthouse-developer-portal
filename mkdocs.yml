@@ -14,9 +14,10 @@ nav:
       - Cypress e2e Tests(ADR): cypress-e2e-tests.md
       - RFC Doc Generator: rfc-doc-generator.md
       - RFC CI/CD Modifications: rfc-ci-cd.md
-      - RFC Catalog Import Research: catalog-import-research.md
+      - RFC Catalog Import Research: rfc-catalog-import-research.md
       - RFC Node App Logging: rfc-node-app-logging.md
-      - RFC Enforce Build Performance: rcf-enforce-build-performance.md
+      - RFC Enforce Build Performance: rfc-enforce-build-performance.md
+      - Hexagonal Architecture: hexagonal-architecture.md
 
 plugins:
   - techdocs-core
