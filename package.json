@@ -63,6 +63,9 @@
     "backstage-create-app-version": "0.3.42"
   },
   "jest": {
-    "coverageDirectory": "../../../logs/coverage"
+    "coverageReporters": ["json", ["lcov", {"projectRoot":"../../"}],"text", "clover", "text-summary"],
+    "transformModules": [
+      "@asyncapi/react-component"
+    ]
   }
 }
