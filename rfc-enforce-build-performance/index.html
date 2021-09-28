@@ -15,7 +15,7 @@
     
     
       
-        <title>[RFC] Catalog Import Research - example-docs</title>
+        <title>[RFC] Enforce Build Performance - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rfc-catalog-import-research" class="md-skip">
+        <a href="#rfc-enforce-build-performance" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              [RFC] Catalog Import Research
+              [RFC] Enforce Build Performance
             
           </span>
         </div>
@@ -417,8 +417,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#integrations" class="md-nav__link">
-    Integrations
+  <a href="#github-action-artifacts" class="md-nav__link">
+    GitHub Action Artifacts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracking-build-time" class="md-nav__link">
+    Tracking Build Time
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stopping-prs-by-build-time" class="md-nav__link">
+    Stopping PR's by Build Time
   </a>
   
 </li>
@@ -429,22 +443,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#catalog-plugin" class="md-nav__link">
-    Catalog-Plugin
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#recommendation" class="md-nav__link">
     Recommendation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    Questions
   </a>
   
 </li>
@@ -461,7 +461,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/rfc-catalog-import-research.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/rfc-enforce-build-performance.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -469,122 +469,72 @@
                   
                 
                 
-                <h1 id="rfc-catalog-import-research">[RFC] Catalog Import Research<a class="headerlink" href="#rfc-catalog-import-research" title="Permanent link">&para;</a></h1>
+                <h1 id="rfc-enforce-build-performance">[RFC] Enforce Build Performance<a class="headerlink" href="#rfc-enforce-build-performance" title="Permanent link">&para;</a></h1>
 <p><strong>Summary</strong>:</p>
-<p>Users can add GitHub and GitHub Enterprise repositories to the backstage catalog. We need to also check if it's possible to add repositories from other sources like GitLab.</p>
+<p>Enforcing a built time will help us track how efficient our software pipeline is along with helping to expose issues that may surface as random spikes in the build time. We can surface these issues more directly by explicitly causing builds to fail when they go over a pre-determined amount of time.</p>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>The GitHub integration supports loading catalog entities from github.com or GitHub Enterprise. Entities can be added to <a href="https://backstage.io/docs/features/software-catalog/configuration">static catalog configuration</a>, registered with the <a href="https://github.com/backstage/backstage/tree/master/plugins/catalog-import">catalog-import</a> plugin, or <a href="https://backstage.io/docs/integrations/github/discovery">discovered</a> from a GitHub organization. Users and Groups can also be <a href="https://backstage.io/docs/integrations/github/org">loaded from an organization</a>.</p>
+<p>Backstage has been setup to use a container for a <a href="https://backstage.io/docs/deployment/docker#separate-frontend">separate frontend</a> that uses NGINX and a backend container. The build time seems to be about 12-13 minutes on average. Some can take as long as 15 while others can be as short as 7 minutes.</p>
 <h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
-<p>Our goal is to allow multiple repository hosting services, like GitHub/GitLab, to import repositories using the catalog-plugin.</p>
+<p>Our goal is to enforce a maximum build time (15 minutes) that will allow us to keep track of how efficient our software pipeline is along with helping to expose issues that effect the application. GitHub Action Artifacts should be used the track the build-time and prevent PR's that increase the overall build time.</p>
 <h2 id="information">Information<a class="headerlink" href="#information" title="Permanent link">&para;</a></h2>
-<h3 id="integrations">Integrations<a class="headerlink" href="#integrations" title="Permanent link">&para;</a></h3>
-<p>Backstage supports integrations from multiple repository hosting websites. GitHub is supported by default. Integrations are required in order to understand how to retrieve a given URL.</p>
-<p>Adding an <a href="https://backstage.io/docs/integrations/">integration</a> can be done by editing the <code>app-config.yml</code> file manually, or adding via the backstage API.</p>
-<p>For Example if we had this location within our <code>app-config.yml</code> file:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>catalog:
-  locations:
-    - type: url
-      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/artist-lookup-component.yaml
-</code></pre></div>
-</td></tr></table>
-
-<p>We would also need to list GitHub under integrations.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
-  github:
-    - host: github.com
-      token: ${GITHUB_TOKEN}
-</code></pre></div>
-</td></tr></table>
-
-<p>Example adding a <a href="https://backstage.io/docs/integrations/gitlab/locations">GitLab integration</a>:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
-  gitlab:
-    - host: gitlab.com
-      token: ${GITLAB_TOKEN}
-</code></pre></div>
-</td></tr></table>
-
-<p>Each integration has options configurations.</p>
+<h3 id="github-action-artifacts">GitHub Action Artifacts<a class="headerlink" href="#github-action-artifacts" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.github.com/en/actions/advanced-guides/storing-workflow-data-as-artifacts">Storing Workflow Data as Artifacts</a></p>
+<p>Artifacts allow you to persist data after a job has completed, and share that data with another job in the same workflow. An artifact is a file or collection of files produced during a workflow run. For example, you can use artifacts to save your build and test output after a workflow run has ended.</p>
+<p>To share data between jobs:</p>
 <ul>
-<li>host - The host fo the instance, e.g. github.com</li>
-<li>token (optional) - An authentication token as expected by the host. IF this is no supplied, anonymous access will be used</li>
-<li>apiBaseUrl (optional) - The URL fo the GitHub/GitLab API. For self-hosted installations, it is commonly at <code>https://&lt;host&gt;/api/</code>. For gitlab.com, this configuration is not needed as it can be inferred.</li>
-<li>baseUrl (optional) - The base URL for this provider, e.g. <code>https://gitlab.com</code>. If this is not provided, it is assumed to be <code>https://&lt;host&gt;</code></li>
+<li>Uploading files: Give the uploaded file a name and upload the data before the job ends.</li>
+<li>Downloading files: You can only download artifacts that were uploaded during the same workflow run. When you download a file, you can reference it by name.</li>
 </ul>
-<blockquote>
-<p>Note: You need to supply either apiBaseUrl or rawBaseUrl or both (except for public GitHub, for which we can infer them). The apiBaseUrl will always be preferred over the other if a token is given, otherwise rawBaseUrl will be preferred.</p>
-</blockquote>
-<h2 id="catalog-plugin">Catalog-Plugin<a class="headerlink" href="#catalog-plugin" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/backstage/backstage/tree/master/plugins/catalog-import">catalog-plugin</a></p>
-<p>The Catalog Import Plugin provides a wizard to onboard projects with existing catalog-info.yaml files. It also assists by creating pull requests in repositories where no catalog-info.yaml exists.</p>
-<p>The plugin can import any <code>catalog-info.yml</code> file that is listed within one of our integrations.</p>
-<blockquote>
-<p>GitHub Only: The plugin can also search for all <code>catalog-info.yml</code> files along with analyse, generate a Component Entity, and create pull requests.</p>
-</blockquote>
-<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
-<p>It seems like the best idea would be to add GitHub Enterprise and GitLab to the integrations section of <code>app-config.yml</code>. Then, we could provide a way for users to request additional integrations.</p>
-<p>Otherwise it doesn't look like we will need to make any updates to the catalog-plugin, or to even create our own. The only reason I could think to add our own is if we want special behavior. Other things like titles, descriptions, and other wording can be changed manually.</p>
-<h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
-<p>Q: Do we need to make a catalog import plugin to support multiple instances of GitHub?
-A: No, a <a href="https://github.com/backstage/backstage/tree/master/plugins/catalog-import">catalog-import</a> plugin is already included within backstage.</p>
-<p>This plugin provides a wizard to onboard projects with existing <code>catalog-info.yml</code> files, or creates a pull request with an example <code>catalog-info.yml</code> if none are found.</p>
-<p>Integrations from other repositories can be included within the <code>app-config.yml</code> config.</p>
-<p>Q: How might we support importing catalog entries that aren't in GitHub?
-A: Other repository hosting services can be added by adding them to integrations within <code>app-config.yml</code>.</p>
-<p>For example to add support for GitLab we would add:</p>
+<p><a href="https://github.com/actions/upload-artifact">Upload Artifact Action</a>
+<a href="https://github.com/actions/download-artifact">Download Artifact Action</a></p>
+<h3 id="tracking-build-time">Tracking Build Time<a class="headerlink" href="#tracking-build-time" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.github.com/en/rest/reference/actions#get-workflow-run-usage">Get Workflow Run Usage</a></p>
+<p>Returns the total run time for a specific workflow run. Usage is listed for each GitHub-hosted runner operating system in milliseconds.</p>
+<p><a href="https://docs.github.com/en/rest/reference/actions#list-workflow-runs">List workflow runs</a></p>
+<p>This action can list all workflow runs for a workflow. Additional parameters can be used to narrow a search.</p>
+<h3 id="stopping-prs-by-build-time">Stopping PR's by Build Time<a class="headerlink" href="#stopping-prs-by-build-time" title="Permanent link">&para;</a></h3>
+<p>Jobs can have a <code>timeout-minutes</code> setting that will fail a job if it exceeds the timeout. By default, it is 360. It can be set on a job or a single step within a job.</p>
+<p><a href="https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepstimeout-minutes">Timeout-minutes ref</a></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
-  gitlab:
-    - host: gitlab.com
-      token: ${GITLAB_TOKEN}
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">my-job</span><span class="p">:</span>
+  <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+  <span class="nt">timeout-minutes</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
 </code></pre></div>
 </td></tr></table>
 
-<p>Q: How does it determine what credentials to use?
-A: Credentials are based off of the configuration set in <code>app-config.yml</code> or added using the <code>catalog-import</code> plugin.</p>
-<p>A <code>token</code> can be applied for authentication. Anonymous access will be used if none is applied.</p>
-<p>Q: Do we need to modify the starter kit UI?
-A: I don't believe so.</p>
-<p>Per, <a href="https://backstage.io/docs/integrations/">Backstage Integrations</a></p>
-<blockquote>
-<p>Integrations are configured at the root level of app-config.yaml since integrations are used by many Backstage core features and other plugins.
-Each key under integrations is a separate configuration for a single external provider. Providers each have different configuration; here's an example of configuration to use both GitHub and Bitbucket:</p>
-</blockquote>
+<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
+<p>I think the best way to enforce a build time along with keeping track of builds over time should be done by using GitHub Artifacts.</p>
+<p>An extra job should be added to the <code>build-containers</code> workflow that grabs all the previous workflow build times from the main branch, calculates an average build time, and then sets that value as an ENV variable.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Obtaining workflow run usage</span>
+
+curl <span class="se">\</span>
+  -H <span class="s2">&quot;Accept: application/vnd.github.v3+json&quot;</span> <span class="se">\</span>
+  https://api.github.com/repos/<span class="o">{</span>owner<span class="o">}</span>/<span class="o">{</span>repo<span class="o">}</span>/actions/runs/<span class="o">{</span>run_id<span class="o">}</span>/timing
+</code></pre></div>
+</td></tr></table>
+
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
 5
 6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
-  github:
-    - host: github.com
-      token: ${GITHUB_TOKEN}
-  bitbucket:
-    - host: bitbucket.org
-      username: ${BITBUCKET_USERNAME}
-      appPassword: ${BITBUCKET_APP_PASSWORD}
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Setting an ENV variable</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">example-job</span><span class="p">:</span>
+    <span class="nt">steps</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+      <span class="l l-Scalar l-Scalar-Plain">echo &#39;NEW_ENV_VAR=&#39;&lt;value&gt; &gt;&gt; $GITHUB_ENV</span>
 </code></pre></div>
 </td></tr></table>
 
-<p>Q: Would we have naming conflicts?
-A: Yes, but only for specific situations.</p>
-<p>Per the Backstage <a href="https://backstage.io/docs/features/software-catalog/configuration">catalog configuration</a>:</p>
-<blockquote>
-<p>When multiple catalog-info.yaml files with the same metadata.name property are discovered, one will be processed and all others will be skipped. This action is logged for further investigation.</p>
-</blockquote>
+<p>Then, each build job can have a set timeout that adds a few minutes onto the average build. If the build exceeds the minutes it'll fail and display an error message that the build time was exceeded.</p>
                 
               
               
