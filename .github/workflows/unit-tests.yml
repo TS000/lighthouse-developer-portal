@@ -44,14 +44,10 @@ jobs:
         run: yarn install --frozen-lockfile 
       - name: Test
         run: yarn test:all
-      # Coverage results must be a single path for code-coverage-assistant
+      # Consolidate coverage results to single path
       - name: Consolidate coverage results
         run: |
           cp -r plugins/* packages
-      - uses: ScaCap/code-coverage-assistant@82e8d1e9053be680f32aaff9cdace6acac93303d # pin@v0.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          monorepo-base-path: "./packages"
       - uses: actions/upload-artifact@v2
         with:
           name: logs
