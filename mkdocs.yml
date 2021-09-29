@@ -12,11 +12,13 @@ nav:
       - Yarn Zero Install(ADR): zero-install-adr.md
       - Split FE/BE(ADR): split-fe-be-adr.md
       - Cypress e2e Tests(ADR): cypress-e2e-tests.md
+      - Ignore Backend Code Coverage: code-cov-adr.md
       - RFC Doc Generator: rfc-doc-generator.md
       - RFC CI/CD Modifications: rfc-ci-cd.md
       - RFC Catalog Import Research: catalog-import-research.md
       - RFC Node App Logging: rfc-node-app-logging.md
       - RFC Enforce Build Performance: rcf-enforce-build-performance.md
+      
 
 plugins:
   - techdocs-core
