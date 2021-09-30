@@ -1,5 +1,5 @@
 import { createTheme, SimpleThemeOptions } from '@backstage/theme';
-import { gold, common, myYellow as yellow } from "./colorTypes";
+import { blue, gray, green, gold, red, common } from "./colorTypes";
 import { darkPageTheme } from './pageThemes';
 
 interface customThemes {
@@ -10,67 +10,75 @@ const darkTheme: SimpleThemeOptions = {
   palette: {
     type: 'dark',
     background: {
-      default: '#263238',
-      paper: '#323a45',
+      default: gray.A700,               // background for entire website
+      paper: gray[800],
     },
     status: {
-      ok: "#1DB954",
-      warning: "#FF9800",
-      error: "#E22134",
-      running: "#2E77D0",
-      pending: "#FFED51",
-      aborted: "#757575"
+      ok: green[500],
+      warning: gold[500],
+      error: red[500],
+      running: blue[500],
+      pending: gold[100],
+      aborted: gray[500]
     },
     bursts: {
-      fontColor: "#FEFEFE",
-      slackChannelText: "#ddd",
+      fontColor: common.white,
+      slackChannelText: gray.A200,
       backgroundColor: {
-        default: "#7C3699"
+        default: common.linkColorVisited
       },
       gradient: {
         linear: 'linear-gradient(-137deg, #4BB8A5 0%, #187656 100%)'
       }
     },
     primary: {
-      main: '#94bfa2',
+      main: green[400], 
     },
     banner: {
-      info: "#2E77D0",
-      error: "#E22134",
+      info: blue[500],
+      error: red[700],
       text: common.white,
       link: common.black
     },
-    border: "#E6E6E6",
+    border: gray[100],
     textContrast: common.black,
-    textVerySubtle: "#DDD",
-    textSubtle: "#6E6E6E",
-    highlight: "#FFFBCC",
+    textVerySubtle: gray[200],
+    textSubtle: gray[500],
+    highlight: gold[100],
+
     // info boxes
-    errorBackground: "#FFEBEE",
-    warningBackground: "#F59B23",
-    infoBackground: "#ebf5ff",
-    errorText: "#CA001B",
-    infoText: "#004e8a",
+    errorBackground: red[700],
+    warningBackground: gold[600],
+    infoBackground: blue[100],
+    errorText: red[700],
+    infoText: blue[800],
     warningText: common.black,
-    linkHover: "#2196F3",
-    link: "#0A6EBE",
-    gold: yellow.A700,
+    linkHover: common.linkColorFocus,
+    link: common.linkColorDefault,
+    gold: gold.A700,
     // Colors for side nav bar
     navigation: {
-      background: '#112238',
+      background: blue[900],
       indicator: gold.A200,
-      color: '#d6d7d9',
+      color: gray.A400,
       selectedColor: gold.A200,
     },
     pinSidebarButton: {
-      icon: "#181818",
-      background: "#BDBDBD"
+      icon: gray[900],
+      background: gray[400]
     },
     tabbar: {
-      indicator: "#9BF0E1"
+      indicator: green.A100
     }
   },
-  fontFamily: 'Source Sans Pro,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif',
+
+  fontFamily: [
+    '"Source Sans Pro"',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+  ].join(','),
+
   // Headers
   defaultPageTheme: 'home',
   pageTheme: darkPageTheme

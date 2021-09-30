@@ -1,5 +1,5 @@
 import { createTheme, SimpleThemeOptions } from '@backstage/theme';
-import { gold, blue, common } from "./colorTypes";
+import { blue, gray, green, gold, red, common } from "./colorTypes";
 import { lightPageTheme } from './pageThemes';
 
 interface customThemes {
@@ -10,22 +10,22 @@ const lightTheme: SimpleThemeOptions = {
   palette: {
     type: 'light',
     background: {
-      default: "#FFF",
-      paper: "#FAFAFA"
+      default: common.white,
+      paper: gray.A100
     },
     status: {
-      ok: "#1DB954",
-      warning: "#FF9800",
-      error: "#E22134",
-      running: "#2E77D0",
-      pending: "#FFED51",
-      aborted: "#757575"
+      ok: green.A400,
+      warning: gold[500],
+      error: red[600],
+      running: blue[500],
+      pending: gold[400],
+      aborted: gray[500]
     },
     bursts: {
-      fontColor: "#FEFEFE",
-      slackChannelText: "#ddd",
+      fontColor: common.white,
+      slackChannelText: gray.A200,
       backgroundColor: {
-        default: "#7C3699"
+        default: common.linkColorVisited
       },
       gradient: {
         linear: 'linear-gradient(-137deg, #4BB8A5 0%, #187656 100%)'
@@ -35,42 +35,48 @@ const lightTheme: SimpleThemeOptions = {
       main: blue[900]
     },
     banner: {
-      info: "#2E77D0",
-      error: "#E22134",
+      info: blue[500],
+      error: red[600],
       text: common.white,
-      link: "#0A6EBE"
+      link: blue[500]
     },
-    border: "#ECECEC",
+    border: gray[100],
     textContrast: common.black,
-    textVerySubtle: "#DDD",
-    textSubtle: "#6E6E6E",
-    highlight: "#FFFBCC",
+    textVerySubtle: gray[200],
+    textSubtle: gray[500],
+    highlight: gold[50],
     // info boxes
-    errorBackground: "#F9DEDE",
-    warningBackground: "#FFF1D2",
-    infoBackground: "#E1F3F8",
-    errorText: "#323A45",
-    infoText: "#323A45",
-    warningText: "#323A45",
-    linkHover: "#003e73",
-    link: "#0A6EBE",
+    errorBackground: red[100],
+    warningBackground: gold[500],
+    infoBackground: blue.A200,
+    errorText: red[700],
+    infoText: blue[800],
+    warningText: common.base,
+    linkHover: common.linkColorFocus,
+    link: common.linkColorDefault,
     gold: gold[500],
     // Colors for side nav
     navigation: {
       background: blue[900],
       indicator: gold[300],
-      color: '#ffffff',
+      color: common.white,
       selectedColor: gold[500],
     },
     pinSidebarButton: {
-      icon: "#7C3699",
-      background: "#E1F3F8"
+      icon: blue[500],
+      background: blue[50]
     },
     tabbar: {
-      indicator: "#9BF0E1"
+      indicator: green.A100
     }
   },
-  fontFamily: "Source Sans Pro, Helvetica Neue,Helvetica,Roboto,Arial,sans-serif",
+  
+  fontFamily: [
+    '"Source Sans Pro"',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+  ].join(','),
   // Headers
   defaultPageTheme: "home",
   pageTheme: lightPageTheme
