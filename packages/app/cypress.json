@@ -3,5 +3,5 @@
   "fixturesFolder": false,
   "pluginsFile": false,
   "video": false,
-  "screenshot": false
+  "retries": 2
 }
