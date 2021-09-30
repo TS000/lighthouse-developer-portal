@@ -1,13 +1,25 @@
-## Open a Codespace (preferred- work in progress)
+## Use Codespaces (preferred- work in progress)
 
 This repo is configured to run a production-like environment in a GitHub [Codespace](https://github.com/features/codespaces).
 
-1. Open a Codespace
+1. Create a Codespace
 2. Run application:
 
-```
+```bash
 yarn dev
 ```
+
+### Create a Codespace
+
+You can create a new codespace by visiting the [lighthouse-backstage repo](https://github.com/department-of-veterans-affairs/lighthouse-backstage) and by following the listed steps.
+
+Note: You will need VS Code Desktop installed on your computer in order to use the Lighthouse-backstage codespace. The in-browser VS Code doesn't work properly.
+
+1. Click the `<>` green button near the search and "+" buttons.
+2. A dropdown should open up with two tabs, one for "Local" and one for "Codespaces", click "Codespaces".
+3. Click "New codespace" and then click "Create codespace".
+4. You'll be taken to a new window that sets up the codespace. Click the "Open this codespace in VS Code Desktop" button.
+5. Otherwise, click the 3 horizontal lines icon in the upper left sidebar and click "Open in VS Code". You can refresh the page if you don't see this icon.
 
 ## Install and run locally with Docker (work in progress)
 
