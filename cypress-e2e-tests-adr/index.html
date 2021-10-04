@@ -15,7 +15,7 @@
     
     
       
-        <title>RFC Enforce Build Performance - example-docs</title>
+        <title>Cypress e2e Tests(ADR) - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rfc-enforce-build-performance" class="md-skip">
+        <a href="#cypress-e2e-tests-adr" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              RFC Enforce Build Performance
+              Cypress e2e Tests(ADR)
             
           </span>
         </div>
@@ -310,11 +310,81 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../cypress-e2e-tests-adr/" title="Cypress e2e Tests(ADR)" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Cypress e2e Tests(ADR)
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Cypress e2e Tests(ADR)" class="md-nav__link md-nav__link--active">
       Cypress e2e Tests(ADR)
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    History
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pros" class="md-nav__link">
+    Pros
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cons" class="md-nav__link">
+    Cons
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Decision
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -382,101 +452,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        RFC Enforce Build Performance
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="RFC Enforce Build Performance" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../rfc-enforce-build-performance/" title="RFC Enforce Build Performance" class="md-nav__link">
       RFC Enforce Build Performance
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goal" class="md-nav__link">
-    Goal
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#information" class="md-nav__link">
-    Information
-  </a>
-  
-    <nav class="md-nav" aria-label="Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#github-action-artifacts" class="md-nav__link">
-    GitHub Action Artifacts
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tracking-build-time" class="md-nav__link">
-    Tracking Build Time
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stopping-prs-by-build-time" class="md-nav__link">
-    Stopping PR's by Build Time
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
-    Recommendation
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -511,56 +491,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#goal" class="md-nav__link">
-    Goal
+  <a href="#history" class="md-nav__link">
+    History
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#information" class="md-nav__link">
-    Information
+  <a href="#pros" class="md-nav__link">
+    Pros
   </a>
-  
-    <nav class="md-nav" aria-label="Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#github-action-artifacts" class="md-nav__link">
-    GitHub Action Artifacts
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tracking-build-time" class="md-nav__link">
-    Tracking Build Time
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stopping-prs-by-build-time" class="md-nav__link">
-    Stopping PR's by Build Time
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
-    Recommendation
+  <a href="#cons" class="md-nav__link">
+    Cons
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Decision
   </a>
   
 </li>
@@ -577,7 +537,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/rfc-enforce-build-performance.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/cypress-e2e-tests-adr.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -585,72 +545,54 @@
                   
                 
                 
-                <h1 id="rfc-enforce-build-performance">[RFC] Enforce Build Performance<a class="headerlink" href="#rfc-enforce-build-performance" title="Permanent link">&para;</a></h1>
-<p><strong>Summary</strong>:</p>
-<p>Enforcing a built time will help us track how efficient our software pipeline is along with helping to expose issues that may surface as random spikes in the build time. We can surface these issues more directly by explicitly causing builds to fail when they go over a pre-determined amount of time.</p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>Backstage has been setup to use a container for a <a href="https://backstage.io/docs/deployment/docker#separate-frontend">separate frontend</a> that uses NGINX and a backend container. The build time seems to be about 12-13 minutes on average. Some can take as long as 15 while others can be as short as 7 minutes.</p>
-<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
-<p>Our goal is to enforce a maximum build time (15 minutes) that will allow us to keep track of how efficient our software pipeline is along with helping to expose issues that effect the application. GitHub Action Artifacts should be used the track the build-time and prevent PR's that increase the overall build time.</p>
-<h2 id="information">Information<a class="headerlink" href="#information" title="Permanent link">&para;</a></h2>
-<h3 id="github-action-artifacts">GitHub Action Artifacts<a class="headerlink" href="#github-action-artifacts" title="Permanent link">&para;</a></h3>
-<p><a href="https://docs.github.com/en/actions/advanced-guides/storing-workflow-data-as-artifacts">Storing Workflow Data as Artifacts</a></p>
-<p>Artifacts allow you to persist data after a job has completed, and share that data with another job in the same workflow. An artifact is a file or collection of files produced during a workflow run. For example, you can use artifacts to save your build and test output after a workflow run has ended.</p>
-<p>To share data between jobs:</p>
+                <h1 id="cypress-e2e-tests-adr">Cypress e2e Tests ADR<a class="headerlink" href="#cypress-e2e-tests-adr" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision Made:</td>
+<td>yes</td>
+<td>Decision Date:</td>
+<td>08/2021</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Revisit criteria:</strong></p>
+<p>Decision Made: Yes
+Revisit Decision: Not planned, but if another e2e testing frameworks become available.
+Revisit Criteria: If another e2e testing frameworks becomes available that is faster, or performs better, we should revisit this.</p>
+<p>Decision Makers: @KaemonIsland</p>
+<h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
+<p>Backstage should have e2e testing to ensure that various dependencies of an application are working accurately. Along with allowing refactoring, and bug fixing to be much faster and easier. There are various e2e testing frameworks available and we chose <a href="https://docs.cypress.io/guides/overview/why-cypress">Cypress.</a></p>
+<h2 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h2>
+<p>Backstage came with Cypress <a href="https://backstage.io/docs/getting-started/create-an-app">already installed</a>. So it was easy to get started. Testing locally was a bit weird (Ran into an issue with missing dependencies).</p>
+<p>For Linux users, or those using WSL. You can install all of the Cypress dependencies by following <a href="https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements">this guide.</a></p>
+<p>Tests are also run as part of the CI/CD. <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/pull/121">Here</a> is the PR adding them.</p>
+<h2 id="pros">Pros<a class="headerlink" href="#pros" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Uploading files: Give the uploaded file a name and upload the data before the job ends.</li>
-<li>Downloading files: You can only download artifacts that were uploaded during the same workflow run. When you download a file, you can reference it by name.</li>
+<li>It's <a href="https://github.com/cypress-io/cypress">open source.</a></li>
+<li>Allows End-to-end, Integration, and Unit tests.</li>
+<li>Time Travel - Takes snapshots of tests.</li>
+<li>Debuggability - Debugging can be done using the Developer tools.</li>
+<li>Cross Browser Testing - Run tests on Firefox, chrome, edge, etc.</li>
+<li>Stubbing responses.</li>
 </ul>
-<p><a href="https://github.com/actions/upload-artifact">Upload Artifact Action</a>
-<a href="https://github.com/actions/download-artifact">Download Artifact Action</a></p>
-<h3 id="tracking-build-time">Tracking Build Time<a class="headerlink" href="#tracking-build-time" title="Permanent link">&para;</a></h3>
-<p><a href="https://docs.github.com/en/rest/reference/actions#get-workflow-run-usage">Get Workflow Run Usage</a></p>
-<p>Returns the total run time for a specific workflow run. Usage is listed for each GitHub-hosted runner operating system in milliseconds.</p>
-<p><a href="https://docs.github.com/en/rest/reference/actions#list-workflow-runs">List workflow runs</a></p>
-<p>This action can list all workflow runs for a workflow. Additional parameters can be used to narrow a search.</p>
-<h3 id="stopping-prs-by-build-time">Stopping PR's by Build Time<a class="headerlink" href="#stopping-prs-by-build-time" title="Permanent link">&para;</a></h3>
-<p>Jobs can have a <code>timeout-minutes</code> setting that will fail a job if it exceeds the timeout. By default, it is 360. It can be set on a job or a single step within a job.</p>
-<p><a href="https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepstimeout-minutes">Timeout-minutes ref</a></p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">my-job</span><span class="p">:</span>
-  <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-  <span class="nt">timeout-minutes</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15</span>
-</code></pre></div>
-</td></tr></table>
-
-<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
-<p>I think the best way to enforce a build time along with keeping track of builds over time should be done by using GitHub Artifacts.</p>
-<p>An extra job should be added to the <code>build-containers</code> workflow that grabs all the previous workflow build times from the main branch, calculates an average build time, and then sets that value as an ENV variable.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Obtaining workflow run usage</span>
-
-curl <span class="se">\</span>
-  -H <span class="s2">&quot;Accept: application/vnd.github.v3+json&quot;</span> <span class="se">\</span>
-  https://api.github.com/repos/<span class="o">{</span>owner<span class="o">}</span>/<span class="o">{</span>repo<span class="o">}</span>/actions/runs/<span class="o">{</span>run_id<span class="o">}</span>/timing
-</code></pre></div>
-</td></tr></table>
-
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Setting an ENV variable</span>
-
-<span class="nt">jobs</span><span class="p">:</span>
-  <span class="nt">example-job</span><span class="p">:</span>
-    <span class="nt">steps</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-      <span class="l l-Scalar l-Scalar-Plain">echo &#39;NEW_ENV_VAR=&#39;&lt;value&gt; &gt;&gt; $GITHUB_ENV</span>
-</code></pre></div>
-</td></tr></table>
-
-<p>Then, each build job can have a set timeout that adds a few minutes onto the average build. If the build exceeds the minutes it'll fail and display an error message that the build time was exceeded.</p>
+<h2 id="cons">Cons<a class="headerlink" href="#cons" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Can have difficulty setting up. (I've had trouble on multiple systems getting Cypress to run locally)</li>
+<li>Uses synthetic events instead of native ones.</li>
+<li>Stubbing can get out of hand fairly quickly.</li>
+<li>Bad support for iFrames. Usually have to use custom code.</li>
+</ul>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>Backstage came with Cypress installed and most of the current developers have had an enjoyable experience working with it. So we've decided to stick with it.</p>
                 
               
               
@@ -669,7 +611,7 @@ curl <span class="se">\</span>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../rfc-node-app-logging/" title="RFC Node App Logging" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../split-fe-be-adr/" title="Split FE/BE(ADR)" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -678,11 +620,25 @@ curl <span class="se">\</span>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                RFC Node App Logging
+                Split FE/BE(ADR)
               </div>
             </div>
           </a>
         
+        
+          <a href="../code-cov-adr/" title="Ignore Backend Code Coverage" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Ignore Backend Code Coverage
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>
