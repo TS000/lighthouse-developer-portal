@@ -13,7 +13,11 @@ yarn dev
 
 You can create a new codespace by visiting the [lighthouse-backstage repo](https://github.com/department-of-veterans-affairs/lighthouse-backstage) and by following the listed steps.
 
-Note: You will need VS Code Desktop installed on your computer in order to use the Lighthouse-backstage codespace. The in-browser VS Code doesn't work properly.
+**Prerequisites**: 
+- Install [Visual Studio Code](https://code.visualstudio.com/)
+- Install the Codespaces [extension](https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces) into Visual Studio Code
+
+*Note: The in-browser VS Code doesn't work properly with this project.*
 
 1. Click the `<>` green button near the search and "+" buttons.
 2. A dropdown should open up with two tabs, one for "Local" and one for "Codespaces", click "Codespaces".
