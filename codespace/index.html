@@ -15,7 +15,7 @@
     
     
       
-        <title>Running Locally - example-docs</title>
+        <title>Codespace Configuration - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#use-codespaces-preferred-work-in-progress" class="md-skip">
+        <a href="#codespace-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Running Locally
+              Codespace Configuration
             
           </span>
         </div>
@@ -199,76 +199,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Running Locally
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Running Locally" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../running-locally/" title="Running Locally" class="md-nav__link">
       Running Locally
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#use-codespaces-preferred-work-in-progress" class="md-nav__link">
-    Use Codespaces (preferred- work in progress)
-  </a>
-  
-    <nav class="md-nav" aria-label="Use Codespaces (preferred- work in progress)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-a-codespace" class="md-nav__link">
-    Create a Codespace
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-and-run-locally-with-docker-work-in-progress" class="md-nav__link">
-    Install and run locally with Docker (work in progress)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-and-run-locally-tbd" class="md-nav__link">
-    Install and run locally (TBD)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -472,6 +407,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
@@ -482,35 +419,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#use-codespaces-preferred-work-in-progress" class="md-nav__link">
-    Use Codespaces (preferred- work in progress)
-  </a>
-  
-    <nav class="md-nav" aria-label="Use Codespaces (preferred- work in progress)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-a-codespace" class="md-nav__link">
-    Create a Codespace
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-and-run-locally-with-docker-work-in-progress" class="md-nav__link">
-    Install and run locally with Docker (work in progress)
+  <a href="#background" class="md-nav__link">
+    Background
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-and-run-locally-tbd" class="md-nav__link">
-    Install and run locally (TBD)
+  <a href="#creating-a-custom-image" class="md-nav__link">
+    Creating a Custom Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modifying-the-image" class="md-nav__link">
+    Modifying the Image
   </a>
   
 </li>
@@ -527,7 +451,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/running-locally.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/codespace.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -535,64 +459,58 @@
                   
                 
                 
-                  <h1>Running Locally</h1>
-                
-                <h2 id="use-codespaces-preferred-work-in-progress">Use Codespaces (preferred- work in progress)<a class="headerlink" href="#use-codespaces-preferred-work-in-progress" title="Permanent link">&para;</a></h2>
-<p>This repo is configured to run a production-like environment in a GitHub <a href="https://github.com/features/codespaces">Codespace</a>.</p>
-<ol>
-<li>Create a Codespace</li>
-<li>Run application:</li>
-</ol>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>yarn dev
+                <h1 id="codespace-configuration">Codespace Configuration<a class="headerlink" href="#codespace-configuration" title="Permanent link">&para;</a></h1>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>The default image Codespace uses, <a href="https://github.com/microsoft/vscode-dev-containers/blob/main/containers/codespaces-linux/.devcontainer/base.Dockerfile">mcr.microsoft.com/vscode/devcontainers/universal:1-linux</a>, is ~10gb uncompressed. This makes rebuilding the devcontainer while in Codespaces take a long time. A majority of this wait time is unnecessary because we are waiting for files and directories to be rebuilt for tools we don't use.</p>
+<h2 id="creating-a-custom-image">Creating a Custom Image<a class="headerlink" href="#creating-a-custom-image" title="Permanent link">&para;</a></h2>
+<p>To reduce our rebuilding wait times, I created a <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/pkgs/container/lighthouse-backstage%2Fdevcontainer">smaller image</a>, around ~2gb. </p>
+<p>The new devcontainer image is uploaded to ghcr.io. To be able to access GitHub Packages uploaded to ghcr.io, we need to have some kind of authorization. For Codespaces this is done by creating secrets with a specific naming convention. Once Codespaces has the secrets, you will have <a href="https://docs.github.com/en/codespaces/codespaces-reference/allowing-your-codespace-to-access-a-private-image-registry#about-private-image-registries-and-codespaces">authorization to access a private registry</a> when pulling Docker images for your Codespace's devcontainer. </p>
+<p>Codespaces looks for any secrets with the following naming convention:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;*&gt;_CONTAINER_REGISTRY_SERVER
+&lt;*&gt;_CONTAINER_REGISTRY_USER
+&lt;*&gt;_CONTAINER_REGISTRY_PASSWORD
+</code></pre></div>
+</td></tr></table></p>
+<p>You can generate a personal access token with the <code>read:packages</code> permission to create these secrets for Codespaces:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DEV_CONTAINER_REGISTRY_SERVER = ghcr.io
+DEV_CONTAINER_REGISTRY_USER = &lt;username&gt;
+DEV_CONTAINER_REGISTRY_PASSWORD = &lt;PAT&gt;
 </code></pre></div>
 </td></tr></table>
 
-<h3 id="create-a-codespace">Create a Codespace<a class="headerlink" href="#create-a-codespace" title="Permanent link">&para;</a></h3>
-<p>You can create a new codespace by visiting the <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage">lighthouse-backstage repo</a> and by following the listed steps.</p>
-<p><strong>Prerequisites</strong>: 
-- Install <a href="https://code.visualstudio.com/">Visual Studio Code</a>
-- Install the Codespaces <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces">extension</a> into Visual Studio Code</p>
-<p><em>Note: The in-browser VS Code doesn't work properly with this project.</em></p>
-<ol>
-<li>Click the <code>&lt;&gt;</code> green button near the search and "+" buttons.</li>
-<li>A dropdown should open up with two tabs, one for "Local" and one for "Codespaces", click "Codespaces".</li>
-<li>Click "New codespace" and then click "Create codespace".</li>
-<li>You'll be taken to a new window that sets up the codespace. Click the "Open this codespace in VS Code Desktop" button.</li>
-<li>Otherwise, click the 3 horizontal lines icon in the upper left sidebar and click "Open in VS Code". You can refresh the page if you don't see this icon.</li>
-</ol>
-<h2 id="install-and-run-locally-with-docker-work-in-progress">Install and run locally with Docker (work in progress)<a class="headerlink" href="#install-and-run-locally-with-docker-work-in-progress" title="Permanent link">&para;</a></h2>
-<p><strong>Prerequisites</strong></p>
+<h2 id="modifying-the-image">Modifying the Image<a class="headerlink" href="#modifying-the-image" title="Permanent link">&para;</a></h2>
+<p>If we need to make changes in the future, we can modify the <code>base.Dockerfile</code> located in <code>.devcontainer</code>. It is better to do this process locally rather than from inside a Codespace because you will not be able to cache some or all layers, making the rebuilding process take a much longer time than necessary.</p>
+<h1 id="rebuilding-process">Rebuilding process<a class="headerlink" href="#rebuilding-process" title="Permanent link">&para;</a></h1>
 <ul>
-<li>Install git</li>
-<li>Install Docker Desktop: <a href="https://docs.docker.com/docker-for-mac/install/">Mac</a>, <a href="https://docs.docker.com/docker-for-windows/install/">Windows</a></li>
+<li>Navigate to .devcontainer locally
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ cd /path/to/workspace/.devcontainer
+</code></pre></div>
+</td></tr></table></li>
 </ul>
-<ol>
-<li>Run</li>
-</ol>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sh local.sh start
-</code></pre></div>
-</td></tr></table>
-
-<ol>
-<li>After the application runs for the first time, copy <code>node_modules</code>. While the application is running, run this is a separate terminal:</li>
-</ol>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sh local.sh copy
-</code></pre></div>
-</td></tr></table>
-
-<p><strong>Caveats</strong></p>
 <ul>
-<li><em>What does this do</em>: This will install the application and its dependencies and then run the backend and frontend in separate containers. To ensure fast hot-reloading, <code>node_modules</code> and <code>postgreSQL db</code> are stored in a docker <a href="https://docs.docker.com/storage/volumes/">volume</a> and your local source files are mounted into the container.</li>
-<li><em>Why do you need to copy after the first run</em>: The application uses <code>node_modules</code> from Docker volume not your local files. Copy these locally so that dependencies resolve correctly in your editor.</li>
+<li>Make some changes to <code>base.Dockerfile</code> to install some new tools </li>
 </ul>
-<p><strong>Environment Variable Injection</strong></p>
-<p>The local dev environment is setup to use <a href="https://github.com/segmentio/chamber">chamber</a> for environment variable injection. A few changes need to be made before this will work.</p>
-<p>First you'll need to add a <code>.env</code> file within the <code>.localdevcontainer</code> folder. An <code>example.env</code> is available to copy from. Then, you need to uncomment the <code>ENTRYPOINT</code> located at the bottom of the local-Dockerfile, and comment <code>ENTRYPOINT [ "/entrypoint.sh" ]</code>. Running <code>sh local.sh.start</code> should now inject any environment variables stored within the SSM Parameter Store based on the values within <code>.env</code>. It'll grab any variables that start with <code>lighthouse-backstage</code>.</p>
-<h2 id="install-and-run-locally-tbd">Install and run locally (TBD)<a class="headerlink" href="#install-and-run-locally-tbd" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Use <a href="https://github.com/nvm-sh/nvm">nvm</a> to install node</li>
-<li>You will need to update the Backstage <a href="https://backstage.io/docs/conf/#docsNav">configuration</a> for running locally. Update these instructions if you try this out.</li>
-<li><code>app-config.yaml</code> is used for Codespaces and it is merged with <code>app-config.production.yaml</code> in production environments. Supporting Codespaces is the priorty so consider that when changing the way configurations are organized.</li>
+<li>Rebuild the image
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build -f base.Dockerfile . -t ghcr.io/department-of-veterans-affairs/lighthouse-backstage/devcontainer:latest
+</code></pre></div>
+</td></tr></table></li>
+<li><a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry">Log into container registry using PAT</a>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ echo CR_PAT=&lt;YOUR_TOKEN&gt;
+$ echo $CR_PAT | docker login ghcr.io -u &lt;USERNAME&gt; --password-stdin
+&gt; Login Succeeded
+</code></pre></div>
+</td></tr></table></li>
+<li>Push the image
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker push ghcr.io/department-of-veterans-affairs/lighthouse-backstage/devcontainer:latest
+</code></pre></div>
+</td></tr></table></li>
 </ul>
                 
               
@@ -608,41 +526,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../deployment/" title="Deployment" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Deployment
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../backstage-update/" title="Backstage Update" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Backstage Update
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

@@ -812,24 +812,18 @@ This deployment creates 2 pods: one pod has a single container for the postgres 
 <h2 id="running-pulumi-to-deploy-fe-to-kubernetes">Running Pulumi to Deploy FE to Kubernetes<a class="headerlink" href="#running-pulumi-to-deploy-fe-to-kubernetes" title="Permanent link">&para;</a></h2>
 <h3 id="through-codespaces">Through Codespaces<a class="headerlink" href="#through-codespaces" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Switch <code>.devcontainer</code> with <code>.pulumidevcontainer</code><ul>
-<li>Run <code>yarn swap-codespaces</code> from the root directory to swap devcontainers</li>
-<li>If a <code>.pulumidevcontainer</code> is present, this script will rename <code>.devcontainer</code> to <code>.devcontainer_main</code> and rename <code>.pulumidevcontainer</code> to <code>.devcontainer</code></li>
-<li>If there is no <code>.pulumidevcontainer</code>, then the script will rename <code>.devcontainer</code> to <code>.pulumidevcontainer</code> and rename <code>.devcontainer_main</code> to <code>.devcontainer</code></li>
-<li>Note: Changing the configuration of the Codespaces container will require the Codespaces container to be rebuilt. <strong>Rebuilding your container will delete any current changes you've made to the container</strong></li>
-</ul>
-</li>
-<li>Rebuild the Codespaces container<ul>
-<li>Use the Command Palette or the Codespaces extension to rebuild the container with the new <code>.devcontainer</code></li>
-</ul>
-</li>
-<li>Start Up Pulumi<ul>
-<li>Run <code>yarn pulumi</code> from the root directory to use the Pulumi start up script</li>
-<li>This script will check if minikube is running, check if a frontend image is created and create a frontend image if it doesn't exist. Finally, the script will run the pulumi start up commands to generate &amp; apply k8s manifest files and then forward ports with <code>kubectl</code> </li>
-<li>After the script finishes, you should be able to see the FE running at localhost:3000</li>
-<li>Note: this will require creating a Pulumi account </li>
-</ul>
-</li>
+<li>Switch <code>.devcontainer</code> with <code>.pulumidevcontainer</code>
+    - Run <code>yarn swap-codespaces</code> from the root directory to swap devcontainers
+    - If a <code>.pulumidevcontainer</code> is present, this script will rename <code>.devcontainer</code> to <code>.devcontainer_main</code> and rename <code>.pulumidevcontainer</code> to <code>.devcontainer</code>
+    - If there is no <code>.pulumidevcontainer</code>, then the script will rename <code>.devcontainer</code> to <code>.pulumidevcontainer</code> and rename <code>.devcontainer_main</code> to <code>.devcontainer</code>
+    - Note: Changing the configuration of the Codespaces container will require the Codespaces container to be rebuilt. <strong>Rebuilding your container will delete any current changes you've made to the container</strong></li>
+<li>Rebuild the Codespaces container
+    - Use the Command Palette or the Codespaces extension to rebuild the container with the new <code>.devcontainer</code></li>
+<li>Start Up Pulumi
+    - Run <code>yarn pulumi</code> from the root directory to use the Pulumi start up script
+    - This script will check if minikube is running, check if a frontend image is created and create a frontend image if it doesn't exist. Finally, the script will run the pulumi start up commands to generate &amp; apply k8s manifest files and then forward ports with <code>kubectl</code> 
+    - After the script finishes, you should be able to see the FE running at localhost:3000
+    - Note: this will require creating a Pulumi account </li>
 </ol>
                 
               

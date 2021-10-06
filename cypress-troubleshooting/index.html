@@ -646,12 +646,10 @@
 <p>Some best practices to keep in mind.</p>
 <ul>
 <li>Don't target elements based on CSS attributes such as: id, class, tag</li>
-<li>
-<p>Don't target elements that may change their textContent</p>
-</li>
-<li>
-<p>Add data-* attributes to make it easier to target elements</p>
-</li>
+<li>Don't target elements that may change their textContent</li>
+</ul>
+<ul>
+<li>Add data-* attributes to make it easier to target elements</li>
 </ul>
 <h3 id="timeout-failures">Timeout Failures<a class="headerlink" href="#timeout-failures" title="Permanent link">&para;</a></h3>
 <p>Another common issue that can occur is if the app fails to load within a set time. Cypress will wait 1 minute before failing a test suite due to the app not loading. Usually, rerunning the test can fix it. Otherwise, there might be an issue with the test itself.</p>
