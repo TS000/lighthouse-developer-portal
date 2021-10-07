@@ -44,15 +44,15 @@ const vadsBlue = {
 
 export const blue = {
     50: vadsBlue[50],   
-    100: vadsBlue[100], //$color-primary-alt-lightest
-    200: vadsBlue[200], //$color-primary-alt-light
-    300: vadsBlue[300], //$color-primary-alt
-    400: vadsBlue[400], //$color-primary-alt-dark
-    500: vadsBlue[500], //$color-primary
+    100: vadsBlue[100], // $color-primary-alt-lightest
+    200: vadsBlue[200], // $color-primary-alt-light
+    300: vadsBlue[300], // $color-primary-alt
+    400: vadsBlue[400], // $color-primary-alt-dark
+    500: vadsBlue[500], // $color-primary
     600: vadsBlue[600],
-    700: vadsBlue[700], //$color-primary-alt-darkest
-    800: vadsBlue[800], //$color-primary-darker
-    900: vadsBlue[900], //$color-primary-darkest
+    700: vadsBlue[700], // $color-primary-alt-darkest
+    800: vadsBlue[800], // $color-primary-darker
+    900: vadsBlue[900], // $color-primary-darkest
     A100: vadsBlue.A100,
     A200: vadsBlue.A200,
     A400: vadsBlue.A400,
@@ -81,14 +81,14 @@ const vadsRed = {
 
 export const red = {
     50: vadsRed[50],
-    100: vadsRed[100], //$color-secondary-lightest
+    100: vadsRed[100], // $color-secondary-lightest
     200: vadsRed[200],
-    300: vadsRed[300], //$color-secondary-light
+    300: vadsRed[300], // $color-secondary-light
     400: vadsRed[400],
     500: vadsRed[500],
-    600: vadsRed[600], //$color-secondary
-    700: vadsRed[700], //$color-secondary-dark
-    800: vadsRed[800], //$color-secondary-darkest
+    600: vadsRed[600], // $color-secondary
+    700: vadsRed[700], // $color-secondary-dark
+    800: vadsRed[800], // $color-secondary-darkest
     900: vadsRed[900],
     A100: vadsRed.A100,
     A200: vadsRed.A200,
@@ -117,15 +117,15 @@ const vadsGray = {
 };
 
 export const gray = {
-    50: vadsGray[50],   //$color-gray-lightest
-    100: vadsGray[100], //$color-gray-warm-light 
-    200: vadsGray[200], //$color-gray-lighter
-    300: vadsGray[300], //$color-gray-cool-light
-    400: vadsGray[400], //$color-gray-light
-    500: vadsGray[500], //$color-gray-medium
-    600: vadsGray[600], //$color-gray
-    700: vadsGray[700], //$color-gray-warm-dark
-    800: vadsGray[800], //$color-gray-dark
+    50: vadsGray[50],   // $color-gray-lightest
+    100: vadsGray[100], // $color-gray-warm-light 
+    200: vadsGray[200], // $color-gray-lighter
+    300: vadsGray[300], // $color-gray-cool-light
+    400: vadsGray[400], // $color-gray-light
+    500: vadsGray[500], // $color-gray-medium
+    600: vadsGray[600], // $color-gray
+    700: vadsGray[700], // $color-gray-warm-dark
+    800: vadsGray[800], // $color-gray-dark
     900: vadsGray[900],
     A100: vadsGray.A100,
     A200: vadsGray.A200,
@@ -155,15 +155,15 @@ const vadsGold = {
 
 export const gold = {
     50: vadsGold[50],
-    100: vadsGold[100], //$color-gold-lightest
-    200: vadsGold[200], //$color-gold-lighter 
-    300: vadsGold[300], //$color-gold-light
+    100: vadsGold[100], // $color-gold-lightest
+    200: vadsGold[200], // $color-gold-lighter 
+    300: vadsGold[300], // $color-gold-light
     400: vadsGold[400],
-    500: vadsGold[500], //$color-gold
+    500: vadsGold[500], // $color-gold
     600: vadsGold[600],
     700: vadsGold[700],
     800: vadsGold[800],
-    900: vadsGold[900], //$color-gold-darker
+    900: vadsGold[900], // $color-gold-darker
     A100: vadsGold.A100,
     A200: vadsGold.A200,
     A400: vadsGold.A400,
@@ -192,14 +192,14 @@ const vadsGreen = {
 
 export const green = {
     50: vadsGreen[50],
-    100: vadsGreen[100], //$color-green-lightest
+    100: vadsGreen[100], // $color-green-lightest
     200: vadsGreen[200],
-    300: vadsGreen[300], //$color-green-lighter
+    300: vadsGreen[300], // $color-green-lighter
     400: vadsGreen[400],
-    500: vadsGreen[500], //$color-green-light
-    600: vadsGreen[600], //$color-green
+    500: vadsGreen[500], // $color-green-light
+    600: vadsGreen[600], // $color-green
     700: vadsGreen[700],
-    800: vadsGreen[800], //$color-green-darker
+    800: vadsGreen[800], // $color-green-darker
     900: vadsGreen[900],
     A100: vadsGreen.A100,
     A200: vadsGreen.A200,

@@ -38,13 +38,13 @@ const LogoFull = () => {
     >
       
       <path
-        className={classes.path} fill-rule="evenodd" clip-rule="evenodd" 
+        className={classes.path} fillRule="evenodd" clipRule="evenodd" 
         d="M462 343H470V5H462V343Z" />
       <path
-        className={classes.path} fill-rule="evenodd" clip-rule="evenodd" 
+        className={classes.path} fillRule="evenodd" clipRule="evenodd" 
         d="M76.1685 280L5 53.003H60.0216L87.0421 148.984C94.6253 176.267 101.547 201.864 106.814 230.157H107.801C113.402 202.874 120.324 175.932 127.9 150.001L156.242 53.003H209.615L134.815 280H76.1685Z" />
       <path
-        className={classes.path} fill-rule="evenodd" clip-rule="evenodd" 
+        className={classes.path} fillRule="evenodd" clipRule="evenodd" 
         d="M297.256 183.341L283.411 135.176C279.46 121.712 275.508 104.87 272.211 91.3923H271.557C268.259 104.87 264.962 122.039 261.337 135.176L248.161 183.341H297.256ZM240.905 221.74L225.092 279.997H173.361L240.905 53H306.807L376 279.997H321.639L304.497 221.74H240.905Z" />
       <path
         className={classes.path} 
