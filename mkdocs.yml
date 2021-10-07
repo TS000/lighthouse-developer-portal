@@ -18,6 +18,7 @@ nav:
       - RFC CI/CD Modifications: rfc-ci-cd.md
       - RFC Catalog Import Research: rfc-catalog-import-research.md
       - RFC Node App Logging: rfc-node-app-logging.md
+      - RFC Docker Scanning: rfc-docker-scanning.md
       - RFC Enforce Build Performance: rfc-enforce-build-performance.md
 
 plugins:
