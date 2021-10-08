@@ -18,7 +18,7 @@
     "tsc:full": "tsc --skipLibCheck false --incremental false",
     "clean": "backstage-cli clean && lerna run clean",
     "diff": "lerna run diff --",
-    "test": "lerna run test --since origin/main -- --coverage",
+    "test": "backstage-cli test",
     "test:all": "mkdir -p ./logs && lerna run test -- --coverage 2>&1 | tee ./logs/unit-tests.txt",
     "lint": "lerna run lint --since origin/main --",
     "lint:all": "lerna run lint --",
@@ -60,7 +60,7 @@
     "@changesets/cli": "^2.16.0"
   },
   "metadata": {
-    "backstage-create-app-version": "0.3.43"
+    "backstage-create-app-version": "0.3.44"
   },
   "jest": {
     "coverageReporters": [

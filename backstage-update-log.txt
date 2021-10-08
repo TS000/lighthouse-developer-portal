@@ -1,9 +1,8 @@
-yarn run v1.22.11
+yarn run v1.22.15
 $ /home/runner/work/lighthouse-backstage/lighthouse-backstage/node_modules/.bin/backstage-cli versions:bump
 Checking for updates of @backstage/dev-utils
 Checking for updates of @backstage/core-app-api
 Checking for updates of @backstage/core-plugin-api
-Checking for updates of @backstage/core-components
 Checking for updates of @backstage/plugin-techdocs-backend
 Checking for updates of @backstage/plugin-search-backend-node
 Checking for updates of @backstage/plugin-search-backend
@@ -28,6 +27,7 @@ Checking for updates of @backstage/plugin-catalog-import
 Checking for updates of @backstage/plugin-catalog
 Checking for updates of @backstage/plugin-api-docs
 Checking for updates of @backstage/integration-react
+Checking for updates of @backstage/core-components
 Checking for updates of @backstage/core
 Checking for updates of @backstage/cli
 Checking for updates of @backstage/catalog-model
@@ -44,45 +44,53 @@ Checking for updates of @backstage/cli-common
 
 Some packages are outdated, updating
 
-unlocking @backstage/dev-utils@^0.2.6 ~> 0.2.11
-unlocking @backstage/backend-common@^0.9.4 ~> 0.9.5
-unlocking @backstage/core-app-api@^0.1.8 ~> 0.1.15
-unlocking @backstage/core-plugin-api@^0.1.6 ~> 0.1.9
-unlocking @backstage/plugin-auth-backend@^0.4.1 ~> 0.4.2
-unlocking @backstage/plugin-user-settings@^0.3.3 ~> 0.3.7
-unlocking @backstage/plugin-github-actions@^0.4.7 ~> 0.4.20
-unlocking @backstage/plugin-catalog@^0.6.0 ~> 0.6.17
-unlocking @backstage/plugin-search@^0.4.1 ~> 0.4.13
-unlocking @backstage/plugin-catalog-react@^0.5.0 ~> 0.5.1
-unlocking @backstage/plugin-scaffolder@^0.11.0 ~> 0.11.6
-unlocking @backstage/plugin-org@^0.3.12 ~> 0.3.25
-unlocking @backstage/plugin-api-docs@^0.6.0 ~> 0.6.10
-unlocking @backstage/integration-react@^0.1.1 ~> 0.1.11
-unlocking @backstage/plugin-tech-radar@^0.4.2 ~> 0.4.9
-unlocking @backstage/cli@^0.7.3 ~> 0.7.14
-unlocking @backstage/cli@^0.7.7 ~> 0.7.14
-unlocking @backstage/cli@^0.7.8 ~> 0.7.14
-unlocking @backstage/plugin-search@^0.4.12 ~> 0.4.13
-unlocking @backstage/plugin-catalog@^0.6.16 ~> 0.6.17
-unlocking @backstage/integration-react@^0.1.10 ~> 0.1.11
-unlocking @backstage/core-plugin-api@^0.1.3 ~> 0.1.9
-unlocking @backstage/core-plugin-api@^0.1.7 ~> 0.1.9
-unlocking @backstage/core-plugin-api@^0.1.8 ~> 0.1.9
-unlocking @backstage/core-app-api@^0.1.14 ~> 0.1.15
-unlocking @backstage/core-app-api@^0.1.3 ~> 0.1.15
-unlocking @backstage/core-app-api@^0.1.4 ~> 0.1.15
-unlocking @backstage/backend-common@^0.9.0 ~> 0.9.5
-unlocking @backstage/backend-common@^0.9.1 ~> 0.9.5
-unlocking @backstage/backend-common@^0.9.3 ~> 0.9.5
-unlocking @backstage/integration@^0.6.2 ~> 0.6.6
-unlocking @backstage/integration@^0.6.4 ~> 0.6.6
-unlocking @backstage/integration@^0.6.5 ~> 0.6.6
-unlocking @backstage/techdocs-common@^0.10.1 ~> 0.10.2
-unlocking @backstage/config-loader@^0.6.8 ~> 0.6.9
-bumping @backstage/plugin-techdocs in app to ^0.12.0
-bumping @backstage/plugin-catalog-import in app to ^0.7.0
-bumping @backstage/plugin-catalog-backend in backend to ^0.15.0
-bumping @backstage/core-components in @internal/plugin-feature-flags to ^0.6.0
+unlocking @backstage/plugin-auth-backend@^0.4.1 ~> 0.4.3
+unlocking @backstage/plugin-proxy-backend@^0.2.6 ~> 0.2.13
+unlocking @backstage/plugin-techdocs-backend@^0.10.0 ~> 0.10.4
+unlocking @backstage/core-plugin-api@^0.1.6 ~> 0.1.10
+unlocking @backstage/core-app-api@^0.1.8 ~> 0.1.16
+unlocking @backstage/backend-common@^0.9.4 ~> 0.9.6
+unlocking @backstage/test-utils@^0.1.10 ~> 0.1.18
+unlocking @backstage/test-utils@^0.1.17 ~> 0.1.18
+unlocking @backstage/plugin-user-settings@^0.3.3 ~> 0.3.8
+unlocking @backstage/plugin-scaffolder-backend@^0.15.0 ~> 0.15.7
+unlocking @backstage/plugin-tech-radar@^0.4.2 ~> 0.4.10
+unlocking @backstage/plugin-techdocs@^0.12.0 ~> 0.12.1
+unlocking @backstage/plugin-org@^0.3.12 ~> 0.3.26
+unlocking @backstage/plugin-github-actions@^0.4.7 ~> 0.4.21
+unlocking @backstage/plugin-api-docs@^0.6.0 ~> 0.6.11
+unlocking @backstage/plugin-search@^0.4.1 ~> 0.4.14
+unlocking @backstage/plugin-scaffolder@^0.11.0 ~> 0.11.7
+unlocking @backstage/plugin-catalog-import@^0.7.0 ~> 0.7.1
+unlocking @backstage/core-components@^0.6.0 ~> 0.6.1
+unlocking @backstage/plugin-catalog-react@^0.5.0 ~> 0.5.2
+unlocking @backstage/cli@^0.7.3 ~> 0.7.15
+unlocking @backstage/cli@^0.7.7 ~> 0.7.15
+unlocking @backstage/cli@^0.7.8 ~> 0.7.15
+unlocking @backstage/catalog-model@^0.9.0 ~> 0.9.4
+unlocking @backstage/plugin-search@^0.4.13 ~> 0.4.14
+unlocking @backstage/plugin-scaffolder-backend@^0.15.2 ~> 0.15.7
+unlocking @backstage/plugin-catalog-react@^0.5.1 ~> 0.5.2
+unlocking @backstage/core-plugin-api@^0.1.3 ~> 0.1.10
+unlocking @backstage/core-plugin-api@^0.1.9 ~> 0.1.10
+unlocking @backstage/core-app-api@^0.1.15 ~> 0.1.16
+unlocking @backstage/core-app-api@^0.1.3 ~> 0.1.16
+unlocking @backstage/core-app-api@^0.1.4 ~> 0.1.16
+unlocking @backstage/catalog-model@^0.9.1 ~> 0.9.4
+unlocking @backstage/catalog-model@^0.9.3 ~> 0.9.4
+unlocking @backstage/backend-common@^0.9.0 ~> 0.9.6
+unlocking @backstage/backend-common@^0.9.1 ~> 0.9.6
+unlocking @backstage/backend-common@^0.9.5 ~> 0.9.6
+unlocking @backstage/integration@^0.6.2 ~> 0.6.7
+unlocking @backstage/integration@^0.6.5 ~> 0.6.7
+unlocking @backstage/integration@^0.6.6 ~> 0.6.7
+unlocking @backstage/test-utils-core@^0.1.2 ~> 0.1.3
+unlocking @backstage/cli-common@^0.1.3 ~> 0.1.4
+unlocking @backstage/config-loader@^0.6.9 ~> 0.6.10
+unlocking @backstage/techdocs-common@^0.10.1 ~> 0.10.3
+bumping @backstage/plugin-catalog in app to ^0.7.0
+bumping @backstage/catalog-client in backend to ^0.5.0
+bumping @backstage/plugin-catalog-backend in backend to ^0.16.0
 
 Running yarn install to install new versions
 
@@ -98,19 +106,19 @@ Running yarn install to install new versions
 [2K[1G[33mwarning[39m " > graphql-language-service-parser@1.9.0" has unmet peer dependency "graphql@^14.0.0 || ^15.0.0".
 [2K[1G[33mwarning[39m "@backstage/cli > react-hot-loader@4.13.0" has unmet peer dependency "react-dom@^15.0.0 || ^16.0.0 || ^17.0.0 ".
 [2K[1G[33mwarning[39m "@backstage/cli > rollup-plugin-dts@3.0.2" has incorrect peer dependency "rollup@^2.48.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > react-dom@17.0.2" has incorrect peer dependency "react@17.0.2".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > @testing-library/user-event@12.8.3" has unmet peer dependency "@testing-library/dom@>=7.21.4".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > eslint-plugin-cypress@2.12.1" has unmet peer dependency "eslint@>= 3.2.1".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > @internal/plugin-feature-flags > @testing-library/user-event@13.2.1" has unmet peer dependency "@testing-library/dom@>=7.21.4".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > @backstage/core > @testing-library/react-hooks@3.7.0" has unmet peer dependency "react-test-renderer@>=16.9.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > @backstage/core > material-table@1.69.3" has unmet peer dependency "@date-io/core@^1.3.6".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > @backstage/core > material-table > @material-ui/pickers@3.2.2" has unmet peer dependency "@date-io/core@^1.3.6".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > @internal/plugin-feature-flags > @backstage/core-components > @material-table/core@3.2.5" has unmet peer dependency "@date-io/core@^1.3.13".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > @roadiehq/backstage-plugin-github-insights > @backstage/core-components > @material-table/core > @material-ui/pickers@3.3.10" has incorrect peer dependency "@date-io/core@^1.3.6".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > @backstage/plugin-api-docs > graphiql@1.4.2" has incorrect peer dependency "graphql@>= v14.5.0 <= 15.5.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > @backstage/plugin-api-docs > graphiql > @graphiql/toolkit@0.2.2" has incorrect peer dependency "graphql@>= v14.5.0 <= 15.5.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > @backstage/plugin-api-docs > graphiql > codemirror-graphql@1.0.2" has incorrect peer dependency "graphql@>= v14.5.0 <= 15.5.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-c9dd4b7b-17ef-451a-9e19-78c3dd7febc1 > app > @backstage/plugin-api-docs > graphiql > graphql-language-service@3.1.4" has incorrect peer dependency "graphql@>= v14.5.0 <= 15.5.0".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > react-dom@17.0.2" has incorrect peer dependency "react@17.0.2".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @testing-library/user-event@12.8.3" has unmet peer dependency "@testing-library/dom@>=7.21.4".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > eslint-plugin-cypress@2.12.1" has unmet peer dependency "eslint@>= 3.2.1".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > @internal/plugin-feature-flags > @testing-library/user-event@13.2.1" has unmet peer dependency "@testing-library/dom@>=7.21.4".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @backstage/core > @testing-library/react-hooks@3.7.0" has unmet peer dependency "react-test-renderer@>=16.9.0".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @backstage/core > material-table@1.69.3" has unmet peer dependency "@date-io/core@^1.3.6".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @backstage/core > material-table > @material-ui/pickers@3.2.2" has unmet peer dependency "@date-io/core@^1.3.6".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @backstage/core-components > @material-table/core@3.2.5" has unmet peer dependency "@date-io/core@^1.3.13".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @backstage/core-components > @material-table/core > @material-ui/pickers@3.3.10" has unmet peer dependency "@date-io/core@^1.3.6".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @backstage/plugin-api-docs > graphiql@1.4.2" has incorrect peer dependency "graphql@>= v14.5.0 <= 15.5.0".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @backstage/plugin-api-docs > graphiql > @graphiql/toolkit@0.2.2" has incorrect peer dependency "graphql@>= v14.5.0 <= 15.5.0".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @backstage/plugin-api-docs > graphiql > codemirror-graphql@1.0.2" has incorrect peer dependency "graphql@>= v14.5.0 <= 15.5.0".
+[2K[1G[33mwarning[39m "workspace-aggregator-56280dcd-1e33-4d43-b410-4b81adaa2c55 > app > @backstage/plugin-api-docs > graphiql > graphql-language-service@3.1.4" has incorrect peer dependency "graphql@>= v14.5.0 <= 15.5.0".
 [2K[1G[33mwarning[39m Workspaces can only be enabled in private projects.
 [2K[1G[33mwarning[39m Workspaces can only be enabled in private projects.
 [2K[1G[33mwarning[39m Workspaces can only be enabled in private projects.
@@ -119,18 +127,15 @@ Running yarn install to install new versions
 
 ⚠️  The following packages may have breaking changes:
 
-  @backstage/core-components : 0.5.0 ~> 0.6.0
-    https://github.com/backstage/backstage/blob/master/packages/core-components/CHANGELOG.md
+  @backstage/catalog-client : 0.4.0 ~> 0.5.0
+    https://github.com/backstage/backstage/blob/master/packages/catalog-client/CHANGELOG.md
 
-  @backstage/plugin-catalog-backend : 0.14.0 ~> 0.15.0
+  @backstage/plugin-catalog : 0.6.17 ~> 0.7.0
+    https://github.com/backstage/backstage/blob/master/plugins/catalog/CHANGELOG.md
+
+  @backstage/plugin-catalog-backend : 0.15.0 ~> 0.16.0
     https://github.com/backstage/backstage/blob/master/plugins/catalog-backend/CHANGELOG.md
-
-  @backstage/plugin-catalog-import : 0.6.0 ~> 0.7.0
-    https://github.com/backstage/backstage/blob/master/plugins/catalog-import/CHANGELOG.md
-
-  @backstage/plugin-techdocs : 0.11.3 ~> 0.12.0
-    https://github.com/backstage/backstage/blob/master/plugins/techdocs/CHANGELOG.md
 
 Version bump complete!
 
-Done in 27.05s.
+Done in 31.21s.
