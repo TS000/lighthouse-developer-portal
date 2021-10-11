@@ -15,7 +15,7 @@
     
     
       
-        <title>RFC Catalog Import Research - example-docs</title>
+        <title>Helm Charts - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rfc-catalog-import-research" class="md-skip">
+        <a href="#helm" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              RFC Catalog Import Research
+              Helm Charts
             
           </span>
         </div>
@@ -235,11 +235,128 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../helm/" title="Helm Charts" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Helm Charts
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Helm Charts" class="md-nav__link md-nav__link--active">
       Helm Charts
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-does-helm-do-for-us" class="md-nav__link">
+    What does Helm do for us?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-structure-of-helm-chart" class="md-nav__link">
+    File structure of helm chart
+  </a>
+  
+    <nav class="md-nav" aria-label="File structure of helm chart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valuesyaml-file" class="md-nav__link">
+    values.yaml file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chartyaml" class="md-nav__link">
+    Chart.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subcharts" class="md-nav__link">
+    Subcharts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-_helperstpl" class="md-nav__link">
+    What is _helpers.tpl?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-secrets-with-helm" class="md-nav__link">
+    Using Secrets with Helm
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Secrets with Helm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passing-secrets-as-command-line-arguments" class="md-nav__link">
+    Passing secrets as command line arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-local-variables" class="md-nav__link">
+    Export local variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-ways-to-use-secrets-with-helm" class="md-nav__link">
+    Other ways to use secrets with Helm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
     
@@ -271,12 +388,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
     
     <label class="md-nav__link" for="nav-9">
       RFCs and decision records
@@ -370,101 +485,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        RFC Catalog Import Research
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="RFC Catalog Import Research" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../rfc-catalog-import-research/" title="RFC Catalog Import Research" class="md-nav__link">
       RFC Catalog Import Research
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goal" class="md-nav__link">
-    Goal
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#information" class="md-nav__link">
-    Information
-  </a>
-  
-    <nav class="md-nav" aria-label="Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#integrations" class="md-nav__link">
-    Integrations
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#catalog-plugin" class="md-nav__link">
-    Catalog-Plugin
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
-    Recommendation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    Questions
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -547,30 +572,44 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
+  <a href="#what-does-helm-do-for-us" class="md-nav__link">
+    What does Helm do for us?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#goal" class="md-nav__link">
-    Goal
+  <a href="#file-structure-of-helm-chart" class="md-nav__link">
+    File structure of helm chart
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#information" class="md-nav__link">
-    Information
-  </a>
-  
-    <nav class="md-nav" aria-label="Information">
+    <nav class="md-nav" aria-label="File structure of helm chart">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#integrations" class="md-nav__link">
-    Integrations
+  <a href="#valuesyaml-file" class="md-nav__link">
+    values.yaml file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chartyaml" class="md-nav__link">
+    Chart.yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subcharts" class="md-nav__link">
+    Subcharts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-_helperstpl" class="md-nav__link">
+    What is _helpers.tpl?
   </a>
   
 </li>
@@ -581,23 +620,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#catalog-plugin" class="md-nav__link">
-    Catalog-Plugin
+  <a href="#using-secrets-with-helm" class="md-nav__link">
+    Using Secrets with Helm
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Secrets with Helm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passing-secrets-as-command-line-arguments" class="md-nav__link">
+    Passing secrets as command line arguments
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
-    Recommendation
+        
+          <li class="md-nav__item">
+  <a href="#export-local-variables" class="md-nav__link">
+    Export local variables
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#questions" class="md-nav__link">
-    Questions
+        
+          <li class="md-nav__item">
+  <a href="#other-ways-to-use-secrets-with-helm" class="md-nav__link">
+    Other ways to use secrets with Helm
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -613,7 +665,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/rfc-catalog-import-research.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/helm.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -621,122 +673,206 @@
                   
                 
                 
-                <h1 id="rfc-catalog-import-research">[RFC] Catalog Import Research<a class="headerlink" href="#rfc-catalog-import-research" title="Permanent link">&para;</a></h1>
-<p><strong>Summary</strong>:</p>
-<p>Users can add GitHub and GitHub Enterprise repositories to the backstage catalog. We need to also check if it's possible to add repositories from other sources like GitLab.</p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>The GitHub integration supports loading catalog entities from github.com or GitHub Enterprise. Entities can be added to <a href="https://backstage.io/docs/features/software-catalog/configuration">static catalog configuration</a>, registered with the <a href="https://github.com/backstage/backstage/tree/master/plugins/catalog-import">catalog-import</a> plugin, or <a href="https://backstage.io/docs/integrations/github/discovery">discovered</a> from a GitHub organization. Users and Groups can also be <a href="https://backstage.io/docs/integrations/github/org">loaded from an organization</a>.</p>
-<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
-<p>Our goal is to allow multiple repository hosting services, like GitHub/GitLab, to import repositories using the catalog-plugin.</p>
-<h2 id="information">Information<a class="headerlink" href="#information" title="Permanent link">&para;</a></h2>
-<h3 id="integrations">Integrations<a class="headerlink" href="#integrations" title="Permanent link">&para;</a></h3>
-<p>Backstage supports integrations from multiple repository hosting websites. GitHub is supported by default. Integrations are required in order to understand how to retrieve a given URL.</p>
-<p>Adding an <a href="https://backstage.io/docs/integrations/">integration</a> can be done by editing the <code>app-config.yml</code> file manually, or adding via the backstage API.</p>
-<p>For Example if we had this location within our <code>app-config.yml</code> file:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>catalog:
-  locations:
-    - type: url
-      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/artist-lookup-component.yaml
-</code></pre></div>
-</td></tr></table>
-
-<p>We would also need to list GitHub under integrations.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
-  github:
-    - host: github.com
-      token: ${GITHUB_TOKEN}
-</code></pre></div>
-</td></tr></table>
-
-<p>Example adding a <a href="https://backstage.io/docs/integrations/gitlab/locations">GitLab integration</a>:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
-  gitlab:
-    - host: gitlab.com
-      token: ${GITLAB_TOKEN}
-</code></pre></div>
-</td></tr></table>
-
-<p>Each integration has options configurations.</p>
+                <h1 id="helm">Helm<a class="headerlink" href="#helm" title="Permanent link">&para;</a></h1>
+<h2 id="what-does-helm-do-for-us">What does Helm do for us?<a class="headerlink" href="#what-does-helm-do-for-us" title="Permanent link">&para;</a></h2>
+<p>Helm is referred to as a "Kubernetes Package Manager", it is a command line tool that creates and installs Helm Charts. Helm Charts provide us with templated versions of the configuration files that describe our kubernetes deployment. In addition to templates, the Chart contains a set of files that define values that will be combined with the templates to generate our Kubernetes files. Using Helm will allow us to deploy to multiple environments without the need to maintain multiple sets of Kubernetes configuration files.</p>
 <ul>
-<li>host - The host fo the instance, e.g. github.com</li>
-<li>token (optional) - An authentication token as expected by the host. IF this is no supplied, anonymous access will be used</li>
-<li>apiBaseUrl (optional) - The URL fo the GitHub/GitLab API. For self-hosted installations, it is commonly at <code>https://&lt;host&gt;/api/</code>. For gitlab.com, this configuration is not needed as it can be inferred.</li>
-<li>baseUrl (optional) - The base URL for this provider, e.g. <code>https://gitlab.com</code>. If this is not provided, it is assumed to be <code>https://&lt;host&gt;</code></li>
+<li><a href="https://helm.sh/docs/chart_template_guide/getting_started/">Helm Docs</a></li>
 </ul>
-<blockquote>
-<p>Note: You need to supply either apiBaseUrl or rawBaseUrl or both (except for public GitHub, for which we can infer them). The apiBaseUrl will always be preferred over the other if a token is given, otherwise rawBaseUrl will be preferred.</p>
-</blockquote>
-<h2 id="catalog-plugin">Catalog-Plugin<a class="headerlink" href="#catalog-plugin" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/backstage/backstage/tree/master/plugins/catalog-import">catalog-plugin</a></p>
-<p>The Catalog Import Plugin provides a wizard to onboard projects with existing catalog-info.yaml files. It also assists by creating pull requests in repositories where no catalog-info.yaml exists.</p>
-<p>The plugin can import any <code>catalog-info.yml</code> file that is listed within one of our integrations.</p>
-<blockquote>
-<p>GitHub Only: The plugin can also search for all <code>catalog-info.yml</code> files along with analyse, generate a Component Entity, and create pull requests.</p>
-</blockquote>
-<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
-<p>It seems like the best idea would be to add GitHub Enterprise and GitLab to the integrations section of <code>app-config.yml</code>. Then, we could provide a way for users to request additional integrations.</p>
-<p>Otherwise it doesn't look like we will need to make any updates to the catalog-plugin, or to even create our own. The only reason I could think to add our own is if we want special behavior. Other things like titles, descriptions, and other wording can be changed manually.</p>
-<h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
-<p>Q: Do we need to make a catalog import plugin to support multiple instances of GitHub?
-A: No, a <a href="https://github.com/backstage/backstage/tree/master/plugins/catalog-import">catalog-import</a> plugin is already included within backstage.</p>
-<p>This plugin provides a wizard to onboard projects with existing <code>catalog-info.yml</code> files, or creates a pull request with an example <code>catalog-info.yml</code> if none are found.</p>
-<p>Integrations from other repositories can be included within the <code>app-config.yml</code> config.</p>
-<p>Q: How might we support importing catalog entries that aren't in GitHub?
-A: Other repository hosting services can be added by adding them to integrations within <code>app-config.yml</code>.</p>
-<p>For example to add support for GitLab we would add:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
-  gitlab:
-    - host: gitlab.com
-      token: ${GITLAB_TOKEN}
+<h2 id="file-structure-of-helm-chart">File structure of helm chart<a class="headerlink" href="#file-structure-of-helm-chart" title="Permanent link">&para;</a></h2>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>.
+└── mychart
+    ├── Chart.yaml
+    ├── values.yaml
+    ├── charts/
+    └── templates/
+        ├── _helpers.tpl
+        ├── deployment.yaml
+        ├── service.yaml
+        ├── ingress.yaml
+        ├── configmap.yaml
+        └── otherK8smanifestfiles.yaml
 </code></pre></div>
 </td></tr></table>
 
-<p>Q: How does it determine what credentials to use?
-A: Credentials are based off of the configuration set in <code>app-config.yml</code> or added using the <code>catalog-import</code> plugin.</p>
-<p>A <code>token</code> can be applied for authentication. Anonymous access will be used if none is applied.</p>
-<p>Q: Do we need to modify the starter kit UI?
-A: I don't believe so.</p>
-<p>Per, <a href="https://backstage.io/docs/integrations/">Backstage Integrations</a></p>
-<blockquote>
-<p>Integrations are configured at the root level of app-config.yaml since integrations are used by many Backstage core features and other plugins.
-Each key under integrations is a separate configuration for a single external provider. Providers each have different configuration; here's an example of configuration to use both GitHub and Bitbucket:</p>
-</blockquote>
+<p>The <code>mychart/templates/</code> directory contains templated versions all the yaml files that will be used for our Kubernetes deployment as well as a <code>_helpers.tpl</code> file. Using the <code>helm install</code> CLI will use the templates inconjunction with the <code>Chart.yaml</code> and <code>values.yaml</code> to render the Kubernetes files for deployment.</p>
+<h3 id="valuesyaml-file">values.yaml file<a class="headerlink" href="#valuesyaml-file" title="Permanent link">&para;</a></h3>
+<p>This file contains the default values for a chart. These values may be overridden by users during helm install or helm upgrade.</p>
+<h3 id="chartyaml">Chart.yaml<a class="headerlink" href="#chartyaml" title="Permanent link">&para;</a></h3>
+<p>The Chart.yaml file contains a description of the chart. You can access it from within a template. The <code>charts/</code> directory may contain other charts called subcharts. </p>
+<h3 id="subcharts">Subcharts<a class="headerlink" href="#subcharts" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://helm.sh/docs/chart_template_guide/subcharts_and_globals/">More information about subcharts</a>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>- A subchart is considered &quot;stand-alone&quot;, which means a subchart can never explicitly depend on its parent chart.
+- For that reason, a subchart cannot access the values of its parent.
+- A parent chart can override values for subcharts.
+- Helm has a concept of global values that can be accessed by all charts.
+</code></pre></div>
+</td></tr></table></li>
+</ul>
+<h3 id="what-is-_helperstpl">What is _helpers.tpl?<a class="headerlink" href="#what-is-_helperstpl" title="Permanent link">&para;</a></h3>
+<p>Files that being with <code>_</code> inside the <code>templates/</code> directory are not rendered to Kubernetes object definitions, but these files are available everywhere within other chart templates for use. This file is default location for <code>template partials</code>. </p>
+<ul>
+<li>Create a partial template containing a block of labels
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
 5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>integrations:
-  github:
-    - host: github.com
-      token: ${GITHUB_TOKEN}
-  bitbucket:
-    - host: bitbucket.org
-      username: ${BITBUCKET_USERNAME}
-      appPassword: ${BITBUCKET_APP_PASSWORD}
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># templates/_helpers.tpl
+{{- define &quot;mychart.labels&quot; }}
+  labels:
+    generator: helm
+    date: {{ now | htmlDate }}
+{{- end }}
+</code></pre></div>
+</td></tr></table></li>
+<li>Adding the partial template to the template file
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># templates/configmap.yaml
+{{- define &quot;mychart.labels&quot; }}
+  labels:
+    generator: helm
+    date: {{ now | htmlDate }}
+{{- end }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+  {{- template &quot;mychart.labels&quot; }}
+data:
+  myvalue: &quot;Hello World&quot;
+  {{- range $key, $val := .Values.favorite }}
+  {{ $key }}: {{ $val | quote }}
+  {{- end }}
+</code></pre></div>
+</td></tr></table></li>
+<li>The rendered output:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># Source: templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: running-panda-configmap
+  labels:
+    generator: helm
+    date: 2016-11-02
+data:
+  myvalue: &quot;Hello World&quot;
+  drink: &quot;coffee&quot;
+  food: &quot;pizza&quot;
+</code></pre></div>
+</td></tr></table></li>
+</ul>
+<h2 id="using-secrets-with-helm">Using Secrets with Helm<a class="headerlink" href="#using-secrets-with-helm" title="Permanent link">&para;</a></h2>
+<h3 id="passing-secrets-as-command-line-arguments">Passing secrets as command line arguments<a class="headerlink" href="#passing-secrets-as-command-line-arguments" title="Permanent link">&para;</a></h3>
+<p>Currently I am passing secrets as command line arguments when installing helm charts</p>
+<p><strong>How this works:</strong>
+- First I assigned variable names as values for the following <code><b>key</b>: value</code> pairs in the <code>values.yaml</code> file:</p>
+<pre>
+# values.yaml
+secrets:
+    <b>DOCKERCONFIGJSON</b>: ${DOCKERCONFIGJSON}
+    <b>GITHUB_TOKEN</b>: ${GITHUB_TOKEN}
+</pre>
+
+<ul>
+<li>Then these keys are referenced in the <code>deployment.yaml</code>:
+<pre></li>
+</ul>
+<hr />
+<p>kind: Secret
+type: kubernetes.io/dockerconfigjson
+apiVersion: v1
+metadata:
+  name: {{ include "lighthouse-backstage.fullname" . }}-dockerconfigjson-ghpkgs
+  labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
+data:
+  .dockerconfigjson: {{ .Values.<b>DOCKERCONFIGJSON</b> }}</p>
+<hr />
+<p>apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "lighthouse-backstage.fullname" . }}-secrets
+  labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
+type: Opaque
+data:
+GITHUB_TOKEN: {{ .Values.<b>GITHUB_TOKEN</b> }}
+</pre></p>
+<blockquote>
+<p>Note: <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes Secrets</a> have different types. The first secret type is <code>kubernetes.io/dockerconfigjson</code> which is used for a docker config.json file represented as an encoded string. This is used to provide authentication credentials for accessing a container repository to be able to pull images. More information about creating and encoding the json string: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/</a>. The second secret is a base64 encoded personal access token used by <a href="https://backstage.io/docs/deployment/k8s#creating-the-backstage-instance">Backstage</a>. </p>
+</blockquote>
+<h3 id="export-local-variables">Export local variables<a class="headerlink" href="#export-local-variables" title="Permanent link">&para;</a></h3>
+<p>Now that the environment variables are mapped to keys, and those keys are referenced in <code>templates/deployment.yaml</code>, we need to export the values for these variables
+- Create a <code>.env</code> file containing your secrets
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DOCKERCONFIGJSON=&lt;base64 encoded json string&gt;
+GITHUB_TOKEN=&lt;base64 encoded github_token&gt;
 </code></pre></div>
 </td></tr></table>
-
-<p>Q: Would we have naming conflicts?
-A: Yes, but only for specific situations.</p>
-<p>Per the Backstage <a href="https://backstage.io/docs/features/software-catalog/configuration">catalog configuration</a>:</p>
-<blockquote>
-<p>When multiple catalog-info.yaml files with the same metadata.name property are discovered, one will be processed and all others will be skipped. This action is logged for further investigation.</p>
-</blockquote>
+- Export the contents of the file
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>set -o allexport; source .env; set +o allexport
+</code></pre></div>
+</td></tr></table>
+- Set the variables when installing the helm chart
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm install backstage-dev helm/lighthouse-backstage/ --debug --values helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GITHUB_TOKEN=$GITHUB_TOKEN
+</code></pre></div>
+</td></tr></table>
+- View deployment
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm list -n lighthouse-bandicoot-dev
+NAME            NAMESPACE                       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
+backstage-dev   lighthouse-bandicoot-dev        1               2021-10-07 07:37:22.4745171 -0700 PDT   deployed        lighthouse-backstage-0.1.0      1.16.0
+</code></pre></div>
+</td></tr></table></p>
+<h3 id="other-ways-to-use-secrets-with-helm">Other ways to use secrets with Helm<a class="headerlink" href="#other-ways-to-use-secrets-with-helm" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/jkroepke/helm-secrets">helm-secrets plugin</a></li>
+</ul>
+<p>This approach uses SOPS to encrypt a <code>secrets.yaml</code> file and seems to be one of the more popular options I found, it is listed on Helms website as well: <a href="https://helm.sh/docs/community/related/#helm-plugins">https://helm.sh/docs/community/related/#helm-plugins</a></p>
+<ul>
+<li><a href="https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar">Hashicorp's Vault</a></li>
+</ul>
+<p>This is a more "heavy handed" solution. It uses it own set of helm charts to deploy a <code>vault</code> pod and a <code>vault-agent-injector</code> pod to store and inject secrets into our application pods.</p>
                 
               
               
@@ -755,7 +891,7 @@ A: Yes, but only for specific situations.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../rfc-ci-cd/" title="RFC CI/CD Modifications" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../local-k8s/" title="Deploy Local K8s Cluster" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -764,19 +900,19 @@ A: Yes, but only for specific situations.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                RFC CI/CD Modifications
+                Deploy Local K8s Cluster
               </div>
             </div>
           </a>
         
         
-          <a href="../rfc-node-app-logging/" title="RFC Node App Logging" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../allstar/" title="Allstar" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                RFC Node App Logging
+                Allstar
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
