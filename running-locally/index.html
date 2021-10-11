@@ -564,7 +564,20 @@
                 <h2 id="use-codespaces-preferred-work-in-progress">Use Codespaces (preferred- work in progress)<a class="headerlink" href="#use-codespaces-preferred-work-in-progress" title="Permanent link">&para;</a></h2>
 <p>This repo is configured to run a production-like environment in a GitHub <a href="https://github.com/features/codespaces">Codespace</a>.</p>
 <ol>
-<li>Create a Codespace</li>
+<li>Generate a <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">personal access token</a> with the read:packages permission</li>
+<li>Add the following to your <a href="https://github.com/settings/codespaces">Codespace secrets</a>: </li>
+</ol>
+<p><em>For each secret, select only the lighthouse-backstage repository under <strong>Repository Access</strong>.</em></p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DEV_CONTAINER_REGISTRY_SERVER = ghcr.io
+DEV_CONTAINER_REGISTRY_USER = &lt;GitHub username&gt;
+DEV_CONTAINER_REGISTRY_PASSWORD = &lt;personal access token&gt;
+</code></pre></div>
+</td></tr></table>
+
+<ol>
+<li>Create a <a href="https://docs.github.com/en/codespaces">Codespace</a> for the <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage">lighthouse-backstage</a> repo. This option is available by clicking the green <strong>Code</strong> button. </li>
 <li>Run application:</li>
 </ol>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>yarn dev
