@@ -21,6 +21,7 @@ nav:
       - RFC Node App Logging: rfc-node-app-logging.md
       - RFC Docker Scanning: rfc-docker-scanning.md
       - RFC Enforce Build Performance: rfc-enforce-build-performance.md
+      - RFC Investigate Esbuild and Vite: rfc-investigate-esbuild-and-vite.md
       - RFC Linting Rules: rfc-linting.md
 
 plugins:
