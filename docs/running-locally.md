@@ -2,8 +2,19 @@
 
 This repo is configured to run a production-like environment in a GitHub [Codespace](https://github.com/features/codespaces).
 
-1. Create a Codespace
-2. Run application:
+1. Generate a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the read:packages permission
+2. Add the following to your [Codespace secrets](https://github.com/settings/codespaces): 
+  
+_For each secret, select only the lighthouse-backstage repository under **Repository Access**._
+  
+```
+DEV_CONTAINER_REGISTRY_SERVER = ghcr.io
+DEV_CONTAINER_REGISTRY_USER = <GitHub username>
+DEV_CONTAINER_REGISTRY_PASSWORD = <personal access token>
+```
+
+3. Create a [Codespace](https://docs.github.com/en/codespaces) for the [lighthouse-backstage](https://github.com/department-of-veterans-affairs/lighthouse-backstage) repo. This option is available by clicking the green **Code** button. 
+4. Run application:
 
 ```bash
 yarn dev
