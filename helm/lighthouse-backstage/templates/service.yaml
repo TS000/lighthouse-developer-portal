@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "lighthouse-backstage.fullname" . }}-service
+  labels:
+    {{- include "lighthouse-backstage.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: {{ .Values.containers.frontend.name }}
+      port: {{ .Values.virtualService.destination.portNumber }}
+      protocol: TCP
+      targetPort: {{ .Values.containers.frontend.port }}
+  selector:
+    {{- include "lighthouse-backstage.selectorLabels" . | nindent 4 }}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "lighthouse-backstage.fullname" . }}-virtualservice
+spec:
+  hosts:
+  - {{ .Values.virtualService.hosts }}
+  gateways:
+  - {{ .Values.virtualService.gateways }}
+  http:
+  - route:
+    - destination:
+        host: {{ include "lighthouse-backstage.fullname" . }}-service
+        port: 
+          number: {{ .Values.virtualService.destination.portNumber }}

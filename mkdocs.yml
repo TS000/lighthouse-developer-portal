@@ -7,6 +7,7 @@ nav:
   - Running Locally: running-locally.md
   - Backstage Update: backstage-update.md
   - Deploy Local K8s Cluster: local-k8s.md
+  - Helm Charts: helm.md
   - Allstar: allstar.md
   - Cypress Troubleshooting: cypress-troubleshooting.md
   - RFCs and decision records:
