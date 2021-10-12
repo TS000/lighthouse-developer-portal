@@ -20,5 +20,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: test
         uses: lighthouse-backstage/logger@v1
-        with: 'This should log in the console'
+        with: 
+          string-to-log: 'This should log in the console'
         
