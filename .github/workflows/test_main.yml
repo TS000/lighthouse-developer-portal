@@ -1,0 +1,24 @@
+name: Test main
+
+# Runs all tests using the `yarn test:all` command.
+#
+# Tests will be run for all packages along with showing test coverage
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+
+jobs:
+  run-all-tests:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v2
+      - name: test
+        uses: lighthouse-backstage/logger@v1
+        with: 'This should log in the console'
+        
