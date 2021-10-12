@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: test
-        uses: lighthouse-backstage/logger@v1
+        uses: department-of-veterans-affairs/lighthouse-backstage/logger@v1
         with: 
           string-to-log: 'This should log in the console'
         
