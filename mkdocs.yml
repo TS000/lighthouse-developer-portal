@@ -4,9 +4,10 @@ repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-backstag
 nav:
   - Home: index.md
   - Deployment: deployment.md
+      - Deploy to Local Cluster (K8s/Minikube): local-k8s.md
+      - Deploy to Dev Environment (K8s/Helm): dev-depoy.md
   - Running Locally: running-locally.md
-  - Backstage Update: backstage-update.md
-  - Deploy Local K8s Cluster: local-k8s.md
+  - Backstage Update: backstage-update.md 
   - Helm Charts: helm.md
   - Allstar: allstar.md
   - Cypress Troubleshooting: cypress-troubleshooting.md
