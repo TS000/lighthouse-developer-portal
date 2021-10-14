@@ -1,0 +1,26 @@
+name: Example custom action
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  example-custom-action:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v2
+      # Using path to same repo works    
+      - uses: ./.github/actions/logger
+        with: 
+          string-to-log: 'This should log in the console'
+
+      # Doesn't work because the other repo I created is set to internal
+      # - uses: department-of-veterans-affairs/lighthouse-backstage-actions@887d98072f6bd9ac34fb5b273b765010fdf13d8b
+      #   with: 
+      #     action: logger 
+      #     args: "This might do something???"
+        
