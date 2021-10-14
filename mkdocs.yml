@@ -24,7 +24,9 @@ nav:
       - RFC Enforce Build Performance: rfc-enforce-build-performance.md
       - RFC Investigate Esbuild and Vite: rfc-investigate-esbuild-and-vite.md
       - RFC Linting Rules: rfc-linting.md
+      - RFC Environment Promotion: env-promotion.md
       - RFC Custom Actions: custom-actions.md
+
 
 plugins:
   - techdocs-core
