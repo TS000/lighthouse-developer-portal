@@ -27,23 +27,30 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: frontend
+        - name: backend
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}/frontend:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}/backend:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: {{ .Values.containers.frontend.name }}
-              containerPort: {{ .Values.containers.frontend.port }}
+            - name: {{ .Values.containers.backend.name }}
+              containerPort: {{ .Values.containers.backend.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: {{ .Values.containers.frontend.livenessProbe.path }}
-              port: {{ .Values.containers.frontend.port }}
+              path: {{ .Values.containers.backend.livenessProbe.path }}
+              port: {{ .Values.containers.backend.port }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.containers.frontend.readinessProbe.path }}
-              port: {{ .Values.containers.frontend.port }}
+              path: {{ .Values.containers.backend.readinessProbe.path }}
+              port: {{ .Values.containers.backend.port }}
+          env:
+          - name: POSTGRES_USER
+            value: {{ .Values.POSTGRES_USER | b64dec }}
+          - name: POSTGRES_PASSWORD
+            value: {{ .Values.POSTGRES_PASSWORD | b64dec }}
+          - name: POSTGRES_DB
+            value: {{ .Values.POSTGRES_DB | b64dec }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
