@@ -11,83 +11,142 @@ env:
 
 jobs:
   build-and-push:
-      runs-on: ubuntu-latest
-      permissions:
-        packages: write
-        contents: read
-      strategy:
-        matrix:
-          type: [backend, frontend]
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    strategy:
+      matrix:
+        type: [backend, frontend]
 
-      steps:
-        - uses: actions/checkout@v2
-        # Incase we need multi-architecture support
-        - name: Set up QEMU
-          uses: docker/setup-qemu-action@v1
-        - name: Set up Docker Buildx
-          id: buildx
-          uses: docker/setup-buildx-action@v1
-          with:
-            buildkitd-flags: --debug
-            config-inline: |
-              [registry."docker.io"]
-                mirrors = ["mirror.gcr.io"]
-        - name: cache all node_modules
-          id: cache-modules
-          uses: actions/cache@v2
-          with:
-            path: |
-              **/node_modules
-            key: ${{ runner.os }}-${{ matrix.type }}-v1-node_modules-${{ hashFiles('yarn.lock') }}
-        - name: find location of global yarn cache
-          id: yarn-cache
-          if: steps.cache-modules.outputs.cache-hit != 'true'
-          run: echo "::set-output name=dir::$(yarn cache dir)"
-        - name: Cache global yarn cache
-          uses: actions/cache@v2
-          if: steps.cache-modules.outputs.cache-hit != 'true'
-          with:
-            path: ${{ steps.yarn-cache.outputs.dir }}
-            key: ${{ runner.os }}-${{ matrix.type }}-yarn-${{ hashFiles('yarn.lock') }}
-            restore-keys: |
-              ${{ runner.os }}-yarn-
-        - name: Cache frontend static files
-          if: matrix.type == 'frontend'
-          id: cache-static
-          uses: actions/cache@v2
-          with: 
-            path: |
-              **/packages/app/dist
-            key:
-              ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app') }}
-        - name: Install Dependencies
-          if: steps.cache-modules.outputs.cache-hit != 'true'
-          run: yarn install --frozen-lockfile 
-        - name: yarn tsc
-          run: yarn tsc
-        - name: Create build
-          if: (matrix.type =='frontend' && steps.cache-static.outputs.cache-hit != 'true') || matrix.type == 'backend'
-          run: yarn run "build ${{ matrix.type }}"
-        - name: Login to ghcr
-          uses: docker/login-action@v1
-          with:
-            registry: ghcr.io
-            username: ${{ github.repository_owner }}
-            password: ${{ secrets.GITHUB_TOKEN }}
-        - name: Extract metadata (tags, labels) for Docker
-          id: meta
-          uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-          with:
-            images: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}
-        - name: Build and push ${{ matrix.type }} image
-          uses: docker/build-push-action@v2
-          with:
-            context: .
-            file: Dockerfile.${{ matrix.type }}
-            push: true
-            platforms: linux/amd64
-            tags: ghcr.io/${{ steps.meta.outputs.tags }}
-            cache-from: type=gha, scope=${{ matrix.type }}
-            cache-to: type=gha, scope=${{ matrix.type }}, mode=max
-            secrets: |
-              GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      # Incase we need multi-architecture support
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          buildkitd-flags: --debug
+          config-inline: |
+            [registry."docker.io"]
+              mirrors = ["mirror.gcr.io"]
+      - name: cache all node_modules
+        id: cache-modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ matrix.type }}-v1-node_modules-${{ hashFiles('yarn.lock') }}
+      - name: find location of global yarn cache
+        id: yarn-cache
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache global yarn cache
+        uses: actions/cache@v2
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-${{ matrix.type }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Cache frontend static files
+        if: matrix.type == 'frontend'
+        id: cache-static
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/packages/app/dist
+          key: ${{ runner.os }}-${{ matrix.type }}-v1-static-${{ hashFiles('**/packages/app') }}
+      - name: Install Dependencies
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+      - name: yarn tsc
+        run: yarn tsc
+      - name: Create build
+        if: (matrix.type =='frontend' && steps.cache-static.outputs.cache-hit != 'true') || matrix.type == 'backend'
+        run: yarn run "build ${{ matrix.type }}"
+      - name: Login to ghcr
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}/${{ matrix.type }}
+      - name: Build and push ${{ matrix.type }} image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile.${{ matrix.type }}
+          push: true
+          platforms: linux/amd64
+          tags: ghcr.io/${{ steps.meta.outputs.tags }}
+          cache-from: type=gha, scope=${{ matrix.type }}
+          cache-to: type=gha, scope=${{ matrix.type }}, mode=max
+          outputs: type=docker, dest=/tmp/${{ matrix.type }}-image.tar
+          secrets: |
+            GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.type }}-image.tar
+          path: /tmp/${{ matrix.type }}-image.tar
+          retention-days: 5
+
+  # Scans built images for vulnerabilities
+  # @see https://docs.snyk.io/products/snyk-container/snyk-cli-for-container-security
+  scan-images:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    strategy:
+      matrix:
+        type: [backend, frontend]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Download image artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ matrix.type }}-image.tar
+          path: /tmp
+
+      - name: Load image
+        run: docker load --input /tmp/${{ matrix.type }}-image.tar
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Authenticate Snyk
+        run: yarn snyk config set api=${{ secrets.SNYK_TOKEN }}
+
+        # Scans the image for known vulnerabilities
+        #
+        # The task will return an error if it finds any vulnerabilities. We continue so that we can upload the built snyk.sarif file
+        #
+        # Options - https://docs.snyk.io/products/snyk-container/snyk-cli-for-container-security/advanced-snyk-container-cli-usage
+        # --severity-threshold=high - Returns vulnerabilities that have a high severity, ignore the rest
+        # --sarif - output is set to a sarif format for GH Code Scanning
+        # --sarif-file-output=snyk.sarif - file to store the output
+        # --exclude-base-image-vulns - Excludes the base image vulnerabilities when scanning
+        # --file=Dockerfile.${{ matrix.type }} - Uses the Dockerfile for more informed scanning
+      - name: Scan image
+        continue-on-error: true
+        run: yarn snyk container test --severity-threshold=high --sarif --sarif-file-output=snyk.sarif --exclude-base-image-vulns --file=Dockerfile.${{ matrix.type }} ghcr.io/${{ steps.meta.outputs.tags[0] }}
+
+        # Uploads vulnerability file to github code scanning for review.
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: snyk.sarif
