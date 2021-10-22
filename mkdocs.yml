@@ -27,6 +27,7 @@ nav:
       - RFC Investigate Pact: rfc-investigate-pact.md
       - RFC Environment Promotion: env-promotion.md
       - RFC Custom Actions: custom-actions.md
+      - RFC GitHub Access: rfc-github-access.md
 
 plugins:
   - techdocs-core
