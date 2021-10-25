@@ -1,0 +1,89 @@
+name: 'Build Frontend Container'
+description: 'Builds and pushes Frontend container to GitHub Packages'
+inputs:
+  token:  
+    description: 'github token'
+    required: true
+    default: ${{ github.token }}
+  owner:
+    description: 'repository owner for container registry'
+    required: true
+    default: 'department-of-veterans-affairs'
+
+runs:
+  using: "composite"
+  steps:
+  - name: Set up QEMU
+    uses: docker/setup-qemu-action@v1
+  - name: Set up Docker Buildx
+    id: buildx
+    uses: docker/setup-buildx-action@v1.6.0
+    with:
+      buildkitd-flags: --debug
+      config-inline: |
+        [registry."docker.io"]
+          mirrors = ["mirror.gcr.io"]
+  - name: cache all node_modules
+    id: cache-modules
+    uses: actions/cache@v2
+    with:
+      path: |
+        **/node_modules
+      key: ${{ runner.os }}-frontend-v1-node_modules-${{ hashFiles('yarn.lock') }}
+  - name: find location of global yarn cache
+    id: yarn-cache
+    run: echo "::set-output name=dir::$(yarn cache dir)"
+    shell: bash
+  - name: Cache global yarn cache
+    uses: actions/cache@v2
+    with:
+      path: ${{ steps.yarn-cache.outputs.dir }}
+      key: ${{ runner.os }}-frontend-yarn-${{ hashFiles('yarn.lock') }}
+      restore-keys: |
+        ${{ runner.os }}-yarn-
+  - name: Cache frontend static files
+    id: cache-static
+    uses: actions/cache@v2
+    with:
+      path: |
+        **/packages/app/dist
+      key: ${{ runner.os }}-frontend-v1-static-${{ hashFiles('**/packages/app') }}
+  - name: Install Dependencies
+    run: |
+      if echo ${{ steps.cache-modules.outputs.cache-hit }} | grep -c "true"
+      then
+        echo "Cache hit - skipping dependency installation"
+      else
+        yarn install --frozen-lockfile
+      fi
+    shell: bash
+  - name: yarn tsc
+    run: yarn tsc
+    shell: bash
+  - name: Create build assets
+    run: yarn run "build frontend"
+    shell: bash
+  - name: Login to ghcr
+    uses: docker/login-action@v1
+    with:
+      registry: ghcr.io
+      username: ${{ inputs.owner }}
+      password: ${{ inputs.token }}
+  - name: Extract metadata (tags, labels) for Docker
+    id: meta
+    uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+    with:
+      images: ghcr.io/${{ inputs.owner }}/lighthouse-backstage/frontend
+  - name: Build and push frontend image
+    uses: docker/build-push-action@v2.7.0
+    with:
+      context: .
+      file: Dockerfile.frontend
+      push: true
+      platforms: linux/amd64
+      tags: ghcr.io/${{ steps.meta.outputs.tags }}
+      cache-from: type=gha, scope=frontend
+      cache-to: type=gha, scope=frontend, mode=max
+      secrets: |
+        GIT_AUTH_TOKEN=${{ inputs.token }}
+  

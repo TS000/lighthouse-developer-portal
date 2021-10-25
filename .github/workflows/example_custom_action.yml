@@ -18,9 +18,26 @@ jobs:
         with: 
           string-to-log: 'This should log in the console'
 
-      # Doesn't work because the other repo I created is set to internal
-      # - uses: department-of-veterans-affairs/lighthouse-backstage-actions@887d98072f6bd9ac34fb5b273b765010fdf13d8b
-      #   with: 
-      #     action: logger 
-      #     args: "This might do something???"
-        
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    strategy:
+      matrix:
+        type: [backend, frontend]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and push FE 
+        if: ${{ matrix.type == 'frontend' }}
+        uses: ./.github/actions/build_frontend
+        with: 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
+      - name: Build and push BE 
+        if: ${{ matrix.type == 'backend' }}
+        uses: ./.github/actions/build_backend
+        with: 
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
