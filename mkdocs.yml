@@ -16,6 +16,7 @@ nav:
       - Split FE/BE(ADR): split-fe-be-adr.md
       - Cypress e2e Tests(ADR): cypress-e2e-tests-adr.md
       - Ignore Backend Code Coverage: code-cov-adr.md
+      - Vite(ADR): vite-adr.md
       - RFC Doc Generator: rfc-doc-generator.md
       - RFC CI/CD Modifications: rfc-ci-cd.md
       - RFC Catalog Import Research: rfc-catalog-import-research.md
