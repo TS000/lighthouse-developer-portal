@@ -60,8 +60,17 @@ runs:
   - name: yarn tsc
     run: yarn tsc
     shell: bash
+  - name: yarn lint
+    run: cd packages/app && yarn lint
+    shell: bash
   - name: Create build assets
-    run: yarn run "build frontend"
+    run: |
+      if echo ${{ steps.cache-static.outputs.cache-hit }} | grep -c "true"
+      then
+        echo "Cache hit - skipping build assets"
+      else
+        yarn run "build frontend"
+      fi
     shell: bash
   - name: Login to ghcr
     uses: docker/login-action@v1

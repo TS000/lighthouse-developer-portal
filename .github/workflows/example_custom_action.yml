@@ -18,6 +18,18 @@ jobs:
         with: 
           string-to-log: 'This should log in the console'
 
+  validate-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/validate-unit-tests
+        with:
+          SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
+          SLACK_UID_002: ${{ secrets.SLACK_UID_FOWLER }}
+          SLACK_UID_003: ${{ secrets.SLACK_UID_LOVENDAHL }}
+          SLACK_UID_004: ${{ secrets.SLACK_UID_LUCKEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
   build-and-push:
     runs-on: ubuntu-latest
     permissions:
@@ -26,7 +38,6 @@ jobs:
     strategy:
       matrix:
         type: [backend, frontend]
-
     steps:
       - uses: actions/checkout@v2
       - name: Build and push FE 

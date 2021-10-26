@@ -53,6 +53,9 @@ runs:
   - name: yarn tsc
     run: yarn tsc
     shell: bash
+  - name: yarn lint
+    run: cd packages/app && yarn lint
+    shell: bash
   - name: Create build assets
     run: yarn run "build backend"
     shell: bash
