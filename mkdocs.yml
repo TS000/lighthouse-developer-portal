@@ -4,31 +4,32 @@ repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-backstag
 nav:
   - Home: index.md
   - Deployment: deployment.md
-      - Deploy to Local Cluster (K8s/Minikube): local-k8s.md
-      - Deploy to Dev Environment (K8s/Helm): dev-depoy.md
+  - Deploy to Local Cluster (K8s/Minikube): local-k8s.md
+  - Deploy to Dev Environment (K8s/Helm): dev-deploy.md
   - Running Locally: running-locally.md
-  - Backstage Update: backstage-update.md 
+  - Backstage Update: backstage-update.md
   - Helm Charts: helm.md
   - Allstar: allstar.md
   - Cypress Troubleshooting: cypress-troubleshooting.md
-  - RFCs and decision records:
-      - Yarn Zero Install(ADR): zero-install-adr.md
-      - Split FE/BE(ADR): split-fe-be-adr.md
-      - Cypress e2e Tests(ADR): cypress-e2e-tests-adr.md
-      - Ignore Backend Code Coverage: code-cov-adr.md
-      - Vite(ADR): vite-adr.md
-      - RFC Doc Generator: rfc-doc-generator.md
-      - RFC CI/CD Modifications: rfc-ci-cd.md
-      - RFC Catalog Import Research: rfc-catalog-import-research.md
-      - RFC Node App Logging: rfc-node-app-logging.md
-      - RFC Docker Scanning: rfc-docker-scanning.md
-      - RFC Enforce Build Performance: rfc-enforce-build-performance.md
-      - RFC Investigate Esbuild and Vite: rfc-investigate-esbuild-and-vite.md
-      - RFC Linting Rules: rfc-linting.md
-      - RFC Investigate Pact: rfc-investigate-pact.md
-      - RFC Environment Promotion: env-promotion.md
-      - RFC Custom Actions: custom-actions.md
-      - RFC GitHub Access: rfc-github-access.md
+  - RFCs:
+      - Doc Generator: RFC/doc-generator.md
+      - CI/CD Modifications: RFC/ci-cd.md
+      - Catalog Import Research: RFC/catalog-import-research.md
+      - Node App Logging: RFC/node-app-logging.md
+      - Docker Scanning: RFC/docker-scanning.md
+      - Enforce Build Performance: RFC/enforce-build-performance.md
+      - Investigate Esbuild and Vite: RFC/investigate-esbuild-and-vite.md
+      - Linting Rules: RFC/linting.md
+      - Investigate Pact: RFC/investigate-pact.md
+      - Environment Promotion: RFC/env-promotion.md
+      - Custom Actions: RFC/custom-actions.md
+      - RFC GitHub Access: RFC/github-access.md
+  - Decision Records:
+      - Yarn Zero Install: ADR/zero-install.md
+      - Split FE/BE: ADR/split-fe-be.md
+      - Cypress e2e Tests: ADR/cypress-e2e-tests.md
+      - Ignore Backend Code Coverage: ADR/code-cov.md
+      - Vite: ADR/vite.md
 
 plugins:
   - techdocs-core
