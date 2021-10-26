@@ -15,7 +15,7 @@
     
     
       
-        <title>Title - example-docs</title>
+        <title>Cypress e2e Tests - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#title" class="md-skip">
+        <a href="#cypress-e2e-tests-adr" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Title
+              Cypress e2e Tests
             
           </span>
         </div>
@@ -457,10 +457,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11" checked>
     
     <label class="md-nav__link" for="nav-11">
       Decision Records
@@ -506,11 +508,81 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../cypress-e2e-tests/" title="Cypress e2e Tests" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Cypress e2e Tests
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Cypress e2e Tests" class="md-nav__link md-nav__link--active">
       Cypress e2e Tests
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    History
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pros" class="md-nav__link">
+    Pros
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cons" class="md-nav__link">
+    Cons
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Decision
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -615,7 +687,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/ADR-template.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/cypress-e2e-tests.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -623,7 +695,7 @@
                   
                 
                 
-                <h1 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h1>
+                <h1 id="cypress-e2e-tests-adr">Cypress e2e Tests ADR<a class="headerlink" href="#cypress-e2e-tests-adr" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -636,39 +708,41 @@
 <tbody>
 <tr>
 <td>Decision Made:</td>
-<td>yes/no</td>
+<td>yes</td>
 <td>Decision Date:</td>
-<td>mo year</td>
-</tr>
-<tr>
-<td>Revisit Decision:</td>
-<td>yes/no</td>
-<td>Date</td>
-<td>mo year</td>
-</tr>
-<tr>
-<td><strong>Revisit criteria:</strong></td>
-<td></td>
-<td></td>
-<td></td>
+<td>08/2021</td>
 </tr>
 </tbody>
 </table>
-<p>Decision Made:  No, but open to revisiting  Decision Date:  12/2018
-Revisit Decision:   Yes Revisit Date:   July 2019
-Revisit Criteria: If a developer is interested in Jest and has time or suggestions for fixing the speed issues, we should revisit this.</p>
-<p>Decision Makers: @githubusername, @githubsername</p>
+<p><strong>Revisit criteria:</strong></p>
+<p>Decision Made: Yes
+Revisit Decision: Not planned, but if another e2e testing frameworks become available.
+Revisit Criteria: If another e2e testing frameworks becomes available that is faster, or performs better, we should revisit this.</p>
+<p>Decision Makers: @KaemonIsland</p>
 <h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>Summary of problem and decision </p>
+<p>Backstage should have e2e testing to ensure that various dependencies of an application are working accurately. Along with allowing refactoring, and bug fixing to be much faster and easier. There are various e2e testing frameworks available and we chose <a href="https://docs.cypress.io/guides/overview/why-cypress">Cypress.</a></p>
 <h2 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h2>
-<p>Dates, links to the PRs, notes- anything relevant to understand the decision making process / evolution. Important to list what you tried here so avoid retreading </p>
+<p>Backstage came with Cypress <a href="https://backstage.io/docs/getting-started/create-an-app">already installed</a>. So it was easy to get started. Testing locally was a bit weird (Ran into an issue with missing dependencies).</p>
+<p>For Linux users, or those using WSL. You can install all of the Cypress dependencies by following <a href="https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements">this guide.</a></p>
+<p>Tests are also run as part of the CI/CD. <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/pull/121">Here</a> is the PR adding them.</p>
 <h2 id="pros">Pros<a class="headerlink" href="#pros" title="Permanent link">&para;</a></h2>
-<p>upside</p>
+<ul>
+<li>It's <a href="https://github.com/cypress-io/cypress">open source.</a></li>
+<li>Allows End-to-end, Integration, and Unit tests.</li>
+<li>Time Travel - Takes snapshots of tests.</li>
+<li>Debuggability - Debugging can be done using the Developer tools.</li>
+<li>Cross Browser Testing - Run tests on Firefox, chrome, edge, etc.</li>
+<li>Stubbing responses.</li>
+</ul>
 <h2 id="cons">Cons<a class="headerlink" href="#cons" title="Permanent link">&para;</a></h2>
-<p>downside </p>
+<ul>
+<li>Can have difficulty setting up. (I've had trouble on multiple systems getting Cypress to run locally)</li>
+<li>Uses synthetic events instead of native ones.</li>
+<li>Stubbing can get out of hand fairly quickly.</li>
+<li>Bad support for iFrames. Usually have to use custom code.</li>
+</ul>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Detailed reasoning about decision </p>
-<p><a href="https://department-of-veterans-affairs.github.io/veteran-facing-services-tools/platform/front-end-standards/documented-decisions/jest/">Example</a></p>
+<p>Backstage came with Cypress installed and most of the current developers have had an enjoyable experience working with it. So we've decided to stick with it.</p>
                 
               
               
@@ -683,6 +757,41 @@ Revisit Criteria: If a developer is interested in Jest and has time or suggestio
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../split-fe-be/" title="Split FE/BE" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Split FE/BE
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../code-cov/" title="Ignore Backend Code Coverage" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Ignore Backend Code Coverage
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

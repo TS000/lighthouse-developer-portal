@@ -15,7 +15,7 @@
     
     
       
-        <title>Title - example-docs</title>
+        <title>Ignore Backend Code Coverage - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#title" class="md-skip">
+        <a href="#ignore-backend-code-coverage-for-ci" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Title
+              Ignore Backend Code Coverage
             
           </span>
         </div>
@@ -457,10 +457,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11" checked>
     
     <label class="md-nav__link" for="nav-11">
       Decision Records
@@ -518,11 +520,81 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../code-cov/" title="Ignore Backend Code Coverage" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Ignore Backend Code Coverage
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Ignore Backend Code Coverage" class="md-nav__link md-nav__link--active">
       Ignore Backend Code Coverage
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    History
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pros" class="md-nav__link">
+    Pros
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cons" class="md-nav__link">
+    Cons
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Decision
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -615,7 +687,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/ADR-template.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/code-cov.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -623,7 +695,7 @@
                   
                 
                 
-                <h1 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h1>
+                <h1 id="ignore-backend-code-coverage-for-ci">Ignore Backend Code Coverage for CI<a class="headerlink" href="#ignore-backend-code-coverage-for-ci" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -636,15 +708,9 @@
 <tbody>
 <tr>
 <td>Decision Made:</td>
-<td>yes/no</td>
+<td>yes</td>
 <td>Decision Date:</td>
-<td>mo year</td>
-</tr>
-<tr>
-<td>Revisit Decision:</td>
-<td>yes/no</td>
-<td>Date</td>
-<td>mo year</td>
+<td>09/2021</td>
 </tr>
 <tr>
 <td><strong>Revisit criteria:</strong></td>
@@ -654,21 +720,24 @@
 </tr>
 </tbody>
 </table>
-<p>Decision Made:  No, but open to revisiting  Decision Date:  12/2018
-Revisit Decision:   Yes Revisit Date:   July 2019
-Revisit Criteria: If a developer is interested in Jest and has time or suggestions for fixing the speed issues, we should revisit this.</p>
-<p>Decision Makers: @githubusername, @githubsername</p>
+<p>Decision Made:  Yes     Decision Date:  9/2021
+Revisit Decision:   No
+Revisit Criteria: None</p>
+<p>Decision Makers: @keyluck, @rianfowler</p>
 <h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>Summary of problem and decision </p>
+<p>Ignore the <code>backend</code> package when testing for code coverage on PR's to the <code>main</code> branch because the result is always 0% coverage.</p>
 <h2 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h2>
-<p>Dates, links to the PRs, notes- anything relevant to understand the decision making process / evolution. Important to list what you tried here so avoid retreading </p>
+<p>One of the required status checks our CI performs is testing code coverage of all our packages/plugins. A GitHub Action checks if a package or plugin's code coverage is above or below a certain threshold. If it is below the threshold, then the GitHub Action fails and branch protection prevents the Pull Request from being merged to the <code>main</code> branch. </p>
+<p>When running unit tests with the <code>--coverage</code> flag, the <code>backend</code> package coverage summary always reports 0% coverage. Currently, the <code>backend</code> package has one unit test, and will accurately report if the test passed or not, but will not detect any code coverage. </p>
 <h2 id="pros">Pros<a class="headerlink" href="#pros" title="Permanent link">&para;</a></h2>
-<p>upside</p>
+<p>Ignoring the code coverage reporting for the <code>backend</code> will:
+- allow us to continue to enforce code coverage for all other plugins and packages 
+- prevent blocking all Pull Requests from being merged to the <code>main</code> branch due to failed status checks</p>
 <h2 id="cons">Cons<a class="headerlink" href="#cons" title="Permanent link">&para;</a></h2>
-<p>downside </p>
+<p>Ignoring the code coverage reporting for the <code>backend</code> will:
+- prevent us from knowing the true code coverage of the backend if we add unit-tests or plugins to the backend</p>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Detailed reasoning about decision </p>
-<p><a href="https://department-of-veterans-affairs.github.io/veteran-facing-services-tools/platform/front-end-standards/documented-decisions/jest/">Example</a></p>
+<p>Since we do not plan to add plugins to the <code>backend</code> package, we have decided to ignore the code coverage report generated for the backend when running unit tests. This will allow us to continue working and merging Pull Requests to the <code>main</code> branch while still using branch protection that enforces code coverage for all other plugins and packages. </p>
                 
               
               
@@ -683,6 +752,41 @@ Revisit Criteria: If a developer is interested in Jest and has time or suggestio
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../cypress-e2e-tests/" title="Cypress e2e Tests" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Cypress e2e Tests
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../vite/" title="Vite" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Vite
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

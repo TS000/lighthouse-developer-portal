@@ -15,7 +15,7 @@
     
     
       
-        <title>Title - example-docs</title>
+        <title>Vite - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#title" class="md-skip">
+        <a href="#vite" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Title
+              Vite
             
           </span>
         </div>
@@ -457,10 +457,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11" checked>
     
     <label class="md-nav__link" for="nav-11">
       Decision Records
@@ -530,11 +532,94 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../vite/" title="Vite" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Vite
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Vite" class="md-nav__link md-nav__link--active">
       Vite
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    History
+  </a>
+  
+    <nav class="md-nav" aria-label="History">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#final-vite-config" class="md-nav__link">
+    Final Vite Config
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pros" class="md-nav__link">
+    Pros
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cons" class="md-nav__link">
+    Cons
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Decision
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -580,6 +665,19 @@
     History
   </a>
   
+    <nav class="md-nav" aria-label="History">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#final-vite-config" class="md-nav__link">
+    Final Vite Config
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -615,7 +713,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/ADR-template.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/vite.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -623,7 +721,7 @@
                   
                 
                 
-                <h1 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h1>
+                <h1 id="vite">Vite<a class="headerlink" href="#vite" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -636,39 +734,161 @@
 <tbody>
 <tr>
 <td>Decision Made:</td>
-<td>yes/no</td>
+<td>yes</td>
 <td>Decision Date:</td>
-<td>mo year</td>
+<td>10/21</td>
 </tr>
 <tr>
 <td>Revisit Decision:</td>
-<td>yes/no</td>
+<td>yes</td>
 <td>Date</td>
-<td>mo year</td>
-</tr>
-<tr>
-<td><strong>Revisit criteria:</strong></td>
-<td></td>
-<td></td>
-<td></td>
+<td>01/22</td>
 </tr>
 </tbody>
 </table>
-<p>Decision Made:  No, but open to revisiting  Decision Date:  12/2018
-Revisit Decision:   Yes Revisit Date:   July 2019
-Revisit Criteria: If a developer is interested in Jest and has time or suggestions for fixing the speed issues, we should revisit this.</p>
-<p>Decision Makers: @githubusername, @githubsername</p>
+<p><strong>Revisit criteria:</strong></p>
+<p>Decision Made: Yes, but open to revisiting Decision Date: 01/2022
+Revisit Decision: Yes Revisit Date: 01/2022
+Revisit Criteria: If <a href="https://vitejs.dev/">Vite</a> updates for better coverage or <a href="https://github.com/backstage/backstage">Backstage</a> allows for better Browser/Client support.</p>
+<p>Decision Makers: @KaemonIsland</p>
 <h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>Summary of problem and decision </p>
+<p>I was able to get Vite to successfully build the frontend app (after much debugging and resolving errors). But, getting the app to run successfully either from the build, or by development was unsuccessful because of a multitude of dependency complications. Things like package versions and using nodejs code that was incompatible with the browser/client.</p>
 <h2 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h2>
-<p>Dates, links to the PRs, notes- anything relevant to understand the decision making process / evolution. Important to list what you tried here so avoid retreading </p>
+<p>Lot's of issues with dependencies that had to be resolved just to run the application. Some of them were able to be resolved by using the <code>resolve.alias</code> setting within the Vite config. There was one specific problem I had with a <code>@material-ui/pickers</code> dependency that I had to manually alter within the <code>yarn.lock</code> file because it's a dependency of a dependency that specifies an incompatible version. The issue was posted on Vite <a href="https://github.com/vitejs/vite/issues/5244">here</a> about 11 days ago.</p>
+<p>The primary issue seems to be that some dependencies really on Nodejs modules that are not supported by the browser and cannot be run on client code. I encountered this problem whenever we had an import from anything related to <code>@backstage</code>. This is where debugging the issues became increasingly more difficult as I could only view the symptoms that caused the error, and not the exact cause. Most of the error I would search for were unanswered, or had the response of "use something else".</p>
+<p>I tried building my own vite app and slowly moving dependencies over, but quickly ran into problems when I started adding @backstage packages. The weirdest issue I came across was when I tried importing the <code>@backstage/integration-react</code> package. I couldn't run the app locally, but I was able to serve if after building the app.</p>
+<h3 id="final-vite-config">Final Vite Config<a class="headerlink" href="#final-vite-config" title="Permanent link">&para;</a></h3>
+<p>I was able to use the following <code>vite.config.js</code> to successfully run the build/serve/run commands without any errors. It just would come across issues when you tried to load the page.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vite&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">react</span> <span class="nx">from</span> <span class="s1">&#39;@vitejs/plugin-react&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">path</span> <span class="nx">from</span> <span class="s1">&#39;path&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">builtins</span> <span class="nx">from</span> <span class="s1">&#39;rollup-plugin-node-builtins&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">globals</span> <span class="nx">from</span> <span class="s1">&#39;rollup-plugin-node-globals&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">resolve</span> <span class="nx">from</span> <span class="s1">&#39;@rollup/plugin-node-resolve&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">json</span> <span class="nx">from</span> <span class="s1">&#39;@rollup/plugin-json&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">injectHtml</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vite-plugin-html&#39;</span><span class="p">;</span>
+
+<span class="c1">// see https://vitejs.dev/config/</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">defineConfig</span><span class="p">(()</span><span class="o">:</span> <span class="nx">any</span> <span class="p">=&gt;</span> <span class="p">({</span>
+  <span class="c1">// avoid clearing the bash&#39; output</span>
+  <span class="nx">clearScreen</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+    <span class="nx">react</span><span class="p">(),</span>
+    <span class="nx">injectHtml</span><span class="p">({</span>
+      <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;vite-plugin-html-example&#39;</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">}),</span>
+  <span class="p">],</span>
+  <span class="nx">esbuild</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">jsxFactory</span><span class="o">:</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span>
+    <span class="nx">jsxFragment</span><span class="o">:</span> <span class="s1">&#39;Fragment&#39;</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">resolve</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">alias</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">find</span><span class="o">:</span> <span class="sr">/^es5-ext\/(.*)?\/#\/(.*)$/</span><span class="p">,</span>
+        <span class="nx">replacement</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">require</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;es5-ext&#39;</span><span class="p">),</span> <span class="s1">&#39;../$1/../#/$2&#39;</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">find</span><span class="o">:</span> <span class="sr">/^.\/#$/</span><span class="p">,</span>
+        <span class="nx">replacement</span><span class="o">:</span> <span class="s1">&#39;../#/index.js&#39;</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">find</span><span class="o">:</span> <span class="sr">/^.react-virtualized/</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+  <span class="nx">build</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">minify</span><span class="o">:</span> <span class="s1">&#39;esbuild&#39;</span><span class="p">,</span>
+    <span class="nx">sourceMap</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">rollupInputOptions</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">preserveEntrySignatures</span><span class="o">:</span> <span class="s1">&#39;strict&#39;</span><span class="p">,</span>
+    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+      <span class="nx">globals</span><span class="p">,</span>
+      <span class="nx">builtins</span><span class="p">,</span>
+      <span class="nx">resolve</span><span class="p">({</span> <span class="nx">browser</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">preferBuiltins</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}),</span>
+      <span class="nx">json</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="nx">pluginsOptimizer</span><span class="o">:</span> <span class="p">[</span><span class="nx">globals</span><span class="p">(),</span> <span class="nx">builtins</span><span class="p">({</span> <span class="nx">crypto</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})],</span>
+  <span class="p">},</span>
+<span class="p">}));</span>
+</code></pre></div>
+</td></tr></table>
+
 <h2 id="pros">Pros<a class="headerlink" href="#pros" title="Permanent link">&para;</a></h2>
-<p>upside</p>
+<ul>
+<li>Build times can be very fast and live reloading helps to speed up development time.</li>
+<li>Supports TypeScript and React out of the Box.</li>
+<li>Uses Rollup and esbuild for speed.</li>
+<li>Easy to move back to webpack if we decide to move.</li>
+</ul>
 <h2 id="cons">Cons<a class="headerlink" href="#cons" title="Permanent link">&para;</a></h2>
-<p>downside </p>
+<ul>
+<li>Lot's of difficulty working with packages that use Nodejs code or other incompatible dependencies.</li>
+<li>Still pretty new. Most of the issues I came across or problems I searched for were asked about a month ago.</li>
+<li>Difficult to debug. I had a lot of problems trying to understand errors within the browser console whereas there would be no problems listed in the server.</li>
+</ul>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Detailed reasoning about decision </p>
-<p><a href="https://department-of-veterans-affairs.github.io/veteran-facing-services-tools/platform/front-end-standards/documented-decisions/jest/">Example</a></p>
+<p>Unfortunately it looks like we'll have to stick with Webpack for now.</p>
+<p>Vite is a great build tool for Frontend applications, however I think that it would be best used when creating a brand new app by using their build command, <code>yarn create vite app-name --template react-ts</code>, and building off of that.</p>
+<p>I did try to create a base Vite app and slowly apply some of the code from lighthouse over in hopes of better debugging, but as soon as I applied <code>@backstage/core</code> I had a large list of items that needed to be resolved. I was able to find some answers on the Vite GH Repo + Stackoverflow, it looks like others are having the same problems that I am. A lot of the problems I had were unsolved as they were only asked about 2 months ago.</p>
+<p>The biggest issue I'm noticing is that Vite isn't as widely adopted yet, but it's getting there. Most of the issues I came across were still fairly recent. So potentially we could make the move to Vite or another similar build tool in the future when more apps/packages like @backstage build support for them.</p>
                 
               
               
@@ -683,6 +903,27 @@ Revisit Criteria: If a developer is interested in Jest and has time or suggestio
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../code-cov/" title="Ignore Backend Code Coverage" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Ignore Backend Code Coverage
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
