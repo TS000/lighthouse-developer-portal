@@ -11,6 +11,7 @@ nav:
   - Helm Charts: helm.md
   - Allstar: allstar.md
   - Cypress Troubleshooting: cypress-troubleshooting.md
+  - Pre-build Validation: pre-build-validation.md
   - RFCs:
       - Doc Generator: RFC/doc-generator.md
       - CI/CD Modifications: RFC/ci-cd.md

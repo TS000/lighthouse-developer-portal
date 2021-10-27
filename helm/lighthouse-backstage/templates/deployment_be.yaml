@@ -45,12 +45,17 @@ spec:
               path: {{ .Values.containers.backend.readinessProbe.path }}
               port: {{ .Values.containers.backend.port }}
           env:
-          - name: POSTGRES_USER
-            value: {{ .Values.POSTGRES_USER | b64dec }}
-          - name: POSTGRES_PASSWORD
-            value: {{ .Values.POSTGRES_PASSWORD | b64dec }}
-          - name: POSTGRES_DB
-            value: {{ .Values.POSTGRES_DB | b64dec }}
+            - name: HOST
+              value: {{ .Values.HOST }}
+            - name: GH_CLIENT_ID
+              value: {{ .Values.GH_CLIENT_ID }}
+            - name: GH_CLIENT_SECRET
+              value: {{ .Values.GH_CLIENT_SECRET }}
+          envFrom:
+            - secretRef:
+                name: postgres-secrets
+            - secretRef:
+                name: {{ include "lighthouse-backstage.fullname" . }}-secrets
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

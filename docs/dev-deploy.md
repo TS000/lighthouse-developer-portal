@@ -32,17 +32,17 @@ $ yarn install --frozen-lockfile && yarn tsc
 # app-config.yaml
 app:
   title: DVP Developer Portal
-  baseUrl: https://dev.devportal.name
+  baseUrl: ${HOST}
 ...
 
 backend:
-  baseUrl: https://dev.devportal.name
+  baseUrl: ${HOST}
   listen:
     port: 7000
   csp:
     connect-src: ["'self'", 'http:', 'https:']
   cors:
-    origin: https://dev.devportal.name
+    origin: ${HOST}
 ...
   database:
     client: pg
@@ -51,6 +51,15 @@ backend:
       port: ${POSTGRES_SERVICE_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
+...
+  auth:
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: ${GH_CLIENT_ID}
+        clientSecret: ${GH_CLIENT_SECRET}
+
 ```
 - Build Static Assets
 ```
@@ -102,16 +111,38 @@ Login Successful!
 ```
 $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 ```
+> Note: if using Codespaces then you cannot install Lightkeeper. To work around this, you can set your kube config locally using the steps above and then copy the config to your Codespaces. In Codespaces, you can make a new `.kube` directory in `~/` and then make a new file inside `~/.kube/` called `config`. Inside `~/.kube/config` you can copy the contents of your local `~/.kube/config` file.
+
 ### Install Helm Chart
 - Modify `values.yaml` to configure deployment to use nonprod cluster
 
 > Note: To pull the image, Kubernetes will need authorization for GitHub. One way to verify you have authorization is to create an encoded dockerconfigjson secret using a Personal Access Token. The encoded dockerconfigjson string can be passed as an environment variable to Helm. More information about creating and encoding the [dockerconfigjson string](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
 
+- Creating a DOCKERCONFIGJSON string
+  - First make a PAT with the permission to `read` access for repositories
+  ```
+  $ echo -n "<github_username>:<github_pat>" | base64
+  ```
+  - The above command will create an <encoded_auth_string>, with the encoded auth string run:
+  ```
+  $ echo -n  '{"auths":{"ghcr.io":{"auth":"<encoded_auth_string>"}}}' | base64
+  ```
+  - This will output the <encoded_dockerjsonconfig_string> which you can then add to the `.env` file:
+  ```
+  DOCKERCONFIGJSON=<encoded_dockerjsonconfig_string>
+  ```
+
 - Create Environment Variables for Secrets
-  - Create `.env` file with your environment variables
+  - Create `.env` file with your environment variables; you will need to set all of these variables in order for the deployment to work.
   ```
   DOCKERCONFIGJSON=<base64 encoded json string>
-  GITHUB_TOKEN=<base64 encoded github_token>
+  GH_TOKEN=<base64 encoded github_token>
+  POSTGRES_USER=<base64 encoded postgres username>
+  POSTGRES_PASSWORD=<base64 encoded postgres password>
+  POSTGRES_DB=<base64 encoded postgres database name>
+  HOST=<host url>
+  GH_CLIENT_ID=<GH OAuth Client ID>
+  GH_CLIENT_SECRET=<GH OAuth Client Secret>
   ...
   ```
   - Export file contents
@@ -121,7 +152,7 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 
 - Install the Helm chart and set secrets using `--set`
 ```
-helm install backstage-dev helm/lighthouse-backstage/ --debug --values helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GITHUB_TOKEN=$GITHUB_TOKEN 
+$ helm install backstage-dev helm/lighthouse-backstage/ --debug --values helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set POSTGRES_DB=$POSTGRES_DB --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET
 ```
 
 ### Verify Deployment
