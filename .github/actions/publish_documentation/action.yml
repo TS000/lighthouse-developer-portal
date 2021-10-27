@@ -46,9 +46,10 @@ runs:
       shell: bash
 
     # Publishes built docs to the "gh-pages" branch.
-    # @see https://github.com/marketplace/actions/github-pages-action
-    - name: Deploy to gh-pages
-      uses: peaceiris/actions-gh-pages@4a69c2d60cc91a7f6e81e4fdf08a400f7059352f # pin@v3
+    # @see https://github.com/marketplace/actions/deploy-to-github-pages
+    - name: Deploy to gh-pages branch
+      uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
-        github_token: ${{ inputs.token }}
-        publish_dir: ./site
+        branch: gh-pages # The branch the action should deploy to.
+        folder: ./site # The folder the action should deploy.
+        token: ${{ inputs.token }}
