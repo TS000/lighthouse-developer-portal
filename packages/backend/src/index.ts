@@ -27,6 +27,7 @@ import proxy from './plugins/proxy';
 import techdocs from './plugins/techdocs';
 import { PluginEnvironment } from './types';
 import search from './plugins/search';
+import kubernetes from './plugins/kubernetes'
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -60,6 +61,7 @@ async function main() {
   const proxyEnv = useHotMemoize(module, () => createEnv('proxy'));
   const techdocsEnv = useHotMemoize(module, () => createEnv('techdocs'));
   const searchEnv = useHotMemoize(module, () => createEnv('search'));
+  const kubernetesEnv = useHotMemoize(module, () => createEnv('kubernetes'));
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
@@ -69,6 +71,7 @@ async function main() {
   apiRouter.use('/proxy', await proxy(proxyEnv));
   apiRouter.use('/search', await search(searchEnv));
   apiRouter.use(notFoundHandler());
+  apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
 
   const service = createServiceBuilder(module)
     .loadConfig(config)

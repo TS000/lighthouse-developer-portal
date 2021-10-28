@@ -12,7 +12,7 @@ backend:
   csp:
     connect-src: ["'self'", 'http:', 'https:']
   cors:
-    origin: http://127.0.0.1:3000
+    origin: "*"
     methods: [GET, POST, PUT, DELETE]
     credentials: true
   cache:
@@ -126,3 +126,27 @@ catalog:
       target: https://github.com/backstage/backstage/blob/master/plugins/scaffolder-backend/sample-templates/docs-template/template.yaml
       rules:
         - allow: [Template]
+
+
+
+kubernetes:
+  serviceLocatorMethod:
+    type: 'multiTenant'
+  clusterLocatorMethods:
+    - type: 'config'
+      clusters:
+        - url: https://931D115C840A9B8E311A33482632CA89.gr7.us-east-1.eks.amazonaws.com
+          name: minikube
+          authProvider: 'serviceAccount'
+          skipTLSVerify: false
+          serviceAccountToken: ${K8S_TOKEN}
+          dashboardUrl: http://127.0.0.1:64713 # url copied from running the command: minikube service kubernetes-dashboard -n kubernetes-dashboard
+          dashboardApp: standard
+          caData: ${K8S_CONFIG_CA_DATA}
+        - url: http://127.0.0.2:9999
+          name: aws-cluster-1
+          authProvider: 'aws'
+    - type: 'gke'
+      projectId: 'gke-clusters'
+      region: 'europe-west1'
+      skipTLSVerify: true
