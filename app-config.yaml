@@ -135,7 +135,7 @@ kubernetes:
   clusterLocatorMethods:
     - type: 'config'
       clusters:
-        - url: https://931D115C840A9B8E311A33482632CA89.gr7.us-east-1.eks.amazonaws.com
+        - url: http://127.0.0.1:9999
           name: minikube
           authProvider: 'serviceAccount'
           skipTLSVerify: false
