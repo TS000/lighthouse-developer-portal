@@ -1,0 +1,15 @@
+name: 'Logger'
+description: 'Logs things'
+inputs:
+  string-to-log:  
+    description: 'string to log'
+    required: true
+    default: 'Enter a phrase to log'
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+    - uses: actions/github-script@v3
+      with:
+        script: console.log("${{ inputs.string-to-log }}")

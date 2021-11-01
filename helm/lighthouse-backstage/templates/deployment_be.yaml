@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "lighthouse-backstage.fullname" . }}
+  labels:
+    {{- include "lighthouse-backstage.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "lighthouse-backstage.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: backend
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}/backend:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: {{ .Values.containers.backend.name }}
+              containerPort: {{ .Values.containers.backend.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.containers.backend.livenessProbe.path }}
+              port: {{ .Values.containers.backend.port }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.containers.backend.readinessProbe.path }}
+              port: {{ .Values.containers.backend.port }}
+          env:
+            - name: HOST
+              value: {{ .Values.HOST }}
+            - name: GH_CLIENT_ID
+              value: {{ .Values.GH_CLIENT_ID }}
+            - name: GH_CLIENT_SECRET
+              value: {{ .Values.GH_CLIENT_SECRET }}
+          envFrom:
+            - secretRef:
+                name: postgres-secrets
+            - secretRef:
+                name: {{ include "lighthouse-backstage.fullname" . }}-secrets
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+---
+kind: Secret
+type: kubernetes.io/dockerconfigjson
+apiVersion: v1
+metadata:
+  name: {{ include "lighthouse-backstage.fullname" . }}-dockerconfigjson-ghpkgs
+  labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
+data:
+  .dockerconfigjson: {{ .Values.DOCKERCONFIGJSON }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "lighthouse-backstage.fullname" . }}-secrets
+  labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
+type: Opaque
+data:
+  GITHUB_TOKEN: {{ .Values.GITHUB_TOKEN }}

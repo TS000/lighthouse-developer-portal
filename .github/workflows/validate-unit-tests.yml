@@ -4,8 +4,6 @@ name: Main Branch Unit Test Checks
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 jobs:

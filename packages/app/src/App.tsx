@@ -26,6 +26,7 @@ import {
   DefaultTechDocsHome,
   TechDocsIndexPage,
   TechDocsReaderPage,
+  techdocsPlugin,
 } from '@backstage/plugin-techdocs';
 import { UserSettingsPage } from '@backstage/plugin-user-settings';
 import { apis } from './apis';
@@ -33,7 +34,7 @@ import { entityPage } from './components/catalog/EntityPage';
 import { Root } from './components/Root';
 import { HomePage } from './components/homepage';
 import { searchPage } from './components/search/SearchPage';
-import { lightThemeVA, darkThemeVA } from './themes';
+import { lightThemeVA, darkThemeVA } from './themes/index';
 import { FeatureFlagsPage } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFLagRegistry';
 
@@ -54,6 +55,7 @@ const app = createApp({
   bindRoutes({ bind }) {
     bind(catalogPlugin.externalRoutes, {
       createComponent: scaffolderPlugin.routes.root,
+      viewTechDoc: techdocsPlugin.routes.docRoot,
     });
     bind(apiDocsPlugin.externalRoutes, {
       createComponent: scaffolderPlugin.routes.root,

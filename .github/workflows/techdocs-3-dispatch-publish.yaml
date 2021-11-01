@@ -18,14 +18,14 @@ jobs:
       RUN_ID: ${{ github.event.inputs.run_id }}
     steps:
       # TODO: add retry logic
-      - uses: octokit/request-action@v2.x
+      - uses: octokit/request-action@7e93b91076fad3920c29d44eb2a6311d929db3dd # pin@v2.x
         id: get_artifact_id
         with:
           route: GET /repos/department-of-veterans-affairs/lighthouse-backstage/actions/runs/${{ env.RUN_ID }}/artifacts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Dispatch publish to (fake) Jenkins webhook
-        uses: benc-uk/workflow-dispatch@v1
+        uses: benc-uk/workflow-dispatch@4c044c1613fabbe5250deadc65452d54c4ad4fc7 # pin@v1
         with:
           workflow: techdocs-publish-with-jenkins
           token: ${{ secrets.DISPATCH_BUILD_PUBLISH_TECHDOCS_TOKEN }}

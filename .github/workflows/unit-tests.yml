@@ -10,29 +10,56 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
-    
+  workflow_call:
 
 jobs:
   run-all-tests:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Install dependencies
-        run:
-          yarn install
+      - name: Cache all node_modules
+        id: cache-modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}
+      - name: find location of global yarn cache
+        id: yarn-cache
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache global yarn cache
+        uses: actions/cache@v2
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install Dependencies
+        if: steps.cache-modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile 
       - name: Test
         run: yarn test:all
+      # Consolidate coverage results to single path
+      - name: Consolidate coverage results
+        run: |
+          cp -r plugins/* packages
       - uses: actions/upload-artifact@v2
         with:
           name: logs
-          path: ./logs
+          path: |
+            packages/*/coverage/lcov.info
 
-  check-test-coverage:
+  setup-matrix:
     runs-on: ubuntu-latest
     needs: run-all-tests
+    outputs: 
+      matrix: ${{ steps.matrix_string.outputs.matrix_string }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -42,10 +69,34 @@ jobs:
         with:
           name: logs
           path: ./logs
-      - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+      - name: Set up Matrix JSON object
+        id: matrix_string
+        run: |     
+          matrix_string="["
+          matrix_string+=$(find ./logs -maxdepth 1 -mindepth 1 -type d -printf '"%P", ')
+          matrix_string=${matrix_string::-2}
+          matrix_string+="]"
+          echo ::set-output name=matrix_string::$matrix_string
+
+  check-test-coverage:
+    runs-on: ubuntu-latest
+    needs: setup-matrix
+    strategy:
+      matrix:
+        packages: ${{ fromJson(needs.setup-matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          path: "./logs/coverage/lcov.info"
-          min_coverage: 0
-          exclude: "node_modules"
-          
-          
+          node-version: 14
+      - uses: actions/download-artifact@v2
+        with:
+          name: logs
+          path: ./logs
+      - name: Check coverage for ${{ matrix.packages }}
+        if: matrix.packages != 'backend'
+        uses: VeryGoodOpenSource/very_good_coverage@cfe8b79401ea7689953705f0d161cb51113f346f # pin@v1.2.0
+        with:
+          path: ./logs/${{ matrix.packages }}/coverage/lcov.info 
+          min_coverage: 70
+          exclude: '**/node_modules'    

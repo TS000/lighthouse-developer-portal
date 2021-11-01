@@ -1,0 +1,14 @@
+name: 'Validate Linting'
+description: 'Validates linting checks will not fail'
+
+
+runs:
+  using: "composite"
+  steps:
+    - name: Typescript compiler check
+      run: yarn tsc
+      shell: bash
+    - name: Linting check
+      run: yarn lint:all
+      shell: bash
+   

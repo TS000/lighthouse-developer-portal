@@ -1,0 +1,34 @@
+name: Pre-build Validation
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_call:
+
+# Need to consolidate and add unit-tests.yml to this workflow 
+jobs:
+  unit-tests:
+    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/unit-tests.yml@b965a7d3fca3d4d4794cd3792ff72c08a7ba0364
+
+  validate-unit-tests:
+      runs-on: ubuntu-latest
+      needs: [unit-tests]
+      if: ${{ github.event_name == 'workflow_call' }}
+      steps:
+        - uses: actions/checkout@v1
+        - uses: ./.github/actions/validate-unit-tests
+          with:
+            SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
+            SLACK_UID_002: ${{ secrets.SLACK_UID_FOWLER }}
+            SLACK_UID_003: ${{ secrets.SLACK_UID_LOVENDAHL }}
+            SLACK_UID_004: ${{ secrets.SLACK_UID_LUCKEY }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  validate-linting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+    - name: Run linting
+      uses: ./.github/actions/validate-linting

@@ -1,0 +1,70 @@
+name: 'Validate Unit Tests'
+description: 'Validates Unit Tests on main branch'
+inputs:
+  SLACK_UID_001:
+    description: 'slack user id'
+    required: true
+  SLACK_UID_002: 
+    description: 'slack user id'
+    required: true
+  SLACK_UID_003:
+    description: 'slack user id'
+    required: true
+  SLACK_UID_004:
+    description: 'slack user id'
+    required: true
+  SLACK_WEBHOOK_URL:
+    description: 'webhook url for slack bot'
+    required: true
+  
+outputs:
+  url: 
+    description: 'url to workflow results of unit tests'
+    value: ${{ steps.workflow.outputs.url }}
+  conclusion: 
+    description: 'results of unit tests (i.e. success, failure, etc.)'
+    value: ${{ steps.workflow.outputs.conclusion }}
+  SHA: 
+    description: 'commit SHA used to construct url for Slack message'
+    value: ${{ steps.commit.outputs.SHA }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get commit SHA
+      id: commit
+      run: |
+        commit=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/department-of-veterans-affairs/lighthouse-backstage/commits/main/status )
+        SHA=$(echo $commit | jq .sha)
+        echo "::set-output name=SHA::$(echo $SHA)"
+      shell: bash
+    - name: Filter workflow runs
+      id: workflow
+      run: |
+        workflow=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/department-of-veterans-affairs/lighthouse-backstage/actions/workflows/12460361/runs | jq  -r --arg SHA ${{ steps.commit.outputs.SHA }} '.workflow_runs | map(select(.head_branch=="main")) | map(select(.head_sha==$SHA)) | .[]')
+        url=$(echo $workflow | jq -r .html_url)
+        conclusion=$(echo $workflow | jq -r .conclusion)
+        echo "::set-output name=conclusion::$(echo $conclusion)"
+        echo "::set-output name=url::$(echo $url)"
+      shell: bash
+    - name: Success
+      run: | 
+        if [[ "${{steps.workflow.outputs.conclusion}}" == "success" ]]; then
+          echo "Unit Tests successful! ${{ steps.workflow.outputs.url }}"
+        fi
+        exit 0
+      shell: bash
+    - name: Failure
+      run: |
+        if [[ "${{steps.workflow.outputs.conclusion}}" == "failure" ]]; then
+          curl -X POST --data-urlencode "payload={\"channel\": \"#team-bandicoot\", \"username\": \"webhookbot\", \"text\": \"Merged Failing Pull Request to Main Branch!\n<https://github.com/department-of-veterans-affairs/lighthouse-backstage/commit/${{ steps.commit.outputs.SHA }}|View Pull Request>\n<${{ steps.workflow.outputs.url }}|View Unit Test Results>\n<@${{inputs.SLACK_UID_001}}> <@${{inputs.SLACK_UID_002}}> <@${{inputs.SLACK_UID_003}}> <@${{inputs.SLACK_UID_004}}> \n\", \"icon_emoji\": \":robot_face:\"}" ${{ inputs.SLACK_WEBHOOK_URL }}
+        fi
+        exit 0
+      shell: bash
+    - name: Pending
+      run: |
+        if [[ "${{steps.workflow.outputs.conclusion}}" == "pending" ]]; then
+          echo "Unit Test results pending..."
+        fi
+        exit 0
+      shell: bash

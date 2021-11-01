@@ -36,4 +36,7 @@ jobs:
         commit: Test commit
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-  
+    - name: Create Release Pull Request
+      uses: changesets/action@c3d88279fd9abe11410de073005e34863f735b1c # pin@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

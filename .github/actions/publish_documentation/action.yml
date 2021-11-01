@@ -1,0 +1,55 @@
+# GitHub custom Action for documentation generation
+#
+# Requires a token input that is the GitHub Token
+#
+# This action generates documentation using techdocs/cli and mkdocks.
+# Generated docs are added to the ./site folder
+#
+# The contents of ./site folder are then published to a `gh-pages` branch.
+# GitHub pages are then available for viewing at https://department-of-veterans-affairs.github.io/lighthouse-backstage/
+name: Publish Documentation
+description: Uses techdocs cli to generate documentation using .md files within the docs folder.
+inputs:
+  token:
+    description: 'github token'
+    required: true
+    default: ${{ github.token }}
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v2
+    - uses: actions/setup-python@v2
+    - name: setup java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'zulu'
+        java-version: '11'
+    - name: download, validate, install plantuml and its dependencies
+      run: |
+        curl -o plantuml.jar -L http://sourceforge.net/projects/plantuml/files/plantuml.1.2021.4.jar/download
+        echo "be498123d20eaea95a94b174d770ef94adfdca18  plantuml.jar" | sha1sum -c -
+        mv plantuml.jar /opt/plantuml.jar
+        mkdir -p "$HOME/.local/bin"
+        echo $'#!/bin/sh\n\njava -jar '/opt/plantuml.jar' ${@}' >> "$HOME/.local/bin/plantuml"
+        chmod +x "$HOME/.local/bin/plantuml"
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        sudo apt-get install -y graphviz
+      shell: bash
+    - name: Install TechDocs cli
+      run: sudo npm install -g @techdocs/cli
+      shell: bash
+    - name: Install mkdocs and mkdocs plugins
+      run: pip install mkdocs-techdocs-core==0.*
+      shell: bash
+    - name: Generate docs to ./site
+      run: techdocs-cli generate --no-docker
+      shell: bash
+
+    # Publishes built docs to the "gh-pages" branch.
+    # @see https://github.com/marketplace/actions/deploy-to-github-pages
+    - name: Deploy to gh-pages branch
+      uses: JamesIves/github-pages-deploy-action@4.1.5
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: ./site # The folder the action should deploy.
+        token: ${{ inputs.token }}

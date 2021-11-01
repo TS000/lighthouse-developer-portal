@@ -4,13 +4,33 @@ repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-backstag
 nav:
   - Home: index.md
   - Deployment: deployment.md
+  - Deploy to Local Cluster (K8s/Minikube): local-k8s.md
+  - Deploy to Dev Environment (K8s/Helm): dev-deploy.md
   - Running Locally: running-locally.md
   - Backstage Update: backstage-update.md
-  - Generate K8s YAML Files: pulumi-k8s.md
+  - Helm Charts: helm.md
   - Allstar: allstar.md
-  - RFCs and decision records:
-      - RFC Doc Generator: rfc-doc-generator.md
-      - Yarn Zero Install(ADR): zero-install-adr.md
+  - Cypress Troubleshooting: cypress-troubleshooting.md
+  - Pre-build Validation: pre-build-validation.md
+  - RFCs:
+      - Doc Generator: RFC/doc-generator.md
+      - CI/CD Modifications: RFC/ci-cd.md
+      - Catalog Import Research: RFC/catalog-import-research.md
+      - Node App Logging: RFC/node-app-logging.md
+      - Docker Scanning: RFC/docker-scanning.md
+      - Enforce Build Performance: RFC/enforce-build-performance.md
+      - Investigate Esbuild and Vite: RFC/investigate-esbuild-and-vite.md
+      - Linting Rules: RFC/linting.md
+      - Investigate Pact: RFC/investigate-pact.md
+      - Environment Promotion: RFC/env-promotion.md
+      - Custom Actions: RFC/custom-actions.md
+      - RFC GitHub Access: RFC/github-access.md
+  - Decision Records:
+      - Yarn Zero Install: ADR/zero-install.md
+      - Split FE/BE: ADR/split-fe-be.md
+      - Cypress e2e Tests: ADR/cypress-e2e-tests.md
+      - Ignore Backend Code Coverage: ADR/code-cov.md
+      - Vite: ADR/vite.md
 
 plugins:
   - techdocs-core

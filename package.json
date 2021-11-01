@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "private": true,
   "engines": {
-    "node": "12 || 14"
+    "node": "14 || 16"
   },
   "scripts": {
     "dev": "concurrently \"yarn start\" \"yarn start-backend\"",
@@ -11,12 +11,14 @@
     "start-backend": "yarn workspace backend start",
     "backstage-update": "yarn backstage-cli versions:bump 2>&1 | tee backstage-update-log.txt",
     "build": "lerna run build",
+    "build backend": "yarn workspace backend backstage-cli backend:bundle",
+    "build frontend": "yarn workspace app backstage-cli app:build",
     "build-image": "yarn workspace backend build-image",
     "tsc": "tsc",
     "tsc:full": "tsc --skipLibCheck false --incremental false",
     "clean": "backstage-cli clean && lerna run clean",
     "diff": "lerna run diff --",
-    "test": "lerna run test --since origin/main -- --coverage",
+    "test": "backstage-cli test",
     "test:all": "mkdir -p ./logs && lerna run test -- --coverage 2>&1 | tee ./logs/unit-tests.txt",
     "lint": "lerna run lint --since origin/main --",
     "lint:all": "lerna run lint --",
@@ -40,10 +42,11 @@
   },
   "devDependencies": {
     "@backstage/cli": "^0.7.7",
-    "@spotify/prettier-config": "^7.0.0",
+    "@spotify/prettier-config": "^11.0.0",
     "concurrently": "^6.0.0",
     "lerna": "^4.0.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "snyk": "^1.737.0"
   },
   "prettier": "@spotify/prettier-config",
   "lint-staged": {
@@ -59,9 +62,23 @@
     "@changesets/cli": "^2.16.0"
   },
   "metadata": {
-    "backstage-create-app-version": "0.3.35"
+    "backstage-create-app-version": "0.3.44"
   },
   "jest": {
-    "coverageDirectory": "../../../logs/coverage"
+    "coverageReporters": [
+      "json",
+      [
+        "lcov",
+        {
+          "projectRoot": "../../"
+        }
+      ],
+      "text",
+      "clover",
+      "text-summary"
+    ],
+    "transformModules": [
+      "@asyncapi/react-component"
+    ]
   }
 }
