@@ -1,5 +1,12 @@
 # backend
 
+## 0.2.1
+
+### Patch Changes
+
+- d2eaa5e: Update Backstage (auto-generated) 9/24/2021
+- 3411b6e: Test change
+
 ## 0.2.0
 
 ### Minor Changes

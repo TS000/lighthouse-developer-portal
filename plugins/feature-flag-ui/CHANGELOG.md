@@ -1,5 +1,12 @@
 # @internal/plugin-feature-flags
 
+## 0.1.3
+
+### Patch Changes
+
+- d2eaa5e: Update Backstage (auto-generated) 9/24/2021
+- 3411b6e: Test change
+
 ## 0.1.2
 
 ### Patch Changes

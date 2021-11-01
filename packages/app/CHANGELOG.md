@@ -1,5 +1,16 @@
 # app
 
+## 0.2.2
+
+### Patch Changes
+
+- 10e7c5a: Upgrade Cypress to v5 in order to include retry logic in the cypress config.
+- d2eaa5e: Update Backstage (auto-generated) 9/24/2021
+- 3411b6e: Test change
+- Updated dependencies [d2eaa5e]
+- Updated dependencies [3411b6e]
+  - @internal/plugin-feature-flags@0.1.3
+
 ## 0.2.1
 
 ### Patch Changes
