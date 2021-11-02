@@ -8,6 +8,7 @@ spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
   selector:
     matchLabels:
       {{- include "lighthouse-backstage.selectorLabels" . | nindent 6 }}
@@ -17,6 +18,7 @@ spec:
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+        rollme: {{ randAlphaNum 5 | quote }}
       labels:
         {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
     spec:
@@ -71,9 +73,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
 ---
+apiVersion: v1
 kind: Secret
 type: kubernetes.io/dockerconfigjson
-apiVersion: v1
 metadata:
   name: {{ include "lighthouse-backstage.fullname" . }}-dockerconfigjson-ghpkgs
   labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
@@ -87,4 +89,4 @@ metadata:
   labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
 type: Opaque
 data:
-  GITHUB_TOKEN: {{ .Values.GITHUB_TOKEN }}
+  GH_TOKEN: {{ .Values.GH_TOKEN }}

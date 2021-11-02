@@ -1,0 +1,49 @@
+name: 'Deploy Backstage app'
+description: 'Deploys Backstage application to an environment using helm'
+inputs:
+  KUBE_CONFIG: 
+    description: 'Kubernetes context'
+    required: true
+  DOCKERCONFIGJSON:
+    description: 'Authentication for pulling from image registry'
+    required: true
+  GH_TOKEN:  
+    description: 'Base64 encoded github token'
+    required: true
+  POSTGRES_USER:
+    description: 'Username for postgres db'
+    required: true
+  POSTGRES_PASSWORD:
+    description: 'Password for postgres db'
+    required: true
+  POSTGRES_DB:
+    description: 'Database name for postgres db'
+    required: true
+  HOST:
+    description: 'baseUrl for app/backend'
+    required: true
+  GH_CLIENT_ID:
+    description: 'OAuth client ID'
+    required: true
+  GH_CLIENT_SECRET:
+    description: 'OAuth client secret'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+  - name: Set K8s context
+    uses: azure/k8s-set-context@v1
+    with:
+      method: kubeconfig
+      kubeconfig: ${{ inputs.KUBE_CONFIG }}
+  - name: Upgrade(or install) helm release
+    run: >
+      helm upgrade backstage-dev helm/lighthouse-backstage/ --debug --values 
+      helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev 
+      --set DOCKERCONFIGJSON=${{ inputs.DOCKERCONFIGJSON }} --set GH_TOKEN=${{ inputs.GH_TOKEN }} 
+      --set POSTGRES_USER=${{ inputs.POSTGRES_USER }} --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }} 
+      --set POSTGRES_DB=${{ inputs.POSTGRES_DB }} --set HOST=${{ inputs.HOST }} 
+      --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }} --set GH_CLIENT_SECRET=${{ inputs.GH_CLIENT_SECRET }} 
+      --install --atomic --cleanup-on-fail
+    shell: bash

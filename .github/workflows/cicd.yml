@@ -1,0 +1,54 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  pre-build-validation:
+    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/pre-build-validation.yml@4da5e2de8a4ca4f137dd842991d7cd01e7449798
+  
+  build-push-images:
+    runs-on: ubuntu-latest
+    needs: [pre-build-validation]
+    permissions:
+      packages: write
+      contents: read
+    strategy:
+      matrix:
+        type: [backend, frontend]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+    - name: Build and push image
+      uses: ./.github/actions/build-push-images
+      with: 
+        type: ${{ matrix.type }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        owner: ${{ github.repository_owner }}
+
+  deploy-backstage-app:
+    runs-on: ubuntu-latest
+    needs: [build-push-images]
+    permissions:
+      packages: read
+      contents: read
+    # Need to periodically update K8s context
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Backstage app
+        uses: ./.github/actions/deploy-backstage-app
+        with:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }} 
+          DOCKERCONFIGJSON: ${{ secrets.DEV_DOCKERCONFIGJSON }}
+          GH_TOKEN: ${{ secrets.DEV_GH_TOKEN }}  
+          POSTGRES_USER: ${{ secrets.DEV_POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DEV_POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.DEV_POSTGRES_DB }}
+          HOST: ${{ secrets.DEV_HOST }}
+          GH_CLIENT_ID: ${{ secrets.DEV_GH_CLIENT_ID }}
+          GH_CLIENT_SECRET: ${{ secrets.DEV_GH_CLIENT_SECRET }}

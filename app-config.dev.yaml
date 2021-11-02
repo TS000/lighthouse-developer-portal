@@ -1,0 +1,128 @@
+app:
+  title: DVP Developer Portal
+  baseUrl: https://dev.devportal.name
+
+organization:
+  name: My Company
+
+backend:
+  baseUrl: https://dev.devportal.name
+  listen:
+    port: 7000
+  csp:
+    connect-src: ["'self'", 'http:', 'https:']
+  cors:
+    origin: https://dev.devportal.name
+    methods: [GET, POST, PUT, DELETE]
+    credentials: true
+  cache:
+    # TODO: update to use memcache in production  https://backstage.io/docs/overview/architecture-overview#cache
+    store: memory
+  database:
+    # config options: https://node-postgres.com/api/client
+    client: pg
+    # connection:
+    #   host: ${POSTGRES_HOST}
+    #   port: 5432
+    #   user: postgres
+    #   password: postgres
+    # Config for running local k8s
+    connection:
+      host: ${POSTGRES_SERVICE_HOST}
+      port: ${POSTGRES_SERVICE_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+    # https://node-postgres.com/features/ssl
+    #ssl: require # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
+    #ca: # if you have a CA file and want to verify it you can uncomment this section
+    #$file: <file-path>/ca/server.crt
+
+integrations:
+  github:
+    - host: github.com
+      token: ${GH_TOKEN}
+    ### Example for how to add your GitHub Enterprise instance using the API:
+    # - host: ghe.example.net
+    #   apiBaseUrl: https://ghe.example.net/api/v3
+    #   token: ${GHE_TOKEN}
+
+proxy:
+  '/test':
+    target: 'https://example.com'
+    changeOrigin: true
+
+# Reference documentation http://backstage.io/docs/features/techdocs/configuration
+# Note: After experimenting with basic setup, use CI/CD to generate docs
+# and an external cloud storage when deploying TechDocs for production use-case.
+# https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
+techdocs:
+  builder: 'local' # Alternatives - 'external'
+  generators:
+    techdocs: 'docker'
+  publisher:
+    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+
+auth:
+  # providers: {}
+  # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: ${GH_CLIENT_ID}
+        clientSecret: ${GH_CLIENT_SECRET}
+
+scaffolder:
+  github:
+    token: ${GH_TOKEN}
+    visibility: public # or 'internal' or 'private'
+
+catalog:
+  processors:
+    githubOrg:
+      providers:
+        - target: https://github.com
+          apiBaseUrl: https://api.github.com
+    visibility: public # or 'internal' or 'private'
+  rules:
+    - allow: [Component, System, API, Group, User, Template, Location]
+  locations:
+    # Backstage example components
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
+
+    # Lighthouse backstage
+    - type: url
+      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/catalog-info.yaml
+
+    # Backstage example systems
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-systems.yaml
+
+    # Backstage example APIs
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-apis.yaml
+
+    # Backstage example organization groups
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme/org.yaml
+      rules:
+        - allow: [Group, User]
+
+    # Backstage example templates
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/plugins/scaffolder-backend/sample-templates/react-ssr-template/template.yaml
+      rules:
+        - allow: [Template]
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/plugins/scaffolder-backend/sample-templates/springboot-grpc-template/template.yaml
+      rules:
+        - allow: [Template]
+    - type: url
+      target: https://github.com/spotify/cookiecutter-golang/blob/master/template.yaml
+      rules:
+        - allow: [Template]
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/plugins/scaffolder-backend/sample-templates/docs-template/template.yaml
+      rules:
+        - allow: [Template]

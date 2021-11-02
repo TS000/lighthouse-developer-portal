@@ -32,9 +32,11 @@ runs:
     with:
       path: |
         **/packages/app/dist
-      key: ${{ runner.os }}-frontend-v1-static-${{ hashFiles('**/packages/app') }}
+      key: |
+        ${{ runner.os }}-app-static-${{ hashFiles('**/packages/app') }}-${{ hashFiles('**/app-config.*.yaml') }}
   - name: Create build assets
     run: |
+      yarn tsc
       if [[ "${{ inputs.type }}" == "frontend" ]]; then
         if [[ "${{ steps.cache-static.outputs.cache-hit }}" = "true" ]]; then
           echo "Cache hit - skipping build assets"; else
@@ -62,7 +64,7 @@ runs:
       file: Dockerfile.${{ inputs.type }}
       push: true
       platforms: linux/amd64
-      tags: ghcr.io/${{ steps.meta.outputs.tags }}
+      tags: ghcr.io/${{ inputs.owner }}/lighthouse-backstage/${{ inputs.type }}:latest
       cache-from: type=gha, scope=${{ inputs.type }}
       cache-to: type=gha, scope=${{ inputs.type }}, mode=max
       secrets: |
