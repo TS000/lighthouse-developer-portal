@@ -61,7 +61,7 @@
     "@changesets/cli": "^2.16.0"
   },
   "metadata": {
-    "backstage-create-app-version": "0.3.44"
+    "backstage-create-app-version": "0.4.2"
   },
   "jest": {
     "coverageReporters": [
@@ -75,9 +75,6 @@
       "text",
       "clover",
       "text-summary"
-    ],
-    "transformModules": [
-      "@asyncapi/react-component"
     ]
   }
 }
