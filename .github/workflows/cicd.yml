@@ -9,7 +9,7 @@ on:
 
 jobs:
   pre-build-validation:
-    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/pre-build-validation.yml@4da5e2de8a4ca4f137dd842991d7cd01e7449798
+    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/pre-build-validation.yml@77b7402911ba31678034de5dde92eeae7743d48f
   
   build-push-images:
     runs-on: ubuntu-latest
