@@ -42,7 +42,7 @@ runs:
       run: pip install mkdocs-techdocs-core==0.*
       shell: bash
     - name: Generate docs to ./site
-      run: techdocs-cli generate --no-docker
+      run: techdocs-cli generate
       shell: bash
 
     # Publishes built docs to the "gh-pages" branch.
