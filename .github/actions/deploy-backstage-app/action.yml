@@ -45,5 +45,5 @@ runs:
       --set POSTGRES_USER=${{ inputs.POSTGRES_USER }} --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }} 
       --set POSTGRES_DB=${{ inputs.POSTGRES_DB }} --set HOST=${{ inputs.HOST }} 
       --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }} --set GH_CLIENT_SECRET=${{ inputs.GH_CLIENT_SECRET }} 
-      --install --atomic --cleanup-on-fail
+      --install --atomic --cleanup-on-fail --history-max 5
     shell: bash

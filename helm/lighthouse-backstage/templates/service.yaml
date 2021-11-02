@@ -42,7 +42,7 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /api
+        prefix: /api/
     route:
     - destination:
         host: {{ include "lighthouse-backstage.fullname" . }}-service

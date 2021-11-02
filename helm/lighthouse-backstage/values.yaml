@@ -90,8 +90,8 @@ ingress:
 
 resources: 
   limits:
-            cpu: "0.5"
-            memory: "128Mi"
+    cpu: "0.5"
+    memory: "500Mi"
 
 autoscaling:
   enabled: false
