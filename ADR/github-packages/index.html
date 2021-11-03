@@ -15,7 +15,7 @@
     
     
       
-        <title>Yarn Zero Install - example-docs</title>
+        <title>GitHub Packages - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#yarn-zero-install-adr" class="md-skip">
+        <a href="#github-packages" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Yarn Zero Install
+              GitHub Packages
             
           </span>
         </div>
@@ -520,6 +520,66 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../zero-install/" title="Yarn Zero Install" class="md-nav__link">
+      Yarn Zero Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../split-fe-be/" title="Split FE/BE" class="md-nav__link">
+      Split FE/BE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cypress-e2e-tests/" title="Cypress e2e Tests" class="md-nav__link">
+      Cypress e2e Tests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../code-cov/" title="Ignore Backend Code Coverage" class="md-nav__link">
+      Ignore Backend Code Coverage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vite/" title="Vite" class="md-nav__link">
+      Vite
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -531,14 +591,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Yarn Zero Install
+        GitHub Packages
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Yarn Zero Install" class="md-nav__link md-nav__link--active">
-      Yarn Zero Install
+    <a href="./" title="GitHub Packages" class="md-nav__link md-nav__link--active">
+      GitHub Packages
     </a>
     
       
@@ -595,66 +655,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../split-fe-be/" title="Split FE/BE" class="md-nav__link">
-      Split FE/BE
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../cypress-e2e-tests/" title="Cypress e2e Tests" class="md-nav__link">
-      Cypress e2e Tests
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../code-cov/" title="Ignore Backend Code Coverage" class="md-nav__link">
-      Ignore Backend Code Coverage
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../vite/" title="Vite" class="md-nav__link">
-      Vite
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../github-packages/" title="GitHub Packages" class="md-nav__link">
-      GitHub Packages
-    </a>
   </li>
 
         
@@ -735,7 +735,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/zero-install.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/github-packages.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -743,7 +743,7 @@
                   
                 
                 
-                <h1 id="yarn-zero-install-adr">Yarn Zero Install ADR<a class="headerlink" href="#yarn-zero-install-adr" title="Permanent link">&para;</a></h1>
+                <h1 id="github-packages">GitHub Packages<a class="headerlink" href="#github-packages" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -756,51 +756,43 @@
 <tbody>
 <tr>
 <td>Decision Made:</td>
-<td>no</td>
+<td>yes</td>
 <td>Decision Date:</td>
-<td>00/0000</td>
+<td>11/21</td>
 </tr>
 <tr>
 <td>Revisit Decision:</td>
-<td>yes</td>
+<td>no</td>
 <td>Date</td>
-<td>09/2021</td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Revisit criteria:</strong></p>
-<p>Decision Made: No, but open to revisiting Decision Date: 09/2021</p>
-<p>Revisit Decision: Yes, Revisit Date: September 2021</p>
-<p>Revisit Criteria: When <a href="https://github.com/backstage/backstage/tree/master/packages/cli">@backstage/cli</a> replaces their <a href="https://www.npmjs.com/package/@yarnpkg/lockfile">@yarnpkg/lockfile</a> parser usage with an updated package parser, <a href="https://www.npmjs.com/package/@yarnpkg/parsers">@yarnpkg/parsers</a>. Specifically, <a href="https://github.com/backstage/backstage/blob/master/packages/cli/src/lib/versioning/Lockfile.ts#L22">this file.</a></p>
+<p>Decision Made: Yes, but open to revisiting decision if a better private package registry becomes available.
+Revisit Decision: No Revisit Date: N/A
+Revisit Criteria: If a better private package registry becomes available, we should look into it.</p>
 <p>Decision Makers: @kaemonisland, @rianfowler</p>
 <h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>CI/CD can take up to 10+ minutes to complete, specifically the <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/actions/workflows/build-containers.yml">build-containers action.</a> Being able to use <a href="https://yarnpkg.com/features/zero-installs">Yarn Zero-Install</a> would allow us to cache dependencies thus lowering the run-time of CI/CD by a significant amount.</p>
+<p>Private packages will now be pulled from <a href="https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages#authenticating-to-github-packages">GitHub Packages.</a> User's must login to the github package registry by using their account that's associated with the Department of Veteran Affairs along with a Personal Access Token with all Repo and write:packages permissions.</p>
 <h2 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h2>
-<p><a href="https://yarnpkg.com/">Yarn</a> recently released a feature called <a href="https://yarnpkg.com/features/zero-installs">Zero Install</a> which allows packages to be cached.</p>
-<p>Yarn states the problem pretty clearly...</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>While Yarn does its best to guarantee that what works now will keep working, there&#39;s always the off chance that a future Yarn release will introduce a bug that will prevent you from installing your project. Or maybe your production environments will change and yarn install won&#39;t be able to write in the temporary directories anymore. Or maybe the network will fail and your packages won&#39;t be available anymore. Or maybe your credentials will rotate and you will start getting authentication issues. Or ... so many things can go wrong, and not all of them are things we can control.
-</code></pre></div>
-</td></tr></table>
-
+<ul>
+<li><a href="https://github.com/orgs/department-of-veterans-affairs/packages">Packages</a></li>
+<li><a href="https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages#authenticating-to-github-packages">GitHub Packages</a></li>
+</ul>
 <h2 id="pros">Pros<a class="headerlink" href="#pros" title="Permanent link">&para;</a></h2>
-<p><strong>Fast</strong></p>
-<p>Caching packages will allow packages to be installed much faster than the current <code>yarn install</code>. ALso, when updating packages, Yarn 2 will change exactly one file for each updated package.</p>
-<p><strong>Plug N Play</strong></p>
-<p>Removes the need for node modules completely.
-If we were able to get Zero Install + Plug n Play our install time would be almost instantaneous. <a href="https://yarnpkg.com/features/pnp#fixing-node_modules">https://yarnpkg.com/features/pnp#fixing-node_modules</a></p>
-<p><strong>Small File Size</strong></p>
-<p>To give you an idea, a node_modules folder of 135k uncompressed files (for a total of 1.2GB) gives a Yarn cache of 2k binary archives (for a total of 139MB). Git simply cannot support the former, while the latter is perfectly fine.</p>
-<p><strong>Secure</strong></p>
-<p>Projects accepting PRs from external users will have to be careful that the PRs affecting the package archives are legit (since it would otherwise be possible to a malicious user to send a PR for a new dependency after having altered its archive content).</p>
-<p><code>yarn install --check-cache</code></p>
-<p>This way Yarn will re-download the package files from whatever their remote location would be and will report any mismatching checksum.</p>
+<ul>
+<li>Our codebase is on GitHub, so our packages should be there too!</li>
+<li>Integrates with GH APIs, Actions, etc.</li>
+<li>Free for public packages</li>
+</ul>
 <h2 id="cons">Cons<a class="headerlink" href="#cons" title="Permanent link">&para;</a></h2>
-<p><strong>Configuration</strong></p>
-<p>Zero install can get confusing when configuring zero install for Lerna + TypeScript. Additional configuration settings will need to be applied in order for the linter to recognize the package locations.</p>
-<p><a href="https://yarnpkg.com/features/plugins">Plugins</a></p>
+<ul>
+<li>Any users that want to pull/push to private packages must create a Personal Access Token with <code>repo</code> and <code>write:packages</code> sections checked.</li>
+</ul>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Adding Yarn Zero Installs will allow CI/CD and local development to get running faster. Currently, it takes about 2+ minutes to install all the necessary packages by running <code>yarn install</code>. Zero Install should allow us to cut that time down to less than one minute by caching packages. If we decide to also setup Plug N Play, we could cut that time down to almost instantaneous speeds.</p>
-<p>The only thing that is holding us back is <code>@backstage/cli</code> which uses an incompatible package, <code>@yarnpkg/lockfile</code>, to parse the <code>yarn.lock</code> file.</p>
+<p>GitHub Packages will be used for managing private packages for the lighthouse-backstage repo.</p>
+<p><a href="https://github.com/orgs/department-of-veterans-affairs/packages">Packages</a></p>
                 
               
               
@@ -819,7 +811,7 @@ If we were able to get Zero Install + Plug n Play our install time would be almo
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../RFC/google-analytics/" title="Google Analytics" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../vite/" title="Vite" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -828,25 +820,11 @@ If we were able to get Zero Install + Plug n Play our install time would be almo
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Google Analytics
+                Vite
               </div>
             </div>
           </a>
         
-        
-          <a href="../split-fe-be/" title="Split FE/BE" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Split FE/BE
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
         
       </nav>
     </div>
