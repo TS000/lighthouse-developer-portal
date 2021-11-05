@@ -5,8 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      elapsed: ${{ steps.build.outputs.elapsed }}
     env:
       SHOULD_DEPLOY: ${{ github.ref == 'refs/heads/main' }}
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -17,7 +20,25 @@ jobs:
       - name: Transpile typescript
         run: yarn tsc
       - name: Build
-        run: yarn build
+        id: build
+        run: | 
+          START_TIME=$(date +%s%3N)
+          yarn build
+          echo ::set-output name=elapsed::$(($(expr $(date +%s%3N) - $START_TIME) / 1000))
+
+      - name: Send build time to datadog
+        uses: masci/datadog@v1
+        with:
+          api-key: ${{ secrets.DATADOG_API_KEY }}
+          metrics: |
+            - type: "count"
+              name: "build.time.count"
+              value: ${{ steps.build.outputs.elapsed }}
+              host: ${{ github.repository_owner }}
+              tags:
+                - "project:${{ github.repository }}"
+                - "branch:${{ github.head_ref }}"
+
       - name: Test
         run: yarn test:all
       - name: Build docker image
@@ -30,6 +51,7 @@ jobs:
           secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: us-east-1
           image: backstage:latest
+          
       # - name: Login to Heroku Container registry
       #   if: ${{ env.SHOULD_DEPLOY == 'true' }}
       #   env:

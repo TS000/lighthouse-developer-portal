@@ -33,6 +33,7 @@ import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { Root } from './components/Root';
 import { HomePage } from './components/homepage';
+import { Datadog } from './components/datadog/Datadog';
 import { searchPage } from './components/search/SearchPage';
 import { lightThemeVA, darkThemeVA } from './themes/index';
 import { FeatureFlagsPage } from '@internal/plugin-feature-flags';
@@ -99,6 +100,7 @@ const routes = (
     <Route path="/docs" element={<TechDocsIndexPage />}>
       <DefaultTechDocsHome />
     </Route>
+    <Route path="/datadog" element={<Datadog />} />
     <Route
       path="/docs/:namespace/:kind/:name/*"
       element={<TechDocsReaderPage />}
