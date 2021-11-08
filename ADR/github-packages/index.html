@@ -15,7 +15,7 @@
     
     
       
-        <title>Title - example-docs</title>
+        <title>GitHub Packages - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#title" class="md-skip">
+        <a href="#github-packages" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Title
+              GitHub Packages
             
           </span>
         </div>
@@ -505,10 +505,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14" checked>
     
     <label class="md-nav__link" for="nav-14">
       Decision Records
@@ -590,11 +592,81 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../github-packages/" title="GitHub Packages" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        GitHub Packages
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="GitHub Packages" class="md-nav__link md-nav__link--active">
       GitHub Packages
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    History
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pros" class="md-nav__link">
+    Pros
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cons" class="md-nav__link">
+    Cons
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Decision
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -675,7 +747,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/ADR-template.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/github-packages.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -683,7 +755,7 @@
                   
                 
                 
-                <h1 id="title">Title<a class="headerlink" href="#title" title="Permanent link">&para;</a></h1>
+                <h1 id="github-packages">GitHub Packages<a class="headerlink" href="#github-packages" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -696,39 +768,43 @@
 <tbody>
 <tr>
 <td>Decision Made:</td>
-<td>yes/no</td>
+<td>yes</td>
 <td>Decision Date:</td>
-<td>mo year</td>
+<td>11/21</td>
 </tr>
 <tr>
 <td>Revisit Decision:</td>
-<td>yes/no</td>
+<td>no</td>
 <td>Date</td>
-<td>mo year</td>
-</tr>
-<tr>
-<td><strong>Revisit criteria:</strong></td>
-<td></td>
-<td></td>
-<td></td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
-<p>Decision Made:  No, but open to revisiting  Decision Date:  12/2018
-Revisit Decision:   Yes Revisit Date:   July 2019
-Revisit Criteria: If a developer is interested in Jest and has time or suggestions for fixing the speed issues, we should revisit this.</p>
-<p>Decision Makers: @githubusername, @githubsername</p>
+<p><strong>Revisit criteria:</strong></p>
+<p>Decision Made: Yes, but open to revisiting decision if a better private package registry becomes available.
+Revisit Decision: No Revisit Date: N/A
+Revisit Criteria: If a better private package registry becomes available, we should look into it.</p>
+<p>Decision Makers: @kaemonisland, @rianfowler</p>
 <h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>Summary of problem and decision </p>
+<p>Private packages will now be pulled from <a href="https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages#authenticating-to-github-packages">GitHub Packages.</a> User's must login to the github package registry by using their account that's associated with the Department of Veteran Affairs along with a Personal Access Token with all Repo and write:packages permissions.</p>
 <h2 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h2>
-<p>Dates, links to the PRs, notes- anything relevant to understand the decision making process / evolution. Important to list what you tried here so avoid retreading </p>
+<ul>
+<li><a href="https://github.com/orgs/department-of-veterans-affairs/packages">Packages</a></li>
+<li><a href="https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages#authenticating-to-github-packages">GitHub Packages</a></li>
+</ul>
 <h2 id="pros">Pros<a class="headerlink" href="#pros" title="Permanent link">&para;</a></h2>
-<p>upside</p>
+<ul>
+<li>Our codebase is on GitHub, so our packages should be there too!</li>
+<li>Integrates with GH APIs, Actions, etc.</li>
+<li>Free for public packages</li>
+</ul>
 <h2 id="cons">Cons<a class="headerlink" href="#cons" title="Permanent link">&para;</a></h2>
-<p>downside </p>
+<ul>
+<li>Any users that want to pull/push to private packages must create a Personal Access Token with <code>repo</code> and <code>write:packages</code> sections checked.</li>
+</ul>
 <h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Detailed reasoning about decision </p>
-<p><a href="https://department-of-veterans-affairs.github.io/veteran-facing-services-tools/platform/front-end-standards/documented-decisions/jest/">Example</a></p>
+<p>GitHub Packages will be used for managing private packages for the lighthouse-backstage repo.</p>
+<p><a href="https://github.com/orgs/department-of-veterans-affairs/packages">Packages</a></p>
                 
               
               
@@ -743,6 +819,27 @@ Revisit Criteria: If a developer is interested in Jest and has time or suggestio
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../vite/" title="Vite" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Vite
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
