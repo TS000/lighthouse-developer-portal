@@ -13,12 +13,17 @@ describe('Feature Flags', () => {
   context('When a Feature Flag is Present', () => {
     it('Displays a feature flag', () => {
       cy.contains('home-feature');
+      cy.contains('starter-guide');
     });
 
     it('toggles a feature flag', () => {
       cy.contains('home-feature');
       cy.get('span[title="Enable"]').should('be.visible');
-      cy.get('input').click().blur();
+      cy.get('input[name="home-feature"]').click().blur();
+      cy.get('span[title="Disable"]').should('be.visible');
+      cy.contains('starter-guide');
+      cy.get('span[title="Enable"]').should('be.visible');
+      cy.get('input[name="starter-guide"]').click().blur();
       cy.get('span[title="Disable"]').should('be.visible');
     });
 
@@ -31,7 +36,7 @@ describe('Feature Flags', () => {
     });
 
     it('disables a branching feature', () => {
-      cy.get('input').click().blur();
+      cy.get('input[name="home-feature"]').click().blur();
 
       cy.visit('/');
       cy.contains(/some cool new feature!/i);

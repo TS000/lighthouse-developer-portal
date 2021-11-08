@@ -24,6 +24,7 @@ import MapIcon from '@material-ui/icons/MyLocation';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import Flag from '@material-ui/icons/Flag';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import {
@@ -89,6 +90,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       {/* End global nav */}
       <SidebarDivider />
       <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
+      <SidebarItem icon={MenuBookIcon} to="/starter-guide" text="Starter Guide" />
       <SidebarSpace />
       <SidebarDivider />
       <SidebarSettings />

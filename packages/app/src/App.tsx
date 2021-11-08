@@ -38,6 +38,7 @@ import { searchPage } from './components/search/SearchPage';
 import { lightThemeVA, darkThemeVA } from './themes/index';
 import { FeatureFlagsPage } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFLagRegistry';
+import { StarterGuidePage } from '@internal/plugin-starter-guide';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -115,6 +116,7 @@ const routes = (
     <Route path="/search" element={<SearchPage />} />
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/feature-flags" element={<FeatureFlagsPage />} />
+    <Route path="/starter-guide" element={<StarterGuidePage />}/>
   </FlatRoutes>
 );
 

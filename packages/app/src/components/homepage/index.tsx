@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import React, { PropsWithChildren } from 'react';
 import {
   Content,
@@ -8,6 +8,7 @@ import {
   Page,
 } from '@backstage/core';
 import { useFeatureFlags } from '@internal/plugin-feature-flags';
+import { Link } from 'react-router-dom';
 
 const homepage: any = {
   title: 'DVP Portal Homepage',
@@ -46,6 +47,22 @@ export const HomePage = () => {
             <InfoCard title="Home Feature" subheader="A safe expected feature.">
               'This component was shown because the Home Feature is disabled!'
             </InfoCard>
+          )}
+        </Wrapper>
+        <Wrapper>
+          {isActive('starter-guide') ? (
+              <InfoCard title="Starter Guide" subheader="A guide to getting started with Backstage.">
+              <p>Learn how to add Catalog Entities to the Backstage Software Catalog and more!</p>
+              <Button
+                component={Link} 
+                to="/starter-guide"
+                variant="contained"
+                color="primary"
+              >
+                Read More
+              </Button>
+            </InfoCard>
+            ) : (""
           )}
         </Wrapper>
       </Content>

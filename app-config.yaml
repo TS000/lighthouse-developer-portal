@@ -95,10 +95,16 @@ catalog:
     - type: url
       target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
 
+    # Test repo(internal) 
+    - type: url
+      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage-actions/blob/main/catalog-info.yaml
     # Lighthouse backstage
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/catalog-info.yaml
-
+    # Scans all repos for catalog-info.yaml in department-of-veterans-affairs
+    # Wait to use this until GitHub App setup because rate limits are too low without it
+    # - type: github-discovery
+    #   target: https://github.com/department-of-veterans-affairs
     # Backstage example systems
     - type: url
       target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-systems.yaml

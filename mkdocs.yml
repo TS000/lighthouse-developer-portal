@@ -12,6 +12,7 @@ nav:
   - Allstar: allstar.md
   - Cypress Troubleshooting: cypress-troubleshooting.md
   - Pre-build Validation: pre-build-validation.md
+  - Starter Guide: starter-guide.md
   - RFCs:
       - Doc Generator: RFC/doc-generator.md
       - CI/CD Modifications: RFC/ci-cd.md
