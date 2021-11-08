@@ -16,7 +16,7 @@ export const StarterGuideComponent = () => {
   const [ text, setText ] = useState({ markdown: "" });
 
   useEffect( () => {
-    fetch('https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/landing-page/docs/starter-guide.md')
+    fetch('https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/starter-guide.md')
     .then(response => {
       return response.text()
     })
