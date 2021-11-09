@@ -12,6 +12,7 @@ nav:
   - Allstar: allstar.md
   - Cypress Troubleshooting: cypress-troubleshooting.md
   - Pre-build Validation: pre-build-validation.md
+  - GitHub Packages: github-packages.md
   - Starter Guide: starter-guide.md
   - RFCs:
       - Doc Generator: RFC/doc-generator.md
@@ -33,6 +34,7 @@ nav:
       - Cypress e2e Tests: ADR/cypress-e2e-tests.md
       - Ignore Backend Code Coverage: ADR/code-cov.md
       - Vite: ADR/vite.md
+      - GitHub Packages: ADR/github-packages.md
 
 plugins:
   - techdocs-core

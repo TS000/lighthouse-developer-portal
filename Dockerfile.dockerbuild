@@ -27,7 +27,7 @@ COPY . /app
 WORKDIR /app
 
 RUN yarn install
-RUN yarn workspace app build
+RUN yarn workspace @department-of-veterans-affairs/app build
 
 FROM nginx:mainline
 

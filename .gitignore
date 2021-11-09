@@ -15,6 +15,9 @@ node_modules/
 # Node version directives
 .nvmrc
 
+# NPM configurations
+.npmrc
+
 # dotenv environment variables file
 .env
 .env.test

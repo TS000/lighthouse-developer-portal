@@ -1,7 +1,11 @@
 {
-  "name": "app",
+  "name": "@department-of-veterans-affairs/app",
   "version": "0.1.0",
   "private": true,
+  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-backstage.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "bundled": true,
   "dependencies": {
     "@backstage/catalog-model": "^0.9.0",
