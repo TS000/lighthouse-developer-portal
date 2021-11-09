@@ -55,8 +55,6 @@ spec:
               value: {{ .Values.GH_CLIENT_SECRET }}
           envFrom:
             - secretRef:
-                name: postgres-secrets
-            - secretRef:
                 name: {{ include "lighthouse-backstage.fullname" . }}-secrets
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

@@ -9,8 +9,15 @@ on:
 
 jobs:
   pre-build-validation:
-    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/pre-build-validation.yml@77b7402911ba31678034de5dde92eeae7743d48f
-  
+    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/pre-build-validation.yml@3c30b900b03f76059d1e6f7511309ca2432ef435
+    secrets: 
+      SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
+      SLACK_UID_002: ${{ secrets.SLACK_UID_FOWLER }}
+      SLACK_UID_003: ${{ secrets.SLACK_UID_LOVENDAHL }}
+      SLACK_UID_004: ${{ secrets.SLACK_UID_LUCKEY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+
   build-push-images:
     runs-on: ubuntu-latest
     needs: [pre-build-validation]

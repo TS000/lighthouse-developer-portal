@@ -2,6 +2,25 @@ name: Pre-build Validation
 
 on:
   workflow_call:
+    secrets:
+      SLACK_UID_001: 
+        description: 'Slack User ID 1'
+        required: true
+      SLACK_UID_002: 
+        description: 'Slack User ID 2'
+        required: true
+      SLACK_UID_003: 
+        description: 'Slack User ID 3'
+        required: true
+      SLACK_UID_004: 
+        description: 'Slack User ID 4'
+        required: true
+      SLACK_WEBHOOK_URL:
+        description: 'Slack Webhook Url to post slack messages'
+        required: true 
+      DATADOG_API_KEY:
+        description: 'Datadog API key used to send metrics to Datadog'
+        required: true
 
 # Need to consolidate and add unit-tests.yml to this workflow 
 jobs:
