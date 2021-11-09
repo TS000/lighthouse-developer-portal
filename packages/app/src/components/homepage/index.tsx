@@ -1,14 +1,8 @@
 import { Grid, Button } from '@material-ui/core';
 import React, { PropsWithChildren } from 'react';
-import {
-  Content,
-  ContentHeader,
-  Header,
-  InfoCard,
-  Page,
-} from '@backstage/core';
 import { useFeatureFlags } from '@internal/plugin-feature-flags';
 import { Link } from 'react-router-dom';
+import { Content, ContentHeader, Header, InfoCard, Page } from '@backstage/core-components';
 
 const homepage: any = {
   title: 'DVP Portal Homepage',

@@ -12,6 +12,7 @@
     "@backstage/cli": "^0.8.1",
     "@backstage/core": "^0.7.7",
     "@backstage/core-components": "^0.7.2",
+    "@backstage/core-plugin-api": "^0.1.12",
     "@backstage/integration-react": "^0.1.1",
     "@backstage/plugin-api-docs": "^0.6.0",
     "@backstage/plugin-catalog": "^0.7.0",

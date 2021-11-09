@@ -1,14 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router';
-import {
-  AlertDisplay,
-  createApp,
-  FlatRoutes,
-  OAuthRequestDialog,
-  githubAuthApiRef,
-  SignInProviderConfig,
-  SignInPage,
-} from '@backstage/core';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
   CatalogEntityPage,
@@ -39,6 +30,10 @@ import { lightThemeVA, darkThemeVA } from './themes/index';
 import { FeatureFlagsPage } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFLagRegistry';
 import { StarterGuidePage } from '@internal/plugin-starter-guide';
+
+import { AlertDisplay, OAuthRequestDialog, SignInProviderConfig, SignInPage } from '@backstage/core-components';
+import { createApp, FlatRoutes } from '@backstage/core-app-api';
+import { githubAuthApiRef } from '@backstage/core-plugin-api';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
