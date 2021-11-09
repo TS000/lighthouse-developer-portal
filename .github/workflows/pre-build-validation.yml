@@ -25,3 +25,23 @@ jobs:
       uses: ./.github/actions/install-dependencies
     - name: Run linting
       uses: ./.github/actions/validate-linting
+
+  assess-code-quality:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Generate cognitive complexity results
+      id: cognitive-complexity
+      uses: ./.github/actions/assess-code-quality
+    - name: Send cognitive complexity score to datadog
+      uses: masci/datadog@v1
+      with:
+        api-key: ${{ secrets.DATADOG_API_KEY }}
+        metrics: |
+          - type: "count"
+            name: "cognitive.complexity.score"
+            value: ${{ steps.cognitive-complexity.outputs.score }}
+            host: ${{ github.repository_owner }}
+            tags:
+              - "project:${{ github.repository }}"
+              - "branch:${{ github.head_ref }}"
