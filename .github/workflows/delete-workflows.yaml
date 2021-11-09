@@ -1,0 +1,22 @@
+name: Delete workflows
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 00 * * *'
+
+jobs:
+  delete-workflows:
+    runs-on: ubuntu-latest
+    env:
+      WORKFLOW_TOKEN: ${{secrets.OCTOKIT_GITHUB_WORKFLOW_TOKEN}}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install @octokit/core
+
+      - name: Run delete script
+        run: node scripts/delete_workflows.js
