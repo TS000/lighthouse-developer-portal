@@ -9,7 +9,7 @@ on:
 
 jobs:
   pre-build-validation:
-    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/pre-build-validation.yml@3c30b900b03f76059d1e6f7511309ca2432ef435
+    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/pre-build-validation.yml@b8d2163e70b3864cb6c2f2c40cd96450653d085b
     secrets: 
       SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
       SLACK_UID_002: ${{ secrets.SLACK_UID_FOWLER }}
