@@ -1,4 +1,4 @@
-name: Build, test, deploy main
+name: Measure build time
 
 on: [push]
 
@@ -38,19 +38,6 @@ jobs:
               tags:
                 - "project:${{ github.repository }}"
                 - "branch:${{ github.head_ref }}"
-
-      - name: Test
-        run: yarn test:all
-      - name: Build docker image
-        run: docker image build -t backstage/staging/runner .
-      - name: Push to ECR
-        id: ecr
-        uses: jwalton/gh-ecr-push@5c8dff7f31948b22222e5f2aac5a19074dbb9fa4 # pin@v1
-        with:
-          access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          region: us-east-1
-          image: backstage:latest
           
       # - name: Login to Heroku Container registry
       #   if: ${{ env.SHOULD_DEPLOY == 'true' }}
