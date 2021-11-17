@@ -22,7 +22,6 @@ export const FeatureFlagRegistry = () => {
 
   // Decides whether to show extra info on the home page
   registerFeatureFlag('home-feature', 'home-feature-id');
-  registerFeatureFlag('starter-guide', 'starter-guide-id');
-
+  
   return null;
 };
