@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: plugin-feature-flags
+  namespace: lighthouse-backstage
+  description: A plugin to include feature-flags to a frontend.
+  tags:
+    - javascript
+    - react
+    - typescript
+    - plugin
+  links:
+    - url: https://github.com/department-of-veterans-affairs/lighthouse-backstage/issues
+      title: Issues
+      icon: alert
+    - url: https://department-of-veterans-affairs.github.io/lighthouse-backstage/
+      title: Docs
+      icon: help
+  annotations:
+    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-backstage
+    github.com/project-slug: department-of-veterans-affairs/lighthouse-backstage
+spec:
+  type: website
+  owner: lighthouse-bandicoot
+  lifecycle: experimental
+  system: lighthouse-backstage

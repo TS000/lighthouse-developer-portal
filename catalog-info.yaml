@@ -1,23 +1,11 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: System
 metadata:
   name: lighthouse-backstage
-  description: An example of a Backstage application.
+  description: Keeps track off all packages and plugins related to lighthouse-backstage
   tags:
-    - javascript
-    - typescript
-    - react
-  links:
-    - url: https://github.com/department-of-veterans-affairs/lighthouse-backstage/issues
-      title: Issues
-      icon: alert
-    - url: https://department-of-veterans-affairs.github.io/lighthouse-backstage/
-      title: Docs
-      icon: help
-  annotations:
-    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-backstage
-    github.com/project-slug: department-of-veterans-affairs/lighthouse-backstage
+    - monorepo
 spec:
-  type: website
+  domain: lighthouse-backstage
   owner: lighthouse-bandicoot
   lifecycle: experimental
