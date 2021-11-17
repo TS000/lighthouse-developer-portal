@@ -67,14 +67,14 @@ techdocs:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
-  providers: {}
+  # providers: {}
   # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
   # environment: development
-  # providers:
-  #   github:
-  #     development:
-  #       clientId: ${CLIENT_ID}
-  #       clientSecret: ${CLIENT_SECRET}
+  providers:
+    github:
+      development:
+        clientId: ${LOCAL_GH_CLIENT_ID}
+        clientSecret: ${LOCAL_GH_CLIENT_SECRET}
 
 scaffolder:
   github:
