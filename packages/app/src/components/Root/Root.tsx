@@ -39,6 +39,7 @@ import {
   SidebarDivider,
   SidebarSpace,
 } from '@backstage/core-components';
+import { FlagContext } from '@internal/plugin-feature-flags';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -73,28 +74,39 @@ const SidebarLogo = () => {
   );
 };
 
-export const Root = ({ children }: PropsWithChildren<{}>) => (
-  <SidebarPage>
-    <Sidebar>
-      <SidebarLogo />
-      <SidebarSearchModal />
-      <SidebarDivider />
-      {/* Global nav, not org-specific */}
-      <SidebarItem icon={HomeIcon} to="/" text="Home" />
-      <SidebarItem icon={ListIcon} to="catalog" text="Catalog" />
-      <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
-      <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
-      <SidebarItem icon={BarChartIcon} to="datadog" text="Datadog" />
-      <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
-      <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
-      {/* End global nav */}
-      <SidebarDivider />
-      <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
-      <SidebarItem icon={MenuBookIcon} to="/starter-guide" text="Starter Guide" />
-      <SidebarSpace />
-      <SidebarDivider />
-      <SidebarSettings />
-    </Sidebar>
-    {children}
-  </SidebarPage>
-);
+const DatadogSidebarItem = () => {
+  const { flagState } = useContext(FlagContext);
+  if (flagState) {
+    return (<SidebarItem icon={BarChartIcon} to="datadog" text="Datadog" />)
+  }
+  return null;
+}
+
+export const Root = ({ children }: PropsWithChildren<{}>) => {
+
+  return(
+    <SidebarPage>
+      <Sidebar>
+        <SidebarLogo />
+        <SidebarSearchModal />
+        <SidebarDivider />
+        {/* Global nav, not org-specific */}
+        <SidebarItem icon={HomeIcon} to="/" text="Home" />
+        <SidebarItem icon={ListIcon} to="catalog" text="Catalog" />
+        <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
+        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
+        <DatadogSidebarItem />
+        <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
+        <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
+        {/* End global nav */}
+        <SidebarDivider />
+        <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
+        <SidebarItem icon={MenuBookIcon} to="/starter-guide" text="Starter Guide" />
+        <SidebarSpace />
+        <SidebarDivider />
+        <SidebarSettings />
+      </Sidebar>
+      {children}
+    </SidebarPage>
+  );
+}

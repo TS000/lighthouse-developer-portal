@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route } from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
@@ -27,7 +27,7 @@ import { HomePage } from './components/homepage';
 import { Datadog } from './components/datadog/Datadog';
 import { searchPage } from './components/search/SearchPage';
 import { lightThemeVA, darkThemeVA } from './themes/index';
-import { FeatureFlagsPage } from '@internal/plugin-feature-flags';
+import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFLagRegistry';
 import { StarterGuidePage } from '@internal/plugin-starter-guide';
 
@@ -115,15 +115,21 @@ const routes = (
   </FlatRoutes>
 );
 
-const App = () => (
-  <AppProvider>
-    <FeatureFlagRegistry />
-    <AlertDisplay />
-    <OAuthRequestDialog />
-    <AppRouter>
-      <Root>{routes}</Root>
-    </AppRouter>
-  </AppProvider>
-);
+const App = () => { 
+  const [ flagState, setFlagState ] = useState(false);
+
+  return (
+    <AppProvider>
+      <FlagContext.Provider value={{ flagState, setFlagState }}>
+        <FeatureFlagRegistry />
+        <AlertDisplay />
+        <OAuthRequestDialog />
+        <AppRouter>
+          <Root>{routes}</Root>
+        </AppRouter>
+      </FlagContext.Provider>
+    </AppProvider>
+  );
+}
 
 export default App;

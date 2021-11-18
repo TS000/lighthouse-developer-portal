@@ -6,6 +6,7 @@ import {
 import { rootRouteRef } from './routes';
 
 export { useFeatureFlags } from './hooks';
+export { FlagContext } from './components/FeatureFlagContext';
 
 export const featureFlagsPagePlugin = createPlugin({
   id: 'feature-flags',

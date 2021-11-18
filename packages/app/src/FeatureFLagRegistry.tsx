@@ -21,7 +21,8 @@ export const FeatureFlagRegistry = () => {
   const { registerFeatureFlag } = useFeatureFlags();
 
   // Decides whether to show extra info on the home page
-  registerFeatureFlag('home-feature', 'home-feature-id');
+  registerFeatureFlag('starter-guide', 'starter-guide-id');
+  registerFeatureFlag('datadog-dashboard', 'datadog-dashboard-id');
   
   return null;
 };
