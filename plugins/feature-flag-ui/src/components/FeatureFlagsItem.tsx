@@ -17,12 +17,14 @@ type Props = {
 };
 
 export const FlagItem = ({ flag, enabled, toggleHandler }: Props) => { 
-  const { setFlagState } = useContext(FlagContext);
+  const { currentFlags, toggleFlag } = useContext(FlagContext);
   const { isActive } = useFeatureFlags();
 
   const toggleHandlerAndContext = () => {
     toggleHandler(flag.name);
-    setFlagState(!isActive(flag.name));
+    if(currentFlags.includes(flag.name)) {
+      toggleFlag(flag.name, isActive(flag.name))
+    }
   }
 
   return (

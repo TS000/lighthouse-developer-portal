@@ -39,7 +39,7 @@ import {
   SidebarDivider,
   SidebarSpace,
 } from '@backstage/core-components';
-import { FlagContext } from '@internal/plugin-feature-flags';
+import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -54,6 +54,12 @@ const useSidebarLogoStyles = makeStyles({
     width: sidebarConfig.drawerWidthClosed,
     marginLeft: 24,
   },
+  hideItem: {
+    display: 'none',
+  },
+  showItem : {
+    display: 'flex',
+  }
 });
 
 const SidebarLogo = () => {
@@ -74,14 +80,6 @@ const SidebarLogo = () => {
   );
 };
 
-const DatadogSidebarItem = () => {
-  const { flagState } = useContext(FlagContext);
-  if (flagState) {
-    return (<SidebarItem icon={BarChartIcon} to="datadog" text="Datadog" />)
-  }
-  return null;
-}
-
 export const Root = ({ children }: PropsWithChildren<{}>) => {
 
   return(
@@ -95,12 +93,12 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarItem icon={ListIcon} to="catalog" text="Catalog" />
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
-        <DatadogSidebarItem />
+        <HideableSidebarItem flagName='datadog-dashboard' to="datadog" text="Datadog" icon={BarChartIcon}/>
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
         <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
         {/* End global nav */}
         <SidebarDivider />
-        <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
+        <HideableSidebarItem flagName='radar-dashboard' to="tech-radar" text="Tech Radar" icon={MapIcon}/>
         <SidebarItem icon={MenuBookIcon} to="/starter-guide" text="Starter Guide" />
         <SidebarSpace />
         <SidebarDivider />

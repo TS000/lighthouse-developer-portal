@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
@@ -111,16 +111,35 @@ const routes = (
     <Route path="/search" element={<SearchPage />} />
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/feature-flags" element={<FeatureFlagsPage />} />
-    <Route path="/starter-guide" element={<StarterGuidePage />}/>
+    <Route path="/starter-guide" element={<StarterGuidePage />} />
   </FlatRoutes>
 );
 
-const App = () => { 
-  const [ flagState, setFlagState ] = useState(false);
+const App = () => {
+  const [flagState, setFlagState] = useState({})
+  const currentFlags = ['datadog-dashboard', 'radar-dashboard']
+  useEffect(() => {
+    const loadLocalStorage = async () => {
+      const activeFlags = await localStorage.getItem('featureFlags') || ''
+      setFlagState(JSON.parse(activeFlags))
+    }
+    loadLocalStorage()
+  }, [])
 
+  const toggleFlag = (flagName: string, flatState: boolean) => {
+    setFlagState({
+      ...flagState,
+      [flagName]: flatState
+    })
+  }
+  const value = {
+    flagState,
+    toggleFlag,
+    currentFlags,
+  }
   return (
     <AppProvider>
-      <FlagContext.Provider value={{ flagState, setFlagState }}>
+      <FlagContext.Provider value={value}>
         <FeatureFlagRegistry />
         <AlertDisplay />
         <OAuthRequestDialog />
