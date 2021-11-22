@@ -7,7 +7,7 @@ import {
   Tooltip,
 } from '@material-ui/core';
 import { FeatureFlag } from '@backstage/core-plugin-api';
-import { FlagContext } from './FeatureFlagContext';
+import { FlagContext } from '.';
 import { useFeatureFlags } from '..';
 
 type Props = {
