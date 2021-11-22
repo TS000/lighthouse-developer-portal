@@ -88,6 +88,10 @@ catalog:
   rules:
     - allow: [Component, System, API, Group, User, Template, Location]
   locations:
+    # Scans all repos for catalog-info.yaml in department-of-veterans-affairs
+    - type: github-discovery
+      target: https://github.com/department-of-veterans-affairs/lighthouse-*
+
     # Backstage example components
     - type: url
       target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml

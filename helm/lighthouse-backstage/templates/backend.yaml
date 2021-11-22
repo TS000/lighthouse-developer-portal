@@ -49,10 +49,6 @@ spec:
           env:
             - name: HOST
               value: {{ .Values.HOST }}
-            - name: GH_CLIENT_ID
-              value: {{ .Values.GH_CLIENT_ID }}
-            - name: GH_CLIENT_SECRET
-              value: {{ .Values.GH_CLIENT_SECRET }}
           envFrom:
             - secretRef:
                 name: {{ include "lighthouse-backstage.fullname" . }}-secrets
@@ -88,3 +84,5 @@ metadata:
 type: Opaque
 data:
   GH_TOKEN: {{ .Values.GH_TOKEN }}
+  GH_CLIENT_ID: {{ .Values.GH_CLIENT_ID | b64enc }}
+  GH_CLIENT_SECRET: {{ .Values.GH_CLIENT_SECRET | b64enc }}
