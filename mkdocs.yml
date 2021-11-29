@@ -27,8 +27,9 @@ nav:
       - Investigate Pact: RFC/investigate-pact.md
       - Environment Promotion: RFC/env-promotion.md
       - Custom Actions: RFC/custom-actions.md
-      - RFC GitHub Access: RFC/github-access.md
+      - GitHub Access: RFC/github-access.md
       - Google Analytics: RFC/google-analytics.md
+      - Browser Logs: RFC/browser-logs.md
   - Decision Records:
       - Yarn Zero Install: ADR/zero-install.md
       - Split FE/BE: ADR/split-fe-be.md

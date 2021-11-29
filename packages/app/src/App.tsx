@@ -24,7 +24,7 @@ import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { Root } from './components/Root';
 import { HomePage } from './components/homepage';
-import { Datadog } from './components/datadog/Datadog';
+import { initDatadogLogs, Datadog } from './components/datadog';
 import { searchPage } from './components/search/SearchPage';
 import { lightThemeVA, darkThemeVA } from './themes/index';
 import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
@@ -41,6 +41,8 @@ const githubProvider: SignInProviderConfig = {
   message: 'Sign in using GitHub',
   apiRef: githubAuthApiRef,
 };
+
+initDatadogLogs();
 
 const app = createApp({
   apis,

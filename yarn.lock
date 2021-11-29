@@ -2563,6 +2563,21 @@
   dependencies:
     tslib "^1.10.0"
 
+"@datadog/browser-core@3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@datadog/browser-core/-/browser-core-3.8.0.tgz#5f9b694331512b9b25b585f483e2428ff16ae44b"
+  integrity sha512-JC2t2wEvXuqaxOOXP1a7CAEP8WZW9rdtQLeMc65E/5G6Ir1baSghEU3ajEwnzw0bSaJtz6jUJPJHqek5TrHbKw==
+  dependencies:
+    tslib "^1.10.0"
+
+"@datadog/browser-logs@^3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@datadog/browser-logs/-/browser-logs-3.8.0.tgz#14e136e4aa248873951eadea079b8d36c5239b8c"
+  integrity sha512-OuLuuT8OKTgEaF9hikpMdT7dvmPPtaBVI8q0Q59jizdLiuL6oiBCzoF28Z01q7GTbHLWSQTMP8skJkap55e8mg==
+  dependencies:
+    "@datadog/browser-core" "3.8.0"
+    tslib "^1.10.0"
+
 "@datadog/browser-rum-core@3.7.0":
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/@datadog/browser-rum-core/-/browser-rum-core-3.7.0.tgz#dfeab3dcb5d726362af43986ae11822c4bfc3c10"
