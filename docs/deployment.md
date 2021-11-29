@@ -1,200 +1,203 @@
-# Automated workflows and infrastructure (WIP)
+# Deployment (WIP)
 
-[![Collaborate on HackMD](https://hackmd.io/LGwdWMlvTOOfyXBzLw9hyg/badge)](https://hackmd.io/LGwdWMlvTOOfyXBzLw9hyg)
+## Deployment process overview
+```plantuml
+participant "Trigger"
+box "lighthouse-backstage"
+participant "Create release action" as builder
+queue "GitHub" as platform
+database "GCR" as storage
+end box
+box "lighthouse-backstage-deployment"
+participant "Deployment action" as depaction
+database "Deployment repo" as drepo
+end box
+box VA Network
+participant "ArgoCD" as deployer
+participant "EKS" as runner
+end box
+Trigger -> builder: trigger release
+note right
+Dev or cron job
+end note
+group Embark deployment
+builder->storage: release Docker images
+builder->platform: create deployment
+platform->depaction: trigger deploy webhook
+depaction-> drepo: commit new deployment
+depaction->o platform: create deploy success status
+end
+group ArgoCD sync
+loop ArgoCD sync
+    deployer->drepo: get latest deployment
+    drepo->deployer: return deployment
+end
+deployer->runner: run helm chart
+else change detected
+runner->storage : GET new Docker images
+storage->runner : return new Docker images
+end
+```
+- There are two automated processes for deployment:
+    - The **Embark deployment** handles the creation and tagging of docker images, the creation of GitHub deployments, and the management of deployment definitions. These processes **push** changes.
+    - The **Argo sync** handles the synchronization of deployment definitions between the deployment repo and Kubernetes. These processes **pull** when changes are detected.
 
-_This is a draft and does not represent current state._
+### Embark deployment detail
+- The deployment repo contains a **values file** for each environment e.g. /dev.yaml.
+- The goal of this process is to update the **values file** for the **target environment** with the correct **application version**.
+    - ArgoCD (not diagrammed) is configured to use a specific **values file** for each environment
+    - The **values file** contains the dynamic elements of the deployment definition such as the **application version**.
+- The Docker image has a **version tag** that  Kubernetes uses to select the correct Docker image. This **version tag** is defined in the `templates/deployment.yaml` as `spec.template.spec.containers.image`
 
-## Application deployment
+```plantuml
+(values.yaml) as (val)
+(templates/Deployment.yaml) as (template)
+(Helm)
+(Deployment.yaml) as (output)
+val -> Helm
+template -> Helm
+Helm -> output
+output -> (ArgoCD)
+```
+
+#### Embark deployment automation
+
+```plantuml
+participant "Trigger"
+box "lighthouse-backstage"
+participant "Create release action" as builder
+queue "GitHub" as platform
+database "GCR" as storage
+end box
+box "lighthouse-backstage-deployment"
+participant "Deployment action" as depaction
+database "Deployment repo" as drepo
+end box
+Trigger -> builder: trigger release
+note right
+Developer or cron job
+end note
+group Embark deployment
+builder->storage: release Docker images
+else Frontend image change
+group Frontend deployment
+builder->platform: POST create frontend deployment
+note right: dev environment
+platform->depaction: POST deploy webhook
+depaction-> drepo: commit app version update
+depaction->o platform: create deploy success
+end
+else Backend image change
+group Backend deployment
+builder->platform: POST create backend deployment
+note right: dev environment
+platform->depaction: POST deploy webhook
+depaction-> drepo: commit app version update
+depaction->o platform: POST create deploy success
+end
+end
+```
+
+
+- _release docker images_:
+    - The **Create release action** adds a **version tag** to Docker images using package.json version it was built from.
+- _create environment deployment_:
+    - The **Create release action** creates a **[deployment](https://docs.github.com/en/rest/guides/delivering-deployments)** in GitHub for the **target environment** and the version in the **version tag**
+- _deploy webhook_:
+    -  GitHub POSTs to a **deploy webhook** which triggers the **Deployment action**
+    - The webhook contains the  **target environment** and **version tag**
+- _commit app version update_:
+    - The **Deployment action** uses the **target environment** to determine which **values file** to update
+    - The **Deployment action** commits an update to the **values file** with the **version tag**
+- _create deploy success_:
+    - The **Deployment action** creates a deployment success status
+## Deployment to dev environment
+```plantuml
+actor Developer as dev
+box "lighthouse-backstage"
+participant "Create release action" as builder
+queue "GitHub" as platform
+database "GCR" as storage
+end box
+box "lighthouse-backstage-deployment"
+participant "Deployment action" as depaction
+database "Deployment repo" as drepo
+end box
+box VA Network
+participant "ArgoCD" as deployer
+participant "EKS" as runner
+end box
+dev -> builder: Merge PR into main
+group Embark deployment
+builder-> drepo: Create dev deployment
+end
+builder -> dev: Notify
+group ArgoCD sync
+runner->storage : Sync docker image
+storage->runner : Deploy to staging
+end
+```
+*See overview and detail in previous sections for more info*
+
+- The developer goes through the PR process.
+    - The CI performs automated validations on the feature branch.
+    - A peer reviews and approves the change.
+- The developer merges the feature branch.
+    - The CI performs automated validations on the _latest commit_ of the main branch.
+        - This is done synchronously to avoid race conditions.
+- The **Create release action** add a **version tag** to the image using the git commit SHA.
+- The **Create release action** creates a deployment using that **version tag** and dev as the **target environment**
+- **ArcoCD** syncs the update and the new version is deployed to dev.
+
+
+## Deployment to staging and production
 
 ```plantuml
 actor Developer as dev
-box "Internet"
-participant "Github Action" as builder
-database "GitHub Artifacts" as storage
+box "lighthouse-backstage"
+participant "Create release action" as builder
+queue "GitHub" as platform
+database "GCR" as storage
+end box
+box "lighthouse-backstage-deployment"
+participant "Deployment action" as depaction
+database "Deployment repo" as drepo
 end box
 box VA Network
-participant "Jenkins" as deployer
-participant "ECS / Fargate" as runner
+participant "ArgoCD" as deployer
+participant "EKS" as runner
 end box
-dev->builder : merge into main
-builder->builder: build container artifact
-builder->storage : save container artifact
-builder->deployer: POST deploy webhook
-deployer->builder : return link to deploy job view?
-builder->builder : log deployment watch link
-deployer->storage : GET container artifact
-storage->deployer : return container artifact
-deployer->runner : deploy container
+builder -> builder: Create Changeset PR
+group Embark deployment
+builder-> drepo: Create staging deployment
+end
+builder -> dev: Notify
+group ArgoCD sync
+runner->storage : Sync docker image
+storage->runner : Deploy to staging
+end
+dev -> builder: Merge release PR
+builder-> platform : Publish release notes
+group Embark deployment
+builder-> drepo: Create production deployment
+end
+group ArgoCD sync
+runner->storage : Sync docker image
+storage->runner : Deploy to production
+end
 ```
+*See overview and detail in previous sections for more info*
 
-## TechDocs publication
+- The **Create release action** is started with a cron job
+- The Changeset bot is run and a new release branch and PR are created
+- The application version is incremented in `package.json`
+- The **Embark deployment** process is triggered.
+    - The Docker images are released with the branch commit SHA as the **version tag**
+    - This image is deployed to staging.
+- The developer merges the release PR
+- The **Create release action** creates the release notes.
+- The **Embark deployment** process is triggered.
+    - The Docker images that were deployed to staging are tagged with the new application version as the **version tag**.
+    - **Important**: _The image on production must match the image that was deployed and verified on staging_.
+    - This image is deployed to production.
 
-```plantuml
-participant Dispatcher as dispatcher
-box Internet
-participant "Github Action" as builder
-database "Github Artifacts" as buildStorage
-end box
-box VA Network
-participant "Jenkins" as publisher
-database "S3" as hostStorage
-end box
-dispatcher->builder : dispatch build publish
-builder->builder: build web artifact (tar)
-builder->buildStorage : save web tar
-builder->publisher: POST publish webhook
-publisher->builder : return link to publish job view
-builder->builder : log deployment watch link
-publisher->buildStorage : GET web tar
-buildStorage->publisher : return web tar
-publisher->hostStorage : untar and sync files
-```
-
-#### Jenkins environment variables
-
-| Name                    | Description  |
-| ----------------------- | ------------ |
-| TECHDOCS_S3_BUCKET_NAME |              |
-| AWS_ACCESS_KEY_ID       | AWS IAM user |
-| AWS_SECRET_ACCESS_KEY   |              |
-| AWS_REGION              |              |
-
-#### Minimum IAM user access policy
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "s3:PutObject",
-            ],
-            "Resource": [
-                "arn:aws:s3:::TECHDOCS_S3_BUCKET_NAME/*",
-                "arn:aws:s3:::TECHDOCS_S3_BUCKET_NAME"
-            ]
-        }
-    ]
-}
-```
-
-## Backstage backend components
-
-```plantuml
-left to right direction
-node browser{
-  package "Backstage frontend"
-}
-cloud "AWS\n"{
-  component "PostgreSQL" as postgresql
-  package container as "Backstage backend container"{
-    [Catalog]
-    [TechDocs]
-    [GitHub OAuth]
-    [Express]
-    REST - Express
-  }
-
-  [S3]
-  [Catalog] --> [postgresql] : read write
-  [TechDocs] --> [S3] : read
-  [Backstage frontend] --> REST
-}
-note top of [Backstage frontend]
-  Hosted from Backstage
-  backend container
-end note
-
-cloud "GitHub\n" {
-  interface "REST" as RepoAPI
-  interface "REST" as OrgAPI
-  interface "REST" as OAuth
-  OrgAPI - [Organization]
-  RepoAPI - [Repository]
-  OAuth - [User Identity]
-  [Catalog] --> OrgAPI : read
-  [Catalog] --> RepoAPI : read
-  [GitHub OAuth] --> OAuth
-}
-```
-
-#### Backstage backend container environment variables
-
-| Name                      | Description                  | Privileges, permissions                                   |
-| ------------------------- | ---------------------------- | --------------------------------------------------------- |
-| GITHUB_TOKEN              | GitHub Personal Access Token | admin:org:read:org, user:read:user                        |
-| AUTH_GITHUB_CLIENT_ID     | GitHub OAuth                 |                                                           |
-| AUTH_GITHUB_CLIENT_SECRET |                              |                                                           |
-| TECHDOCS_S3_BUCKET_NAME   |                              |                                                           |
-| AWS_ACCESS_KEY_ID         | AWS IAM user                 |                                                           |
-| AWS_SECRET_ACCESS_KEY     |                              |                                                           |
-| AWS_REGION                |                              |                                                           |
-| POSTGRES_USER             | PostgreSQL instance user     | SELECT, INSERT, UPDATE, DELETE, TRUNCATE, CREATE, CONNECT |
-| POSTGRES_HOST             |                              |                                                           |
-| POSTGRES_PORT             |                              |                                                           |
-| POSTGRES_PASSWORD         |                              |                                                           |
-
-#### Minimum IAM user policy
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "s3:GetObject",
-                "s3:ListBucket"
-            ],
-            "Resource": [
-                "arn:aws:s3:::TECHDOCS_S3_BUCKET_NAME/*",
-                "arn:aws:s3:::TECHDOCS_S3_BUCKET_NAME"
-            ]
-        }
-    ]
-}
-```
-
-## Backstage frontend components
-
-```plantuml
-left to right direction
-cloud "AWS\n" {
-  package container as "Backstage backend container" {
-    interface BackstageAPI as "REST"
-    BackstageAPI - [Express]
-  }
-}
-
-node browser {
-    package "Backstage frontend" {
-
-    node "GitHub Plugins\n" {
-      [GitHub OAuth] --> BackstageAPI
-      [GitHub Pull Requests]
-      [GitHub Actions]
-      [GitHub Code Insights]
-      [GitHub Security Insights]
-    }
-    node "Backstage Plugins\n" {
-      [Catalog] --> BackstageAPI : "read write"
-      [TechDocs] --> BackstageAPI : read
-    }
-  }
-}
-
-cloud "GitHub\n" {
-  interface "REST" as RepoAPI
-  interface "REST" as OAuth
-  RepoAPI - [Repository]
-  OAuth - [User Identity]
-  [GitHub OAuth] --> [OAuth]
-  [GitHub Pull Requests] --> RepoAPI : read
-  [GitHub Actions] --> RepoAPI : read
-  [GitHub Code Insights] --> RepoAPI : read
-  [GitHub Security Insights] --> RepoAPI : read
-}
-```
