@@ -15,6 +15,7 @@ nav:
   - Catalog Entry: catalog-entry.md
   - GitHub Packages: github-packages.md
   - Starter Guide: starter-guide.md
+  - GHA Dependencies: gha-dependencies.md
   - RFCs:
       - Doc Generator: RFC/doc-generator.md
       - CI/CD Modifications: RFC/ci-cd.md
