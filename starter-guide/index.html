@@ -672,10 +672,11 @@
                 
                 
                 <h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
-<p>The Backstage Software Catalog is a centralized system that keeps track of ownership and metadata for all the software in your ecosystem (services, websites, libraries, data pipelines, etc). The catalog is built around the concept of metadata YAML files stored together with the code, which are then harvested and visualized in Backstage.</p>
-<p>More Information about Backstage's <a href="https://backstage.io/docs/features/software-catalog/software-catalog-overview">Software Catalog</a></p>
+<p>Embark is an implementation of <a href="https://backstage.io/">Backstage</a>.</p>
+<p>The Embark Software Catalog is a centralized system that keeps track of ownership and metadata for all the software in your ecosystem (services, websites, libraries, data pipelines, etc). The catalog is built around the concept of metadata YAML files stored together with the code, which are then harvested and visualized in Embark.</p>
+<p>More Information about Embark's <a href="https://backstage.io/docs/features/software-catalog/software-catalog-overview">Software Catalog</a></p>
 <h1 id="adding-a-catalog-entity">Adding a Catalog Entity<a class="headerlink" href="#adding-a-catalog-entity" title="Permanent link">&para;</a></h1>
-<p>Backstage identifies catalog entities by scanning every repository in an organization and looking for a <code>catalog-info.yaml</code> file in the root of the repository. The <code>catalog-info.yaml</code> file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other Backstage users who may wish to use your application.</p>
+<p>Embark identifies catalog entities by scanning every repository in an organization and looking for a <code>catalog-info.yaml</code> file in the root of the repository. The <code>catalog-info.yaml</code> file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other Embark users who may wish to use your application.</p>
 <h2 id="creating-an-entity-descriptor-file">Creating an Entity Descriptor File<a class="headerlink" href="#creating-an-entity-descriptor-file" title="Permanent link">&para;</a></h2>
 <p>In the root directory of your application, create a <code>catalog-info.yaml</code> file:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -694,8 +695,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: lighthouse-backstage
-  description: An example of a Backstage application.
+  name: embark
+  description: An example of a embark application.
   annotations:
     backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-backstage
     github.com/project-slug: department-of-veterans-affairs/lighthouse-backstage
