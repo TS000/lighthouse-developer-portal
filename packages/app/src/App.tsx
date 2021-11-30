@@ -26,10 +26,12 @@ import { Root } from './components/Root';
 import { HomePage } from './components/homepage';
 import { initDatadogLogs, Datadog } from './components/datadog';
 import { searchPage } from './components/search/SearchPage';
-import { lightThemeVA, darkThemeVA } from './themes/index';
 import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFLagRegistry';
 import { StarterGuidePage } from '@internal/plugin-starter-guide';
+
+import { lightThemeVA, darkThemeVA } from './themes/index';
+import { ThemeProvider, CssBaseline } from '@material-ui/core';
 
 import { AlertDisplay, OAuthRequestDialog, SignInProviderConfig, SignInPage } from '@backstage/core-components';
 import { createApp, FlatRoutes } from '@backstage/core-app-api';
@@ -68,13 +70,21 @@ const app = createApp({
       id: 'light-theme',
       title: 'Light Theme',
       variant: 'light',
-      theme: lightThemeVA,
+      Provider: ({ children }) => (
+        <ThemeProvider theme={lightThemeVA}>
+          <CssBaseline>{children}</CssBaseline>
+        </ThemeProvider>
+      ),
     },
     {
       id: 'dark-theme',
       title: 'Dark Theme',
       variant: 'dark',
-      theme: darkThemeVA,
+      Provider: ({ children }) => (
+        <ThemeProvider theme={darkThemeVA}>
+          <CssBaseline>{children}</CssBaseline>
+        </ThemeProvider>
+      ),
     },
   ],
 });
