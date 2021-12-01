@@ -28,7 +28,7 @@ jobs:
       matrix:
         type: [backend, frontend]
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Install dependencies
       uses: ./.github/actions/install-dependencies
     - name: Build and push image
