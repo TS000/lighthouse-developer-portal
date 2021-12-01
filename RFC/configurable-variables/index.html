@@ -10,16 +10,16 @@
       
       
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-5.3.2">
     
     
       
-        <title>Running Locally - example-docs</title>
+        <title>Configurable Variables - example-docs</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
       
       
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#use-codespaces-preferred-work-in-progress" class="md-skip">
+        <a href="#rfc-configurable-variables" class="md-skip">
           Skip to content
         </a>
       
@@ -60,7 +60,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href=".." title="example-docs" class="md-header-nav__button md-logo" aria-label="example-docs">
+    <a href="../.." title="example-docs" class="md-header-nav__button md-logo" aria-label="example-docs">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Running Locally
+              Configurable Variables
             
           </span>
         </div>
@@ -147,7 +147,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="example-docs" class="md-nav__button md-logo" aria-label="example-docs">
+    <a href="../.." title="example-docs" class="md-nav__button md-logo" aria-label="example-docs">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -177,7 +177,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
   </li>
@@ -189,7 +189,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../deployment/" title="Deployment" class="md-nav__link">
+    <a href="../../deployment/" title="Deployment" class="md-nav__link">
       Deployment
     </a>
   </li>
@@ -201,7 +201,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../local-k8s/" title="Deploy to Local Cluster (K8s/Minikube)" class="md-nav__link">
+    <a href="../../local-k8s/" title="Deploy to Local Cluster (K8s/Minikube)" class="md-nav__link">
       Deploy to Local Cluster (K8s/Minikube)
     </a>
   </li>
@@ -213,7 +213,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../dev-deploy/" title="Deploy to Dev Environment (K8s/Helm)" class="md-nav__link">
+    <a href="../../dev-deploy/" title="Deploy to Dev Environment (K8s/Helm)" class="md-nav__link">
       Deploy to Dev Environment (K8s/Helm)
     </a>
   </li>
@@ -223,76 +223,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Running Locally
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Running Locally" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../running-locally/" title="Running Locally" class="md-nav__link">
       Running Locally
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#use-codespaces-preferred-work-in-progress" class="md-nav__link">
-    Use Codespaces (preferred- work in progress)
-  </a>
-  
-    <nav class="md-nav" aria-label="Use Codespaces (preferred- work in progress)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-a-codespace" class="md-nav__link">
-    Create a Codespace
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-and-run-locally-with-docker-work-in-progress" class="md-nav__link">
-    Install and run locally with Docker (work in progress)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-and-run-locally-tbd" class="md-nav__link">
-    Install and run locally (TBD)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -302,7 +237,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../backstage-update/" title="Backstage Update" class="md-nav__link">
+    <a href="../../backstage-update/" title="Backstage Update" class="md-nav__link">
       Backstage Update
     </a>
   </li>
@@ -314,7 +249,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../helm/" title="Helm Charts" class="md-nav__link">
+    <a href="../../helm/" title="Helm Charts" class="md-nav__link">
       Helm Charts
     </a>
   </li>
@@ -326,7 +261,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../allstar/" title="Allstar" class="md-nav__link">
+    <a href="../../allstar/" title="Allstar" class="md-nav__link">
       Allstar
     </a>
   </li>
@@ -338,7 +273,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../cypress-troubleshooting/" title="Cypress Troubleshooting" class="md-nav__link">
+    <a href="../../cypress-troubleshooting/" title="Cypress Troubleshooting" class="md-nav__link">
       Cypress Troubleshooting
     </a>
   </li>
@@ -350,7 +285,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../pre-build-validation/" title="Pre-build Validation" class="md-nav__link">
+    <a href="../../pre-build-validation/" title="Pre-build Validation" class="md-nav__link">
       Pre-build Validation
     </a>
   </li>
@@ -362,7 +297,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../catalog-entry/" title="Catalog Entry" class="md-nav__link">
+    <a href="../../catalog-entry/" title="Catalog Entry" class="md-nav__link">
       Catalog Entry
     </a>
   </li>
@@ -374,7 +309,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../github-packages/" title="GitHub Packages" class="md-nav__link">
+    <a href="../../github-packages/" title="GitHub Packages" class="md-nav__link">
       GitHub Packages
     </a>
   </li>
@@ -386,7 +321,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../starter-guide/" title="Starter Guide" class="md-nav__link">
+    <a href="../../starter-guide/" title="Starter Guide" class="md-nav__link">
       Starter Guide
     </a>
   </li>
@@ -398,7 +333,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../gha-dependencies/" title="GHA Dependencies" class="md-nav__link">
+    <a href="../../gha-dependencies/" title="GHA Dependencies" class="md-nav__link">
       GHA Dependencies
     </a>
   </li>
@@ -408,10 +343,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15" checked>
     
     <label class="md-nav__link" for="nav-15">
       RFCs
@@ -435,7 +372,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/doc-generator/" title="Doc Generator" class="md-nav__link">
+    <a href="../doc-generator/" title="Doc Generator" class="md-nav__link">
       Doc Generator
     </a>
   </li>
@@ -447,7 +384,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/ci-cd/" title="CI/CD Modifications" class="md-nav__link">
+    <a href="../ci-cd/" title="CI/CD Modifications" class="md-nav__link">
       CI/CD Modifications
     </a>
   </li>
@@ -459,7 +396,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/catalog-import-research/" title="Catalog Import Research" class="md-nav__link">
+    <a href="../catalog-import-research/" title="Catalog Import Research" class="md-nav__link">
       Catalog Import Research
     </a>
   </li>
@@ -471,7 +408,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/node-app-logging/" title="Node App Logging" class="md-nav__link">
+    <a href="../node-app-logging/" title="Node App Logging" class="md-nav__link">
       Node App Logging
     </a>
   </li>
@@ -483,7 +420,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/docker-scanning/" title="Docker Scanning" class="md-nav__link">
+    <a href="../docker-scanning/" title="Docker Scanning" class="md-nav__link">
       Docker Scanning
     </a>
   </li>
@@ -495,7 +432,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/enforce-build-performance/" title="Enforce Build Performance" class="md-nav__link">
+    <a href="../enforce-build-performance/" title="Enforce Build Performance" class="md-nav__link">
       Enforce Build Performance
     </a>
   </li>
@@ -507,7 +444,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/investigate-esbuild-and-vite/" title="Investigate Esbuild and Vite" class="md-nav__link">
+    <a href="../investigate-esbuild-and-vite/" title="Investigate Esbuild and Vite" class="md-nav__link">
       Investigate Esbuild and Vite
     </a>
   </li>
@@ -519,7 +456,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/linting/" title="Linting Rules" class="md-nav__link">
+    <a href="../linting/" title="Linting Rules" class="md-nav__link">
       Linting Rules
     </a>
   </li>
@@ -531,7 +468,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/investigate-pact/" title="Investigate Pact" class="md-nav__link">
+    <a href="../investigate-pact/" title="Investigate Pact" class="md-nav__link">
       Investigate Pact
     </a>
   </li>
@@ -543,7 +480,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/env-promotion/" title="Environment Promotion" class="md-nav__link">
+    <a href="../env-promotion/" title="Environment Promotion" class="md-nav__link">
       Environment Promotion
     </a>
   </li>
@@ -555,7 +492,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/custom-actions/" title="Custom Actions" class="md-nav__link">
+    <a href="../custom-actions/" title="Custom Actions" class="md-nav__link">
       Custom Actions
     </a>
   </li>
@@ -567,7 +504,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/github-access/" title="GitHub Access" class="md-nav__link">
+    <a href="../github-access/" title="GitHub Access" class="md-nav__link">
       GitHub Access
     </a>
   </li>
@@ -579,7 +516,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/google-analytics/" title="Google Analytics" class="md-nav__link">
+    <a href="../google-analytics/" title="Google Analytics" class="md-nav__link">
       Google Analytics
     </a>
   </li>
@@ -589,11 +526,101 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../RFC/configurable-variables/" title="Configurable Variables" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Configurable Variables
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Configurable Variables" class="md-nav__link md-nav__link--active">
       Configurable Variables
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    Findings
+  </a>
+  
+    <nav class="md-nav" aria-label="Findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-the-application" class="md-nav__link">
+    Building the application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-environment-variables" class="md-nav__link">
+    Application Environment Variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variable-overrides" class="md-nav__link">
+    Environment Variable Overrides
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    Recommendation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -603,7 +630,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../RFC/browser-logs/" title="Browser Logs" class="md-nav__link">
+    <a href="../browser-logs/" title="Browser Logs" class="md-nav__link">
       Browser Logs
     </a>
   </li>
@@ -645,7 +672,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ADR/zero-install/" title="Yarn Zero Install" class="md-nav__link">
+    <a href="../../ADR/zero-install/" title="Yarn Zero Install" class="md-nav__link">
       Yarn Zero Install
     </a>
   </li>
@@ -657,7 +684,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ADR/split-fe-be/" title="Split FE/BE" class="md-nav__link">
+    <a href="../../ADR/split-fe-be/" title="Split FE/BE" class="md-nav__link">
       Split FE/BE
     </a>
   </li>
@@ -669,7 +696,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ADR/cypress-e2e-tests/" title="Cypress e2e Tests" class="md-nav__link">
+    <a href="../../ADR/cypress-e2e-tests/" title="Cypress e2e Tests" class="md-nav__link">
       Cypress e2e Tests
     </a>
   </li>
@@ -681,7 +708,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ADR/code-cov/" title="Ignore Backend Code Coverage" class="md-nav__link">
+    <a href="../../ADR/code-cov/" title="Ignore Backend Code Coverage" class="md-nav__link">
       Ignore Backend Code Coverage
     </a>
   </li>
@@ -693,7 +720,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ADR/vite/" title="Vite" class="md-nav__link">
+    <a href="../../ADR/vite/" title="Vite" class="md-nav__link">
       Vite
     </a>
   </li>
@@ -705,7 +732,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ADR/github-packages/" title="GitHub Packages" class="md-nav__link">
+    <a href="../../ADR/github-packages/" title="GitHub Packages" class="md-nav__link">
       GitHub Packages
     </a>
   </li>
@@ -730,6 +757,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
@@ -740,16 +769,44 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#use-codespaces-preferred-work-in-progress" class="md-nav__link">
-    Use Codespaces (preferred- work in progress)
+  <a href="#background" class="md-nav__link">
+    Background
   </a>
   
-    <nav class="md-nav" aria-label="Use Codespaces (preferred- work in progress)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    Findings
+  </a>
+  
+    <nav class="md-nav" aria-label="Findings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-a-codespace" class="md-nav__link">
-    Create a Codespace
+  <a href="#building-the-application" class="md-nav__link">
+    Building the application
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-environment-variables" class="md-nav__link">
+    Application Environment Variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variable-overrides" class="md-nav__link">
+    Environment Variable Overrides
   </a>
   
 </li>
@@ -760,15 +817,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-and-run-locally-with-docker-work-in-progress" class="md-nav__link">
-    Install and run locally with Docker (work in progress)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-and-run-locally-tbd" class="md-nav__link">
-    Install and run locally (TBD)
+  <a href="#recommendation" class="md-nav__link">
+    Recommendation
   </a>
   
 </li>
@@ -785,7 +835,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/running-locally.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/RFC/configurable-variables.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -793,78 +843,51 @@
                   
                 
                 
-                  <h1>Running Locally</h1>
-                
-                <h2 id="use-codespaces-preferred-work-in-progress">Use Codespaces (preferred- work in progress)<a class="headerlink" href="#use-codespaces-preferred-work-in-progress" title="Permanent link">&para;</a></h2>
-<p>This repo is configured to run a production-like environment in a GitHub <a href="https://github.com/features/codespaces">Codespace</a>.</p>
-<ol>
-<li>Generate a <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">personal access token</a> with the read:packages permission</li>
-<li>Add the following to your <a href="https://github.com/settings/codespaces">Codespace secrets</a>: </li>
-</ol>
-<p><em>For each secret, select only the lighthouse-backstage repository under <strong>Repository Access</strong>.</em></p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DEV_CONTAINER_REGISTRY_SERVER = ghcr.io
-DEV_CONTAINER_REGISTRY_USER = &lt;GitHub username&gt;
-DEV_CONTAINER_REGISTRY_PASSWORD = &lt;personal access token&gt;
-</code></pre></div>
-</td></tr></table>
-
-<ol>
-<li>Create a <a href="https://docs.github.com/en/codespaces">Codespace</a> for the <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage">lighthouse-backstage</a> repo. This option is available by clicking the green <strong>Code</strong> button. </li>
-<li>Run application:</li>
-</ol>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>yarn dev
-</code></pre></div>
-</td></tr></table>
-
-<h3 id="create-a-codespace">Create a Codespace<a class="headerlink" href="#create-a-codespace" title="Permanent link">&para;</a></h3>
-<p>You can create a new codespace by visiting the <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage">lighthouse-backstage repo</a> and by following the listed steps.</p>
-<p><strong>Prerequisites</strong>: 
-- Install <a href="https://code.visualstudio.com/">Visual Studio Code</a>
-- Install the Codespaces <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces">extension</a> into Visual Studio Code</p>
-<p><em>Note: The in-browser VS Code doesn't work properly with this project.</em></p>
-<ol>
-<li>Click the <code>&lt;&gt;</code> green button near the search and "+" buttons.</li>
-<li>A dropdown should open up with two tabs, one for "Local" and one for "Codespaces", click "Codespaces".</li>
-<li>Click "New codespace" and then click "Create codespace".</li>
-<li>You'll be taken to a new window that sets up the codespace. Click the "Open this codespace in VS Code Desktop" button.</li>
-<li>Otherwise, click the 3 horizontal lines icon in the upper left sidebar and click "Open in VS Code". You can refresh the page if you don't see this icon.</li>
-</ol>
-<h2 id="install-and-run-locally-with-docker-work-in-progress">Install and run locally with Docker (work in progress)<a class="headerlink" href="#install-and-run-locally-with-docker-work-in-progress" title="Permanent link">&para;</a></h2>
-<p><strong>Prerequisites</strong></p>
+                <h1 id="rfc-configurable-variables">[RFC] Configurable Variables<a class="headerlink" href="#rfc-configurable-variables" title="Permanent link">&para;</a></h1>
+<p><strong>Summary</strong>:</p>
+<p>As a requirement for our continuous integration process, we need to deploy the Embark application to multiple environments without rebuilding images for each environment. The purpose of this RFC is to identify the set of configurable variables Embark that can be managed independently of the deployment definition.</p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>Backstage uses a flexible configuration system designed to provide an simple way to configure Backstage applications for local or production environments. Configuration can be supplied through static configuration files, such as <code>app-config.yaml</code> for default configurations, and other files can be loaded by using <code>--config &lt;path&gt;</code> when using <code>backstage-cli</code> to build either <code>app</code> or <code>backend</code>.</p>
+<p>During the continuous integration pipeline, GitHub Actions create build assets for the Embark application using <code>backstage-cli</code>. Those build assets are then used to create two Docker images: one frontend image and one backend image. These images are used to create separate containers where the frontend and backend applications can run. </p>
+<p>Since the application images are created using <code>backstage-cli</code>, which loads the configuration from <code>app-config.yaml</code>, variables must be used as configuration values in the <code>app-config.yaml</code> to allow changes to the application configuration without rebuilding the application image.</p>
+<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
+<p>We want to leverage Backstage's application configuration system to streamline our continuous integration process so the Embark application can be deployed to multiple environments using a single build process. To take advantage of Backstage's application configuration system we need to identify all of the configuration variables required to deploy Embark.</p>
+<h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
+<h3 id="building-the-application">Building the application<a class="headerlink" href="#building-the-application" title="Permanent link">&para;</a></h3>
+<p>There are two scripts located in <code>package.json</code> that are used to build the frontend and backend assets:</p>
 <ul>
-<li>Install git</li>
-<li>Install Docker Desktop: <a href="https://docs.docker.com/docker-for-mac/install/">Mac</a>, <a href="https://docs.docker.com/docker-for-windows/install/">Windows</a></li>
+<li><code>"build backend": "yarn workspace @department-of-veterans-affairs/backend backstage-cli backend:bundle"</code>
+This script builds the backend bundle and copies the output to <code>packages/backend/dist</code>.</li>
 </ul>
-<ol>
-<li>Run</li>
-</ol>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sh local.sh start
-</code></pre></div>
-</td></tr></table>
-
-<ol>
-<li>After the application runs for the first time, copy <code>node_modules</code>. While the application is running, run this is a separate terminal:</li>
-</ol>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sh local.sh copy
-</code></pre></div>
-</td></tr></table>
-
-<p><strong>Caveats</strong></p>
 <ul>
-<li><em>What does this do</em>: This will install the application and its dependencies and then run the backend and frontend in separate containers. To ensure fast hot-reloading, <code>node_modules</code> and <code>postgreSQL db</code> are stored in a docker <a href="https://docs.docker.com/storage/volumes/">volume</a> and your local source files are mounted into the container.</li>
-<li><em>Why do you need to copy after the first run</em>: The application uses <code>node_modules</code> from Docker volume not your local files. Copy these locally so that dependencies resolve correctly in your editor.</li>
+<li><code>"build frontend": "cp app-config.yaml app-config.dev.yaml packages/app/ &amp;&amp; yarn workspace @department-of-veterans-affairs/app backstage-cli app:build --config app-config.yaml --config app-config.dev.yaml"</code>
+This script using the <code>--config</code> flag to specify what application configuration files are loaded. The default configuration is contained in <code>app-config.yaml</code>. The <code>app-config.dev.yaml</code> contains the configuration to deploy the application to <code>https://dev.devportal.name</code>. </li>
 </ul>
-<p><strong>Environment Variable Injection</strong></p>
-<p>The local dev environment is setup to use <a href="https://github.com/segmentio/chamber">chamber</a> for environment variable injection. A few changes need to be made before this will work.</p>
-<p>First you'll need to add a <code>.env</code> file within the <code>.localdevcontainer</code> folder. An <code>example.env</code> is available to copy from. Then, you need to uncomment the <code>ENTRYPOINT</code> located at the bottom of the local-Dockerfile, and comment <code>ENTRYPOINT [ "/entrypoint.sh" ]</code>. Running <code>sh local.sh.start</code> should now inject any environment variables stored within the SSM Parameter Store based on the values within <code>.env</code>. It'll grab any variables that start with <code>lighthouse-backstage</code>.</p>
-<h2 id="install-and-run-locally-tbd">Install and run locally (TBD)<a class="headerlink" href="#install-and-run-locally-tbd" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Use <a href="https://github.com/nvm-sh/nvm">nvm</a> to install node</li>
-<li>You will need to update the Backstage <a href="https://backstage.io/docs/conf/#docsNav">configuration</a> for running locally. Update these instructions if you try this out.</li>
-<li><code>app-config.yaml</code> is used for Codespaces and it is merged with <code>app-config.production.yaml</code> in production environments. Supporting Codespaces is the priorty so consider that when changing the way configurations are organized.</li>
-</ul>
+<p>From <a href="https://backstage.io/docs/conf/writing#configuration-files">Backstage Documentation:</a></p>
+<blockquote>
+<p>All loaded configuration files are merged together using the following rules:
+- Configurations have different priority, higher priority means you replace values from configurations with lower priority.
+- Primitive values are completely replaced, as are arrays and all of their contents.
+- Objects are merged together deeply, meaning that if any of the included configs contain a value for a given path, it will be found.</p>
+<p>The priority of the configurations is determined by the following rules, in order:
+- Configuration from the APP_CONFIG_ environment variables has the highest priority, followed by files.
+- Files loaded with config flags are ordered by priority, where the last flag has the highest priority.
+- If no config flags are provided, app-config.local.yaml has higher priority than app-config.yaml.</p>
+</blockquote>
+<h3 id="application-environment-variables">Application Environment Variables<a class="headerlink" href="#application-environment-variables" title="Permanent link">&para;</a></h3>
+<p><code>GH_TOKEN</code>: GitHub Token used by the application for making API requests to GitHub</p>
+<p><code>GH_CLIENT_ID</code>: GitHub OAuth Client ID </p>
+<p><code>GH_CLIENT_SECRET</code>:  GitHub OAuth Client Secret</p>
+<p><strong>The following are not currently implemented:</strong></p>
+<p><code>POSTGRES_HOST</code>: Host URL used for Postgres Database connection</p>
+<p><code>POSTGRES_PORT</code>: Port used for Postgres Database connection</p>
+<p><code>POSTGRES_USER</code>: Username for Postgres Database authentication</p>
+<p><code>POSTGRES_PASSWORD</code>: Password for Postgres Database authentication</p>
+<h3 id="environment-variable-overrides">Environment Variable Overrides<a class="headerlink" href="#environment-variable-overrides" title="Permanent link">&para;</a></h3>
+<p>Backstage's <a href="https://backstage.io/docs/conf/writing#environment-variable-overrides">documentation</a> outlines how to override environment variables using the prefix <code>APP_CONFIG</code> and replacing <code>.</code> with <code>-</code> (i.e. <code>app.baseUrl</code> becomes <code>APP_CONFIG_app_baseUrl</code>). Since the <code>baseUrl</code> must be statically defined, the value can be provided within the <code>app-config.production.yaml</code> but overridden for staging or testing environments.</p>
+<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
+<p>We can replace <code>app-config.dev.yaml</code> with <code>app-config.production.yaml</code>. In the <code>app-config.production.yaml</code> we would statically define the baseUrl used for our application in production. The application configuration would consist of the default <code>app-config.yaml</code> and the <code>app-config.production.yaml</code> for the build process.</p>
+<p>To deploy to dev, sandbox, qa, or any other intermediary environment we would use environment variable overrides to override the values of <code>app.baseUrl</code>, <code>backend.baseUrl.</code>, and <code>backend.cors.connection</code>. These value overrides could be provided to each container using a ConfigMap with Helm providing the values passed through the command line interface. </p>
                 
               
               
@@ -883,7 +906,7 @@ DEV_CONTAINER_REGISTRY_PASSWORD = &lt;personal access token&gt;
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../dev-deploy/" title="Deploy to Dev Environment (K8s/Helm)" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../google-analytics/" title="Google Analytics" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -892,19 +915,19 @@ DEV_CONTAINER_REGISTRY_PASSWORD = &lt;personal access token&gt;
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Deploy to Dev Environment (K8s/Helm)
+                Google Analytics
               </div>
             </div>
           </a>
         
         
-          <a href="../backstage-update/" title="Backstage Update" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../browser-logs/" title="Browser Logs" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Backstage Update
+                Browser Logs
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -931,15 +954,15 @@ DEV_CONTAINER_REGISTRY_PASSWORD = &lt;personal access token&gt;
       
     </div>
     
-      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../assets/javascripts/bundle.7f4f3c92.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7f4f3c92.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
-          base: "..",
+          base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
