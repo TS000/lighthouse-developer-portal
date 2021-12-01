@@ -28,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with: 
+          ref: 'main'
       - uses: ./.github/actions/validate-unit-tests
         with:
           SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
@@ -40,6 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with: 
+        ref: 'main'
     - name: Install dependencies
       uses: ./.github/actions/install-dependencies
     - name: Run linting
@@ -49,6 +53,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: 'main'
     - name: Generate cognitive complexity results
       id: cognitive-complexity
       uses: ./.github/actions/assess-code-quality
