@@ -22,7 +22,7 @@ on:
 
 The jobs section contains 3 jobs:
 - unit-tests
-    - This job references the workflow for our [unit tests workflow](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/.github/workflows/unit-tests.yml). The commit SHA is used to identify which version of the workflow we want to use. If `unit-tests.yml` is updated, then the commit SHA will need to be updated in order for the pre-build validation workflow to use the correct version of `unit-tests.yml`. 
+    - This job references the workflow for our [unit tests workflow](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/.github/workflows/unit-tests.yml). The commit SHA is used to identify which version of the workflow we want to use. If `unit-tests.yml` is updated, then the commit SHA will need to be updated in order for the pre-build validation workflow to use the correct version of `unit-tests.yml`.
 - validate-unit-tests
     - This job interprets the results of the unit test job. If the unit tests were successful, it logs a message and the link to the unit-test run. If the unit tests failed, it posts a message to the `team-bandicoot` Slack channel to alert the team engineers that a changes containing failing unit tests have been merged to the `main` branch. This job will only run when the `pre-build validation` workflow is triggered by the `workflow_call` event which only occurs on merges with the `main` branch.
 - validate linting
@@ -39,7 +39,7 @@ jobs:
       needs: [unit-tests]
       if: ${{ github.event_name == 'workflow_call' }}
       steps:
-        - uses: actions/checkout@v1
+        - uses: actions/checkout@v2
         - uses: ./.github/actions/validate-unit-tests
           with:
             SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
@@ -51,7 +51,7 @@ jobs:
   validate-linting:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Install dependencies
       uses: ./.github/actions/install-dependencies
     - name: Run linting

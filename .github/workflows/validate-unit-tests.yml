@@ -32,8 +32,8 @@ jobs:
         conclusion=$(echo $workflow | jq -r .conclusion)
         echo ::set-output name=conclusion::$conclusion
         echo ::set-output name=url::$url
-   
-    
+
+
   tests-successful:
     runs-on: ubuntu-latest
     needs: get-test-results

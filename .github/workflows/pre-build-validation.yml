@@ -3,31 +3,31 @@ name: Pre-build Validation
 on:
   workflow_call:
     secrets:
-      SLACK_UID_001: 
+      SLACK_UID_001:
         description: 'Slack User ID 1'
         required: true
-      SLACK_UID_002: 
+      SLACK_UID_002:
         description: 'Slack User ID 2'
         required: true
-      SLACK_UID_003: 
+      SLACK_UID_003:
         description: 'Slack User ID 3'
         required: true
-      SLACK_UID_004: 
+      SLACK_UID_004:
         description: 'Slack User ID 4'
         required: true
       SLACK_WEBHOOK_URL:
         description: 'Slack Webhook Url to post slack messages'
-        required: true 
+        required: true
       DATADOG_API_KEY:
         description: 'Datadog API key used to send metrics to Datadog'
         required: true
 
-# Need to consolidate and add unit-tests.yml to this workflow 
+# Need to consolidate and add unit-tests.yml to this workflow
 jobs:
   validate-unit-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: ./.github/actions/validate-unit-tests
         with:
           SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
@@ -39,7 +39,7 @@ jobs:
   validate-linting:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Install dependencies
       uses: ./.github/actions/install-dependencies
     - name: Run linting
@@ -48,7 +48,7 @@ jobs:
   assess-code-quality:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Generate cognitive complexity results
       id: cognitive-complexity
       uses: ./.github/actions/assess-code-quality
