@@ -30,7 +30,9 @@ nav:
       - Custom Actions: RFC/custom-actions.md
       - GitHub Access: RFC/github-access.md
       - Google Analytics: RFC/google-analytics.md
+      - Configurable Variables: RFC/configurable-variables.md
       - Browser Logs: RFC/browser-logs.md
+
   - Decision Records:
       - Yarn Zero Install: ADR/zero-install.md
       - Split FE/BE: ADR/split-fe-be.md
