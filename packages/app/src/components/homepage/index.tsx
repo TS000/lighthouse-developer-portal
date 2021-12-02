@@ -1,6 +1,7 @@
 import { Grid, Button } from '@material-ui/core';
 import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
+import { MaintenanceBanner } from '../MaintenanceBanner/MaintenanceBanner';
 import { Content, Header, InfoCard, Page } from '@backstage/core-components';
 
 const homepage: any = {
@@ -22,6 +23,7 @@ export const HomePage = () => {
   return (
     <Page themeId="home">
       <Header title="DVP Developer Portal Homepage" />
+      <MaintenanceBanner />
       <Content>
         <Wrapper>
           <InfoCard title="Starter Guide" subheader="A guide to getting started with Backstage.">
