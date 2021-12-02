@@ -1074,11 +1074,17 @@ Login Successful!
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DOCKERCONFIGJSON=&lt;base64 encoded json string&gt;
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DOCKERCONFIGJSON=&lt;base64 encoded json string&gt;
 GH_TOKEN=&lt;base64 encoded github_token&gt;
 HOST=&lt;host url&gt;
 GH_CLIENT_ID=&lt;GH OAuth Client ID&gt;
 GH_CLIENT_SECRET=&lt;GH OAuth Client Secret&gt;
+NONPROD=true
+BASE_URL=https://dev.devportal.name
+GATEWAY=istio-system/dev-devportal-name-gateway
 ...
 </code></pre></div>
 </td></tr></table></li>
@@ -1091,7 +1097,7 @@ GH_CLIENT_SECRET=&lt;GH OAuth Client Secret&gt;
 </ul>
 <ul>
 <li>Install the Helm chart and set secrets using <code>--set</code>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade backstage-dev helm/lighthouse-backstage/ --debug --values helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --install --atomic --cleanup-on-fail --history-max 5
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade backstage-dev helm/lighthouse-backstage/ --debug --values helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set GATEWAY=$GATEWAY --set BACKEND_PORT=5432 --install --atomic --cleanup-on-fail --history-max 5
 </code></pre></div>
 </td></tr></table></li>
 </ul>
