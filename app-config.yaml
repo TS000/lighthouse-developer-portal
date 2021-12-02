@@ -2,6 +2,11 @@ app:
   title: DVP Developer Portal
   baseUrl: http://127.0.0.1:3000
 
+  # Analytics
+  analytics:
+    ga:
+      trackingId: G-EDWJCLSXGT
+
   # datadogRum:
   #   clientToken: ${DATADOG_CLIENT_TOKEN}
   #   applicationId: ${DATADOG_APPLICATION_ID}

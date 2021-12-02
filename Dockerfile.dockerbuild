@@ -29,6 +29,8 @@ WORKDIR /app
 RUN yarn install
 RUN yarn workspace @department-of-veterans-affairs/app build
 
+COPY /packages/app/nginx /app/packages/app/dist
+
 FROM nginx:mainline
 
 RUN apt-get update && apt-get -y install jq && rm -rf /var/lib/apt/lists/*
