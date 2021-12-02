@@ -41,7 +41,6 @@ import {
 } from '@backstage/core-components';
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionNumber } from '../versionNumber/VersionNumber';
-import versionNumber from '../../version.json'
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -59,9 +58,9 @@ const useSidebarLogoStyles = makeStyles({
   hideItem: {
     display: 'none',
   },
-  showItem : {
+  showItem: {
     display: 'flex',
-  }
+  },
 });
 
 const SidebarLogo = () => {
@@ -83,8 +82,7 @@ const SidebarLogo = () => {
 };
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
-
-  return(
+  return (
     <SidebarPage>
       <Sidebar>
         <SidebarLogo />
@@ -95,13 +93,27 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarItem icon={ListIcon} to="catalog" text="Catalog" />
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
-        <HideableSidebarItem flagName='datadog-dashboard' to="datadog" text="Datadog" icon={BarChartIcon}/>
+        <HideableSidebarItem
+          flagName="datadog-dashboard"
+          to="datadog"
+          text="Datadog"
+          icon={BarChartIcon}
+        />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
         <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
         {/* End global nav */}
         <SidebarDivider />
-        <HideableSidebarItem flagName='radar-dashboard' to="tech-radar" text="Tech Radar" icon={MapIcon}/>
-        <SidebarItem icon={MenuBookIcon} to="/starter-guide" text="Starter Guide" />
+        <HideableSidebarItem
+          flagName="radar-dashboard"
+          to="tech-radar"
+          text="Tech Radar"
+          icon={MapIcon}
+        />
+        <SidebarItem
+          icon={MenuBookIcon}
+          to="/starter-guide"
+          text="Starter Guide"
+        />
         <SidebarSpace />
         <SidebarDivider />
         <VersionNumber />
@@ -110,4 +122,4 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
       {children}
     </SidebarPage>
   );
-}
+};
