@@ -38,6 +38,7 @@ nav:
       - Ignore Backend Code Coverage: ADR/code-cov.md
       - Vite: ADR/vite.md
       - GitHub Packages: ADR/github-packages.md
+      - Twelve Factor App: twelve-factor-app.md
 
 plugins:
   - techdocs-core
