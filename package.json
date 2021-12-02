@@ -59,7 +59,7 @@
     "@octokit/core": "^3.5.1"
   },
   "metadata": {
-    "backstage-create-app-version": "0.4.3"
+    "backstage-create-app-version": "0.4.5"
   },
   "jest": {
     "coverageReporters": [
