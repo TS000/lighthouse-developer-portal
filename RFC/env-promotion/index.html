@@ -638,6 +638,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../configurable-variables/" title="Configurable Variables" class="md-nav__link">
+      Configurable Variables
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../browser-logs/" title="Browser Logs" class="md-nav__link">
       Browser Logs
     </a>
@@ -885,17 +897,15 @@
                 
                 <h1 id="environment-promotion-process">Environment Promotion Process<a class="headerlink" href="#environment-promotion-process" title="Permanent link">&para;</a></h1>
 <p><strong>Summary</strong>:
-We want to determine a set of promotion criteria that can be applied to our application to ensure code meets a certain standard before being deployed to the production environment.</p>
+We want to determine a set of promotion criteria that can be applied to our application to ensure code meets a certain standard before being deployed to the production environment. </p>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
 <p>Part of our CI/CD process involves testing our application in a series of environments to validate that our application</p>
 <h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
 <p>Ensure that our application must meet a set of requirements before it is deemed fit to deploy to the production environment.</p>
-<p>We want to validate that the:</p>
-<ul>
-<li>Application's deployment mechanism functions correctly</li>
-<li>Application is bug/error free and performs all of its functions as intended</li>
-<li>Application responds appropriately to stress testing</li>
-</ul>
+<p>We want to validate that the:
+- Application's deployment mechanism functions correctly
+- Application is bug/error free and performs all of its functions as intended
+- Application responds appropriately to stress testing </p>
 <blockquote>
 <p>Note: Do we need more things to validate? What else will ensure the code is production ready?</p>
 </blockquote>
@@ -917,11 +927,11 @@ We want to determine a set of promotion criteria that can be applied to our appl
 <pre>
 # Example app-config.yaml
 app:
-  title: Embark Developer Portal
+  title: DVP Developer Portal
   baseUrl: <b>${FE_ENDPOINT}</b>
 
 organization:
-  name: Embark
+  name: My Company
 
 backend:
   baseUrl: <b>${BE_ENDPOINT}</b>
