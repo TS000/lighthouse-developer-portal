@@ -40,6 +40,8 @@ import {
   SidebarSpace,
 } from '@backstage/core-components';
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
+import { VersionNumber } from '../versionNumber/VersionNumber';
+import versionNumber from '../../version.json'
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -102,6 +104,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarItem icon={MenuBookIcon} to="/starter-guide" text="Starter Guide" />
         <SidebarSpace />
         <SidebarDivider />
+        <VersionNumber />
         <SidebarSettings />
       </Sidebar>
       {children}

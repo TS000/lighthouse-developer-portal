@@ -20,6 +20,7 @@ const Wrapper = ({ children }: PropsWithChildren<{}>) => (
 );
 
 export const HomePage = () => {
+
   return (
     <Page themeId="home">
       <Header title="DVP Developer Portal Homepage" />
