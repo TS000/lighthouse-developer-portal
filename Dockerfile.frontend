@@ -3,6 +3,10 @@ FROM nginx:mainline
 RUN apt-get update && apt-get -y install jq && rm -rf /var/lib/apt/lists/*
 
 COPY packages/app/dist /usr/share/nginx/html
+
+# Add nginx custom pages
+COPY packages/app/nginx /app/packages/app/dist
+
 COPY docker/default.conf.template /etc/nginx/templates/default.conf.template
 
 COPY docker/inject-config.sh /docker-entrypoint.d/40-inject-config.sh

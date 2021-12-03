@@ -29,7 +29,7 @@ WORKDIR /app
 RUN yarn install
 RUN yarn workspace @department-of-veterans-affairs/app build
 
-COPY /packages/app/nginx /app/packages/app/dist
+COPY packages/app/nginx /app/packages/app/dist
 
 FROM nginx:mainline
 
