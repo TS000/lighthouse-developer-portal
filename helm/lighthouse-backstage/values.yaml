@@ -41,10 +41,14 @@ fullnameOverride: ""
 secrets:
   DOCKERCONFIGJSON: ${DOCKERCONFIGJSON}
   GH_TOKEN: ${GH_TOKEN}
+  BASE_URL: ${BASE_URL}
+  BACKEND_PORT: ${BACKEND_PORT}
   HOST: ${HOST}
+  GATEWAY: ${GATEWAY}
   GH_CLIENT_ID: ${GH_CLIENT_ID}
   GH_CLIENT_SECRET: ${GH_CLIENT_SECRET}
-
+  nonprod: ${nonprod}
+  
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -56,7 +60,6 @@ serviceAccount:
 
 podAnnotations: #{}
   namespace: lighthouse-bandicoot-dev
-  
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -69,13 +72,10 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-
 service:
   type: ClusterIP
   
 virtualService:
-  hosts: "dev.devportal.name"
-  gateways: istio-system/dev-devportal-name-gateway
   destination:
     frontend:
       port: 8000

@@ -91,7 +91,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Selector labels
 */}}
 {{- define "frontend.selectorLabels" -}}
-app.kubernetes.io/name: {{ .Values.frontend.name }}
+app.kubernetes.io/name: {{ include "frontend.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 

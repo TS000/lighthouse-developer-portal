@@ -12,7 +12,7 @@
     "backstage-update": "yarn backstage-cli versions:bump 2>&1 | tee backstage-update-log.txt",
     "build": "lerna run build",
     "build backend": "yarn workspace @department-of-veterans-affairs/backend backstage-cli backend:bundle",
-    "build frontend": "cp app-config.yaml app-config.dev.yaml packages/app/ && yarn workspace @department-of-veterans-affairs/app backstage-cli app:build --config app-config.yaml --config app-config.dev.yaml",
+    "build frontend": "cp app-config.yaml app-config.production.yaml packages/app/ && yarn workspace @department-of-veterans-affairs/app backstage-cli app:build --config app-config.yaml --config app-config.production.yaml",
     "build-image": "yarn workspace @department-of-veterans-affairs/backend build-image",
     "tsc": "tsc",
     "tsc:full": "tsc --skipLibCheck false --incremental false",

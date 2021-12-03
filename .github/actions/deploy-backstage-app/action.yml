@@ -10,23 +10,14 @@ inputs:
   GH_TOKEN:  
     description: 'Base64 encoded github token'
     required: true
-  POSTGRES_USER:
-    description: 'Username for postgres db'
-    required: true
-  POSTGRES_PASSWORD:
-    description: 'Password for postgres db'
-    required: true
-  POSTGRES_DB:
-    description: 'Database name for postgres db'
-    required: true
-  HOST:
-    description: 'baseUrl for app/backend'
-    required: true
   GH_CLIENT_ID:
     description: 'OAuth client ID'
     required: true
   GH_CLIENT_SECRET:
     description: 'OAuth client secret'
+    required: true
+  ENV:
+    description: 'Flag used to set environment variable overrides'
     required: true
 
 runs:
@@ -37,12 +28,34 @@ runs:
     with:
       method: kubeconfig
       kubeconfig: ${{ inputs.KUBE_CONFIG }}
+  - name: Set env overrides 
+    id: overrides
+    run: |
+      echo "::set-output name=nonprod::true"
+      if [[ "${{ inputs.ENV }}" == "dev" ]]; then
+        echo "::set-output name=BASE_URL::https://dev.devportal.name"
+        echo "::set-output name=BACKEND_PORT::7000"
+        echo "::set-output name=HOST::dev.devportal.name"
+        echo "::set-output name=GATEWAY::istio-system/dev-devportal-name-gateway"
+      fi
+      if [[ "${{ inputs.ENV }}" == "qa" ]]; then
+        echo "::set-output name=BASE_URL::https://qa.devportal.name"
+        echo "::set-output name=BACKEND_PORT::7000"
+        echo "::set-output name=HOST::qa.devportal.name"
+        echo "::set-output name=GATEWAY::istio-system/qa-devportal-name-gateway"
+      fi
+      if [[ "${{ inputs.ENV }}" == "prod" ]]; then
+        echo "::set-output name=nonprod::false"
+      fi
+    shell: bash
   - name: Upgrade(or install) helm release
     run: >
-      helm upgrade backstage-dev helm/lighthouse-backstage/ --debug --values 
+      helm upgrade backstage-${{ inputs.ENV }} helm/lighthouse-backstage/ --debug --values 
       helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev 
       --set DOCKERCONFIGJSON=${{ inputs.DOCKERCONFIGJSON }} --set GH_TOKEN=${{ inputs.GH_TOKEN }} 
-      --set HOST=${{ inputs.HOST }} --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }} 
-      --set GH_CLIENT_SECRET=${{ inputs.GH_CLIENT_SECRET }} 
+      --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }} --set GH_CLIENT_SECRET=${{ inputs.GH_CLIENT_SECRET }} 
+      --set nonprod=${{ steps.overrides.outputs.nonprod }}
+      --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }} --set BACKEND_PORT=${{ steps.overrides.outputs.BACKEND_PORT }}
+      --set HOST=${{ steps.overrides.outputs.HOST }} --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }} 
       --install --atomic --cleanup-on-fail --history-max 5
     shell: bash

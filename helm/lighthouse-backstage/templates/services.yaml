@@ -36,9 +36,9 @@ metadata:
   name: {{ include "lighthouse-backstage.fullname" . }}-virtualservice
 spec:
   hosts:
-  - {{ .Values.virtualService.hosts }}
+  - {{ .Values.HOST }}
   gateways:
-  - {{ .Values.virtualService.gateways }}
+  - {{ .Values.GATEWAY }}
   http:
   - match:
     - uri:

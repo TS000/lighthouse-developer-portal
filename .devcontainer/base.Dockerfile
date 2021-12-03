@@ -28,13 +28,13 @@ ENV PATH="${NVM_DIR}/current/bin:${NPM_GLOBAL}/bin:${PATH}:${NODE_ROOT}/current/
 # Install needed utilities and setup non-root user. Use a separate RUN statement to add your own dependencies.
 COPY library-scripts/* /tmp/scripts/
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && bash /tmp/scripts/common-debian.sh "true" "${USERNAME}" "${USER_UID}" "${USER_GID}" "true" "true" "true" 
+    && bash /tmp/scripts/common-debian.sh "true" "${USERNAME}" "${USER_UID}" "${USER_GID}" "true" "true" "true" \
+    && apt-get -y install cmake
 RUN bash /tmp/scripts/setup-user.sh "${USERNAME}" "${PATH}" \
     && chsh -s /bin/bash ${USERNAME} \
-    && bash /tmp/scripts/sshd-debian.sh 
+    && bash /tmp/scripts/sshd-debian.sh
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get install -y nodejs
-
 RUN bash /tmp/scripts/git-lfs-debian.sh \
     && bash /tmp/scripts/github-debian.sh \
     # Install Moby CLI and Engine

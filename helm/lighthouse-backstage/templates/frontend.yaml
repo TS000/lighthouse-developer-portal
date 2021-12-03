@@ -46,6 +46,11 @@ spec:
             httpGet:
               path: {{ .Values.containers.frontend.readinessProbe.path }}
               port: {{ .Values.containers.frontend.port }}
+          {{- if .Values.nonprod }}
+          envFrom:
+          - configMapRef:
+              name: {{ include "lighthouse-backstage.fullname" . }}-configmap
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -65,9 +70,8 @@ kind: Secret
 type: kubernetes.io/dockerconfigjson
 apiVersion: v1
 metadata:
-  name: frontend-dockerconfigjson
+  name: {{ include "frontend.fullname" . }}-dockerconfigjson
   labels: 
-    name: frontend
-    instance: backstage-dev
+    {{- include "frontend.selectorLabels" . | nindent 4 }}
 data:
   .dockerconfigjson: {{ .Values.DOCKERCONFIGJSON }}

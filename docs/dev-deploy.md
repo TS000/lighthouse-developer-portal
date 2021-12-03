@@ -136,10 +136,13 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
   - Create `.env` file with your environment variables; you will need to set all of these variables in order for the deployment to work.
   ```
   DOCKERCONFIGJSON=<base64 encoded json string>
-  GH_TOKEN=<base64 encoded github_token>
+  GH_TOKEN=<github_token>
   HOST=<host url>
   GH_CLIENT_ID=<GH OAuth Client ID>
   GH_CLIENT_SECRET=<GH OAuth Client Secret>
+  NONPROD=true
+  BASE_URL=https://dev.devportal.name
+  GATEWAY=istio-system/dev-devportal-name-gateway
   ...
   ```
   - Export file contents
@@ -149,7 +152,7 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 
 - Install the Helm chart and set secrets using `--set`
 ```
-$ helm upgrade backstage-dev helm/lighthouse-backstage/ --debug --values helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --install --atomic --cleanup-on-fail --history-max 5
+$ helm upgrade backstage-dev helm/lighthouse-backstage/ --debug --values helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set GATEWAY=$GATEWAY --set BACKEND_PORT=7000 --install --atomic --cleanup-on-fail --history-max 5
 ```
 
 ### Verify Deployment
