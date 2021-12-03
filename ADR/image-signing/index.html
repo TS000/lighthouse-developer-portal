@@ -15,7 +15,7 @@
     
     
       
-        <title>Docker Scanning - example-docs</title>
+        <title>Signing Docker Images - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rfc-docker-image-scanning" class="md-skip">
+        <a href="#signing-docker-images" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Docker Scanning
+              Signing Docker Images
             
           </span>
         </div>
@@ -343,12 +343,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
     
     <label class="md-nav__link" for="nav-15">
       RFCs
@@ -372,7 +370,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../doc-generator/" title="Doc Generator" class="md-nav__link">
+    <a href="../../RFC/doc-generator/" title="Doc Generator" class="md-nav__link">
       Doc Generator
     </a>
   </li>
@@ -384,7 +382,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../ci-cd/" title="CI/CD Modifications" class="md-nav__link">
+    <a href="../../RFC/ci-cd/" title="CI/CD Modifications" class="md-nav__link">
       CI/CD Modifications
     </a>
   </li>
@@ -396,7 +394,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../catalog-import-research/" title="Catalog Import Research" class="md-nav__link">
+    <a href="../../RFC/catalog-import-research/" title="Catalog Import Research" class="md-nav__link">
       Catalog Import Research
     </a>
   </li>
@@ -408,7 +406,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../node-app-logging/" title="Node App Logging" class="md-nav__link">
+    <a href="../../RFC/node-app-logging/" title="Node App Logging" class="md-nav__link">
       Node App Logging
     </a>
   </li>
@@ -418,128 +416,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Docker Scanning
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Docker Scanning" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../RFC/docker-scanning/" title="Docker Scanning" class="md-nav__link">
       Docker Scanning
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goal" class="md-nav__link">
-    Goal
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#findings" class="md-nav__link">
-    Findings
-  </a>
-  
-    <nav class="md-nav" aria-label="Findings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-scan" class="md-nav__link">
-    Docker Scan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#credential-secret-scanning" class="md-nav__link">
-    Credential / Secret scanning
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
-    Recommendation
-  </a>
-  
-    <nav class="md-nav" aria-label="Recommendation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vulnerability-scanning" class="md-nav__link">
-    Vulnerability Scanning
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#git-secrets" class="md-nav__link">
-    Git-Secrets
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -549,7 +430,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../enforce-build-performance/" title="Enforce Build Performance" class="md-nav__link">
+    <a href="../../RFC/enforce-build-performance/" title="Enforce Build Performance" class="md-nav__link">
       Enforce Build Performance
     </a>
   </li>
@@ -561,7 +442,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../investigate-esbuild-and-vite/" title="Investigate Esbuild and Vite" class="md-nav__link">
+    <a href="../../RFC/investigate-esbuild-and-vite/" title="Investigate Esbuild and Vite" class="md-nav__link">
       Investigate Esbuild and Vite
     </a>
   </li>
@@ -573,7 +454,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../linting/" title="Linting Rules" class="md-nav__link">
+    <a href="../../RFC/linting/" title="Linting Rules" class="md-nav__link">
       Linting Rules
     </a>
   </li>
@@ -585,7 +466,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../investigate-pact/" title="Investigate Pact" class="md-nav__link">
+    <a href="../../RFC/investigate-pact/" title="Investigate Pact" class="md-nav__link">
       Investigate Pact
     </a>
   </li>
@@ -597,7 +478,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../env-promotion/" title="Environment Promotion" class="md-nav__link">
+    <a href="../../RFC/env-promotion/" title="Environment Promotion" class="md-nav__link">
       Environment Promotion
     </a>
   </li>
@@ -609,7 +490,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../custom-actions/" title="Custom Actions" class="md-nav__link">
+    <a href="../../RFC/custom-actions/" title="Custom Actions" class="md-nav__link">
       Custom Actions
     </a>
   </li>
@@ -621,7 +502,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../github-access/" title="GitHub Access" class="md-nav__link">
+    <a href="../../RFC/github-access/" title="GitHub Access" class="md-nav__link">
       GitHub Access
     </a>
   </li>
@@ -633,7 +514,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../google-analytics/" title="Google Analytics" class="md-nav__link">
+    <a href="../../RFC/google-analytics/" title="Google Analytics" class="md-nav__link">
       Google Analytics
     </a>
   </li>
@@ -645,7 +526,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../configurable-variables/" title="Configurable Variables" class="md-nav__link">
+    <a href="../../RFC/configurable-variables/" title="Configurable Variables" class="md-nav__link">
       Configurable Variables
     </a>
   </li>
@@ -657,7 +538,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../browser-logs/" title="Browser Logs" class="md-nav__link">
+    <a href="../../RFC/browser-logs/" title="Browser Logs" class="md-nav__link">
       Browser Logs
     </a>
   </li>
@@ -699,7 +580,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../ADR/zero-install/" title="Yarn Zero Install" class="md-nav__link">
+    <a href="../zero-install/" title="Yarn Zero Install" class="md-nav__link">
       Yarn Zero Install
     </a>
   </li>
@@ -711,7 +592,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../ADR/split-fe-be/" title="Split FE/BE" class="md-nav__link">
+    <a href="../split-fe-be/" title="Split FE/BE" class="md-nav__link">
       Split FE/BE
     </a>
   </li>
@@ -723,7 +604,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../ADR/cypress-e2e-tests/" title="Cypress e2e Tests" class="md-nav__link">
+    <a href="../cypress-e2e-tests/" title="Cypress e2e Tests" class="md-nav__link">
       Cypress e2e Tests
     </a>
   </li>
@@ -735,7 +616,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../ADR/code-cov/" title="Ignore Backend Code Coverage" class="md-nav__link">
+    <a href="../code-cov/" title="Ignore Backend Code Coverage" class="md-nav__link">
       Ignore Backend Code Coverage
     </a>
   </li>
@@ -747,7 +628,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../ADR/vite/" title="Vite" class="md-nav__link">
+    <a href="../vite/" title="Vite" class="md-nav__link">
       Vite
     </a>
   </li>
@@ -759,7 +640,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../ADR/github-packages/" title="GitHub Packages" class="md-nav__link">
+    <a href="../github-packages/" title="GitHub Packages" class="md-nav__link">
       GitHub Packages
     </a>
   </li>
@@ -820,83 +701,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
+  <a href="#tldr" class="md-nav__link">
+    tl;dr
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
+  <a href="#history" class="md-nav__link">
+    History
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#goal" class="md-nav__link">
-    Goal
+  <a href="#pros" class="md-nav__link">
+    Pros
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#findings" class="md-nav__link">
-    Findings
+  <a href="#cons" class="md-nav__link">
+    Cons
   </a>
-  
-    <nav class="md-nav" aria-label="Findings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-scan" class="md-nav__link">
-    Docker Scan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#credential-secret-scanning" class="md-nav__link">
-    Credential / Secret scanning
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
-    Recommendation
-  </a>
-  
-    <nav class="md-nav" aria-label="Recommendation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vulnerability-scanning" class="md-nav__link">
-    Vulnerability Scanning
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#git-secrets" class="md-nav__link">
-    Git-Secrets
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
-    References
+  <a href="#decision" class="md-nav__link">
+    Decision
   </a>
   
 </li>
@@ -913,7 +747,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/RFC/docker-scanning.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/image-signing.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -921,45 +755,44 @@
                   
                 
                 
-                <h1 id="rfc-docker-image-scanning">[RFC] Docker Image Scanning<a class="headerlink" href="#rfc-docker-image-scanning" title="Permanent link">&para;</a></h1>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>Lighthouse-backstage is a public repo. All deployments are available as public packages. We need to ensure that secrets and private environment variables do not get injected into the docker image. We should be able to fail a build/push script that hardcodes secrets into the image definition. We don't want to commit secrets to GitHub packages.</p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>Each lighthouse-backstage deployment is available publicly for anyone to access. This means that if a secret were hardcoded within a docker image, everyone could now see it.</p>
-<p>Vulnerability scanning for Docker local images allows developers and development teams to review the security state of the container images and take actions to fix issues identified during the scan, resulting in more secure deployments. Docker Scan runs on the Snyk engine, providing users with visibility into the security posture of their local Dockerfiles and local images.</p>
-<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
-<p>Scan each build/push for vulnerabilities to prevent a deployment from releasing private information to GitHub Packages.</p>
-<h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
-<h3 id="docker-scan">Docker Scan<a class="headerlink" href="#docker-scan" title="Permanent link">&para;</a></h3>
-<p>By default, docker allows an image to be scanned ten times within a month before it requires a free account with <a href="https://snyk.io/">Snyk</a>.</p>
-<blockquote>
-<p>Docker and Snyk have partnered together to bring security natively into the development workflow by providing a simple and streamlined approach for developers to build and deploy secure containers.</p>
-</blockquote>
-<p>An image can be scanned using Docker Hub or by using <code>docker scan &lt;image_name&gt;</code> within the CLI.</p>
-<p>Some important tags can be included to limit issues:</p>
-<ul>
-<li><a href="https://docs.docker.com/engine/scan/#excluding-the-base-image">Excluding the base image</a>. <code>--exclude-base</code></li>
-<li><a href="https://docs.docker.com/engine/scan/#excluding-the-base-image">View the JSON output</a>. <code>--json</code></li>
-</ul>
-<p>The scan checks for known vulnerabilities in public GitHub repos, npm packages and Docker images. So it does not scan for leaked credentials/secrets.</p>
-<h3 id="credential-secret-scanning">Credential / Secret scanning<a class="headerlink" href="#credential-secret-scanning" title="Permanent link">&para;</a></h3>
-<p><a href="https://github.com/awslabs/git-secrets">git-secrets</a> is an open source repo that is designed to prevent passwords and other sensitive information from being committed to a repo.</p>
-<p>It scans commits, commit messages, and --no-ff merges to prevent adding secrets into your git repositories. If a commit, commit message, or any commit in a --no-ff merge history matches one of your configured prohibited regular expression patterns, then the commit is rejected.</p>
-<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
-<h3 id="vulnerability-scanning">Vulnerability Scanning<a class="headerlink" href="#vulnerability-scanning" title="Permanent link">&para;</a></h3>
-<p>I tried building a fresh frontend image using <code>docker build -t backstage-frontend -f Dockerfile.dockerbuild .</code> and then scanning it by using <code>docker scan backstage-frontend</code></p>
-<p>I think using <code>docker scan</code> for our CI/CD pipelines would be an excellent fit for our security needs. The only issue is that we'll need to create a Snyk account for lighthouse-backstage to scan Docker images more than ten times a month.</p>
-<p>Another thing I found is that scanning the backstage-frontend image returned a large number of issues related to the base image (NGINX). Excluding the base, the image limited the number of issues to just 7, which I think is excellent, and a lot easier to work with.</p>
-<p>I wasn't able to find a convenient GH Action that can fail a pipeline for specified criteria. So we might have to build a script that can analyze the JSON output of the docker scan. Otherwise, we could follow <a href="https://circleci.com/blog/adding-application-and-image-scanning-to-your-cicd-pipeline/">this guide</a> on how to use Snyk to scan our docker image within CI/CD. I don't think it would be too hard to adapt it to use GitHub Actions.</p>
-<p>As stated above, Docker Scan / Snyk only checks for KNOWN vulnerabilities reported from other packages. It does not scan for leaked credentials/secrets.</p>
-<h3 id="git-secrets">Git-Secrets<a class="headerlink" href="#git-secrets" title="Permanent link">&para;</a></h3>
-<p>I think that using <a href="https://github.com/awslabs/git-secrets">git-secrets</a> within a pre-commit hook would be the best route to prevent secrets from being committed to the lighthouse-backstage repo. It's pretty easy to hard-code a secret when building a feature or debugging an issue and forget to remove it.</p>
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
-<p><a href="https://docs.docker.com/develop/scan-images/">Scan Images</a></p>
-<p><a href="https://docs.docker.com/engine/scan/">Vulnerability Scanning</a></p>
-<p><a href="https://snyk.io/">Snyk</a></p>
-<p><a href="https://circleci.com/blog/adding-application-and-image-scanning-to-your-cicd-pipeline/">Snyk CI/CD Scanning</a></p>
-<p><a href="https://github.com/awslabs/git-secrets">git-secrets</a></p>
+                <h1 id="signing-docker-images">Signing Docker Images<a class="headerlink" href="#signing-docker-images" title="Permanent link">&para;</a></h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision Made:</td>
+<td>no</td>
+<td>Decision Date:</td>
+<td>12/2021</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Revisit criteria:</strong></p>
+<p>Decision Made: No, but open to revisiting
+Revisit Decision: Yes
+Revisit Criteria: If a developer is interested in Signing Docker containers with a key that can be uploaded to <a href="https://keys.openpgp.org/">https://keys.openpgp.org/</a>, we should revisit this.</p>
+<p>Decision Makers: @keyluck</p>
+<h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
+<p>Docker Content Trust provides the ability to use digital signatures for data sent to and received from remote Docker registries. These signatures allow client-side or runtime verification of the integrity and publisher of specific image tags.</p>
+<p>The <code>keys.openpgp.org</code> server is a public service for the distribution and discovery of OpenPGP-compatible keys, commonly referred to as a "keyserver".</p>
+<p>We want to be able to sign our Docker images so consumers can guarantee this image was published by us and hasn’t been tampered with by someone else.</p>
+<h2 id="history">History<a class="headerlink" href="#history" title="Permanent link">&para;</a></h2>
+<p>I was able to use <code>docker trust</code> to generate keys, sign images, and then verify the images were signed using <a href="https://docs.docker.com/engine/security/trust/">Docker's Documentation</a>. I tried to upload the public key to <a href="https://keys.openpgp.org/">https://keys.openpgp.org/</a> but received  the following error: <code>Error: Parsing of key data failed</code>.</p>
+<p>I also created a private-public key pair using the <a href="https://help.gooddata.com/doc/enterprise/en/expand-your-gooddata-platform/gooddata-integration-into-your-application/set-up-user-authentication-and-sso/gooddata-pgp-single-sign-on/how-to-generate-a-public-private-key-pair">gpg command line utility</a>. I was able to successfully upload this public key to <a href="https://keys.openpgp.org/">https://keys.openpgp.org/</a> using these <a href="https://keys.openpgp.org/about/usage#gnupg">instructions</a>.</p>
+<p>I tried to add the key with <code>docker trust signer add</code> so I could use <code>docker trust</code> to sign the image with the gpg key but received the following error: <code>could not parse public key from file</code>.</p>
+<h2 id="pros">Pros<a class="headerlink" href="#pros" title="Permanent link">&para;</a></h2>
+<p>N/A</p>
+<h2 id="cons">Cons<a class="headerlink" href="#cons" title="Permanent link">&para;</a></h2>
+<p>N/A</p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>Not yet made</p>
                 
               
               
@@ -974,41 +807,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../node-app-logging/" title="Node App Logging" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Node App Logging
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../enforce-build-performance/" title="Enforce Build Performance" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Enforce Build Performance
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
