@@ -1,6 +1,6 @@
 # Catalog Entry Best Practices
 
-This is a `best-practices` guide to setting up catalog entries for lighthouse-backstage. It covers the most frequently used or suggested setup for the catalog `yaml` file. For more in-depth coverage, you can check the [Backstage YAML File Format](https://backstage.io/docs/features/software-catalog/descriptor-format) doc.
+This is a `best-practices` guide to setting up catalog entries for Embark. It covers the most frequently used or suggested setup for the catalog `yaml` file. For more in-depth coverage, you can check the [Backstage YAML File Format](https://backstage.io/docs/features/software-catalog/descriptor-format) doc.
 
 Usually named `catalog-info.yaml`, the `yaml` file used for catalog configurations can have any name.
 

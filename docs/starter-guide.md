@@ -1,12 +1,14 @@
 # Overview
 
-The Backstage Software Catalog is a centralized system that keeps track of ownership and metadata for all the software in your ecosystem (services, websites, libraries, data pipelines, etc). The catalog is built around the concept of metadata YAML files stored together with the code, which are then harvested and visualized in Backstage.
+Embark is an implementation of [Backstage](https://backstage.io/).
 
-More Information about Backstage's [Software Catalog](https://backstage.io/docs/features/software-catalog/software-catalog-overview)
+The Embark Software Catalog is a centralized system that keeps track of ownership and metadata for all the software in your ecosystem (services, websites, libraries, data pipelines, etc). The catalog is built around the concept of metadata YAML files stored together with the code, which are then harvested and visualized in Embark.
+
+More Information about Embark's [Software Catalog](https://backstage.io/docs/features/software-catalog/software-catalog-overview)
 
 
 # Adding a Catalog Entity
-Backstage identifies catalog entities by scanning every repository in an organization and looking for a `catalog-info.yaml` file in the root of the repository. The `catalog-info.yaml` file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other Backstage users who may wish to use your application.
+Embark identifies catalog entities by scanning every repository in an organization and looking for a `catalog-info.yaml` file in the root of the repository. The `catalog-info.yaml` file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other Embark users who may wish to use your application.
 ## Creating an Entity Descriptor File
 In the root directory of your application, create a `catalog-info.yaml` file:
 
@@ -15,8 +17,8 @@ In the root directory of your application, create a `catalog-info.yaml` file:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: lighthouse-backstage
-  description: An example of a Backstage application.
+  name: embark
+  description: An example of a embark application.
   annotations:
     backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-backstage
     github.com/project-slug: department-of-veterans-affairs/lighthouse-backstage

@@ -1,9 +1,9 @@
 app:
-  title: DVP Developer Portal
+  title: Embark Developer Portal
   baseUrl: https://dev.devportal.name
 
 organization:
-  name: My Company
+  name: Embark
 
 backend:
   baseUrl: https://dev.devportal.name
@@ -88,7 +88,18 @@ catalog:
   rules:
     - allow: [Component, System, API, Group, User, Template, Location]
   locations:
+    # Scans all repos for catalog-info.yaml in department-of-veterans-affairs
+    # - type: github-discovery
+    # target: https://github.com/department-of-veterans-affairs/lighthouse-*/blob/-/catalog-info.yaml
+
     #################### EBMARK #########################
+    # Backstage example components
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
+
+    # Lighthouse backstage
+    - type: url
+      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/catalog-info.yaml
 
     # app component
     - type: url

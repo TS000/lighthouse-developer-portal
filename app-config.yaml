@@ -1,5 +1,5 @@
 app:
-  title: DVP Developer Portal
+  title: Embark Developer Portal
   baseUrl: http://127.0.0.1:3000
 
   # Analytics
@@ -12,7 +12,7 @@ app:
   #   applicationId: ${DATADOG_APPLICATION_ID}
 
 organization:
-  name: My Company
+  name: Embark
 
 backend:
   baseUrl: http://127.0.0.1:7000

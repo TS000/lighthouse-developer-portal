@@ -2,8 +2,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: frontend
-  namespace: lighthouse-backstage
-  description: The frontend applicaton for lighthouse-backstage
+  namespace: embark
+  description: The frontend applicaton for Embark
   tags:
     - javascript
     - typescript
@@ -22,4 +22,4 @@ spec:
   type: website
   owner: lighthouse-bandicoot
   lifecycle: experimental
-  system: lighthouse-backstage
+  system: embark

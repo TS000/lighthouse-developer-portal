@@ -15,7 +15,7 @@ export const FeatureFlagsContainer = () => {
     <Page themeId="tool">
       <Header
         title="Feature Flags"
-        subtitle="A place to view and manage all registered Feature Flags for lighthouse-backstage."
+        subtitle="A place to view and manage all registered Feature Flags for Embark."
       />
       <Content>
         <Grid container spacing={3} direction="column">

@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: plugin-feature-flags
-  namespace: lighthouse-backstage
+  namespace: embark
   description: A plugin to include feature-flags to a frontend.
   tags:
     - javascript
@@ -23,4 +23,4 @@ spec:
   type: website
   owner: lighthouse-bandicoot
   lifecycle: experimental
-  system: lighthouse-backstage
+  system: embark

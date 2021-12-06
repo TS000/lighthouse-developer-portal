@@ -1,11 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: lighthouse-backstage
-  description: Keeps track off all packages and plugins related to lighthouse-backstage
+  name: embark
+  description: Keeps track off all packages and plugins related to Embark
   tags:
     - monorepo
 spec:
-  domain: lighthouse-backstage
+  domain: embark
   owner: lighthouse-bandicoot
   lifecycle: experimental
