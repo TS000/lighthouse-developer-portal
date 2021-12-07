@@ -120,4 +120,4 @@ catalog:
 
     # backing systems system example
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-info.yaml
