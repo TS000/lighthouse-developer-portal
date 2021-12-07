@@ -41,6 +41,7 @@ nav:
       - Vite: ADR/vite.md
       - GitHub Packages: ADR/github-packages.md
       - Twelve Factor App: twelve-factor-app.md
+      - Image Signing: image-signing.md
 
 plugins:
   - techdocs-core
