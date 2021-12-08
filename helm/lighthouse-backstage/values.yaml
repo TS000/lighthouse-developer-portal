@@ -48,6 +48,7 @@ secrets:
   GH_CLIENT_ID: ${GH_CLIENT_ID}
   GH_CLIENT_SECRET: ${GH_CLIENT_SECRET}
   nonprod: ${nonprod}
+  DEPLOY_ENV: ${DEPLOY_ENV}
   
 serviceAccount:
   # Specifies whether a service account should be created

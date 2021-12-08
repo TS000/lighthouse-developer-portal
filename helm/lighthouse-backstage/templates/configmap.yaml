@@ -10,4 +10,8 @@ data:
   APP_CONFIG_backend_baseUrl: {{ .Values.BASE_URL }}
   APP_CONFIG_backend_listen_port: {{ .Values.BACKEND_PORT | quote }}
   APP_CONFIG_backend_cors_origin: {{ .Values.BASE_URL }}
+  APP_CONFIG_auth_environment: {{ .Values.DEPLOY_ENV }}
+  {{ if eq .Values.DEPLOY_ENV "dev" }}
+  APP_CONFIG_auth_environment: "development"
+  {{ end }}
 {{ end }}

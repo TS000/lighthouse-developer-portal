@@ -43,21 +43,33 @@ jobs:
     needs: [build-push-images]
     strategy:
       matrix:
-        env: [dev, qa]
+        env: [dev]
         include:
           - env: dev
             GH_CLIENT_ID: DEV_GH_CLIENT_ID 
             GH_CLIENT_SECRET: DEV_GH_CLIENT_SECRET
-          - env: qa
-            GH_CLIENT_ID: QA_GH_CLIENT_ID 
-            GH_CLIENT_SECRET: QA_GH_CLIENT_SECRET
+            DEPLOY_TO: Development
+            URL: https://dev.devportal.name
+          # - env: qa
+          #   GH_CLIENT_ID: QA_GH_CLIENT_ID 
+          #   GH_CLIENT_SECRET: QA_GH_CLIENT_SECRET
+          #   DEPLOY_TO: QA
+          #   URL: https://qa.devportal.name
+    concurrency: ${{ matrix.env }}
     permissions:
       packages: read
       contents: read
     # Need to periodically update K8s context
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy Backstage app
+      - name: Create Deployment
+        uses: bobheadxi/deployments@v0.4.3
+        id: deployment
+        with:
+          step: start
+          token: ${{ secrets.DEV_GH_TOKEN }}
+          env: ${{ matrix.DEPLOY_TO }}
+      - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }} 
@@ -66,3 +78,4 @@ jobs:
           GH_CLIENT_ID: ${{ secrets[matrix.GH_CLIENT_ID] }}
           GH_CLIENT_SECRET: ${{ secrets[matrix.GH_CLIENT_SECRET] }}
           ENV: ${{ matrix.env }}
+

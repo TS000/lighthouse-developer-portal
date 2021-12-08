@@ -1,50 +1,25 @@
 app:
   title: Embark Developer Portal
-  baseUrl: http://127.0.0.1:3000
-
-  # Analytics
-  analytics:
-    ga:
-      trackingId: G-EDWJCLSXGT
-
-  # datadogRum:
-  #   clientToken: ${DATADOG_CLIENT_TOKEN}
-  #   applicationId: ${DATADOG_APPLICATION_ID}
+  baseUrl: https://qa.devportal.name
 
 organization:
   name: Embark
 
 backend:
-  baseUrl: http://127.0.0.1:7000
+  baseUrl: https://qa.devportal.name
   listen:
     port: 7000
   csp:
     connect-src: ["'self'", 'http:', 'https:']
   cors:
-    origin: http://127.0.0.1:3000
+    origin: https://qa.devportal.name
     methods: [GET, POST, PUT, DELETE]
     credentials: true
-  # cache:
-  #   # TODO: update to use memcache in production  https://backstage.io/docs/overview/architecture-overview#cache
-  #   store: memory
+  cache:
+    store: memory
   database:
-    # config options: https://node-postgres.com/api/client
-    client: pg
-    connection:
-      host: ${POSTGRES_HOST}
-      port: 5432
-      user: postgres
-      password: postgres
-    # Config for running local k8s
-    # connection:
-    #   host: ${POSTGRES_SERVICE_HOST}
-    #   port: ${POSTGRES_SERVICE_PORT}
-    #   user: ${POSTGRES_USER}
-    #   password: ${POSTGRES_PASSWORD}
-    # https://node-postgres.com/features/ssl
-    #ssl: require # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
-    #ca: # if you have a CA file and want to verify it you can uncomment this section
-    #$file: <file-path>/ca/server.crt
+    client: sqlite3
+    connection: ':memory:'
 
 integrations:
   github:
@@ -74,16 +49,17 @@ techdocs:
 auth:
   # providers: {}
   # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
-  # environment: development
+  environment: qa
   providers:
     github:
-      development:
-        clientId: ${LOCAL_GH_CLIENT_ID}
-        clientSecret: ${LOCAL_GH_CLIENT_SECRET}
+      qa:
+        clientId: ${GH_CLIENT_ID}
+        clientSecret: ${GH_CLIENT_SECRET}
+        callbackUrl: https://qa.devportal.name/api/auth/github/handler/frame
 
 scaffolder:
   github:
-    token: ${GITHUB_TOKEN}
+    token: ${GH_TOKEN}
     visibility: public # or 'internal' or 'private'
 
 catalog:
@@ -96,7 +72,18 @@ catalog:
   rules:
     - allow: [Component, System, API, Group, User, Template, Location]
   locations:
+    # Scans all repos for catalog-info.yaml in department-of-veterans-affairs
+    # - type: github-discovery
+    # target: https://github.com/department-of-veterans-affairs/lighthouse-*/blob/-/catalog-info.yaml
+
     #################### EBMARK #########################
+    # Backstage example components
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
+
+    # Lighthouse backstage
+    - type: url
+      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/catalog-info.yaml
 
     # app component
     - type: url
@@ -113,11 +100,3 @@ catalog:
     # system
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/catalog-info.yaml
-
-    # EVSS example
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/evss/catalog-info.yaml
-
-    # backing systems system example
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-info.yaml

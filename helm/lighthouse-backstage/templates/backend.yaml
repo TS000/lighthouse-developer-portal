@@ -47,6 +47,7 @@ spec:
               path: {{ .Values.containers.backend.readinessProbe.path }}
               port: {{ .Values.containers.backend.port }}
           {{- if .Values.nonprod }}
+          command: ["node", "packages/backend", "--config", "app-config.{{ .Values.DEPLOY_ENV }}.yaml"]
           envFrom:
           - configMapRef:
               name: {{ include "lighthouse-backstage.fullname" . }}-configmap
