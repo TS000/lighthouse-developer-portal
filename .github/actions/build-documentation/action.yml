@@ -27,7 +27,7 @@ runs:
         distribution: 'zulu'
         java-version: '11'
     - name: Install gh-pages
-      run: npx gh-pages
+      run: npm install -g gh-pages
       shell: bash
     - name: download, validate, install plantuml and its dependencies
       run: |
