@@ -26,6 +26,8 @@ runs:
       with:
         distribution: 'zulu'
         java-version: '11'
+    - name: Install gh-pages
+      run: npx gh-pages
     - name: download, validate, install plantuml and its dependencies
       run: |
         curl -o plantuml.jar -L http://sourceforge.net/projects/plantuml/files/plantuml.1.2021.4.jar/download
@@ -37,10 +39,10 @@ runs:
         echo "$HOME/.local/bin" >> $GITHUB_PATH
         sudo apt-get install -y graphviz
       shell: bash
-    - name: Install gh-pages
-      run: npx gh-pages
+    # - name: Install gh-pages
+    #   run: npx gh-pages
     #   run: npx @techdocs/cli generate
-      shell: bash
+      # shell: bash
     # - name: Install mkdocs and mkdocs plugins
     #   run: pip install mkdocs-techdocs-core==0.*
     #   shell: bash
