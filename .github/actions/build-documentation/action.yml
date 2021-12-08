@@ -38,7 +38,7 @@ runs:
     - name: Install gh-pages
       run: sudo npm install gh-pages
     #   run: npx @techdocs/cli generate
-    #   shell: bash
+      shell: bash
     # - name: Install mkdocs and mkdocs plugins
     #   run: pip install mkdocs-techdocs-core==0.*
     #   shell: bash
