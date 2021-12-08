@@ -1128,6 +1128,36 @@
 <p>An <a href="https://backstage.io/docs/features/software-catalog/references#string-references">entity reference</a> to the owner of the component, e.g. artist-relations-team. This field is required.</p>
 <h3 id="specdefinition-required">spec.definition [required]<a class="headerlink" href="#specdefinition-required" title="Permanent link">&para;</a></h3>
 <p>The definition of the API, based on the format defined by <code>spec.type</code>.</p>
+<h2 id="kind-location">Kind: Location<a class="headerlink" href="#kind-location" title="Permanent link">&para;</a></h2>
+<p>A location is a marker that references other places to look for catalog data.</p>
+<p>Locations can also be defined within the <code>app-config</code> file.</p>
+<p>Example:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">backstage.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Location</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org-data</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">url</span>
+  <span class="nt">targets</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">http://github.com/myorg/myproject/org-data-dump/catalog-info-staff.yaml</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">http://github.com/myorg/myproject/org-data-dump/catalog-info-consultants.yaml</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="spectype-optional">spec.type [optional]<a class="headerlink" href="#spectype-optional" title="Permanent link">&para;</a></h3>
+<p>The single location type, that's common to the targets specified in the spec. If it is left out, it is inherited from the location type that originally read the entity data.</p>
+<h3 id="spectarget-optional">spec.target [optional]<a class="headerlink" href="#spectarget-optional" title="Permanent link">&para;</a></h3>
+<p>A single target as a string. Can be either an absolute path/URL (depending on the type), or a relative path such as <code>./details/catalog-info.yaml</code> which is resolved relative to the location of this Location entity itself.</p>
+<h3 id="spectargets-optional">spec.targets [optional]<a class="headerlink" href="#spectargets-optional" title="Permanent link">&para;</a></h3>
+<p>A list of targets as strings. They can all be either absolute paths/URLs (depending on the type), or relative paths such as <code>./details/catalog-info.yaml</code> which are resolved relative to the location of this Location entity itself.</p>
                 
               
               
