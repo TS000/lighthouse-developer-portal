@@ -1,5 +1,95 @@
 # Deployment (WIP)
 
+## Deployment components overview 
+
+### lighthouse-embark and lighthosue-embark-deployment
+
+```plantuml
+package "lighthouse-embark actions" {
+  component rel as "release"
+}
+
+cloud GitHub {
+  component edep as "Deployments"
+}
+
+database "GitHub Container Registry" {
+  component fe as "Frontend Image"
+  component be as "Backend Image"
+}
+
+[rel] --> fe: pushes
+[rel] --> be: pushes
+
+package "lighthouse-embark-deployment actions" {
+  component fdep as "FE deployment"
+  component bdep as "BE deployment"
+}
+
+database "lighthouse-embark-deployment repo" {
+  component fev as "Frontend Values"
+  component bev as "Backend Values"
+}
+
+[fdep] --> fev: pushes
+[bdep] --> bev: pushes
+[rel] --> [edep]: creates
+[edep] --> [fdep]: triggers
+[edep] --> [bdep]: triggers
+
+
+```
+
+### Argo deployment
+
+```plantuml
+left to right direction
+
+database "GitHub Container Registry" {
+  component fe as "Frontend Image"
+  component be as "Backend Image"
+}
+
+database "lighthouse-embark-deployment repo" {
+  component fev as "Frontend Values"
+  component bev as "Backend Values"
+}
+
+
+package "Delivery infrastructure" {
+  component argo as "Argo"
+  component dep as "Kubernetes"
+}
+
+[argo] --> fe: reads
+[argo] --> be: reads
+[argo] --> dep: triggers
+[dep] --> [fev]: reads
+[dep] --> [bev]: reads
+```
+
+### GitHub Deployments detail
+
+```plantuml
+left to right direction
+cloud GitHub {
+  folder dev as "Dev Deployment Values" {
+    component dfe as "Frontend image tag"
+    component dbe as "Backend image tag"  
+  }
+  folder qa as "QA Deployment Values" {
+    component qfe as "Frontend image tag"
+    component qbe as "Backend image tag"  
+  }
+  folder prod as "Prod Deployment Values" {
+    component pfe as "Frontend image tag"
+    component pbe as "Backend image tag"  
+  }
+}
+
+```
+*GitHub deployments contain the values needed for each environment specific deployment*
+
 ## Deployment process overview
 ```plantuml
 participant "Trigger"
