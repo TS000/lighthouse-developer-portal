@@ -26,9 +26,9 @@ runs:
       with:
         distribution: 'zulu'
         java-version: '11'
-    - name: Install gh-pages
-      run: npm install -g gh-pages
-      shell: bash
+    # - name: Install gh-pages
+    #   run: npm install -g gh-pages
+    #   shell: bash
     - name: download, validate, install plantuml and its dependencies
       run: |
         curl -o plantuml.jar -L http://sourceforge.net/projects/plantuml/files/plantuml.1.2021.4.jar/download
