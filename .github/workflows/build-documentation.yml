@@ -1,4 +1,4 @@
-name: Schedule Documentation
+# name: Schedule Documentation
 # on:
 #   workflow_dispatch:
 #   schedule:
@@ -34,7 +34,7 @@ name: Schedule Documentation
 #
 # The contents of ./site folder are then published to a `gh-pages` branch.
 # GitHub pages are then available for viewing at https://department-of-veterans-affairs.github.io/lighthouse-backstage/
-
+name: Schedule Documentation
 on:
   push:
     branches: [main]
@@ -46,9 +46,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
-      #   uses: actions/checkout@v2
-      #   with:
-      #     repository: ${{ env.REPO_FULL_NAME }}
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.REPO_FULL_NAME }}
       - uses: ./.github/actions/build-documentation
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
