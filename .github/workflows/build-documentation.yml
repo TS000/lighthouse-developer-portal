@@ -1,4 +1,4 @@
-# name: Build Documentation
+name: Schedule Documentation
 # on:
 #   workflow_dispatch:
 #   schedule:
@@ -42,7 +42,7 @@ on:
     branches: [main]
 
 jobs:
-  build_test_docs:
+  schedule_docs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
