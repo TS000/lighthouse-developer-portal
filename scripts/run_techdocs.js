@@ -1,5 +1,5 @@
 
-// const ghpages = require('gh-pages');
+const ghpages = require('gh-pages');
 const fs = require('fs');
 const { exec } = require("child_process");
 const { Octokit } = require("@octokit/core");
@@ -64,8 +64,24 @@ const octokit = new Octokit();
     try {
         await execShellCommand(shellCommand)
     } catch(error) {
-        console.log({error})
+        console.log({ error })
     }
+}
+
+/**
+ * Publishes documentation to a specified repo.
+ * @param {string} url - repo url
+ */
+ async function publishDocs(url) {
+     //https://github.com/mhyder1/docs-2.git
+    //  'https://github.com/backstage/techdocs-cli.git'
+    ghpages.publish('site', {
+        branch: 'gh-pages',
+        // repo: url,
+        repo: 'https://github.com/mhyder1/docs-1.git'
+    }, (error) => {
+        if (error) console.log({ error })
+    })
 }
 
 //'https://dev.devportal.name/api/catalog/entities?filter=kind=component'
@@ -77,11 +93,13 @@ const repos = [
 ]
 
 async function runTechdocs() {
+    const dir = 'temp'
     // const { data } = await octokit.request('https://dev.devportal.name/api/catalog/entities?filter=kind=component')
     // console.log(data[0])
     repos.forEach( async repo => {
-        await cloneRepo(`${repo}.git`, 'temp')
-        await buildDocs('temp')
+        await cloneRepo(`${repo}.git`, dir)
+        await buildDocs(dir)
+        await publishDocs()
     })
     
 }

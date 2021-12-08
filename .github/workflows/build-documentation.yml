@@ -35,20 +35,22 @@
 # The contents of ./site folder are then published to a `gh-pages` branch.
 # GitHub pages are then available for viewing at https://department-of-veterans-affairs.github.io/lighthouse-backstage/
 
-# on:
-#   push:
-#     branches: [main]
-#   pull_request:
-#     branches: [main]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
-# jobs:
-#   build_docs:
-#     runs-on: ubuntu-20.04
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-#         with:
-#           repository: ${{ env.REPO_FULL_NAME }}
-#       - uses: ./.github/actions/publish_documentation
-#         with:
-#           token: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  build_test_docs:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: ${{ env.REPO_FULL_NAME }}
+      - uses: ./.github/actions/build-documentation
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run documentation script
+        run: node scripts/run_techdocs.js
