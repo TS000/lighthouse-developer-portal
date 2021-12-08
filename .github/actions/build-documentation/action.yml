@@ -18,6 +18,8 @@ runs:
   using: 'composite'
   steps:
     - uses: actions/setup-node@v2
+      with:
+            node-version: 14
     # - uses: actions/setup-python@v2
     - name: setup java
       uses: actions/setup-java@v2
@@ -36,7 +38,7 @@ runs:
         sudo apt-get install -y graphviz
       shell: bash
     - name: Install gh-pages
-      run: sudo npm install gh-pages
+      run: npx gh-pages
     #   run: npx @techdocs/cli generate
       shell: bash
     # - name: Install mkdocs and mkdocs plugins
