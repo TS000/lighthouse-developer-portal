@@ -224,7 +224,7 @@ end
 builder -> dev: Notify
 group ArgoCD sync
 runner->storage : Sync docker image
-storage->runner : Deploy to staging
+storage->runner : Deploy to qa
 end
 ```
 *See overview and detail in previous sections for more info*
@@ -240,7 +240,7 @@ end
 - **ArcoCD** syncs the update and the new version is deployed to dev.
 
 
-## Deployment to staging and production
+## Deployment to qa and production
 
 ```plantuml
 actor Developer as dev
@@ -259,12 +259,12 @@ participant "EKS" as runner
 end box
 builder -> builder: Create Changeset PR
 group Embark deployment
-builder-> drepo: Create staging deployment
+builder-> drepo: Create qa deployment
 end
 builder -> dev: Notify
 group ArgoCD sync
 runner->storage : Sync docker image
-storage->runner : Deploy to staging
+storage->runner : Deploy to qa
 end
 dev -> builder: Merge release PR
 builder-> platform : Publish release notes
@@ -283,11 +283,11 @@ end
 - The application version is incremented in `package.json`
 - The **Embark deployment** process is triggered.
     - The Docker images are released with the branch commit SHA as the **version tag**
-    - This image is deployed to staging.
+    - This image is deployed to qa.
 - The developer merges the release PR
 - The **Create release action** creates the release notes.
 - The **Embark deployment** process is triggered.
-    - The Docker images that were deployed to staging are tagged with the new application version as the **version tag**.
-    - **Important**: _The image on production must match the image that was deployed and verified on staging_.
+    - The Docker images that were deployed to qa are tagged with the new application version as the **version tag**.
+    - **Important**: _The image on production must match the image that was deployed and verified on qa.
     - This image is deployed to production.
 
