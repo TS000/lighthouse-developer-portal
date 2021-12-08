@@ -1,8 +1,8 @@
-name: Publish Documentation
+name: Build Documentation
 
 # GitHub Action for documentation generation
 #
-# This action generates documentation using techdocs/cli and mkdocks.
+# This action generates documentation for all applications in the catalog using techdocs/cli and mkdocks.
 # Docs are added to the ./site folder
 #
 # The contents of ./site folder are then published to a `gh-pages` branch.

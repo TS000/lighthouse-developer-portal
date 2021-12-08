@@ -36,15 +36,14 @@ runs:
         sudo apt-get install -y graphviz
       shell: bash
     - name: Install TechDocs cli
-      # run: sudo npm install -g @techdocs/cli
-      run: npx @techdocs/cli generate
+      run: sudo npm install -g @techdocs/cli
       shell: bash
-    # - name: Install mkdocs and mkdocs plugins
-    #   run: pip install mkdocs-techdocs-core==0.*
-    #   shell: bash
-    # - name: Generate docs to ./site
-    #   run: techdocs-cli generate
-    #   shell: bash
+    - name: Install mkdocs and mkdocs plugins
+      run: pip install mkdocs-techdocs-core==0.*
+      shell: bash
+    - name: Generate docs to ./site
+      run: techdocs-cli generate
+      shell: bash
 
     # Publishes built docs to the "gh-pages" branch.
     # @see https://github.com/marketplace/actions/deploy-to-github-pages
