@@ -939,7 +939,17 @@
 </td></tr></table>
 
 <ul>
-<li>Verify app-config.dev.yaml has the correct values</li>
+<li>Configure app-config.yaml</li>
+<li>Depending on what environment you're deploying to will determine what you need to set the values for:<ul>
+<li>app.baseUrl</li>
+<li>backend.baseUrl</li>
+<li>backend.cors.origin</li>
+<li>backend.database.connection<ul>
+<li>host, port, user, password</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -969,29 +979,31 @@
 26
 27
 28
-29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># app-config.dev.yaml
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># app-config.yaml
 app:
   title: Embark Developer Portal
-  baseUrl: https://dev.devportal.name
+  baseUrl: ${HOST}
 ...
 
 backend:
-  baseUrl: https://dev.devportal.name
+  baseUrl: ${HOST}
   listen:
     port: 7000
   csp:
     connect-src: [&quot;&#39;self&#39;&quot;, &#39;http:&#39;, &#39;https:&#39;]
   cors:
-    origin: https://dev.devportal.name
-    methods: [GET, POST, PUT, DELETE]
-    credentials: true
-  cache:
-    store: memory
-  database:
-    client: sqlite3
-    connection: &#39;:memory:&#39;
+    origin: ${HOST}
 ...
-auth:
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_SERVICE_HOST}
+      port: ${POSTGRES_SERVICE_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+...
+  auth:
   environment: development
   providers:
     github:
@@ -1009,23 +1021,21 @@ auth:
 </td></tr></table>
 
 <ul>
-<li>Determine commit sha you want to tag images with<ul>
-<li>Replace <code>&lt;commit-sha&gt;</code> below with the commit sha</li>
-<li>The commit sha used to tag images is prefixed with "sha-" (i.e. sha-47915d626f95e5b620636376c8adf29ec734...)</li>
+<li>Determine version number you want to tag images with<ul>
+<li>Replace <code>&lt;version-number&gt;</code> below with the version number
+  <a href="https://github.com/orgs/department-of-veterans-affairs/packages?repo_name=lighthouse-backstage">https://github.com/orgs/department-of-veterans-affairs/packages?repo_name=lighthouse-backstage</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li>Create Image for Backend Container</li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:&lt;commit-sha&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:latest -f Dockerfile.backend .
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:&lt;version-number&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:latest -f Dockerfile.backend .
 </code></pre></div>
 </td></tr></table>
 
 <ul>
 <li>Create Image for Frontend Container</li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:&lt;commit-sha&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:latest -f Dockerfile.frontend .
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:&lt;version-number&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:latest -f Dockerfile.frontend .
 </code></pre></div>
 </td></tr></table>
 
@@ -1086,7 +1096,7 @@ Login Successful!
 </td></tr></table>
 
 <blockquote>
-<p>Note: if using Codespaces then you cannot install Lightkeeper. To work around this, you can set your kube config locally using the steps above and then copy the config to your Codespaces. In Codespaces, you can make a new <code>.kube</code> directory in <code>~/</code> and then make a new file inside <code>~/.kube/</code> called <code>config</code>. Inside <code>~/.kube/config</code> you can copy the contents of your local <code>~/.lightkeeper/config</code> file.</p>
+<p>Note: if using Codespaces then you cannot install Lightkeeper. To work around this, you can set your kube config locally using the steps above and then copy the config to your Codespaces. In Codespaces, you can make a new <code>.kube</code> directory in <code>~/</code> and then make a new file inside <code>~/.kube/</code> called <code>config</code>. Inside <code>~/.kube/config</code> you can copy the contents of your local <code>~/.kube/config</code> file.</p>
 </blockquote>
 <h3 id="install-helm-chart">Install Helm Chart<a class="headerlink" href="#install-helm-chart" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1127,33 +1137,26 @@ Login Successful!
 <ul>
 <li>Create <code>.env</code> file with your environment variables; you will need to set all of these variables in order for the deployment to work.</li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DOCKERCONFIGJSON=&lt;base64 encoded json string&gt;
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DOCKERCONFIGJSON=&lt;base64 encoded json string&gt;
 GH_TOKEN=&lt;github_token&gt;
+HOST=&lt;host url&gt;
 GH_CLIENT_ID=&lt;GH OAuth Client ID&gt;
 GH_CLIENT_SECRET=&lt;GH OAuth Client Secret&gt;
-HOST=dev.devportal.name
+NONPROD=true
 BASE_URL=https://dev.devportal.name
 GATEWAY=istio-system/dev-devportal-name-gateway
-NONPROD=true
-DEPLOY_ENV=dev
-COMMIT_SHA=&lt;commit sha used to tag image or &quot;latest&quot;*&gt;
+...
 </code></pre></div>
 </td></tr></table>
 
-<blockquote>
-<ul>
-<li>If you manually build, push, and tag the image with "latest", using "latest" as the image tag for the deployment can work as a temporary fix but it is preferable to use something more unique like a commit sha. The "latest" tag changes frequently due to the CI workflow so this may cause the containers to crash by pulling an image definition that the Helm release may not be configured to use.</li>
-</ul>
-</blockquote>
 <ul>
 <li>Export file contents</li>
 </ul>
@@ -1166,7 +1169,7 @@ COMMIT_SHA=&lt;commit sha used to tag image or &quot;latest&quot;*&gt;
 <ul>
 <li>Install the Helm chart and set secrets using <code>--set</code></li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade embark-qa helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=${NONPROD},backend.nonprod=${NONPROD},frontend.nonprod=${NONPROD} --set BASE_URL=$BASE_URL --set GATEWAY=$GATEWAY --set BACKEND_PORT=7000 --set DEPLOY_ENV=$DEPLOY_ENV,backend.DEPLOY_ENV=$DEPLOY_ENV --set backend.image.tag=$COMMIT_SHA,frontend.image.tag=$COMMIT_SHA --install --atomic --cleanup-on-fail --history-max 5
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade backstage-dev helm/lighthouse-backstage/ --debug --values helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set GATEWAY=$GATEWAY --set BACKEND_PORT=7000 --install --atomic --cleanup-on-fail --history-max 5
 </code></pre></div>
 </td></tr></table>
 
@@ -1178,7 +1181,7 @@ COMMIT_SHA=&lt;commit sha used to tag image or &quot;latest&quot;*&gt;
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm list -n lighthouse-bandicoot-dev
 NAME            NAMESPACE                       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
-embark-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:11:06.6508301 -0800 PST   deployed        embark-0.1.0                    1.16.0
+backstage-dev   lighthouse-bandicoot-dev        1               2021-10-07 07:37:22.4745171 -0700 PDT   deployed        lighthouse-backstage-0.1.0      1.16.0
 </code></pre></div>
 </td></tr></table>
 
