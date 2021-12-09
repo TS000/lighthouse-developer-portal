@@ -66,4 +66,5 @@ jobs:
 
       - name: List directories
         run: | 
+          cd site
           ls -a
