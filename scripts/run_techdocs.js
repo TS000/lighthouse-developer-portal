@@ -55,6 +55,7 @@ const octokit = new Octokit();
  * @param {string} dir - source directory for documentation
  */
  async function buildDocs(dir) {
+    console.log('Builing...')
     await rmDir('./site')
 
     // fail building documentation if mkdocs file is not present
@@ -100,7 +101,7 @@ async function runTechdocs() {
     // console.log(data[0])
     repos.forEach( async repo => {
         await cloneRepo(`${repo}.git`, dir)
-        // await buildDocs(dir)
+        await buildDocs(dir)
         // await publishDocs()
     })
     
