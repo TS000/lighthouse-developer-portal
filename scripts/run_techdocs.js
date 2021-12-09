@@ -76,6 +76,7 @@ const octokit = new Octokit();
  * @param {string} url - repo url
  */
  async function publishDocs(url) {
+     console.log('Publishing...')
      //https://github.com/mhyder1/docs-2.git
     //  'https://github.com/backstage/techdocs-cli.git'
     ghpages.publish('site', {
