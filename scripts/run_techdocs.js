@@ -1,6 +1,5 @@
 
 const ghpages = require('gh-pages');
-// const techdocs-cli = require('@techdocs/cli')
 const fs = require('fs');
 const { exec } = require("child_process");
 const { Octokit } = require("@octokit/core");
@@ -103,7 +102,7 @@ async function runTechdocs() {
     repos.forEach( async repo => {
         await cloneRepo(`${repo}.git`, dir)
         await buildDocs(dir)
-        // await publishDocs()
+        await publishDocs()
     })
     
 }
