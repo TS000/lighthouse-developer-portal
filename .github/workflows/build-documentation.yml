@@ -61,8 +61,8 @@ jobs:
         run: npm install @octokit/core
       - name: Run documentation script
         run: node scripts/run_techdocs.js
-      - name: Test npx
-        run: npx cowsay hello
+      # - name: Test npx
+      #   run: npx cowsay hello
       # - name: List directories
       #   run: | 
       #     cd temp

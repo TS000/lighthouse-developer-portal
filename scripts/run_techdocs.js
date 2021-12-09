@@ -63,9 +63,9 @@ const octokit = new Octokit();
         console.log('mkdocs.yml must be present to build documentation')
     }
     // const shellCommand = `npx @techdocs/cli generate --source-dir ${dir} --no-docker`
-    const shellCommand = `npx cowsay Hello World`
+    const shellCommand = `npx cowsay Hello`
     try {
-        await execShellCommand(shellCommand)
+        execShellCommand(shellCommand)
     } catch(error) {
         console.log({ error })
     }
