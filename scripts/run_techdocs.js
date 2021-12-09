@@ -45,7 +45,7 @@ const octokit = new Octokit();
     const shellCommand = `git clone ${url} ${dir}`
     try {
         await execShellCommand(shellCommand)
-        await execShellCommand('pwd')
+        // await execShellCommand('dir')
     } catch(error) {
         console.log(error)
     }
