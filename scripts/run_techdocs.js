@@ -40,10 +40,12 @@ const octokit = new Octokit();
  * @param {string} dir - directory to clone into
  */
  async function cloneRepo(url, dir) {
+     console.log('cloning...')
     await rmDir(dir)
     const shellCommand = `git clone ${url} ${dir}`
     try {
         await execShellCommand(shellCommand)
+        await execShellCommand('ls')
     } catch(error) {
         console.log(error)
     }
