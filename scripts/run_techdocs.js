@@ -1,5 +1,6 @@
 
 const ghpages = require('gh-pages');
+// const techdocs-cli = require('@techdocs/cli')
 const fs = require('fs');
 const { exec } = require("child_process");
 const { Octokit } = require("@octokit/core");
@@ -63,7 +64,7 @@ const octokit = new Octokit();
         console.log('mkdocs.yml must be present to build documentation')
     }
     // const shellCommand = `npx @techdocs/cli generate --source-dir ${dir} --no-docker`
-    const shellCommand = `techdocs/cli generate --source-dir ${dir}`
+    const shellCommand = `techdocs-cli generate --source-dir ${dir}`
     try {
         await execShellCommand(shellCommand)
     } catch(error) {
