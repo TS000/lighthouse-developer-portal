@@ -60,7 +60,8 @@ const octokit = new Octokit();
     if (!fs.existsSync(`${dir}/mkdocs.yml`)) {
         console.log('mkdocs.yml must be present to build documentation')
     }
-    const shellCommand = `npx @techdocs/cli generate --source-dir ${dir} --no-docker`
+    // const shellCommand = `npx @techdocs/cli generate --source-dir ${dir} --no-docker`
+    const shellCommand = `npx @techdocs/cli generate --source-dir ${dir}
     try {
         await execShellCommand(shellCommand)
     } catch(error) {
