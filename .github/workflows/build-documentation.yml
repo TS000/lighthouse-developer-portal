@@ -59,4 +59,6 @@ jobs:
       - name: Run documentation script
         run: node scripts/run_techdocs.js
       - name: List directories
-        run: ls -a
+        run: | 
+          cd temp
+          ls -a
