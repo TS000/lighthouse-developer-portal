@@ -52,7 +52,7 @@ jobs:
       - uses: ./.github/actions/build-documentation
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Install gh-pages
-      #   run: npm install gh-pages
+      - name: Install gh-pages
+        run: npm install gh-pages
       - name: Run documentation script
         run: node scripts/run_techdocs.js
