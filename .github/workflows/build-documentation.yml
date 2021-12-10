@@ -70,6 +70,7 @@ jobs:
         run: node scripts/run_techdocs.js
 
       - name: List directories
-        run: | 
+        run: |
+          git --version 
           cd site
           ls -a
