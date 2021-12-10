@@ -82,7 +82,8 @@ const octokit = new Octokit();
     ghpages.publish('site', {
         branch: 'gh-pages',
         // repo: url,
-        repo: 'https://github.com/mhyder1/docs-1.git'
+        // repo: 'https://github.com/mhyder1/docs-1.git'
+        repo: 'https://github.com/backstage/techdocs-cli.git'
     }, (error) => {
         if (error) console.log({ error })
     })
