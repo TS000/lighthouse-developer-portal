@@ -4,7 +4,7 @@ const fs = require('fs');
 const { exec } = require("child_process");
 const { Octokit } = require("@octokit/core");
 const octokit = new Octokit();
-
+console.log(process.env.token, 'token')
 /**
  * Executes a shell command and return it as a Promise.
  * @param cmd {string}
