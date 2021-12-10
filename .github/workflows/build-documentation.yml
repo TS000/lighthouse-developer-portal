@@ -61,10 +61,10 @@ jobs:
         run: npm install @octokit/core
       - name: Install techdocs
         run: npm install -g @techdocs/cli
-      - name: Set git config
-        run: |
-          git config --global user.email "mhyder1@gmail.com"
-          git config --global user.name "Muhammad Abdusamad"
+      # - name: Set git config
+      #   run: |
+      #     git config --global user.email "mhyder1@gmail.com"
+      #     git config --global user.name "Muhammad Abdusamad"
       - name: Run documentation script
         run: node scripts/run_techdocs.js
 
