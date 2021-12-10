@@ -1,0 +1,54 @@
+# Default values for lighthouse-backstage.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+revisionHistoryLimit: 3
+
+image:
+  repository: ghcr.io/department-of-veterans-affairs/lighthouse-backstage
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  # For deployment repo this will be hardcoded and updated with Argo, i.e:
+  # tag: "sha-6dcd760d389e826b58586cde61f5ead1ca464943"
+  # For now we can just pass in a variable with the helm upgrade command:
+  tag: ${COMMIT_SHA}
+
+name: backend-port
+port: 7000
+livenessProbe:
+  initialDelaySeconds: 5
+  path: /healthcheck
+readinessProbe:
+  initialDelaySeconds: 5
+  path: /healthcheck
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations:
+  namespace: lighthouse-bandicoot-dev
+
+nonprod: ${NONPROD}
+DEPLOY_ENV: ${DEPLOY_ENV}
+
+service:
+  type: ClusterIP
+  port: 7000
+
+resources: 
+  limits:
+    cpu: "0.5"
+    memory: "500Mi"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

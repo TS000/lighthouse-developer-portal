@@ -48,14 +48,21 @@ runs:
         echo "::set-output name=nonprod::false"
       fi
     shell: bash
+  - name: Create image tag
+    id: tag
+    run: |
+      prefix="sha-"
+      prefix+=${{ github.sha }}
+      echo "::set-output name=sha::$prefix"
+    shell: bash
   - name: Upgrade(or install) helm release
     run: >
-      helm upgrade backstage-${{ inputs.ENV }} helm/lighthouse-backstage/ --debug --values 
-      helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev 
-      --set DOCKERCONFIGJSON=${{ inputs.DOCKERCONFIGJSON }} --set GH_TOKEN=${{ inputs.GH_TOKEN }} 
+      helm upgrade lighthouse-embark-${{ inputs.ENV }} helm/embark/ --debug --values helm/embark/values.yaml 
+      --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=${{ inputs.DOCKERCONFIGJSON }} --set GH_TOKEN=${{ inputs.GH_TOKEN }} 
       --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }} --set GH_CLIENT_SECRET=${{ inputs.GH_CLIENT_SECRET }} 
-      --set nonprod=${{ steps.overrides.outputs.nonprod }} --set DEPLOY_ENV=${{ inputs.ENV }}
-      --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }} --set BACKEND_PORT=${{ steps.overrides.outputs.BACKEND_PORT }}
-      --set HOST=${{ steps.overrides.outputs.HOST }} --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }}
+      --set nonprod=${{ steps.overrides.outputs.nonprod }},backend.nonprod=${{ steps.overrides.outputs.nonprod }},frontend.nonprod=${{ steps.overrides.outputs.nonprod }} 
+      --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }} --set HOST=${{ steps.overrides.outputs.HOST }} --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }} --set BACKEND_PORT=7000 
+      --set DEPLOY_ENV=${{ inputs.ENV }},backend.DEPLOY_ENV=${{ inputs.ENV }} 
+      --set backend.image.tag=${{ steps.tag.outputs.sha }},frontend.image.tag=${{ steps.tag.outputs.sha }} 
       --install --atomic --cleanup-on-fail --history-max 5
     shell: bash

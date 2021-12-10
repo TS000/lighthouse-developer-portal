@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "lighthouse-backstage.fullname" . }}
+  name: {{ include "backend.fullname" . }}
   labels:
-    {{- include "lighthouse-backstage.labels" . | nindent 4 }}
+    {{- include "backend.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -11,7 +11,7 @@ spec:
   revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
   selector:
     matchLabels:
-      {{- include "lighthouse-backstage.selectorLabels" . | nindent 6 }}
+      {{- include "backend.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -20,7 +20,7 @@ spec:
       {{- end }}
         rollme: {{ randAlphaNum 5 | quote }}
       labels:
-        {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
+        {{- include "backend.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -29,32 +29,32 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: backend
+        - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}/backend:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}/{{ .Chart.Name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: {{ .Values.containers.backend.name }}
-              containerPort: {{ .Values.containers.backend.port }}
+            - name: {{ .Values.name }}
+              containerPort: {{ .Values.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: {{ .Values.containers.backend.livenessProbe.path }}
-              port: {{ .Values.containers.backend.port }}
+              path: {{ .Values.livenessProbe.path }}
+              port: {{ .Values.port }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.containers.backend.readinessProbe.path }}
-              port: {{ .Values.containers.backend.port }}
+              path: {{ .Values.readinessProbe.path }}
+              port: {{ .Values.port }}
           {{- if .Values.nonprod }}
           command: ["node", "packages/backend", "--config", "app-config.{{ .Values.DEPLOY_ENV }}.yaml"]
           envFrom:
           - configMapRef:
-              name: {{ include "lighthouse-backstage.fullname" . }}-configmap
+              name: "{{ .Release.Name }}-configmap"
           {{- end }}
           envFrom:
             - secretRef:
-                name: {{ include "lighthouse-backstage.fullname" . }}-secrets
+                name: "{{ .Release.Name }}-secrets"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -69,23 +69,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
----
-apiVersion: v1
-kind: Secret
-type: kubernetes.io/dockerconfigjson
-metadata:
-  name: {{ include "lighthouse-backstage.fullname" . }}-dockerconfigjson-ghpkgs
-  labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
-data:
-  .dockerconfigjson: {{ .Values.DOCKERCONFIGJSON }}
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: {{ include "lighthouse-backstage.fullname" . }}-secrets
-  labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
-type: Opaque
-data:
-  GH_TOKEN: {{ .Values.GH_TOKEN | b64enc }}
-  GH_CLIENT_ID: {{ .Values.GH_CLIENT_ID | b64enc }}
-  GH_CLIENT_SECRET: {{ .Values.GH_CLIENT_SECRET | b64enc }}

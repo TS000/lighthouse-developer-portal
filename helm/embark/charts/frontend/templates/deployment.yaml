@@ -29,27 +29,27 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: frontend
+        - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}/frontend:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}/{{ .Chart.Name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: {{ .Values.containers.frontend.name }}
-              containerPort: {{ .Values.containers.frontend.port }}
+            - name: {{ .Values.name }}
+              containerPort: {{ .Values.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: {{ .Values.containers.frontend.livenessProbe.path }}
-              port: {{ .Values.containers.frontend.port }}
+              path: {{ .Values.livenessProbe.path }}
+              port: {{ .Values.port }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.containers.frontend.readinessProbe.path }}
-              port: {{ .Values.containers.frontend.port }}
+              path: {{ .Values.readinessProbe.path }}
+              port: {{ .Values.port }}
           {{- if .Values.nonprod }}
           envFrom:
           - configMapRef:
-              name: {{ include "lighthouse-backstage.fullname" . }}-configmap
+              name: "{{ .Release.Name }}-nonprod-configmap"
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
@@ -65,13 +65,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
----
-kind: Secret
-type: kubernetes.io/dockerconfigjson
-apiVersion: v1
-metadata:
-  name: {{ include "frontend.fullname" . }}-dockerconfigjson
-  labels: 
-    {{- include "frontend.selectorLabels" . | nindent 4 }}
-data:
-  .dockerconfigjson: {{ .Values.DOCKERCONFIGJSON }}
