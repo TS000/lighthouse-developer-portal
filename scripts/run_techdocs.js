@@ -86,7 +86,7 @@ console.log(process.env.ghpages, 'token')
           },
         branch: 'gh-pages',
         // repo: url,
-        repo: `https://${ghpages}@github.com/mhyder1/docs-1.git`
+        repo: `https://${process.env.ghpages}@github.com/mhyder1/docs-1.git`
         // repo: 'https://github.com/backstage/techdocs-cli.git'
     }, (error) => {
         if (error) console.log({ error })
