@@ -67,7 +67,7 @@ jobs:
           echo ::set-output name=date::$(date +'%Y-%m-%d')
       - name: Create PR
         id: create-pr
-        uses: peter-evans/create-pull-request@ebc5e0258578dc3e4b0da1f649c75ec39fb6a1f4 # pin@v3
+        uses: peter-evans/create-pull-request@67df31e08a133c6a77008b89689677067fef169e # pin@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           committer: GitHub <noreply@github.com>
