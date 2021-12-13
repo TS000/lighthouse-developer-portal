@@ -79,10 +79,10 @@ const octokit = new Octokit();
      //https://github.com/mhyder1/docs-2.git
     //  'https://github.com/backstage/techdocs-cli.git'
     ghpages.publish('site', {
-        // user: {
-        //     name: 'Muhammad Abdusamad',
-        //     email: 'mhyder1@gmail.com'
-        //   },
+        user: {
+            name: 'Muhammad Abdusamad',
+            email: 'mhyder1@gmail.com'
+          },
         branch: 'gh-pages',
         // repo: url,
         repo: `https://${process.env.ghpages_token}@github.com/mhyder1/docs-2.git`

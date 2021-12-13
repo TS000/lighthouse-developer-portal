@@ -57,6 +57,10 @@ jobs:
       - uses: ./.github/actions/build-documentation
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Install gh-pages
         run: npm install gh-pages
       - name: Install @octokit/core
