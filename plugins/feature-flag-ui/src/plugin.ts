@@ -3,7 +3,7 @@ import {
   createRoutableExtension,
 } from '@backstage/core-plugin-api';
 
-import { rootRouteRef } from './routes';
+import { rootRoute } from './routes';
 
 export { useFeatureFlags } from './hooks';
 export { FlagContext } from './components/FeatureFlagContext';
@@ -11,13 +11,13 @@ export { FlagContext } from './components/FeatureFlagContext';
 export const featureFlagsPagePlugin = createPlugin({
   id: 'feature-flags',
   routes: {
-    root: rootRouteRef,
+    root: rootRoute,
   },
 });
 
 export const FeatureFlagsPage = featureFlagsPagePlugin.provide(
   createRoutableExtension({
     component: () => import('./components').then(m => m.FeatureFlagsContainer),
-    mountPoint: rootRouteRef,
+    mountPoint: rootRoute,
   }),
 );

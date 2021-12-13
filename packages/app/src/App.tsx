@@ -24,11 +24,12 @@ import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { Root } from './components/Root';
 import { HomePage } from './components/homepage';
-import { initDatadogLogs, Datadog } from './components/datadog';
+import { initDatadogLogs } from './components/datadog';
 import { searchPage } from './components/search/SearchPage';
 import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFLagRegistry';
 import { StarterGuidePage } from '@internal/plugin-starter-guide';
+import { DatadogDashboardPage } from '@internal/plugin-datadog-dashboard';
 
 import { lightThemeVA, darkThemeVA } from './themes/index';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
@@ -113,7 +114,7 @@ const routes = (
     <Route path="/docs" element={<TechDocsIndexPage />}>
       <DefaultTechDocsHome />
     </Route>
-    <Route path="/datadog" element={<Datadog />} />
+    <Route path="/datadog" element={<DatadogDashboardPage />} />
     <Route
       path="/docs/:namespace/:kind/:name/*"
       element={<TechDocsReaderPage />}
@@ -138,7 +139,9 @@ const App = () => {
   useEffect(() => {
     const loadLocalStorage = async () => {
       const activeFlags = (await localStorage.getItem('featureFlags')) || '';
-      setFlagState(JSON.parse(activeFlags));
+      if (activeFlags) {
+        setFlagState(JSON.parse(activeFlags));
+      }
     };
     loadLocalStorage();
   }, []);

@@ -74,7 +74,7 @@ techdocs:
 auth:
   # providers: {}
   # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
-  # environment: development
+  environment: development
   providers:
     github:
       development:

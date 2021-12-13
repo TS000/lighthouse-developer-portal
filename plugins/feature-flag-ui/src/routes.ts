@@ -1,5 +1,5 @@
 import { createRouteRef } from '@backstage/core-plugin-api';
 
-export const rootRouteRef = createRouteRef({
-  title: 'feature-flags',
+export const rootRoute = createRouteRef({
+  id: 'feature-flags',
 });
