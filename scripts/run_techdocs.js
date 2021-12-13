@@ -108,7 +108,7 @@ async function runTechdocs() {
     // const { data } = await octokit.request('https://dev.devportal.name/api/catalog/entities?filter=kind=component')
     // console.log(data[0])
     repos.forEach( async repo => {
-        await cloneRepo(`${repo}.git`, dir)
+        await cloneRepo(`${repo}.git`, `${repo}-${temp}`)
         await buildDocs(dir)
         await publishDocs(repo)
     })
