@@ -116,7 +116,7 @@ catalog:
 
     # EVSS example
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/evss/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/evss/catalog-info.yaml
 
     # backing systems system example
     - type: url
