@@ -55,13 +55,13 @@ const octokit = new Octokit();
  */
  async function buildDocs(dir) {
     console.log('Builing...')
-    await rmDir('./site')
+    // await rmDir('./site')
 
     // fail building documentation if mkdocs file is not present
     if (!fs.existsSync(`${dir}/mkdocs.yml`)) {
         console.log('mkdocs.yml must be present to build documentation')
     }
-    const shellCommand = `techdocs-cli generate --source-dir ${dir}`
+    const shellCommand = `techdocs-cli generate --source-dir ${dir} --output-dir ${dir}-site`
     try {
         await execShellCommand(shellCommand)
     } catch(error) {
