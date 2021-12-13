@@ -45,7 +45,8 @@ jobs:
   schedule_docs:
     runs-on: ubuntu-20.04
     env:
-      ghpages_token: ${{ secrets.GH_PAGES_PUBLISH }}
+      ghub: ${{github}}
+      # ghpages_token: ${{ secrets.GH_PAGES_PUBLISH }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -57,9 +58,6 @@ jobs:
       - uses: ./.github/actions/build-documentation
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: View github Credentials
-          env: 
-            ghub: ${{ github }}
       - name: Install gh-pages
         run: npm install gh-pages
       - name: Install @octokit/core
