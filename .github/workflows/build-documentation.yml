@@ -57,8 +57,6 @@ jobs:
       - uses: ./.github/actions/build-documentation
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: View github creds
-        run: echo ${{toJson(github)}}
       - name: Install gh-pages
         run: npm install gh-pages
       - name: Install @octokit/core

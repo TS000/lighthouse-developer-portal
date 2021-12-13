@@ -4,7 +4,6 @@ const fs = require('fs');
 const { exec } = require("child_process");
 const { Octokit } = require("@octokit/core");
 const octokit = new Octokit();
-console.log(JSON.stringify(process.env.ghub, null, 2), 'token')
 /**
  * Executes a shell command and return it as a Promise.
  * @param cmd {string}
@@ -62,7 +61,6 @@ console.log(JSON.stringify(process.env.ghub, null, 2), 'token')
     if (!fs.existsSync(`${dir}/mkdocs.yml`)) {
         console.log('mkdocs.yml must be present to build documentation')
     }
-    // const shellCommand = `npx @techdocs/cli generate --source-dir ${dir} --no-docker`
     const shellCommand = `techdocs-cli generate --source-dir ${dir}`
     try {
         await execShellCommand(shellCommand)
@@ -87,7 +85,7 @@ console.log(JSON.stringify(process.env.ghub, null, 2), 'token')
         //   },
         branch: 'gh-pages',
         // repo: url,
-        repo: `https://${process.env.ghpages_token}@github.com/mhyder1/docs-1.git`
+        repo: `https://${process.env.ghpages_token}@github.com/mhyder1/docs-2.git`
         // repo: 'https://github.com/backstage/techdocs-cli.git'
     }, (error) => {
         if (error) console.log({ error })
