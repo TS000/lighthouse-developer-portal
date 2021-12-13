@@ -74,19 +74,20 @@ console.log(process.env.ghpages, 'token')
 /**
  * Publishes documentation to a specified repo.
  * @param {string} url - repo url
+ * @info https://techsparx.com/software-development/git/jenkins-access.html
  */
  async function publishDocs(url) {
      console.log('Publishing...')
      //https://github.com/mhyder1/docs-2.git
     //  'https://github.com/backstage/techdocs-cli.git'
     ghpages.publish('site', {
-        user: {
-            name: 'Muhammad Abdusamad',
-            email: 'mhyder1@gmail.com'
-          },
+        // user: {
+        //     name: 'Muhammad Abdusamad',
+        //     email: 'mhyder1@gmail.com'
+        //   },
         branch: 'gh-pages',
         // repo: url,
-        repo: `https://${process.env.ghpages}@github.com/mhyder1/docs-1.git`
+        repo: `https://${process.env.ghpages_token}@github.com/mhyder1/docs-1.git`
         // repo: 'https://github.com/backstage/techdocs-cli.git'
     }, (error) => {
         if (error) console.log({ error })
