@@ -111,7 +111,7 @@ async function runTechdocs() {
         const url = repo.split('/').pop()
         await cloneRepo(`${repo}.git`, `${url}-temp`)
         await buildDocs(`${url}-temp`)
-        await publishDocs(repo, `${url}-temp`)
+        await publishDocs(repo, `${url}-temp-site`)
     })
     
 }
