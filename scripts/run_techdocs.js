@@ -4,7 +4,7 @@ const fs = require('fs');
 const { exec } = require("child_process");
 const { Octokit } = require("@octokit/core");
 const octokit = new Octokit();
-console.log(process.env.ghpages, 'token')
+console.log(JSON.stringify(process.env.ghub, null, 2), 'token')
 /**
  * Executes a shell command and return it as a Promise.
  * @param cmd {string}

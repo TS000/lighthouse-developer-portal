@@ -46,6 +46,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       ghpages_token: ${{ secrets.GH_PAGES_PUBLISH }}
+      ghub: ${{ github }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
