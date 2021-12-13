@@ -1,6 +1,6 @@
 app:
   # Should be the same as backend.baseUrl when using the `app-backend` plugin
-  title: DVP Developer Portal
+  title: Embark Developer Portal
   baseUrl: https://www.backhouselightstage.com
 
 backend:
