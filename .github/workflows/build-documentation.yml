@@ -58,7 +58,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: View github Credentials
-        run: echo ${{ github.actor }}
+        run: echo ${{ github }}
       - name: Install gh-pages
         run: npm install gh-pages
       - name: Install @octokit/core
