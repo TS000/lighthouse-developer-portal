@@ -40,7 +40,7 @@ const octokit = new Octokit();
  */
  async function cloneRepo(url, dir) {
      console.log('cloning...')
-    await rmDir(dir)
+    // await rmDir(dir)
     const shellCommand = `git clone ${url} ${dir}`
     try {
         await execShellCommand(shellCommand)
@@ -74,12 +74,12 @@ const octokit = new Octokit();
  * @param {string} url - repo url
  * @info https://techsparx.com/software-development/git/jenkins-access.html
  */
- async function publishDocs(url) {
+ async function publishDocs(url, dir) {
      console.log('Publishing...')
      //https://github.com/mhyder1/docs-2.git
     //  'https://github.com/backstage/techdocs-cli.git'
     url = url.replace('https://', '')
-    ghpages.publish('site', {
+    ghpages.publish(dir, {
         user: {
             name: 'Muhammad Abdusamad',
             email: 'mhyder1@gmail.com'
@@ -111,7 +111,7 @@ async function runTechdocs() {
         const url = repo.split('/').pop()
         await cloneRepo(`${repo}.git`, `${url}-temp`)
         await buildDocs(`${url}-temp`)
-        await publishDocs(repo)
+        await publishDocs(repo, `${url}-temp`)
     })
     
 }
