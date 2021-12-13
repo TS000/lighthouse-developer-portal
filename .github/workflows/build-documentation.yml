@@ -57,26 +57,17 @@ jobs:
       - uses: ./.github/actions/build-documentation
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - name: Install gh-pages
         run: npm install gh-pages
       - name: Install @octokit/core
         run: npm install @octokit/core
       - name: Install techdocs
         run: npm install -g @techdocs/cli
-      # - name: Set git config
-        # run: |
-        #   git config --global credential.helper wincred
-      #     git config --global user.email "mhyder1@gmail.com"
-      #     git config --global user.name "Muhammad Abdusamad"
       - name: Run documentation script
         run: node scripts/run_techdocs.js
 
-      - name: List directories
-        run: |
-          git --version 
-          cd site
-          ls -a
+      # - name: List directories
+      #   run: |
+      #     git --version 
+      #     cd site
+      #     ls -a

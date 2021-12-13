@@ -78,6 +78,7 @@ const octokit = new Octokit();
      console.log('Publishing...')
      //https://github.com/mhyder1/docs-2.git
     //  'https://github.com/backstage/techdocs-cli.git'
+    url = url.replace('https://', '')
     ghpages.publish('site', {
         user: {
             name: 'Muhammad Abdusamad',
@@ -85,7 +86,7 @@ const octokit = new Octokit();
           },
         branch: 'gh-pages',
         // repo: url,
-        repo: `https://${process.env.ghpages_token}@github.com/mhyder1/docs-2.git`
+        repo: `https://${process.env.ghpages_token}@${url}.git`
         // repo: 'https://github.com/backstage/techdocs-cli.git'
     }, (error) => {
         if (error) console.log({ error })
@@ -95,7 +96,9 @@ const octokit = new Octokit();
 //'https://dev.devportal.name/api/catalog/entities?filter=kind=component'
 
 const repos = [
-    'https://github.com/department-of-veterans-affairs/lighthouse-backstage',
+    'https://github.com/mhyder1/docs-1',
+    'https://github.com/mhyder1/docs-2',
+    // 'https://github.com/department-of-veterans-affairs/lighthouse-backstage',
     // 'https://github.com/department-of-veterans-affairs/lighthouse-di-api-styleguide',
     // 'https://github.com/department-of-veterans-affairs/lighthouse-di-api-styleguide'
 ]
@@ -107,7 +110,7 @@ async function runTechdocs() {
     repos.forEach( async repo => {
         await cloneRepo(`${repo}.git`, dir)
         await buildDocs(dir)
-        await publishDocs()
+        await publishDocs(repo)
     })
     
 }
