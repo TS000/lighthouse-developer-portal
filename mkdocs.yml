@@ -40,8 +40,8 @@ nav:
       - Ignore Backend Code Coverage: ADR/code-cov.md
       - Vite: ADR/vite.md
       - GitHub Packages: ADR/github-packages.md
-      - Twelve Factor App: twelve-factor-app.md
-      - Image Signing: image-signing.md
+      - Twelve Factor App: ADR/twelve-factor-app.md
+      - Image Signing: ADR/image-signing.md
 
 plugins:
   - techdocs-core
