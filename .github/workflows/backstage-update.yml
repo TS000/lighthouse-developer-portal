@@ -31,7 +31,7 @@ jobs:
     if: needs.check-for-existing-update.outputs.exists != '[ ]'
     steps:
       - name: Failed to update Backstage
-        uses: actions/github-script@v3
+        uses: actions/github-script@v5
         with:
           script: |
             console.log("Failed to Update Backstage - Pull Request already exists: ",${{ needs.check-for-existing-update.outputs.url }})
