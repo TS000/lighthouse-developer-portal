@@ -109,7 +109,7 @@ async function runTechdocs() {
     // console.log(data[0])
     repos.forEach( async repo => {
         await cloneRepo(`${repo}.git`, `${repo}-temp`)
-        await buildDocs(dir)
+        await buildDocs(`${repo}-temp)
         await publishDocs(repo)
     })
     
