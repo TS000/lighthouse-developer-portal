@@ -45,7 +45,7 @@ jobs:
   schedule_docs:
     runs-on: ubuntu-20.04
     env:
-      ghub: ${{github}}
+      ghub: ${{github.actor}}
       # ghpages_token: ${{ secrets.GH_PAGES_PUBLISH }}
     steps:
       - name: Checkout code
