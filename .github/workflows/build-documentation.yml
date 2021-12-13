@@ -69,5 +69,5 @@ jobs:
       - name: List directories
         run: |
           # git --version 
-          # cd site
+          cd docs-1-temp-site
           ls -a
