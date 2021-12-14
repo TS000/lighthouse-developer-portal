@@ -90,8 +90,6 @@ const octokit = new Octokit();
     })
 }
 
-//'https://dev.devportal.name/api/catalog/entities?filter=kind=component'
-
 const repos = [
     'https://github.com/mhyder1/docs-1',
     'https://github.com/mhyder1/docs-2',

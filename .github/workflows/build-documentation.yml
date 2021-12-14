@@ -4,29 +4,7 @@
 #   schedule:
 #     - cron: '0 00 * * *'
 
-# jobs:
-#   delete-workflows:
-#     runs-on: ubuntu-latest
-#     env:
-#       WORKFLOW_TOKEN: ${{secrets.OCTOKIT_GITHUB_WORKFLOW_TOKEN}}
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: 14
-
-#       - name: Install dependencies
-#         run: npm install @octokit/core
-
-#       - name: Run delete script
-#         run: node scripts/delete_workflows.js
-
-
-#         name: Publish Documentation
         
-
-
-
 # GitHub Action for documentation generation
 #
 # This action generates documentation using techdocs/cli and mkdocks.
@@ -36,10 +14,14 @@
 # GitHub pages are then available for viewing at https://department-of-veterans-affairs.github.io/lighthouse-backstage/
 name: Schedule Documentation
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  # push:
+  #   branches: [main]
+  # pull_request:
+  #   branches: [main]
+  workflow_dispatch:
+  schedule:
+    # - cron: '0 00 * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   schedule_docs:
@@ -65,9 +47,3 @@ jobs:
         run: npm install -g @techdocs/cli
       - name: Run documentation script
         run: node scripts/run_techdocs.js
-
-      - name: List directories
-        run: |
-          # git --version 
-          cd docs-1-temp-site
-          ls -a
