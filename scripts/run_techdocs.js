@@ -21,18 +21,6 @@ const octokit = new Octokit();
     });
 }
 
-
-/**
- * Removes directory if it exists.
- * @param {string} dir - direcotory to remove
- */
- async function rmDir(dir) {
-    if (fs.existsSync(dir)) {
-        await execShellCommand(`rm -rf ${dir}`)
-    }
-}
-
-
 /**
  * Clones a repo to a specifie directory.
  * @param {string} url - url of remote repo
