@@ -39,8 +39,7 @@ const octokit = new Octokit();
  * @param {string} dir - directory to clone into
  */
  async function cloneRepo(url, dir) {
-     console.log('cloning...')
-    // await rmDir(dir)
+    console.log(`cloning into ${dir}`)
     const shellCommand = `git clone ${url} ${dir}`
     try {
         await execShellCommand(shellCommand)
@@ -52,16 +51,17 @@ const octokit = new Octokit();
 /**
  * Generates documention from a specified directory to the default ./site directory.
  * @param {string} dir - source directory for documentation
+ * @param {string} outputDir - output directory for documentation
  */
- async function buildDocs(dir) {
-    console.log('Builing...')
-    // await rmDir('./site')
+ async function buildDocs(dir, outputDir) {
+    console.log(`Builing docs from /${dir} into /${outputDir}`)
 
     // fail building documentation if mkdocs file is not present
     if (!fs.existsSync(`${dir}/mkdocs.yml`)) {
         console.log('mkdocs.yml must be present to build documentation')
     }
-    const shellCommand = `techdocs-cli generate --source-dir ${dir} --output-dir ${dir}-site`
+
+    const shellCommand = `techdocs-cli generate --source-dir ${dir} --output-dir ${outputDir}`
     try {
         await execShellCommand(shellCommand)
     } catch(error) {
@@ -71,13 +71,12 @@ const octokit = new Octokit();
 
 /**
  * Publishes documentation to a specified repo.
- * @param {string} url - repo url
+ * @param {string} url - destination repo url for documentation
+ * @param {string} dir - directory documentation is published from
  * @info https://techsparx.com/software-development/git/jenkins-access.html
  */
  async function publishDocs(url, dir) {
-     console.log('Publishing...')
-     //https://github.com/mhyder1/docs-2.git
-    //  'https://github.com/backstage/techdocs-cli.git'
+    console.log(`Publishing from /${dir}`)
     url = url.replace('https://', '')
     ghpages.publish(dir, {
         user: {
@@ -85,9 +84,7 @@ const octokit = new Octokit();
             email: 'mhyder1@gmail.com'
           },
         branch: 'gh-pages',
-        // repo: url,
         repo: `https://${process.env.ghpages_token}@${url}.git`
-        // repo: 'https://github.com/backstage/techdocs-cli.git'
     }, (error) => {
         if (error) console.log({ error })
     })
@@ -100,9 +97,6 @@ const repos = [
     'https://github.com/mhyder1/docs-2',
     'https://github.com/mhyder1/docs-3',
     'https://github.com/mhyder1/docs-4',
-    // 'https://github.com/department-of-veterans-affairs/lighthouse-backstage',
-    // 'https://github.com/department-of-veterans-affairs/lighthouse-di-api-styleguide',
-    // 'https://github.com/department-of-veterans-affairs/lighthouse-di-api-styleguide'
 ]
 
 async function runTechdocs() {
@@ -111,9 +105,11 @@ async function runTechdocs() {
     // console.log(data[0])
     repos.forEach( async repo => {
         const dir = repo.split('/').pop()
-        await cloneRepo(`${repo}.git`, `${dir}-temp`)
-        await buildDocs(`${dir}-temp`)
-        await publishDocs(repo, `${dir}-temp-site`)
+        const cloneDir = `${dir}-temp`
+        const docsOutputDir = `${dir}-temp-site`
+        await cloneRepo(`${repo}.git`, cloneDir)
+        await buildDocs(cloneDir, docsOutputDir)
+        await publishDocs(repo, `${docsOutputDir}`)
     })
     
 }
