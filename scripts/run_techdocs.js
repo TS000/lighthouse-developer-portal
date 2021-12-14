@@ -98,20 +98,22 @@ const octokit = new Octokit();
 const repos = [
     'https://github.com/mhyder1/docs-1',
     'https://github.com/mhyder1/docs-2',
+    'https://github.com/mhyder1/docs-3',
+    'https://github.com/mhyder1/docs-4',
     // 'https://github.com/department-of-veterans-affairs/lighthouse-backstage',
     // 'https://github.com/department-of-veterans-affairs/lighthouse-di-api-styleguide',
     // 'https://github.com/department-of-veterans-affairs/lighthouse-di-api-styleguide'
 ]
 
 async function runTechdocs() {
-    const dir = 'temp'
+    // const dir = 'temp'
     // const { data } = await octokit.request('https://dev.devportal.name/api/catalog/entities?filter=kind=component')
     // console.log(data[0])
     repos.forEach( async repo => {
-        const url = repo.split('/').pop()
-        await cloneRepo(`${repo}.git`, `${url}-temp`)
-        await buildDocs(`${url}-temp`)
-        await publishDocs(repo, `${url}-temp-site`)
+        const dir = repo.split('/').pop()
+        await cloneRepo(`${repo}.git`, `${dir}-temp`)
+        await buildDocs(`${dir}-temp`)
+        await publishDocs(repo, `${dir}-temp-site`)
     })
     
 }
