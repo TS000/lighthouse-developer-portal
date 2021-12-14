@@ -229,3 +229,35 @@ An [entity reference](https://backstage.io/docs/features/software-catalog/refere
 ### spec.definition [required]
 
 The definition of the API, based on the format defined by `spec.type`.
+
+## Kind: Location
+
+A location is a marker that references other places to look for catalog data.
+
+Locations can also be defined within the `app-config` file.
+
+Example:
+
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: org-data
+spec:
+  type: url
+  targets:
+    - http://github.com/myorg/myproject/org-data-dump/catalog-info-staff.yaml
+    - http://github.com/myorg/myproject/org-data-dump/catalog-info-consultants.yaml
+```
+
+### spec.type [optional]
+
+The single location type, that's common to the targets specified in the spec. If it is left out, it is inherited from the location type that originally read the entity data.
+
+### spec.target [optional]
+
+A single target as a string. Can be either an absolute path/URL (depending on the type), or a relative path such as `./details/catalog-info.yaml` which is resolved relative to the location of this Location entity itself.
+
+### spec.targets [optional]
+
+A list of targets as strings. They can all be either absolute paths/URLs (depending on the type), or relative paths such as `./details/catalog-info.yaml` which are resolved relative to the location of this Location entity itself.

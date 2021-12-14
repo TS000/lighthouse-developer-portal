@@ -42,7 +42,7 @@ jobs:
     - name: Log html link
       env:
         link: ${{ needs.get-test-results.outputs.url }}
-      uses: actions/github-script@v3
+      uses: actions/github-script@v5
       with:
         script: console.log("All unit tests successful!", "${{ env.link }}")
 

@@ -60,6 +60,9 @@ runs:
     uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
     with:
       images: ghcr.io/${{ inputs.owner }}/lighthouse-backstage/${{ inputs.type }}
+      tags: |
+        type=raw, value=latest
+        type=sha, format=long
   - name: Build and push image
     uses: docker/build-push-action@v2.7.0
     with:
@@ -67,7 +70,7 @@ runs:
       file: Dockerfile.${{ inputs.type }}
       push: true
       platforms: linux/amd64
-      tags: ghcr.io/${{ inputs.owner }}/lighthouse-backstage/${{ inputs.type }}:latest
+      tags: ${{ steps.meta.outputs.tags }}
       cache-from: type=gha, scope=${{ inputs.type }}
       cache-to: type=gha, scope=${{ inputs.type }}, mode=max
       secrets: |

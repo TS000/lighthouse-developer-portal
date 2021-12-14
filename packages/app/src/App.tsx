@@ -24,16 +24,22 @@ import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { Root } from './components/Root';
 import { HomePage } from './components/homepage';
-import { initDatadogLogs, Datadog } from './components/datadog';
+import { initDatadogLogs } from './components/datadog';
 import { searchPage } from './components/search/SearchPage';
 import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFLagRegistry';
 import { StarterGuidePage } from '@internal/plugin-starter-guide';
+import { DatadogDashboardPage } from '@internal/plugin-datadog-dashboard';
 
 import { lightThemeVA, darkThemeVA } from './themes/index';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
 
-import { AlertDisplay, OAuthRequestDialog, SignInProviderConfig, SignInPage } from '@backstage/core-components';
+import {
+  AlertDisplay,
+  OAuthRequestDialog,
+  SignInProviderConfig,
+  SignInPage,
+} from '@backstage/core-components';
 import { createApp, FlatRoutes } from '@backstage/core-app-api';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
 
@@ -108,7 +114,7 @@ const routes = (
     <Route path="/docs" element={<TechDocsIndexPage />}>
       <DefaultTechDocsHome />
     </Route>
-    <Route path="/datadog" element={<Datadog />} />
+    <Route path="/datadog" element={<DatadogDashboardPage />} />
     <Route
       path="/docs/:namespace/:kind/:name/*"
       element={<TechDocsReaderPage />}
@@ -128,27 +134,29 @@ const routes = (
 );
 
 const App = () => {
-  const [flagState, setFlagState] = useState({})
-  const currentFlags = ['datadog-dashboard', 'radar-dashboard']
+  const [flagState, setFlagState] = useState({});
+  const currentFlags = ['datadog-dashboard', 'radar-dashboard'];
   useEffect(() => {
     const loadLocalStorage = async () => {
-      const activeFlags = await localStorage.getItem('featureFlags') || ''
-      setFlagState(JSON.parse(activeFlags))
-    }
-    loadLocalStorage()
-  }, [])
+      const activeFlags = (await localStorage.getItem('featureFlags')) || '';
+      if (activeFlags) {
+        setFlagState(JSON.parse(activeFlags));
+      }
+    };
+    loadLocalStorage();
+  }, []);
 
   const toggleFlag = (flagName: string, flatState: boolean) => {
     setFlagState({
       ...flagState,
-      [flagName]: flatState
-    })
-  }
+      [flagName]: flatState,
+    });
+  };
   const value = {
     flagState,
     toggleFlag,
     currentFlags,
-  }
+  };
   return (
     <AppProvider>
       <FlagContext.Provider value={value}>
@@ -161,6 +169,6 @@ const App = () => {
       </FlagContext.Provider>
     </AppProvider>
   );
-}
+};
 
 export default App;

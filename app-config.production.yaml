@@ -1,6 +1,6 @@
 app:
   # Should be the same as backend.baseUrl when using the `app-backend` plugin
-  title: DVP Developer Portal
+  title: Embark Developer Portal
   baseUrl: https://www.backhouselightstage.com
 
 backend:
@@ -14,8 +14,8 @@ backend:
     methods: [GET, POST, PUT, DELETE]
     credentials: true
   cache:
-    # TODO: update to use memcache in production  https://backstage.io/docs/overview/architecture-overview#cache
-    store: memory
+   # TODO: update to use memcache in production  https://backstage.io/docs/overview/architecture-overview#cache
+  store: memory
   database:
     # config options: https://node-postgres.com/api/client
     client: sqlite3
@@ -48,10 +48,10 @@ proxy:
 auth:
   # providers: {}
   # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
-  environment: development
+  environment: production
   providers:
     github:
-      development:
+      production:
         clientId: ${GH_CLIENT_ID}
         clientSecret: ${GH_CLIENT_SECRET}
 

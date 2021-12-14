@@ -1,11 +1,11 @@
 import { createPlugin, createRoutableExtension } from '@backstage/core-plugin-api';
 
-import { rootRouteRef } from './routes';
+import { rootRoute } from './routes';
 
 export const starterGuidePlugin = createPlugin({
   id: 'starter-guide',
   routes: {
-    root: rootRouteRef,
+    root: rootRoute,
   },
 });
 
@@ -14,6 +14,6 @@ export const StarterGuidePage = starterGuidePlugin.provide(
     name: 'StarterGuidePage',
     component: () =>
       import('./components/StarterGuideComponent').then(m => m.StarterGuideComponent),
-    mountPoint: rootRouteRef,
+    mountPoint: rootRoute,
   }),
 );

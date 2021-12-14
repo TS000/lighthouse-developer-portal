@@ -2,12 +2,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "lighthouse-backstage.fullname" . }}-configmap
+  name: {{ include "embark.fullname" . }}-nonprod-configmap
   labels: 
-    {{- include "lighthouse-backstage.selectorLabels" . | nindent 4 }}
+    {{- include "embark.labels" . | nindent 4 }}
 data:
   APP_CONFIG_app_baseUrl: {{ .Values.BASE_URL }}
   APP_CONFIG_backend_baseUrl: {{ .Values.BASE_URL }}
   APP_CONFIG_backend_listen_port: {{ .Values.BACKEND_PORT | quote }}
   APP_CONFIG_backend_cors_origin: {{ .Values.BASE_URL }}
+  APP_CONFIG_auth_environment: {{ .Values.DEPLOY_ENV }}
+  {{ if eq .Values.DEPLOY_ENV "dev" }}
+  APP_CONFIG_auth_environment: "development"
+  {{ end }}
 {{ end }}

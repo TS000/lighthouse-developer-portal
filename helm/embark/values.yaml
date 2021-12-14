@@ -1,0 +1,35 @@
+# Default values for lighthouse-backstage.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+revisionHistoryLimit: 3
+
+secrets:
+  DOCKERCONFIGJSON: ${DOCKERCONFIGJSON}
+  GH_TOKEN: ${GH_TOKEN}
+  BASE_URL: ${BASE_URL}
+  BACKEND_PORT: ${BACKEND_PORT}
+  HOST: ${HOST}
+  GATEWAY: ${GATEWAY}
+  GH_CLIENT_ID: ${GH_CLIENT_ID}
+  GH_CLIENT_SECRET: ${GH_CLIENT_SECRET}
+  nonprod: ${nonprod}
+
+podAnnotations:
+  namespace: lighthouse-bandicoot-dev
+
+service:
+  type: ClusterIP
+  
+virtualService:
+  destination:
+    frontend:
+      port: 8000
+    backend:
+      port: 7000
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

@@ -24,9 +24,9 @@ backend:
     origin: http://127.0.0.1:3000
     methods: [GET, POST, PUT, DELETE]
     credentials: true
-  cache:
-    # TODO: update to use memcache in production  https://backstage.io/docs/overview/architecture-overview#cache
-    store: memory
+  # cache:
+  #   # TODO: update to use memcache in production  https://backstage.io/docs/overview/architecture-overview#cache
+  #   store: memory
   database:
     # config options: https://node-postgres.com/api/client
     client: pg
@@ -74,7 +74,7 @@ techdocs:
 auth:
   # providers: {}
   # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
-  # environment: development
+  environment: development
   providers:
     github:
       development:
@@ -116,8 +116,8 @@ catalog:
 
     # EVSS example
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/evss/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/evss/catalog-info.yaml
 
     # backing systems system example
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-info.yaml

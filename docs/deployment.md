@@ -1,5 +1,95 @@
 # Deployment (WIP)
 
+## Deployment components overview 
+
+### lighthouse-embark and lighthosue-embark-deployment
+
+```plantuml
+package "lighthouse-embark actions" {
+  component rel as "release"
+}
+
+cloud GitHub {
+  component edep as "Deployments"
+}
+
+database "GitHub Container Registry" {
+  component fe as "Frontend Image"
+  component be as "Backend Image"
+}
+
+[rel] --> fe: pushes
+[rel] --> be: pushes
+
+package "lighthouse-embark-deployment actions" {
+  component fdep as "FE deployment"
+  component bdep as "BE deployment"
+}
+
+database "lighthouse-embark-deployment repo" {
+  component fev as "Frontend Values"
+  component bev as "Backend Values"
+}
+
+[fdep] --> fev: pushes
+[bdep] --> bev: pushes
+[rel] --> [edep]: creates
+[edep] --> [fdep]: triggers
+[edep] --> [bdep]: triggers
+
+
+```
+
+### Argo deployment
+
+```plantuml
+left to right direction
+
+database "GitHub Container Registry" {
+  component fe as "Frontend Image"
+  component be as "Backend Image"
+}
+
+database "lighthouse-embark-deployment repo" {
+  component fev as "Frontend Values"
+  component bev as "Backend Values"
+}
+
+
+package "Delivery infrastructure" {
+  component argo as "Argo"
+  component dep as "Kubernetes"
+}
+
+[argo] --> fe: reads
+[argo] --> be: reads
+[argo] --> dep: triggers
+[dep] --> [fev]: reads
+[dep] --> [bev]: reads
+```
+
+### GitHub Deployments detail
+
+```plantuml
+left to right direction
+cloud GitHub {
+  folder dev as "Dev Deployment Values" {
+    component dfe as "Frontend image tag"
+    component dbe as "Backend image tag"  
+  }
+  folder qa as "QA Deployment Values" {
+    component qfe as "Frontend image tag"
+    component qbe as "Backend image tag"  
+  }
+  folder prod as "Prod Deployment Values" {
+    component pfe as "Frontend image tag"
+    component pbe as "Backend image tag"  
+  }
+}
+
+```
+*GitHub deployments contain the values needed for each environment specific deployment*
+
 ## Deployment process overview
 ```plantuml
 participant "Trigger"
@@ -134,7 +224,7 @@ end
 builder -> dev: Notify
 group ArgoCD sync
 runner->storage : Sync docker image
-storage->runner : Deploy to staging
+storage->runner : Deploy to qa
 end
 ```
 *See overview and detail in previous sections for more info*
@@ -150,7 +240,7 @@ end
 - **ArcoCD** syncs the update and the new version is deployed to dev.
 
 
-## Deployment to staging and production
+## Deployment to qa and production
 
 ```plantuml
 actor Developer as dev
@@ -169,12 +259,12 @@ participant "EKS" as runner
 end box
 builder -> builder: Create Changeset PR
 group Embark deployment
-builder-> drepo: Create staging deployment
+builder-> drepo: Create qa deployment
 end
 builder -> dev: Notify
 group ArgoCD sync
 runner->storage : Sync docker image
-storage->runner : Deploy to staging
+storage->runner : Deploy to qa
 end
 dev -> builder: Merge release PR
 builder-> platform : Publish release notes
@@ -193,11 +283,11 @@ end
 - The application version is incremented in `package.json`
 - The **Embark deployment** process is triggered.
     - The Docker images are released with the branch commit SHA as the **version tag**
-    - This image is deployed to staging.
+    - This image is deployed to qa.
 - The developer merges the release PR
 - The **Create release action** creates the release notes.
 - The **Embark deployment** process is triggered.
-    - The Docker images that were deployed to staging are tagged with the new application version as the **version tag**.
-    - **Important**: _The image on production must match the image that was deployed and verified on staging_.
+    - The Docker images that were deployed to qa are tagged with the new application version as the **version tag**.
+    - **Important**: _The image on production must match the image that was deployed and verified on qa.
     - This image is deployed to production.
 
