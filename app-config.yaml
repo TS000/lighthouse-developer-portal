@@ -5,7 +5,7 @@ app:
   # Analytics
   analytics:
     ga:
-      trackingId: G-EDWJCLSXGT
+      trackingId: UA-213643760-1
 
   # datadogRum:
   #   clientToken: ${DATADOG_CLIENT_TOKEN}
