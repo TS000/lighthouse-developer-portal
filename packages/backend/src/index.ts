@@ -28,6 +28,7 @@ import proxy from './plugins/proxy';
 import techdocs from './plugins/techdocs';
 import { PluginEnvironment } from './types';
 import search from './plugins/search';
+
 const tokenManager = ServerTokenManager.noop();
 
 function makeCreateEnv(config: Config) {
