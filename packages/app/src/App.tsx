@@ -40,7 +40,8 @@ import {
   SignInProviderConfig,
   SignInPage,
 } from '@backstage/core-components';
-import { createApp, FlatRoutes } from '@backstage/core-app-api';
+import { FlatRoutes } from '@backstage/core-app-api';
+import { createApp } from '@backstage/app-defaults';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
 
 const githubProvider: SignInProviderConfig = {

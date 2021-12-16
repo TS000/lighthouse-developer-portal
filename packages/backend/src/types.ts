@@ -5,6 +5,7 @@ import {
   PluginDatabaseManager,
   PluginEndpointDiscovery,
   UrlReader,
+  TokenManager,
 } from '@backstage/backend-common';
 
 export type PluginEnvironment = {
@@ -14,4 +15,5 @@ export type PluginEnvironment = {
   config: Config;
   reader: UrlReader;
   discovery: PluginEndpointDiscovery;
+  tokenManager: TokenManager;
 };

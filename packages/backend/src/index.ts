@@ -17,6 +17,7 @@ import {
   DatabaseManager,
   SingleHostDiscovery,
   UrlReaders,
+  ServerTokenManager
 } from '@backstage/backend-common';
 import { Config } from '@backstage/config';
 import auth from './plugins/auth';
@@ -27,6 +28,7 @@ import proxy from './plugins/proxy';
 import techdocs from './plugins/techdocs';
 import { PluginEnvironment } from './types';
 import search from './plugins/search';
+const tokenManager = ServerTokenManager.noop();
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -42,7 +44,7 @@ function makeCreateEnv(config: Config) {
     const logger = root.child({ type: 'plugin', plugin });
     const database = databaseManager.forPlugin(plugin);
     const cache = cacheManager.forPlugin(plugin);
-    return { logger, database, cache, config, reader, discovery };
+    return { logger, database, cache, config, reader, discovery, tokenManager };
   };
 }
 
