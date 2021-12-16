@@ -33,7 +33,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN bash /tmp/scripts/setup-user.sh "${USERNAME}" "${PATH}" \
     && chsh -s /bin/bash ${USERNAME} \
     && bash /tmp/scripts/sshd-debian.sh
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs
 RUN bash /tmp/scripts/git-lfs-debian.sh \
     && bash /tmp/scripts/github-debian.sh \
@@ -57,10 +57,10 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor > /usr/sha
 RUN bash /tmp/scripts/go-debian.sh "latest" "${GOROOT}" "${GOPATH}" "${USERNAME}" \
     && apt-get clean -y && rm -rf /tmp/scripts
 
-# Mount for docker-in-docker 
+# Mount for docker-in-docker
 VOLUME [ "/var/lib/docker" ]
 
-# Fire Docker/Moby script 
+# Fire Docker/Moby script
 ENTRYPOINT [ "/usr/local/share/docker-init.sh", "/usr/local/share/ssh-init.sh" ]
 CMD [ "sleep", "infinity" ]
 
