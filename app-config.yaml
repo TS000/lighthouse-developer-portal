@@ -35,6 +35,10 @@ backend:
       port: 5432
       user: postgres
       password: postgres
+  reading:
+    allow:
+      # allow reading evss swagger
+      - host: www.ebenefits.va.gov
     # Config for running local k8s
     # connection:
     #   host: ${POSTGRES_SERVICE_HOST}
@@ -113,11 +117,3 @@ catalog:
     # system
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/catalog-info.yaml
-
-    # EVSS example
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/evss/catalog-info.yaml
-
-    # backing systems system example
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-info.yaml
