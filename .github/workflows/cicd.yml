@@ -21,6 +21,7 @@ jobs:
   build-push-images:
     runs-on: ubuntu-latest
     needs: [pre-build-validation]
+    if: ${{ github.ref == 'refs/heads/main' }}
     permissions:
       packages: write
       contents: read
@@ -28,15 +29,15 @@ jobs:
       matrix:
         type: [backend, frontend]
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      uses: ./.github/actions/install-dependencies
-    - name: Build and push image
-      uses: ./.github/actions/build-push-images
-      with: 
-        type: ${{ matrix.type }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        owner: ${{ github.repository_owner }}
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+      - name: Build and push image
+        uses: ./.github/actions/build-push-images
+        with:
+          type: ${{ matrix.type }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          owner: ${{ github.repository_owner }}
 
   deploy-backstage-app:
     runs-on: ubuntu-latest
@@ -46,12 +47,12 @@ jobs:
         env: [dev]
         include:
           - env: dev
-            GH_CLIENT_ID: DEV_GH_CLIENT_ID 
+            GH_CLIENT_ID: DEV_GH_CLIENT_ID
             GH_CLIENT_SECRET: DEV_GH_CLIENT_SECRET
             DEPLOY_TO: Development
             URL: https://dev.devportal.name
           # - env: qa
-          #   GH_CLIENT_ID: QA_GH_CLIENT_ID 
+          #   GH_CLIENT_ID: QA_GH_CLIENT_ID
           #   GH_CLIENT_SECRET: QA_GH_CLIENT_SECRET
           #   DEPLOY_TO: QA
           #   URL: https://qa.devportal.name
@@ -72,10 +73,27 @@ jobs:
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }} 
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
           DOCKERCONFIGJSON: ${{ secrets.DEV_DOCKERCONFIGJSON }}
-          GH_TOKEN: ${{ secrets.DEV_GH_TOKEN }}  
+          GH_TOKEN: ${{ secrets.DEV_GH_TOKEN }}
           GH_CLIENT_ID: ${{ secrets[matrix.GH_CLIENT_ID] }}
           GH_CLIENT_SECRET: ${{ secrets[matrix.GH_CLIENT_SECRET] }}
           ENV: ${{ matrix.env }}
 
+  notify-deployment-repo:
+    runs-on: ubuntu-latest
+    needs: [deploy-backstage-app]
+    strategy:
+      matrix:
+        env: [dev]
+        include:
+          - env: dev
+    # Notify backstage-deployment via webhook https://github.com/department-of-veterans-affairs/backstage-deployment
+    steps:
+      - uses: actions/checkout@v2
+      - name: Send deployment event via webhook
+        uses: ./.github/actions/send-deployment-webhook
+        with:
+          ENV: ${{ matrix.env }}
+          WEBHOOK_DEPLOY_PAT: ${{ secrets.WEBHOOK_DEPLOY_PAT }}
+          MAIN_SHA: ${{ github.sha }}
