@@ -1,0 +1,75 @@
+{{- if .Values.nonprod }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-postgres"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-postgres"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-postgres"
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:13.2-alpine
+          imagePullPolicy: 'IfNotPresent'
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - secretRef:
+                name: "{{ .Release.Name }}-postgres-secrets"
+          env:
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres
+      volumes:
+        - name: postgres
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-pvc"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.DEPLOY_ENV }}-postgres"
+  labels:
+    {{- include "embark.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  selector:
+    app: "{{ .Release.Name }}-postgres"
+  ports:
+    - port: 5432
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: "{{ .Release.Name }}-postgres-secrets"
+  labels:
+    app: {{ include "backend.fullname" . }}-postgres
+type: Opaque
+data:
+  POSTGRES_USER: {{ .Values.POSTGRES_USER | b64enc }}
+  POSTGRES_PASSWORD: {{ .Values.POSTGRES_PASSWORD | b64enc }}
+  POSTGRES_DB: {{ .Values.POSTGRES_DB | b64enc }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ .Release.Name }}-pvc"
+  annotations:
+    "helm.sh/resource-policy": keep
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+{{ end }}

@@ -19,6 +19,16 @@ inputs:
   ENV:
     description: 'Flag used to set environment variable overrides'
     required: true
+  POSTGRES_USER:
+    description: 'Username for postgres database'
+    required: true
+  POSTGRES_PASSWORD:
+    description: 'Password for postgres database'
+    required: true
+  POSTGRES_DB:
+    description: 'Name of postgres database'
+    required: true
+
 
 runs:
   using: "composite"
@@ -64,5 +74,8 @@ runs:
       --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }} --set HOST=${{ steps.overrides.outputs.HOST }} --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }} --set BACKEND_PORT=7000 
       --set DEPLOY_ENV=${{ inputs.ENV }},backend.DEPLOY_ENV=${{ inputs.ENV }} 
       --set backend.image.tag=${{ steps.tag.outputs.sha }},frontend.image.tag=${{ steps.tag.outputs.sha }} 
+      --set POSTGRES_USER=${{ inputs.POSTGRES_USER }},backend.POSTGRES_USER=${{ inputs.POSTGRES_USER }} 
+      --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }},backend.POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }} 
+      --set POSTGRES_DB=${{ inputs.POSTGRES_DB }},backend.POSTGRES_DB=${{ inputs.POSTGRES_DB }}
       --install --atomic --cleanup-on-fail --history-max 5
     shell: bash

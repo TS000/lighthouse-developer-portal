@@ -18,8 +18,12 @@ backend:
   cache:
     store: memory
   database:
-    client: sqlite3
-    connection: ':memory:'
+    client: pg
+    connection:
+      host: ${QA_POSTGRES_SERVICE_HOST}
+      port: ${QA_POSTGRES_SERVICE_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
 
 integrations:
   github:
@@ -52,6 +56,10 @@ auth:
   environment: qa
   providers:
     github:
+      development:
+        clientId: ${GH_CLIENT_ID}
+        clientSecret: ${GH_CLIENT_SECRET}
+        callbackUrl: https://qa.devportal.name/api/auth/github/handler/frame
       qa:
         clientId: ${GH_CLIENT_ID}
         clientSecret: ${GH_CLIENT_SECRET}

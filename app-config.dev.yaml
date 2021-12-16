@@ -19,24 +19,12 @@ backend:
     # TODO: update to use memcache in production  https://backstage.io/docs/overview/architecture-overview#cache
     store: memory
   database:
-    # config options: https://node-postgres.com/api/client
-    client: sqlite3
-    connection: ':memory:'
-    # connection:
-    #   host: ${POSTGRES_HOST}
-    #   port: 5432
-    #   user: postgres
-    #   password: postgres
-    # Config for running local k8s
-    # connection:
-    #   host: ${POSTGRES_SERVICE_HOST}
-    #   port: ${POSTGRES_SERVICE_PORT}
-    #   user: ${POSTGRES_USER}
-    #   password: ${POSTGRES_PASSWORD}
-    # https://node-postgres.com/features/ssl
-    #ssl: require # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
-    #ca: # if you have a CA file and want to verify it you can uncomment this section
-    #$file: <file-path>/ca/server.crt
+    client: pg
+    connection:
+      host: ${DEV_POSTGRES_SERVICE_HOST}
+      port: ${DEV_POSTGRES_SERVICE_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
 
 integrations:
   github:

@@ -11,6 +11,9 @@ data:
   APP_CONFIG_backend_listen_port: {{ .Values.BACKEND_PORT | quote }}
   APP_CONFIG_backend_cors_origin: {{ .Values.BASE_URL }}
   APP_CONFIG_auth_environment: {{ .Values.DEPLOY_ENV }}
+  POSTGRES_USER: {{ .Values.POSTGRES_USER }}
+  POSTGRES_PASSWORD: {{ .Values.POSTGRES_PASSWORD }}
+  POSTGRES_DB: {{ .Values.POSTGRES_DB }}
   {{ if eq .Values.DEPLOY_ENV "dev" }}
   APP_CONFIG_auth_environment: "development"
   {{ end }}

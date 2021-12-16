@@ -14,6 +14,9 @@ secrets:
   GH_CLIENT_ID: ${GH_CLIENT_ID}
   GH_CLIENT_SECRET: ${GH_CLIENT_SECRET}
   nonprod: ${nonprod}
+  POSTGRES_USER: ${POSTGRES_USER}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  POSTGRES_DB: ${POSTGRES_DB}
 
 podAnnotations:
   namespace: lighthouse-bandicoot-dev
@@ -27,6 +30,11 @@ virtualService:
       port: 8000
     backend:
       port: 7000
+
+resources: 
+  limits:
+    cpu: "0.5"
+    memory: "500Mi"
 
 nodeSelector: {}
 

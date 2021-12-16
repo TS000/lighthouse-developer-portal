@@ -79,6 +79,9 @@ jobs:
           GH_CLIENT_ID: ${{ secrets[matrix.GH_CLIENT_ID] }}
           GH_CLIENT_SECRET: ${{ secrets[matrix.GH_CLIENT_SECRET] }}
           ENV: ${{ matrix.env }}
+          POSTGRES_USER: ${{ secrets.DEV_PG_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DEV_PG_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.DEV_PG_DB }}
 
   notify-deployment-repo:
     runs-on: ubuntu-latest
