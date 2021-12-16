@@ -8,13 +8,11 @@ import {
   ContentHeader,
   HeaderLabel,
   SupportButton,
+  MarkdownContent
 } from '@backstage/core-components';
-import Markdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
 
 export const StarterGuideComponent = () => {
   const [ text, setText ] = useState({ markdown: "" });
-
   useEffect( () => {
     fetch('https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/starter-guide.md')
     .then(response => {
@@ -43,9 +41,7 @@ export const StarterGuideComponent = () => {
         <Grid item>
           <InfoCard title="">
             <Typography variant="body1">
-            <Markdown rehypePlugins={[rehypeRaw]}>
-              {markdown}
-            </Markdown>
+              <MarkdownContent content={markdown} />
             </Typography>
           </InfoCard>
         </Grid> 

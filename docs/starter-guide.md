@@ -30,19 +30,15 @@ spec:
 
 ## Navigate to Catalog on Developer Portal
 TODO: Instructions on how to access developer portal
-
-<img src="https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/images/catalog_view.png" alt="Catalog View" style="height: 75%; width: 75%" />
+![Catalog View](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/images/catalog_view.png)
 
 ## Search Catalog
 Search the Catalog to verify your application has been added to the Catalog.
-
-<img src="https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/images/catalog_filtered_view.png" alt="Catalog Filtered View" style="height: 75%; width: 75%" />
+![Catalog Filtered View](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/images/catalog_filtered_view.png)
 
 ## View Catalog Entity
 Once you find the new entry to the Catalog, you can select it to view more detailed information about the application.
-
-<img src="https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/images/catalog_entity.png" alt="Catalog Entity" style="height: 75%; width: 75%" /> 
-
+![Catalog Entity](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/images/catalog_entity.png)
 
 ## Additional Configuration Information
 Visit Backstage's [documentation](https://backstage.io/docs/features/software-catalog/descriptor-format) for more information about how to format catalog entity descriptor files.
