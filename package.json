@@ -74,5 +74,8 @@
       "clover",
       "text-summary"
     ]
+  },
+  "resolutions": {
+    "esbuild": "^0.14.0"
   }
 }
