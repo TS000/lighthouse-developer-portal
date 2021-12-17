@@ -10,7 +10,7 @@ function getLoggerConfig(): LogsInitConfiguration {
         site: DATADOG_SITE,
         env: process.env.NODE_ENV,
         forwardErrorsToLogs: true,
-        service: 'lighthouse-backstage',
+        service: 'lighthouse-embark-browser-logger',
         sampleRate: 100,
         beforeSend: (log) => {
             // Example of filtering email from browser logs
