@@ -51,8 +51,8 @@ spec:
           args:
             - -c
             - >-
-                yarn backstage-cli config:print --config app-config.{{ .Values.DEPLOY_ENV }}.yaml &&
-                node packages/backend --config app-config.{{ .Values.DEPLOY_ENV }}.yaml | sed -u -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" >> /var/log/backend.log
+                yarn backstage-cli config:print --config app-config.yaml --config app-config.{{ .Values.DEPLOY_ENV }}.yaml &&
+                node packages/backend --config app-config.yaml --config app-config.{{ .Values.DEPLOY_ENV }}.yaml | sed -u -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" >> /var/log/backend.log
           volumeMounts:
           - name: varlog
             mountPath: /var/log
