@@ -1,6 +1,6 @@
 # Deployment (WIP)
 
-## Deployment components overview 
+## Deployment components overview
 
 ### lighthouse-embark and lighthosue-embark-deployment
 
@@ -113,7 +113,7 @@ end note
 group Embark deployment
 builder->storage: release Docker images
 builder->platform: create deployment
-platform->depaction: trigger deploy webhook
+builder->depaction: trigger deploy webhook
 depaction-> drepo: commit new deployment
 depaction->o platform: create deploy success status
 end
