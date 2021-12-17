@@ -101,3 +101,6 @@ jobs:
           ENV: ${{ matrix.env }}
           WEBHOOK_DEPLOY_PAT: ${{ secrets.WEBHOOK_DEPLOY_PAT }}
           MAIN_SHA: ${{ github.sha }}
+          POSTGRES_USER: ${{ secrets.DEV_PG_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DEV_PG_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.DEV_PG_DB }}

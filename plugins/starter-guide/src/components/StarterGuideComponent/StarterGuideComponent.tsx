@@ -35,7 +35,7 @@ export const StarterGuideComponent = () => {
     </Header>
     <Content>
       <ContentHeader title="Getting Started">
-        <SupportButton>A description of your plugin goes here.</SupportButton>
+        <SupportButton>Need additional help getting started?</SupportButton>
       </ContentHeader>
       <Grid container spacing={3} direction="column">
         <Grid item>
