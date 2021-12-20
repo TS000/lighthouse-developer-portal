@@ -1,0 +1,27 @@
+version: '3.2'
+services:
+  frontend:
+    build:
+      context: ../../
+      dockerfile: ./Dockerfile.dockerbuild
+    volumes:
+      - ../:/code
+      - node_modules:/code/node_modules
+      - app_node_modules:/code/packages/app/node_modules
+    environment:
+      - PORT=3000
+
+  cypress:
+    # The Docker image to use from https://github.com/cypress-io/cypress-docker-images
+    image: 'cypress/included:9.1.1'
+    depends_on:
+      - frontend
+    environment:
+      - CYPRESS_baseUrl=http://frontend:3000
+    working_dir: /app
+    volumes:
+      - ./:/app
+
+volumes:
+  node_modules:
+  app_node_modules:

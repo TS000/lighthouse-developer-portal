@@ -68,6 +68,7 @@
     "clean": "backstage-cli clean",
     "test:e2e": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:dev",
     "test:e2e:ci": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:run",
+    "cy:docker": "docker-compose -f docker-compose-cypress.yml up --exit-code-from cypress",
     "cy:dev": "cypress open",
     "cy:run": "cypress run"
   },

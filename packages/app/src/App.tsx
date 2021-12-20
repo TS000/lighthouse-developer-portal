@@ -57,7 +57,7 @@ const app = createApp({
   apis,
   components: {
     SignInPage: props => (
-      <SignInPage {...props} auto providers={[githubProvider]} />
+      <SignInPage {...props} auto providers={['guest', githubProvider]} />
     ),
   },
   bindRoutes({ bind }) {

@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# Cypress Screenshots
+screenshots/
+
 # Coverage directory generated when running tests with coverage
 coverage
 
