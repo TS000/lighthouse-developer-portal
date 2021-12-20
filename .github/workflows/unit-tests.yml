@@ -5,11 +5,8 @@ name: Unit Tests
 # Tests will be run for all packages along with showing test coverage
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   run-all-tests:

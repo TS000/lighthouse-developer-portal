@@ -8,8 +8,13 @@ on:
   workflow_dispatch:
 
 jobs:
+  unit-tests:
+    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/unit-tests.yml@main
   pre-build-validation:
+    needs: [unit-tests]
     uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/pre-build-validation.yml@main
+    with:
+      UNIT_TEST_STATUS: ${{ needs.unit-tests.result }}
     secrets:
       SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
       SLACK_UID_002: ${{ secrets.SLACK_UID_FOWLER }}

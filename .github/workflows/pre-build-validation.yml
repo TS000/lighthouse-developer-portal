@@ -2,6 +2,11 @@ name: Pre-build Validation
 
 on:
   workflow_call:
+    inputs:
+      UNIT_TEST_STATUS:
+        type: string
+        description: 'Status of unit test workflow run'
+        required: true
     secrets:
       SLACK_UID_001:
         description: 'Slack User ID 1'
@@ -30,10 +35,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/validate-unit-tests
         with:
-          SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
-          SLACK_UID_002: ${{ secrets.SLACK_UID_FOWLER }}
-          SLACK_UID_003: ${{ secrets.SLACK_UID_LOVENDAHL }}
-          SLACK_UID_004: ${{ secrets.SLACK_UID_LUCKEY }}
+          UNIT_TEST_STATUS: ${{ inputs.UNIT_TEST_STATUS }}
+          SLACK_UID_001: ${{ secrets.SLACK_UID_001 }}
+          SLACK_UID_002: ${{ secrets.SLACK_UID_002 }}
+          SLACK_UID_003: ${{ secrets.SLACK_UID_003 }}
+          SLACK_UID_004: ${{ secrets.SLACK_UID_004 }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   validate-linting:
