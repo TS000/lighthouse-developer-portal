@@ -35,7 +35,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
-              containerPort: 7000
+              containerPort: 7007
           envFrom:
             - secretRef:
                 name: postgres-secrets
@@ -46,9 +46,9 @@ spec:
             periodSeconds: 5
             httpGet:
               path: /healthcheck
-              port: 7000
+              port: 7007
           readinessProbe:
             initialDelaySeconds: 5
             httpGet:
               path: /healthcheck
-              port: 7000
+              port: 7007

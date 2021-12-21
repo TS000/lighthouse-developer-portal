@@ -120,7 +120,7 @@ Here is a very basic example of a Provider Test:
 const { Verifier } = require('@pact-foundation/pact');
 
 const opts = {
-  providerBaseUrl: 'http://127.0.0.1:7000',
+  providerBaseUrl: 'http://127.0.0.1:7007',
   pactBrokerUrl: 'broker_url',
   provider: 'MyProvider',
   providerVersion: '1.0.0',
@@ -238,7 +238,7 @@ The pact broker was made using Ruby and Rails, then published to Heroku. Informa
 const { Verifier } = require('@pact-foundation/pact');
 
 const opts = {
-  providerBaseUrl: 'http://127.0.0.1:7000',
+  providerBaseUrl: 'http://127.0.0.1:7007',
   pactBrokerUrl: 'https://polar-forest-27410.herokuapp.com/',
   provider: 'MyProvider',
   providerVersion: '1.0.0',

@@ -30,7 +30,7 @@ services:
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
     ports:
-      - '7000:7000'
+      - '7007:7007'
   #   # Uncomment the next line to use a non-root user for all processes.
   #   # user: node
 

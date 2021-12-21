@@ -93,7 +93,7 @@ $ minikube tunnel
 ```
 $ kubectl get svc
 NAME         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
-backstage-svc   LoadBalancer   10.96.231.234    127.0.0.1     3000:30197/TCP,7000:30343/TCP   3s
+backstage-svc   LoadBalancer   10.96.231.234    127.0.0.1     3000:30197/TCP,7007:30343/TCP   3s
 postgres     ClusterIP      10.108.231.136   <none>        5432/TCP                        2m6s
 ```
 - View the application running at http://127.0.0.1:3000

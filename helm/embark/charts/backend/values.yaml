@@ -14,7 +14,7 @@ image:
   tag: ${COMMIT_SHA}
 
 name: backend-port
-port: 7000
+port: 7007
 livenessProbe:
   initialDelaySeconds: 5
   path: /healthcheck
@@ -37,7 +37,7 @@ POSTGRES_DB: ${POSTGRES_DB}
 
 service:
   type: ClusterIP
-  port: 7000
+  port: 7007
 
 resources: 
   limits:

@@ -6,7 +6,7 @@ app:
 backend:
   baseUrl: https://www.backhouselightstage.com
   listen:
-    port: 7000
+    port: 7007
   csp:
     connect-src: ["'self'", 'http:', 'https:']
   cors:

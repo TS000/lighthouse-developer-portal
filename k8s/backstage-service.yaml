@@ -10,9 +10,9 @@ spec:
     protocol: TCP
     targetPort: 3000
   - name: port-2
-    port: 7000
+    port: 7007
     protocol: TCP
-    targetPort: 7000
+    targetPort: 7007
   selector:
     app: backstage
   sessionAffinity: None
