@@ -49,6 +49,7 @@
   "prettier": "@spotify/prettier-config",
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
+      "eslint",
       "eslint --fix",
       "prettier --write"
     ],
