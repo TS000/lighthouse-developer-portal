@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -921,7 +921,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/dev-deploy.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/dev-deploy.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -951,7 +951,7 @@
 <ul>
 <li>Navigate to Root Directory</li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ cd /workspaces/lighthouse-embark
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ cd /workspaces/lighthouse-backstage
 </code></pre></div>
 </td></tr></table>
 
@@ -1033,9 +1033,7 @@ auth:
 </td></tr></table>
 
 <ul>
-<li>
-<p>Determine commit sha you want to tag images with</p>
-<ul>
+<li>Determine commit sha you want to tag images with<ul>
 <li>Replace <code>&lt;commit-sha&gt;</code> below with the commit sha</li>
 <li>The commit sha used to tag images is prefixed with "sha-" (i.e. sha-47915d626f95e5b620636376c8adf29ec734...)</li>
 </ul>
@@ -1044,14 +1042,14 @@ auth:
 <ul>
 <li>Create Image for Backend Container</li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-embark/backend:&lt;commit-sha&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-embark/backend:latest -f Dockerfile.backend .
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:&lt;commit-sha&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:latest -f Dockerfile.backend .
 </code></pre></div>
 </td></tr></table>
 
 <ul>
 <li>Create Image for Frontend Container</li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-embark/frontend:&lt;commit-sha&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-embark/frontend:latest -f Dockerfile.frontend .
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:&lt;commit-sha&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:latest -f Dockerfile.frontend .
 </code></pre></div>
 </td></tr></table>
 
@@ -1080,16 +1078,16 @@ auth:
 <ul>
 <li>Push the Images to the Container Registry</li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-embark/backend:latest
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:latest
 </code></pre></div>
 </td></tr></table>
 
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-embark/frontend:latest
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:latest
 </code></pre></div>
 </td></tr></table>
 
 <ul>
-<li>Verify the images were pushed by checking when the frontend/backend images were last published on the <a href="https://github.com/orgs/department-of-veterans-affairs/packages?repo_name=lighthouse-embark">lighthouse-embark repository</a></li>
+<li>Verify the images were pushed by checking when the frontend/backend images were last published on the <a href="https://github.com/orgs/department-of-veterans-affairs/packages?repo_name=lighthouse-backstage">Lighthouse-Backstage repository</a></li>
 </ul>
 <h2 id="deploy-to-dev-environment">Deploy to Dev Environment<a class="headerlink" href="#deploy-to-dev-environment" title="Permanent link">&para;</a></h2>
 <h3 id="login-to-lightkeeper">Login to Lightkeeper<a class="headerlink" href="#login-to-lightkeeper" title="Permanent link">&para;</a></h3>

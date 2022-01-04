@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -937,7 +937,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/RFC/docker-scanning.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/RFC/docker-scanning.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -947,9 +947,9 @@
                 
                 <h1 id="rfc-docker-image-scanning">[RFC] Docker Image Scanning<a class="headerlink" href="#rfc-docker-image-scanning" title="Permanent link">&para;</a></h1>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p>lighthouse-embark is a public repo. All deployments are available as public packages. We need to ensure that secrets and private environment variables do not get injected into the docker image. We should be able to fail a build/push script that hardcodes secrets into the image definition. We don't want to commit secrets to GitHub packages.</p>
+<p>Lighthouse-backstage is a public repo. All deployments are available as public packages. We need to ensure that secrets and private environment variables do not get injected into the docker image. We should be able to fail a build/push script that hardcodes secrets into the image definition. We don't want to commit secrets to GitHub packages.</p>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>Each lighthouse-embark deployment is available publicly for anyone to access. This means that if a secret were hardcoded within a docker image, everyone could now see it.</p>
+<p>Each lighthouse-backstage deployment is available publicly for anyone to access. This means that if a secret were hardcoded within a docker image, everyone could now see it.</p>
 <p>Vulnerability scanning for Docker local images allows developers and development teams to review the security state of the container images and take actions to fix issues identified during the scan, resulting in more secure deployments. Docker Scan runs on the Snyk engine, providing users with visibility into the security posture of their local Dockerfiles and local images.</p>
 <h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
 <p>Scan each build/push for vulnerabilities to prevent a deployment from releasing private information to GitHub Packages.</p>
@@ -972,12 +972,12 @@
 <h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
 <h3 id="vulnerability-scanning">Vulnerability Scanning<a class="headerlink" href="#vulnerability-scanning" title="Permanent link">&para;</a></h3>
 <p>I tried building a fresh frontend image using <code>docker build -t backstage-frontend -f Dockerfile.dockerbuild .</code> and then scanning it by using <code>docker scan backstage-frontend</code></p>
-<p>I think using <code>docker scan</code> for our CI/CD pipelines would be an excellent fit for our security needs. The only issue is that we'll need to create a Snyk account for lighthouse-embark to scan Docker images more than ten times a month.</p>
+<p>I think using <code>docker scan</code> for our CI/CD pipelines would be an excellent fit for our security needs. The only issue is that we'll need to create a Snyk account for lighthouse-backstage to scan Docker images more than ten times a month.</p>
 <p>Another thing I found is that scanning the backstage-frontend image returned a large number of issues related to the base image (NGINX). Excluding the base, the image limited the number of issues to just 7, which I think is excellent, and a lot easier to work with.</p>
 <p>I wasn't able to find a convenient GH Action that can fail a pipeline for specified criteria. So we might have to build a script that can analyze the JSON output of the docker scan. Otherwise, we could follow <a href="https://circleci.com/blog/adding-application-and-image-scanning-to-your-cicd-pipeline/">this guide</a> on how to use Snyk to scan our docker image within CI/CD. I don't think it would be too hard to adapt it to use GitHub Actions.</p>
 <p>As stated above, Docker Scan / Snyk only checks for KNOWN vulnerabilities reported from other packages. It does not scan for leaked credentials/secrets.</p>
 <h3 id="git-secrets">Git-Secrets<a class="headerlink" href="#git-secrets" title="Permanent link">&para;</a></h3>
-<p>I think that using <a href="https://github.com/awslabs/git-secrets">git-secrets</a> within a pre-commit hook would be the best route to prevent secrets from being committed to the lighthouse-embark repo. It's pretty easy to hard-code a secret when building a feature or debugging an issue and forget to remove it.</p>
+<p>I think that using <a href="https://github.com/awslabs/git-secrets">git-secrets</a> within a pre-commit hook would be the best route to prevent secrets from being committed to the lighthouse-backstage repo. It's pretty easy to hard-code a secret when building a feature or debugging an issue and forget to remove it.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.docker.com/develop/scan-images/">Scan Images</a></p>
 <p><a href="https://docs.docker.com/engine/scan/">Vulnerability Scanning</a></p>

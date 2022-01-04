@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -757,7 +757,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/codespace.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/codespace.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -769,17 +769,16 @@
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
 <p>The default image Codespace uses, <a href="https://github.com/microsoft/vscode-dev-containers/blob/main/containers/codespaces-linux/.devcontainer/base.Dockerfile">mcr.microsoft.com/vscode/devcontainers/universal:1-linux</a>, is ~10gb uncompressed. This makes rebuilding the devcontainer while in Codespaces take a long time. A majority of this wait time is unnecessary because we are waiting for files and directories to be rebuilt for tools we don't use.</p>
 <h2 id="creating-a-custom-image">Creating a Custom Image<a class="headerlink" href="#creating-a-custom-image" title="Permanent link">&para;</a></h2>
-<p>To reduce our rebuilding wait times, I created a <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/pkgs/container/lighthouse-embark%2Fdevcontainer">smaller image</a>, around ~2gb.</p>
-<p>The new devcontainer image is uploaded to ghcr.io. To be able to access GitHub Packages uploaded to ghcr.io, we need to have some kind of authorization. For Codespaces this is done by creating secrets with a specific naming convention. Once Codespaces has the secrets, you will have <a href="https://docs.github.com/en/codespaces/codespaces-reference/allowing-your-codespace-to-access-a-private-image-registry#about-private-image-registries-and-codespaces">authorization to access a private registry</a> when pulling Docker images for your Codespace's devcontainer.</p>
-<p>Codespaces looks for any secrets with the following naming convention:</p>
+<p>To reduce our rebuilding wait times, I created a <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/pkgs/container/lighthouse-backstage%2Fdevcontainer">smaller image</a>, around ~2gb. </p>
+<p>The new devcontainer image is uploaded to ghcr.io. To be able to access GitHub Packages uploaded to ghcr.io, we need to have some kind of authorization. For Codespaces this is done by creating secrets with a specific naming convention. Once Codespaces has the secrets, you will have <a href="https://docs.github.com/en/codespaces/codespaces-reference/allowing-your-codespace-to-access-a-private-image-registry#about-private-image-registries-and-codespaces">authorization to access a private registry</a> when pulling Docker images for your Codespace's devcontainer. </p>
+<p>Codespaces looks for any secrets with the following naming convention:
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>&lt;*&gt;_CONTAINER_REGISTRY_SERVER
 &lt;*&gt;_CONTAINER_REGISTRY_USER
 &lt;*&gt;_CONTAINER_REGISTRY_PASSWORD
 </code></pre></div>
-</td></tr></table>
-
+</td></tr></table></p>
 <p>You can generate a personal access token with the <code>read:packages</code> permission to create these secrets for Codespaces:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -793,39 +792,32 @@ DEV_CONTAINER_REGISTRY_PASSWORD = &lt;PAT&gt;
 <p>If we need to make changes in the future, we can modify the <code>base.Dockerfile</code> located in <code>.devcontainer</code>. It is better to do this process locally rather than from inside a Codespace because you will not be able to cache some or all layers, making the rebuilding process take a much longer time than necessary.</p>
 <h1 id="rebuilding-process">Rebuilding process<a class="headerlink" href="#rebuilding-process" title="Permanent link">&para;</a></h1>
 <ul>
-<li>Navigate to .devcontainer locally</li>
-</ul>
+<li>Navigate to .devcontainer locally
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ cd /path/to/workspace/.devcontainer
 </code></pre></div>
-</td></tr></table>
-
-<ul>
-<li>Make some changes to <code>base.Dockerfile</code> to install some new tools</li>
+</td></tr></table></li>
 </ul>
 <ul>
-<li>Rebuild the image</li>
+<li>Make some changes to <code>base.Dockerfile</code> to install some new tools </li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build -f base.Dockerfile . -t ghcr.io/department-of-veterans-affairs/lighthouse-embark/devcontainer:latest
+<ul>
+<li>Rebuild the image
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build -f base.Dockerfile . -t ghcr.io/department-of-veterans-affairs/lighthouse-backstage/devcontainer:latest
 </code></pre></div>
-</td></tr></table>
-
-<ul>
-<li><a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry">Log into container registry using PAT</a></li>
-</ul>
+</td></tr></table></li>
+<li><a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry">Log into container registry using PAT</a>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ echo CR_PAT=&lt;YOUR_TOKEN&gt;
 $ echo $CR_PAT | docker login ghcr.io -u &lt;USERNAME&gt; --password-stdin
 &gt; Login Succeeded
 </code></pre></div>
-</td></tr></table>
-
-<ul>
-<li>Push the image</li>
-</ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker push ghcr.io/department-of-veterans-affairs/lighthouse-embark/devcontainer:latest
+</td></tr></table></li>
+<li>Push the image
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker push ghcr.io/department-of-veterans-affairs/lighthouse-backstage/devcontainer:latest
 </code></pre></div>
-</td></tr></table>
+</td></tr></table></li>
+</ul>
                 
               
               
