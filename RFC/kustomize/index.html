@@ -15,7 +15,7 @@
     
     
       
-        <title>Configurable Variables - example-docs</title>
+        <title>Kustomize Deployment - example-docs</title>
       
     
     
@@ -49,7 +49,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rfc-configurable-variables" class="md-skip">
+        <a href="#deploying-to-development-environment" class="md-skip">
           Skip to content
         </a>
       
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Configurable Variables
+              Kustomize Deployment
             
           </span>
         </div>
@@ -526,101 +526,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Configurable Variables
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Configurable Variables" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../configurable-variables/" title="Configurable Variables" class="md-nav__link">
       Configurable Variables
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goal" class="md-nav__link">
-    Goal
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#findings" class="md-nav__link">
-    Findings
-  </a>
-  
-    <nav class="md-nav" aria-label="Findings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#building-the-application" class="md-nav__link">
-    Building the application
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#application-environment-variables" class="md-nav__link">
-    Application Environment Variables
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#environment-variable-overrides" class="md-nav__link">
-    Environment Variable Overrides
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
-    Recommendation
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -652,11 +562,135 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../kustomize/" title="Kustomize Deployment" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Kustomize Deployment
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Kustomize Deployment" class="md-nav__link md-nav__link--active">
       Kustomize Deployment
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubectl-install" class="md-nav__link">
+    Kubectl Install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kustomize-install" class="md-nav__link">
+    Kustomize Install
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-images" class="md-nav__link">
+    Building Images
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-images-to-github-packages" class="md-nav__link">
+    Push Images to GitHub Packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-to-dev-environment" class="md-nav__link">
+    Deploy to Dev Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy to Dev Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-to-lightkeeper" class="md-nav__link">
+    Login to Lightkeeper
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-environment-variables" class="md-nav__link">
+    Setting Up Environment Variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-kubernetes-resources-with-kustomize" class="md-nav__link">
+    Generate Kubernetes Resources with Kustomize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-deployment" class="md-nav__link">
+    Verify Deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleting-resources" class="md-nav__link">
+    Deleting resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -841,44 +875,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
+  <a href="#setup" class="md-nav__link">
+    Setup
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#goal" class="md-nav__link">
-    Goal
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#findings" class="md-nav__link">
-    Findings
-  </a>
-  
-    <nav class="md-nav" aria-label="Findings">
+    <nav class="md-nav" aria-label="Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#building-the-application" class="md-nav__link">
-    Building the application
+  <a href="#kubectl-install" class="md-nav__link">
+    Kubectl Install
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#application-environment-variables" class="md-nav__link">
-    Application Environment Variables
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#environment-variable-overrides" class="md-nav__link">
-    Environment Variable Overrides
+  <a href="#kustomize-install" class="md-nav__link">
+    Kustomize Install
   </a>
   
 </li>
@@ -889,9 +902,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
-    Recommendation
+  <a href="#building-images" class="md-nav__link">
+    Building Images
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-images-to-github-packages" class="md-nav__link">
+    Push Images to GitHub Packages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-to-dev-environment" class="md-nav__link">
+    Deploy to Dev Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy to Dev Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-to-lightkeeper" class="md-nav__link">
+    Login to Lightkeeper
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-environment-variables" class="md-nav__link">
+    Setting Up Environment Variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-kubernetes-resources-with-kustomize" class="md-nav__link">
+    Generate Kubernetes Resources with Kustomize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-deployment" class="md-nav__link">
+    Verify Deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleting-resources" class="md-nav__link">
+    Deleting resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -907,7 +975,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/RFC/configurable-variables.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/RFC/kustomize.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -915,51 +983,329 @@
                   
                 
                 
-                <h1 id="rfc-configurable-variables">[RFC] Configurable Variables<a class="headerlink" href="#rfc-configurable-variables" title="Permanent link">&para;</a></h1>
-<p><strong>Summary</strong>:</p>
-<p>As a requirement for our continuous integration process, we need to deploy the Embark application to multiple environments without rebuilding images for each environment. The purpose of this RFC is to identify the set of configurable variables that can be managed independently of the deployment definition.</p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>Backstage uses a flexible configuration system designed to provide an simple way to configure Backstage applications for local or production environments. Configuration can be supplied through static configuration files, such as <code>app-config.yaml</code> for default configurations, and other files can be loaded by using <code>--config &lt;path&gt;</code> when using <code>backstage-cli</code> to build either <code>app</code> or <code>backend</code>.</p>
-<p>During the continuous integration pipeline, GitHub Actions create build assets for the Embark application using <code>backstage-cli</code>. Those build assets are then used to create two Docker images: one frontend image and one backend image. These images are used to create separate containers where the frontend and backend applications can run. </p>
-<p>Since the application images are created using <code>backstage-cli</code>, which loads the configuration from <code>app-config.yaml</code>, variables must be used as configuration values in the <code>app-config.yaml</code> to allow changes to the application configuration without rebuilding the application image.</p>
-<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
-<p>We want to leverage Backstage's application configuration system to streamline our continuous integration process so the Embark application can be deployed to multiple environments using a single build process. To take advantage of Backstage's application configuration system we need to identify all of the configuration variables required to deploy Embark.</p>
-<h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
-<h3 id="building-the-application">Building the application<a class="headerlink" href="#building-the-application" title="Permanent link">&para;</a></h3>
-<p>There are two scripts located in <code>package.json</code> that are used to build the frontend and backend assets:</p>
-<ul>
-<li><code>"build backend": "yarn workspace @department-of-veterans-affairs/backend backstage-cli backend:bundle"</code>
-This script builds the backend bundle and copies the output to <code>packages/backend/dist</code>.</li>
-</ul>
-<ul>
-<li><code>"build frontend": "cp app-config.yaml app-config.dev.yaml packages/app/ &amp;&amp; yarn workspace @department-of-veterans-affairs/app backstage-cli app:build --config app-config.yaml --config app-config.dev.yaml"</code>
-This script using the <code>--config</code> flag to specify what application configuration files are loaded. The default configuration is contained in <code>app-config.yaml</code>. The <code>app-config.dev.yaml</code> contains the configuration to deploy the application to <code>https://dev.devportal.name</code>. </li>
-</ul>
-<p>From <a href="https://backstage.io/docs/conf/writing#configuration-files">Backstage Documentation:</a></p>
+                <h1 id="deploying-to-development-environment">Deploying to Development Environment<a class="headerlink" href="#deploying-to-development-environment" title="Permanent link">&para;</a></h1>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<h3 id="kubectl-install">Kubectl Install<a class="headerlink" href="#kubectl-install" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>All loaded configuration files are merged together using the following rules:
-- Configurations have different priority, higher priority means you replace values from configurations with lower priority.
-- Primitive values are completely replaced, as are arrays and all of their contents.
-- Objects are merged together deeply, meaning that if any of the included configs contain a value for a given path, it will be found.</p>
-<p>The priority of the configurations is determined by the following rules, in order:
-- Configuration from the APP_CONFIG_ environment variables has the highest priority, followed by files.
-- Files loaded with config flags are ordered by priority, where the last flag has the highest priority.
-- If no config flags are provided, app-config.local.yaml has higher priority than app-config.yaml.</p>
+<p>If you don't have <code>kubectl</code> you'll need to install it:</p>
 </blockquote>
-<h3 id="application-environment-variables">Application Environment Variables<a class="headerlink" href="#application-environment-variables" title="Permanent link">&para;</a></h3>
-<p><code>GH_TOKEN</code>: GitHub Token used by the application for making API requests to GitHub</p>
-<p><code>GH_CLIENT_ID</code>: GitHub OAuth Client ID </p>
-<p><code>GH_CLIENT_SECRET</code>:  GitHub OAuth Client Secret</p>
-<p><strong>The following are not currently implemented:</strong></p>
-<p><code>POSTGRES_HOST</code>: Host URL used for Postgres Database connection</p>
-<p><code>POSTGRES_PORT</code>: Port used for Postgres Database connection</p>
-<p><code>POSTGRES_USER</code>: Username for Postgres Database authentication</p>
-<p><code>POSTGRES_PASSWORD</code>: Password for Postgres Database authentication</p>
-<h3 id="environment-variable-overrides">Environment Variable Overrides<a class="headerlink" href="#environment-variable-overrides" title="Permanent link">&para;</a></h3>
-<p>Backstage's <a href="https://backstage.io/docs/conf/writing#environment-variable-overrides">documentation</a> outlines how to override environment variables using the prefix <code>APP_CONFIG</code> and replacing <code>.</code> with <code>-</code> (i.e. <code>app.baseUrl</code> becomes <code>APP_CONFIG_app_baseUrl</code>). Since the <code>baseUrl</code> must be statically defined, the value can be provided within the <code>app-config.production.yaml</code> but overridden for staging or testing environments.</p>
-<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
-<p>We can replace <code>app-config.dev.yaml</code> with <code>app-config.production.yaml</code>. In the <code>app-config.production.yaml</code> we would statically define the baseUrl used for our application in production. The application configuration would consist of the default <code>app-config.yaml</code> and the <code>app-config.production.yaml</code> for the build process.</p>
-<p>To deploy to dev, sandbox, qa, or any other intermediary environment we would use environment variable overrides to override the values of <code>app.baseUrl</code>, <code>backend.baseUrl.</code>, and <code>backend.cors.connection</code>. These value overrides could be provided to each container using a ConfigMap with Helm providing the values passed through the command line interface. </p>
+<ul>
+<li>Install on <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/">Linux</a></li>
+<li>Install on <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/">Mac</a></li>
+<li>Install on <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/">Windows</a></li>
+</ul>
+<h3 id="kustomize-install">Kustomize Install<a class="headerlink" href="#kustomize-install" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>If you don't have <code>kustomize</code> you'll need to install it:</p>
+</blockquote>
+<ul>
+<li>Documentation for <a href="https://kubectl.docs.kubernetes.io/installation/kustomize/">installing kustomize</a></li>
+</ul>
+<h2 id="building-images">Building Images<a class="headerlink" href="#building-images" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Navigate to Root Directory</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ cd /workspaces/lighthouse-backstage
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Install Dependencies &amp; Run Typescript Compiler</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ yarn install --frozen-lockfile &amp;&amp; yarn tsc
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Verify app-config.dev.yaml has the correct values</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># app-config.dev.yaml
+app:
+  title: Embark Developer Portal
+  baseUrl: https://dev.devportal.name
+...
+
+backend:
+  baseUrl: https://dev.devportal.name
+  listen:
+    port: 7007
+  csp:
+    connect-src: [&quot;&#39;self&#39;&quot;, &#39;http:&#39;, &#39;https:&#39;]
+  cors:
+    origin: https://dev.devportal.name
+    methods: [GET, POST, PUT, DELETE]
+    credentials: true
+  cache:
+    # TODO: update to use memcache in production  https://backstage.io/docs/overview/architecture-overview#cache
+    store: memory
+  database:
+    client: pg
+    connection:
+      host: ${DEV_POSTGRES_SERVICE_HOST}
+      port: ${DEV_POSTGRES_SERVICE_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+
+...
+auth:
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: ${GH_CLIENT_ID}
+        clientSecret: ${GH_CLIENT_SECRET}
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Build Static Assets</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ yarn build
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Determine commit sha you want to tag images with<ul>
+<li>Replace <code>&lt;commit-sha&gt;</code> below with the commit sha</li>
+<li>The commit sha used to tag images is prefixed with "sha-" (i.e. sha-47915d626f95e5b620636376c8adf29ec734...)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Create Image for Backend Container</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:&lt;commit-sha&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:latest -f Dockerfile.backend .
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Create Image for Frontend Container</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:&lt;commit-sha&gt; --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:latest -f Dockerfile.frontend .
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="push-images-to-github-packages">Push Images to GitHub Packages<a class="headerlink" href="#push-images-to-github-packages" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Login to <a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry">ghcr.io with PAT</a></p>
+<ul>
+<li>Create environment variable with your PAT</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ export CR_PAT=&lt;YOUR_TOKEN&gt;
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Login to ghcr.io with your GitHub username</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ echo $CR_PAT | docker login ghcr.io -u &lt;USERNAME&gt; --password-stdin
+&gt; Login Succeeded
+</code></pre></div>
+</td></tr></table>
+
+</li>
+</ul>
+<ul>
+<li>Push the Images to the Container Registry</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:latest
+</code></pre></div>
+</td></tr></table>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:latest
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Verify the images were pushed by checking when the frontend/backend images were last published on the <a href="https://github.com/orgs/department-of-veterans-affairs/packages?repo_name=lighthouse-backstage">Lighthouse-Backstage repository</a></li>
+</ul>
+<h2 id="deploy-to-dev-environment">Deploy to Dev Environment<a class="headerlink" href="#deploy-to-dev-environment" title="Permanent link">&para;</a></h2>
+<h3 id="login-to-lightkeeper">Login to Lightkeeper<a class="headerlink" href="#login-to-lightkeeper" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Login to Lightkeeper</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ lightkeeper login
+Go here to complete your login: https://...
+Login Successful!
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Set up kube config</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ lightkeeper create clusterconfig nonprod &gt; ~/.kube/config
+</code></pre></div>
+</td></tr></table>
+
+<blockquote>
+<p>Note: if using Codespaces then you cannot install Lightkeeper. To work around this, you can set your kube config locally using the steps above and then copy the config to your Codespaces. In Codespaces, you can make a new <code>.kube</code> directory in <code>~/</code> and then make a new file inside <code>~/.kube/</code> called <code>config</code>. Inside <code>~/.kube/config</code> you can copy the contents of your local <code>~/.lightkeeper/config</code> file.</p>
+</blockquote>
+<h3 id="setting-up-environment-variables">Setting Up Environment Variables<a class="headerlink" href="#setting-up-environment-variables" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Note: To pull the image, Kubernetes will need authorization for GitHub. One way to verify you have authorization is to create an encoded dockerconfigjson secret using a Personal Access Token. The encoded dockerconfigjson string will be used to create a built in Kubernetes secret type called <code>kubernetes.io/dockerconfigjson</code>. More information about creating and encoding the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">dockerconfigjson string</a></p>
+</blockquote>
+<ul>
+<li>
+<p>Creating a DOCKERCONFIGJSON string</p>
+<ul>
+<li>First make a PAT with the permission to <code>read</code> access for repositories</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ echo -n &quot;&lt;github_username&gt;:&lt;github_pat&gt;&quot; | base64
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>The above command will create an <encoded_auth_string>, with the encoded auth string run:</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ echo -n  &#39;{&quot;auths&quot;:{&quot;ghcr.io&quot;:{&quot;auth&quot;:&quot;&lt;encoded_auth_string&gt;&quot;}}}&#39; | base64
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>This will output the <encoded_dockerjsonconfig_string> which you can then add to the <code>.env</code> file:</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DOCKERCONFIGJSON=&lt;encoded_dockerjsonconfig_string&gt;
+</code></pre></div>
+</td></tr></table>
+
+</li>
+</ul>
+<ul>
+<li>
+<p>Create Environment Variables for Secrets</p>
+<ul>
+<li>Create <code>.env</code> file with your environment variables; you will need to set all of these variables in order for the deployment to work.</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DOCKERCONFIGJSON=&lt;base64 encoded json string&gt;
+GH_TOKEN=&lt;github_token&gt;
+GH_CLIENT_ID=&lt;GH OAuth Client ID&gt;
+GH_CLIENT_SECRET=&lt;GH OAuth Client Secret&gt;
+HOST=dev.devportal.name
+BASE_URL=https://dev.devportal.name
+GATEWAY=istio-system/dev-devportal-name-gateway
+NONPROD=true
+DEPLOY_ENV=dev
+COMMIT_SHA=&lt;commit sha used to tag image or &quot;latest&quot;*&gt;
+</code></pre></div>
+</td></tr></table>
+
+<blockquote>
+<ul>
+<li>If you manually build, push, and tag the image with "latest", using "latest" as the image tag for the deployment can work as a temporary fix but it is preferable to use something more unique like a commit sha. The "latest" tag changes frequently due to the CI workflow so this may cause the containers to crash by pulling an image definition that deployment may not be configured to use.</li>
+</ul>
+</blockquote>
+<ul>
+<li>Export file contents</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>set -o allexport; source .env; set +o allexport
+</code></pre></div>
+</td></tr></table>
+
+</li>
+</ul>
+<h3 id="generate-kubernetes-resources-with-kustomize">Generate Kubernetes Resources with Kustomize<a class="headerlink" href="#generate-kubernetes-resources-with-kustomize" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Once the <code>.env</code> file is created move it to the <code>deployment/scripts</code> directory</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ cp .env deployments/scripts/
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Create the environment specific resource files for the deployment using the <code>env-config-secrets.sh</code> file</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ chmod +x deployment/scripts/env-config-secrets.sh 
+$ ./env-config-secrets.sh
+</code></pre></div>
+</td></tr></table>
+
+<blockquote>
+<p>This script will create a new directory called <code>overlays</code> containing the <code>dev</code> directory. Inside the <code>dev</code> directory will be the kustomiation file, configmaps, secrets, and any patch files using the appropriate environment variables. This overlay will combine with the base kustomize files to create the deployment.</p>
+</blockquote>
+<ul>
+<li>Deploy the application by running the <code>kustomize build</code> to output the generated files as an input for the <code>kubectl apply</code> command:</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ kustomize build deployment/overlays/dev | kubectl apply -f -
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="verify-deployment">Verify Deployment<a class="headerlink" href="#verify-deployment" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Through Terminal</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ kubectl get deployments -n lighthouse-bandicoot-dev
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+dev-backend                       1/1     1            1           9m59s
+dev-frontend                      1/1     1            1           9m59s
+dev-postgres                      1/1     1            1           9m58s
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>Visit <a href="https://dev.devportal.name">https://dev.devportal.name</a> to view the running application</li>
+</ul>
+<h3 id="deleting-resources">Deleting resources<a class="headerlink" href="#deleting-resources" title="Permanent link">&para;</a></h3>
+<ul>
+<li>To manually delete the deployment and all of the resources that were created:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ kustomize build deployment/overlays/dev | kubectl delete -f -
+</code></pre></div>
+</td></tr></table></li>
+</ul>
+<blockquote>
+<p>Note: The command above to delete resources only works if all of the resources described in the path provided to <code>kustomize build</code> have the same name that they were deployed with. So if you deploy then modify any of the kubernetes resource files in a way that changes the name of a resource not all of the resources will be deleted. You would need to manual find those resources using <code>kubectl get &lt;resource_type&gt;</code> and delete with <code>kubectl delete &lt;resource_type&gt;/&lt;resource_name&gt;</code>.</p>
+</blockquote>
                 
               
               
@@ -978,7 +1324,7 @@ This script using the <code>--config</code> flag to specify what application con
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../google-analytics/" title="Google Analytics" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../argo-automation/" title="Automation with ArgoCD" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -987,19 +1333,19 @@ This script using the <code>--config</code> flag to specify what application con
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Google Analytics
+                Automation with ArgoCD
               </div>
             </div>
           </a>
         
         
-          <a href="../browser-logs/" title="Browser Logs" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../configure-timeouts/" title="Configure Timeouts" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Browser Logs
+                Configure Timeouts
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
