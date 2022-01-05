@@ -42,5 +42,4 @@ site
 *-credentials.yaml
 
 # Because desktop computers
-.DS_Store
 desktop.ini
