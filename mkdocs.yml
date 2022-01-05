@@ -32,6 +32,8 @@ nav:
       - Google Analytics: RFC/google-analytics.md
       - Configurable Variables: RFC/configurable-variables.md
       - Browser Logs: RFC/browser-logs.md
+      - Automation with ArgoCD: RFC/argo-automation.md
+      - Kustomize Deployment: RFC/kustomize.md
       - Feature Flags: RFC/feature-flags.mdi
       - Configure Timeouts: RFC/configure-timeouts.md
 

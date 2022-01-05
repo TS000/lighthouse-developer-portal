@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      name: frontend
+  template:
+    metadata:
+      annotations:
+        namespace: lighthouse-bandicoot-dev
+    spec:
+      securityContext:
+        null
+      containers:
+        - name: frontend
+          securityContext:
+            null
+          image: ""
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 500Mi
+          envFrom:
+          - configMapRef:
+              name: configmap
+          volumeMounts:
+          - name: config
+            mountPath: /config
+      volumes:
+      - name: config
+        configMap:
+          name: configmap
