@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -863,7 +863,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/pre-build-validation.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/pre-build-validation.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -873,15 +873,14 @@
                 
                 <h1 id="prebuild-validation">Prebuild Validation<a class="headerlink" href="#prebuild-validation" title="Permanent link">&para;</a></h1>
 <h2 id="pre-build-validation-workflow">Pre-build Validation Workflow<a class="headerlink" href="#pre-build-validation-workflow" title="Permanent link">&para;</a></h2>
-<p>The pre-build validation workflow is defined in <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/build-validation/.github/workflows/pre-build-validation.yml">pre-build-validation.yml</a></p>
+<p>The pre-build validation workflow is defined in <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/build-validation/.github/workflows/pre-build-validation.yml">pre-build-validation.yml</a></p>
 <h3 id="name-of-workflow">Name of workflow<a class="headerlink" href="#name-of-workflow" title="Permanent link">&para;</a></h3>
-<p>This is the name of the workflow as it appears in GitHub's actions tab of the GitHub Repository</p>
+<p>This is the name of the workflow as it appears in GitHub's actions tab of the GitHub Repository
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>name: Pre-build Validation
 </code></pre></div>
-</td></tr></table>
-
+</td></tr></table></p>
 <h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h3>
-<p>This workflow can be triggered by two types of events: on pull requests with the main branch, and by other workflows.</p>
+<p>This workflow can be triggered by two types of events: on pull requests with the main branch, and by other workflows.
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -890,24 +889,15 @@
     branches: [main]
   workflow_call:
 </code></pre></div>
-</td></tr></table>
-
+</td></tr></table></p>
 <h3 id="jobs">Jobs<a class="headerlink" href="#jobs" title="Permanent link">&para;</a></h3>
-<p>The jobs section contains 3 jobs:</p>
-<ul>
-<li>unit-tests<ul>
-<li>This job references the workflow for our <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/.github/workflows/unit-tests.yml">unit tests workflow</a>. The commit SHA is used to identify which version of the workflow we want to use. If <code>unit-tests.yml</code> is updated, then the commit SHA will need to be updated in order for the pre-build validation workflow to use the correct version of <code>unit-tests.yml</code>.</li>
-</ul>
-</li>
-<li>validate-unit-tests<ul>
-<li>This job interprets the results of the unit test job. If the unit tests were successful, it logs a message and the link to the unit-test run. If the unit tests failed, it posts a message to the <code>team-bandicoot</code> Slack channel to alert the team engineers that a changes containing failing unit tests have been merged to the <code>main</code> branch. This job will only run when the <code>pre-build validation</code> workflow is triggered by the <code>workflow_call</code> event which only occurs on merges with the <code>main</code> branch.</li>
-</ul>
-</li>
-<li>validate linting<ul>
-<li>This job calls a composite action which invokes the Typescript compiler with <code>yarn tsc</code> and linting using yarn and lerna to call <code>backstage-cli lint</code> for each plugin and package.</li>
-</ul>
-</li>
-</ul>
+<p>The jobs section contains 3 jobs:
+- unit-tests
+    - This job references the workflow for our <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/.github/workflows/unit-tests.yml">unit tests workflow</a>. The commit SHA is used to identify which version of the workflow we want to use. If <code>unit-tests.yml</code> is updated, then the commit SHA will need to be updated in order for the pre-build validation workflow to use the correct version of <code>unit-tests.yml</code>.
+- validate-unit-tests
+    - This job interprets the results of the unit test job. If the unit tests were successful, it logs a message and the link to the unit-test run. If the unit tests failed, it posts a message to the <code>team-bandicoot</code> Slack channel to alert the team engineers that a changes containing failing unit tests have been merged to the <code>main</code> branch. This job will only run when the <code>pre-build validation</code> workflow is triggered by the <code>workflow_call</code> event which only occurs on merges with the <code>main</code> branch.
+- validate linting
+    - This job calls a composite action which invokes the Typescript compiler with <code>yarn tsc</code> and linting using yarn and lerna to call <code>backstage-cli lint</code> for each plugin and package.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -935,7 +925,7 @@
 25
 26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>jobs:
   unit-tests:
-    uses: department-of-veterans-affairs/lighthouse-embark/.github/workflows/unit-tests.yml@b965a7d3fca3d4d4794cd3792ff72c08a7ba0364
+    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/unit-tests.yml@b965a7d3fca3d4d4794cd3792ff72c08a7ba0364
 
   validate-unit-tests:
       runs-on: ubuntu-latest

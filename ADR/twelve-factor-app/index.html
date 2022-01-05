@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -1021,7 +1021,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/ADR/twelve-factor-app.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/ADR/twelve-factor-app.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1071,8 +1071,8 @@ Revisit Criteria: If a developer is interested in revisiting this.</p>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Meets Criteria</li>
 </ul>
 <ul>
-<li>The codebase exists on <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main">GitHub</a> and uses Git for version control.</li>
-<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/actions">GitHub Actions</a> are used to automate tests/builds/deploys along with requiring peer-approval in order to merge a PR.</li>
+<li>The codebase exists on <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/main">GitHub</a> and uses Git for version control.</li>
+<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/actions">GitHub Actions</a> are used to automate tests/builds/deploys along with requiring peer-approval in order to merge a PR.</li>
 <li>The codebase uses <code>Docker</code> for building the Frontend and Backend applications.</li>
 </ul>
 <h2 id="2-dependencies">2. Dependencies<a class="headerlink" href="#2-dependencies" title="Permanent link">&para;</a></h2>
@@ -1083,7 +1083,7 @@ Revisit Criteria: If a developer is interested in revisiting this.</p>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Meets Criteria</li>
 </ul>
 <ul>
-<li>The app <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/twelve-factor-app-adr/packages/app">Frontend</a> and <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/twelve-factor-app-adr/packages/backend">Backend</a> can each be run individually and are not reliant on each other.</li>
+<li>The app <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/twelve-factor-app-adr/packages/app">Frontend</a> and <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/twelve-factor-app-adr/packages/backend">Backend</a> can each be run individually and are not reliant on each other.</li>
 <li>The package/plugin items each have their own <code>package.json</code> files to list each dependency.</li>
 <li>Each package/plugin uses <code>semver</code> to determine individual versions.</li>
 </ul>
@@ -1126,7 +1126,7 @@ Revisit Criteria: If a developer is interested in revisiting this.</p>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Meets Criteria</li>
 </ul>
 <ul>
-<li>The build process is well defined within the <a href="https://department-of-veterans-affairs.github.io/lighthouse-embark/deployment/">docs</a>, and within the GitHub Action.</li>
+<li>The build process is well defined within the <a href="https://department-of-veterans-affairs.github.io/lighthouse-backstage/deployment/">docs</a>, and within the GitHub Action.</li>
 <li>We use a <code>Dockerfile</code> and <code>docker-compose.yml</code> files to define the entrypoint for the frontend and backend.</li>
 <li>Uses tags to determine releases.</li>
 </ul>
@@ -1138,7 +1138,7 @@ Revisit Criteria: If a developer is interested in revisiting this.</p>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Meets Criteria</li>
 </ul>
 <ul>
-<li>Backend exposes a <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/k8s/backstage.yaml#L26">health check</a> endpoint.</li>
+<li>Backend exposes a <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/k8s/backstage.yaml#L26">health check</a> endpoint.</li>
 <li>Processes do not depend on a process manager.</li>
 <li>Health checks do not depend on the health of backing services, the backend will just report them.</li>
 <li>The backend will respond with exit code 1 if it comes across an error.</li>
@@ -1152,7 +1152,7 @@ Revisit Criteria: If a developer is interested in revisiting this.</p>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Meets Criteria</li>
 </ul>
 <ul>
-<li>The <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/Dockerfile.frontend#L10">Frontend Dockerfile</a> defines <code>PORT</code> 3000.</li>
+<li>The <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/Dockerfile.frontend#L10">Frontend Dockerfile</a> defines <code>PORT</code> 3000.</li>
 <li>Each service listens on a preconfigured bind-address port using the <code>app-config.yml</code> file.</li>
 <li>Listens on <a href="https://www.w3.org/Daemon/User/Installation/PrivilegedPorts.html">non-privileged</a> ports. (&gt; 1024)</li>
 </ul>
@@ -1226,15 +1226,15 @@ Revisit Criteria: If a developer is interested in revisiting this.</p>
 <p>The application will use the 12-factor application checklist to determine if it is able to run effectively on kubernetes.</p>
 <h2 id="reference-links">Reference Links<a class="headerlink" href="#reference-links" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main">GitHub</a></li>
-<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/actions">GitHub Actions</a></li>
+<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/main">GitHub</a></li>
+<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/actions">GitHub Actions</a></li>
 <li><a href="https://12factor.net/">12-Factor app</a></li>
 <li><a href="https://kubernetes.io/">Kubernetes</a></li>
-<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/twelve-factor-app-adr/packages/app">App</a></li>
-<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/twelve-factor-app-adr/packages/backend">Backend</a></li>
-<li><a href="https://department-of-veterans-affairs.github.io/lighthouse-embark/deployment/">Deployment</a></li>
-<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/k8s/backstage.yaml#L26">Health Check</a></li>
-<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/Dockerfile.frontend#L10">Frontend Dockerfile</a></li>
+<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/twelve-factor-app-adr/packages/app">App</a></li>
+<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/twelve-factor-app-adr/packages/backend">Backend</a></li>
+<li><a href="https://department-of-veterans-affairs.github.io/lighthouse-backstage/deployment/">Deployment</a></li>
+<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/k8s/backstage.yaml#L26">Health Check</a></li>
+<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/Dockerfile.frontend#L10">Frontend Dockerfile</a></li>
 <li><a href="https://backstage.io/docs/plugins/observability#logging">Logging to stdout</a></li>
 </ul>
                 

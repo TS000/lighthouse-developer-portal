@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -867,7 +867,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/RFC/configure-timeouts.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/RFC/configure-timeouts.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -885,7 +885,7 @@
 <h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
 <p>Backstage does not support configuring request timeouts using the <code>app-config.yml</code>. Most timeouts are either not set, or hardcoded values.</p>
 <p>Backstage uses a class called <a href="https://github.com/backstage/backstage/blob/master/packages/catalog-client/src/CatalogClient.ts#L48">CatalogClient</a> that is in charge of making requests related to the catalog. The <code>CatalogClient</code> accepts two parameters, a <code>DiscoveryApi</code> and a <code>FetchApi</code>.</p>
-<p>Embark initializes <code>CatalogClient</code> within the <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/configure-timeouts/packages/backend/src/plugins/scaffolder.ts#L18">scaffolder</a> on the backend. Currently, it only passes a parameter for the <code>DiscoveryApi</code> and so the <code>FetchApi</code> is defaulted to use <a href="https://www.npmjs.com/package/cross-fetch">cross-fetch</a>.</p>
+<p>Embark initializes <code>CatalogClient</code> within the <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/configure-timeouts/packages/backend/src/plugins/scaffolder.ts#L18">scaffolder</a> on the backend. Currently, it only passes a parameter for the <code>DiscoveryApi</code> and so the <code>FetchApi</code> is defaulted to use <a href="https://www.npmjs.com/package/cross-fetch">cross-fetch</a>.</p>
 <h2 id="recommendations">Recommendations<a class="headerlink" href="#recommendations" title="Permanent link">&para;</a></h2>
 <p>I believe that we could create our own timeout by importing <code>cross-fetch</code>, wrapping it in a <code>fetchWithTimeout</code> function, and passing that to <code>CatalogClient</code>. I found an example on StackOverflow, <a href="https://stackoverflow.com/questions/46946380/fetch-api-request-timeout">here</a>. The solution could look like something below.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -915,7 +915,7 @@
 <li><a href="https://cloudposse.com/12-factor-app/">12 Factor App</a></li>
 <li><a href="https://backstage.io/">Backstage</a></li>
 <li><a href="https://github.com/backstage/backstage/blob/master/packages/catalog-client/src/CatalogClient.ts#L48">CatalogClient</a></li>
-<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/configure-timeouts/packages/backend/src/plugins/scaffolder.ts#L18">scaffolder</a></li>
+<li><a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/configure-timeouts/packages/backend/src/plugins/scaffolder.ts#L18">scaffolder</a></li>
 <li><a href="https://www.npmjs.com/package/cross-fetch">cross-fetch</a></li>
 <li><a href="https://stackoverflow.com/questions/46946380/fetch-api-request-timeout">StackOverflow</a></li>
 </ul>
