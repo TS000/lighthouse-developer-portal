@@ -12,7 +12,7 @@ function getLoggerConfig(): LogsInitConfiguration {
         forwardErrorsToLogs: true,
         service: 'lighthouse-embark-browser-logger',
         sampleRate: 100,
-        beforeSend: (log) => {
+        beforeSend: (log): false | void => {
             // Example of filtering email from browser logs
             // Here are other fields that could potentially contain sensitive information
             // Field            Type        Description
@@ -22,6 +22,12 @@ function getLoggerConfig(): LogsInitConfiguration {
             // error.stack	    String	    The stack trace or complementary information about the error.
             // http.url	        String	    The HTTP URL.
             log.view.url = log.view.url.replace(/email=[^&]*/, "email=REDACTED")
+
+            // discard logs from local instances of Embark
+            if (log.view.url.startsWith("127.0.0.1", 7) || log.view.url.startsWith("localhost", 7)) {
+                return false;
+              }
+            return void 0;
         }
     };
     return initConfig;

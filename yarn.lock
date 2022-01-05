@@ -2526,12 +2526,19 @@
   dependencies:
     tslib "^1.10.0"
 
-"@datadog/browser-logs@^3.8.0":
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/@datadog/browser-logs/-/browser-logs-3.10.0.tgz#cb591dd99ebf4369418feddf955417565d3612f4"
-  integrity sha512-M62dVt/vk1tEGvzaF0ZLcQBiOP+ioGZ6bYkgszpcraER+ax9Yp7nzQnFc1U68dtPUc9cruPzFJEPLJPNexptRQ==
+"@datadog/browser-core@3.10.1":
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/@datadog/browser-core/-/browser-core-3.10.1.tgz#4f916fd90310026d9e657026fa700878bd2f8fb5"
+  integrity sha512-6oXfZyCdSWmiYfBY99NAP/qGPurUsIFkp7KyGf2jg4Bsl3thBw8W/RNX9/UKhRNXA6TtvLepJu88g1Mw0ld2KQ==
   dependencies:
-    "@datadog/browser-core" "3.10.0"
+    tslib "^1.10.0"
+
+"@datadog/browser-logs@^3.10.1":
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/@datadog/browser-logs/-/browser-logs-3.10.1.tgz#308f6ede949c2232af5d14694a5cf8a2d24d7801"
+  integrity sha512-kNqfPVvciQUuXCkDPNR4T2VlZh54cKtVMpKSS7f6Ex0AbNyPX7iz78xtqdttdhepFgtaf+drQXzzOYwtyYxlCg==
+  dependencies:
+    "@datadog/browser-core" "3.10.1"
     tslib "^1.10.0"
 
 "@datadog/browser-rum-core@3.10.0":
