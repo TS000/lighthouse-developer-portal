@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -959,7 +959,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/helm.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/helm.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1004,10 +1004,11 @@
 <h3 id="valuesyaml-file">values.yaml file<a class="headerlink" href="#valuesyaml-file" title="Permanent link">&para;</a></h3>
 <p>This file contains the default values for a chart. These values may be overridden by users during helm install or helm upgrade.</p>
 <h3 id="chartyaml">Chart.yaml<a class="headerlink" href="#chartyaml" title="Permanent link">&para;</a></h3>
-<p>The Chart.yaml file contains a description of the chart. You can access it from within a template. The <code>charts/</code> directory may contain other charts called subcharts. </p>
+<p>The Chart.yaml file contains a description of the chart. You can access it from within a template. The <code>charts/</code> directory may contain other charts called subcharts.</p>
 <h3 id="subcharts">Subcharts<a class="headerlink" href="#subcharts" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="https://helm.sh/docs/chart_template_guide/subcharts_and_globals/">More information about subcharts</a>
+<li><a href="https://helm.sh/docs/chart_template_guide/subcharts_and_globals/">More information about subcharts</a></li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -1016,12 +1017,13 @@
 - A parent chart can override values for subcharts.
 - Helm has a concept of global values that can be accessed by all charts.
 </code></pre></div>
-</td></tr></table></li>
-</ul>
+</td></tr></table>
+
 <h3 id="what-is-_helperstpl">What is _helpers.tpl?<a class="headerlink" href="#what-is-_helperstpl" title="Permanent link">&para;</a></h3>
-<p>Files that being with <code>_</code> inside the <code>templates/</code> directory are not rendered to Kubernetes object definitions, but these files are available everywhere within other chart templates for use. This file is default location for <code>template partials</code>. </p>
+<p>Files that being with <code>_</code> inside the <code>templates/</code> directory are not rendered to Kubernetes object definitions, but these files are available everywhere within other chart templates for use. This file is default location for <code>template partials</code>.</p>
 <ul>
-<li>Create a partial template containing a block of labels
+<li>Create a partial template containing a block of labels</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -1034,8 +1036,11 @@
     date: {{ now | htmlDate }}
 {{- end }}
 </code></pre></div>
-</td></tr></table></li>
-<li>Adding the partial template to the template file
+</td></tr></table>
+
+<ul>
+<li>Adding the partial template to the template file</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1068,8 +1073,11 @@ data:
   {{ $key }}: {{ $val | quote }}
   {{- end }}
 </code></pre></div>
-</td></tr></table></li>
-<li>The rendered output:
+</td></tr></table>
+
+<ul>
+<li>The rendered output:</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1094,13 +1102,15 @@ data:
   drink: &quot;coffee&quot;
   food: &quot;pizza&quot;
 </code></pre></div>
-</td></tr></table></li>
-</ul>
+</td></tr></table>
+
 <h2 id="using-secrets-with-helm">Using Secrets with Helm<a class="headerlink" href="#using-secrets-with-helm" title="Permanent link">&para;</a></h2>
 <h3 id="passing-secrets-as-command-line-arguments">Passing secrets as command line arguments<a class="headerlink" href="#passing-secrets-as-command-line-arguments" title="Permanent link">&para;</a></h3>
 <p>Currently I am passing secrets as command line arguments when installing helm charts</p>
-<p><strong>How this works:</strong>
-- First I assigned variable names as values for the following <code><b>key</b>: value</code> pairs in the <code>values.yaml</code> file:</p>
+<p><strong>How this works:</strong></p>
+<ul>
+<li>First I assigned variable names as values for the following <code><b>key</b>: value</code> pairs in the <code>values.yaml</code> file:</li>
+</ul>
 <pre>
 # values.yaml
 secrets:
@@ -1117,26 +1127,29 @@ secrets:
 type: kubernetes.io/dockerconfigjson
 apiVersion: v1
 metadata:
-  name: {{ include "lighthouse-backstage.fullname" . }}-dockerconfigjson-ghpkgs
-  labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
+name: {{ include "lighthouse-embark.fullname" . }}-dockerconfigjson-ghpkgs
+labels: {{- include "lighthouse-embark.selectorLabels" . | nindent 8 }}
 data:
-  .dockerconfigjson: {{ .Values.<b>DOCKERCONFIGJSON</b> }}</p>
+.dockerconfigjson: {{ .Values.<b>DOCKERCONFIGJSON</b> }}</p>
 <hr />
 <p>apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ include "lighthouse-backstage.fullname" . }}-secrets
-  labels: {{- include "lighthouse-backstage.selectorLabels" . | nindent 8 }}
+name: {{ include "lighthouse-embark.fullname" . }}-secrets
+labels: {{- include "lighthouse-embark.selectorLabels" . | nindent 8 }}
 type: Opaque
 data:
-GITHUB_TOKEN: {{ .Values.<b>GITHUB_TOKEN</b> }}
-</pre></p>
+GITHUB_TOKEN: {{ .Values.<b>GITHUB_TOKEN</b> }}</p>
+</pre>
+
 <blockquote>
-<p>Note: <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes Secrets</a> have different types. The first secret type is <code>kubernetes.io/dockerconfigjson</code> which is used for a docker config.json file represented as an encoded string. This is used to provide authentication credentials for accessing a container repository to be able to pull images. More information about creating and encoding the json string: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/</a>. The second secret is a base64 encoded personal access token used by <a href="https://backstage.io/docs/deployment/k8s#creating-the-backstage-instance">Backstage</a>. </p>
+<p>Note: <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes Secrets</a> have different types. The first secret type is <code>kubernetes.io/dockerconfigjson</code> which is used for a docker config.json file represented as an encoded string. This is used to provide authentication credentials for accessing a container repository to be able to pull images. More information about creating and encoding the json string: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/</a>. The second secret is a base64 encoded personal access token used by <a href="https://backstage.io/docs/deployment/k8s#creating-the-backstage-instance">Backstage</a>.</p>
 </blockquote>
 <h3 id="export-local-variables">Export local variables<a class="headerlink" href="#export-local-variables" title="Permanent link">&para;</a></h3>
-<p>Now that the environment variables are mapped to keys, and those keys are referenced in <code>templates/deployment.yaml</code>, we need to export the values for these variables
-- Create a <code>.env</code> file containing your secrets
+<p>Now that the environment variables are mapped to keys, and those keys are referenced in <code>templates/deployment.yaml</code>, we need to export the values for these variables</p>
+<ul>
+<li>Create a <code>.env</code> file containing your secrets</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -1154,22 +1167,32 @@ GH_CLIENT_ID=&lt;GH OAuth Client ID&gt;
 GH_CLIENT_SECRET=&lt;GH OAuth Client Secret&gt;
 </code></pre></div>
 </td></tr></table>
-- Export the contents of the file
+
+<ul>
+<li>Export the contents of the file</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>set -o allexport; source .env; set +o allexport
 </code></pre></div>
 </td></tr></table>
-- Set the variables when installing the helm chart
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm install backstage-dev helm/lighthouse-backstage/ --debug --values helm/lighthouse-backstage/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GITHUB_TOKEN=$GITHUB_TOKEN --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set POSTGRES_DB=$POSTGRES_DB --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET
+
+<ul>
+<li>Set the variables when installing the helm chart</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm install backstage-dev helm/lighthouse-embark/ --debug --values helm/lighthouse-embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GITHUB_TOKEN=$GITHUB_TOKEN --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set POSTGRES_DB=$POSTGRES_DB --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET
 </code></pre></div>
 </td></tr></table>
-- View deployment
+
+<ul>
+<li>View deployment</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm list -n lighthouse-bandicoot-dev
 NAME            NAMESPACE                       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
-backstage-dev   lighthouse-bandicoot-dev        1               2021-10-07 07:37:22.4745171 -0700 PDT   deployed        lighthouse-backstage-0.1.0      1.16.0
+backstage-dev   lighthouse-bandicoot-dev        1               2021-10-07 07:37:22.4745171 -0700 PDT   deployed        lighthouse-embark-0.1.0      1.16.0
 </code></pre></div>
-</td></tr></table></p>
+</td></tr></table>
+
 <h3 id="other-ways-to-use-secrets-with-helm">Other ways to use secrets with Helm<a class="headerlink" href="#other-ways-to-use-secrets-with-helm" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://github.com/jkroepke/helm-secrets">helm-secrets plugin</a></li>

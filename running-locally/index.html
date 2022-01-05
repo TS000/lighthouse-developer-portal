@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -857,7 +857,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/running-locally.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/running-locally.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -871,9 +871,9 @@
 <p>This repo is configured to run a production-like environment in a GitHub <a href="https://github.com/features/codespaces">Codespace</a>.</p>
 <ol>
 <li>Generate a <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">personal access token</a> with the read:packages permission</li>
-<li>Add the following to your <a href="https://github.com/settings/codespaces">Codespace secrets</a>: </li>
+<li>Add the following to your <a href="https://github.com/settings/codespaces">Codespace secrets</a>:</li>
 </ol>
-<p><em>For each secret, select only the lighthouse-backstage repository under <strong>Repository Access</strong>.</em></p>
+<p><em>For each secret, select only the lighthouse-embark repository under <strong>Repository Access</strong>.</em></p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DEV_CONTAINER_REGISTRY_SERVER = ghcr.io
@@ -883,7 +883,7 @@ DEV_CONTAINER_REGISTRY_PASSWORD = &lt;personal access token&gt;
 </td></tr></table>
 
 <ol>
-<li>Create a <a href="https://docs.github.com/en/codespaces">Codespace</a> for the <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage">lighthouse-backstage</a> repo. This option is available by clicking the green <strong>Code</strong> button. </li>
+<li>Create a <a href="https://docs.github.com/en/codespaces">Codespace</a> for the <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark">lighthouse-embark</a> repo. This option is available by clicking the green <strong>Code</strong> button.</li>
 <li>Run application:</li>
 </ol>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>yarn dev
@@ -891,10 +891,12 @@ DEV_CONTAINER_REGISTRY_PASSWORD = &lt;personal access token&gt;
 </td></tr></table>
 
 <h3 id="create-a-codespace">Create a Codespace<a class="headerlink" href="#create-a-codespace" title="Permanent link">&para;</a></h3>
-<p>You can create a new codespace by visiting the <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage">lighthouse-backstage repo</a> and by following the listed steps.</p>
-<p><strong>Prerequisites</strong>: 
-- Install <a href="https://code.visualstudio.com/">Visual Studio Code</a>
-- Install the Codespaces <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces">extension</a> into Visual Studio Code</p>
+<p>You can create a new codespace by visiting the <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark">lighthouse-embark repo</a> and by following the listed steps.</p>
+<p><strong>Prerequisites</strong>:</p>
+<ul>
+<li>Install <a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+<li>Install the Codespaces <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces">extension</a> into Visual Studio Code</li>
+</ul>
 <p><em>Note: The in-browser VS Code doesn't work properly with this project.</em></p>
 <ol>
 <li>Click the <code>&lt;&gt;</code> green button near the search and "+" buttons.</li>
@@ -930,7 +932,7 @@ DEV_CONTAINER_REGISTRY_PASSWORD = &lt;personal access token&gt;
 </ul>
 <p><strong>Environment Variable Injection</strong></p>
 <p>The local dev environment is setup to use <a href="https://github.com/segmentio/chamber">chamber</a> for environment variable injection. A few changes need to be made before this will work.</p>
-<p>First you'll need to add a <code>.env</code> file within the <code>.localdevcontainer</code> folder. An <code>example.env</code> is available to copy from. Then, you need to uncomment the <code>ENTRYPOINT</code> located at the bottom of the local-Dockerfile, and comment <code>ENTRYPOINT [ "/entrypoint.sh" ]</code>. Running <code>sh local.sh.start</code> should now inject any environment variables stored within the SSM Parameter Store based on the values within <code>.env</code>. It'll grab any variables that start with <code>lighthouse-backstage</code>.</p>
+<p>First you'll need to add a <code>.env</code> file within the <code>.localdevcontainer</code> folder. An <code>example.env</code> is available to copy from. Then, you need to uncomment the <code>ENTRYPOINT</code> located at the bottom of the local-Dockerfile, and comment <code>ENTRYPOINT [ "/entrypoint.sh" ]</code>. Running <code>sh local.sh.start</code> should now inject any environment variables stored within the SSM Parameter Store based on the values within <code>.env</code>. It'll grab any variables that start with <code>lighthouse-embark</code>.</p>
 <h2 id="install-and-run-locally-tbd">Install and run locally (TBD)<a class="headerlink" href="#install-and-run-locally-tbd" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Use <a href="https://github.com/nvm-sh/nvm">nvm</a> to install node</li>

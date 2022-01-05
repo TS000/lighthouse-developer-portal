@@ -117,7 +117,7 @@
     
       <div class="md-header-nav__source">
         
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -158,7 +158,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/" title="Go to repository" class="md-source">
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
@@ -907,7 +907,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/edit/master/docs/RFC/custom-actions.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/RFC/custom-actions.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -920,7 +920,7 @@
 <p>We want to implement custom Github Actions to retain both the simplicity, readability and maintainability of published Github Actions and the ability to create tailored workflows that fit our specific operational needs.</p>
 <h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
 <p>Github Actions are workflows that allow us to automate complex tasks. Some steps are handled by actions published to the Github Actions Marketplace but other steps require a tailored solution often involving many steps that using scripts. These tailored solutions can quickly become unwieldy and difficult to understand. Moreover, some of these steps are tightly coupled which obfuscates the process of maintaining, modifying, or extending these workflows.</p>
-<p>We want to add a layer of abstraction by encapsulating these steps into a single custom Github Action. Using custom Github actions we intend to transform these complex, and often tightly coupled, multi-step solutions into reusable atomic actions with simple interfaces. </p>
+<p>We want to add a layer of abstraction by encapsulating these steps into a single custom Github Action. Using custom Github actions we intend to transform these complex, and often tightly coupled, multi-step solutions into reusable atomic actions with simple interfaces.</p>
 <h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
 <p>Create custom Github Actions with simple interfaces that we can use in our workflows.</p>
 <h2 id="creating-custom-actions"><a href="https://docs.github.com/en/actions/creating-actions/about-custom-actions">Creating Custom Actions</a><a class="headerlink" href="#creating-custom-actions" title="Permanent link">&para;</a></h2>
@@ -945,8 +945,8 @@
 <li>OS: Linux, macOS, Windows</li>
 <li>Runs directly on a runner machine</li>
 <li>Can separate the action code from the environment used to run the code</li>
-<li>Executes faster than Docker container action </li>
-<li>Should be written in pure JavaScript and not rely on other binaries </li>
+<li>Executes faster than Docker container action</li>
+<li>Should be written in pure JavaScript and not rely on other binaries</li>
 </ul>
 <h3 id="composite-actions"><a href="https://docs.github.com/en/actions/creating-actions/creating-a-composite-action">Composite Actions</a><a class="headerlink" href="#composite-actions" title="Permanent link">&para;</a></h3>
 <ul>
@@ -955,12 +955,13 @@
 <li>You can refer to this action using a single step from a workflow to run the bundle of commands</li>
 </ul>
 <h2 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h2>
-<p>I created an example of a <code>composite</code> action using this repository. This method uses the path to <code>.github/actions/&lt;custom_action_name&gt;</code> to find the custom action's manifest file. </p>
+<p>I created an example of a <code>composite</code> action using this repository. This method uses the path to <code>.github/actions/&lt;custom_action_name&gt;</code> to find the custom action's manifest file.</p>
 <blockquote>
-<p>Note: There is another method of locating actions by creating a separate repository with tags to reference. I created a repository <code>lighthouse-backstage-actions</code> but it is currently set to <code>internal</code> by default and an organization owner/admin needs to change it to <code>public</code> for us to use it.</p>
+<p>Note: There is another method of locating actions by creating a separate repository with tags to reference. I created a repository <code>lighthouse-embark-actions</code> but it is currently set to <code>internal</code> by default and an organization owner/admin needs to change it to <code>public</code> for us to use it.</p>
 </blockquote>
 <ul>
-<li>Inside the <code>.github</code> directory is an <code>actions</code> directory
+<li>Inside the <code>.github</code> directory is an <code>actions</code> directory</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -975,10 +976,12 @@
         └── logger/
             └── action.yml
 </code></pre></div>
-</td></tr></table></li>
-</ul>
+</td></tr></table>
+
 <ul>
-<li>Inside the <code>actions</code> directory is a <code>logger</code> directory containing a single <code>action.yml</code> file<ul>
+<li>
+<p>Inside the <code>actions</code> directory is a <code>logger</code> directory containing a single <code>action.yml</code> file</p>
+<ul>
 <li>The <code>logger</code> directory refers to the name of the action</li>
 <li>The <code>action.yml</code> is an action manifest file</li>
 <li>The path to the <code>action.yml</code> will be used later to find the action manifest when a workflow tries to invoke it</li>
@@ -986,7 +989,8 @@
 </li>
 </ul>
 <ul>
-<li>Contents of the manifest:
+<li>Contents of the manifest:</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1008,7 +1012,7 @@
 name: &#39;Logger&#39;
 description: &#39;Logs things&#39;
 inputs:
-  string-to-log:  
+  string-to-log:
     description: &#39;string to log&#39;
     required: true
     default: &#39;Enter a phrase to log&#39;
@@ -1023,8 +1027,8 @@ runs:
       with:
         script: console.log(&quot;${{ inputs.string-to-log }}&quot;)
 </code></pre></div>
-</td></tr></table></li>
-</ul>
+</td></tr></table>
+
 <ul>
 <li>Using the action in a workflow
 <pre></li>
@@ -1032,24 +1036,24 @@ runs:
 <h1 id="githubworkflowsexample_custom_actionyml">.github/workflows/example_custom_action.yml<a class="headerlink" href="#githubworkflowsexample_custom_actionyml" title="Permanent link">&para;</a></h1>
 <p>name: Example custom action</p>
 <p>on:
-  push:
-    branches: [custom-actions]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:</p>
+push:
+branches: [custom-actions]
+pull_request:
+branches: [main]
+workflow_dispatch:</p>
 <p>jobs:
-  example-custom-action:
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v2
-      # Using path to same repo works  <br />
-      <b>- uses: ./.github/actions/logger
-        with: 
-          string-to-log: 'This should log in the console'</b>
-</pre></p>
+example-custom-action:
+runs-on: ubuntu-latest
+continue-on-error: true
+steps: - uses: actions/checkout@v2 # Using path to same repo works<br />
+ <b>- uses: ./.github/actions/logger
+with:
+string-to-log: 'This should log in the console'</b></p>
+</pre>
+
 <ul>
-<li>Result from <a href="https://github.com/department-of-veterans-affairs/lighthouse-backstage/runs/3883781943?check_suite_focus=true">workflow run</a>:
+<li>Result from <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/runs/3883781943?check_suite_focus=true">workflow run</a>:</li>
+</ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -1066,8 +1070,8 @@ runs:
     result-encoding: json
 This should log in the console
 </code></pre></div>
-</td></tr></table></li>
-</ul>
+</td></tr></table>
+
 <h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
 <p>I think that we should first audit our existing workflows to determine which workflows, or parts of workflows, we intend to keep. Of these workflows we can then identify steps or groups of steps where we can potentionally implement a custom action. Then we can further consolidate the group of potential custom actions by identifying redundancies. Once we have a refined list of custom actions we can create each action and implement it by replace the corresponding steps in our workflows with our custom actions.</p>
                 
