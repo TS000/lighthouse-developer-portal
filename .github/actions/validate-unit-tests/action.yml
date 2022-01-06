@@ -37,7 +37,7 @@ runs:
     - name: Filter workflow runs
       id: workflow
       run: |
-        workflow=$(curl -H "Accept: application/vnd.github.v3+json" curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/department-of-veterans-affairs/lighthouse-backstage/actions/runs/${{ github.run_id }})
+        workflow=$(curl -H "Accept: application/vnd.github.v3+json" curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/department-of-veterans-affairs/lighthouse-embark/actions/runs/${{ github.run_id }})
         url=$(echo $workflow | jq -r .html_url)
         echo "::set-output name=url::$(echo $url)"
         echo ${{ github.event }}
@@ -52,7 +52,7 @@ runs:
     - name: Failure
       run: |
         if [[ "${{ inputs.UNIT_TEST_STATUS }}" == "failure" ]]; then
-          curl -X POST --data-urlencode "payload={\"channel\": \"#team-bandicoot\", \"username\": \"webhookbot\", \"text\": \"Merged Failing Pull Request to Main Branch!\n<https://github.com/department-of-veterans-affairs/lighthouse-backstage/commit/${{ github.sha }}|View Pull Request>\n<${{ steps.workflow.outputs.url }}|View Unit Test Results>\n<@${{inputs.SLACK_UID_001}}> <@${{inputs.SLACK_UID_002}}> <@${{inputs.SLACK_UID_003}}> <@${{inputs.SLACK_UID_004}}> \n\", \"icon_emoji\": \":robot_face:\"}" ${{ inputs.SLACK_WEBHOOK_URL }}
+          curl -X POST --data-urlencode "payload={\"channel\": \"#team-bandicoot\", \"username\": \"webhookbot\", \"text\": \"Merged Failing Pull Request to Main Branch!\n<https://github.com/department-of-veterans-affairs/lighthouse-embark/commit/${{ github.sha }}|View Pull Request>\n<${{ steps.workflow.outputs.url }}|View Unit Test Results>\n<@${{inputs.SLACK_UID_001}}> <@${{inputs.SLACK_UID_002}}> <@${{inputs.SLACK_UID_003}}> <@${{inputs.SLACK_UID_004}}> \n\", \"icon_emoji\": \":robot_face:\"}" ${{ inputs.SLACK_WEBHOOK_URL }}
         fi
         exit 0
       shell: bash

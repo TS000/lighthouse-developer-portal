@@ -20,7 +20,7 @@ jobs:
       - name: Check for existing auto-update PR
         id: pr
         run: |
-          exists=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/department-of-veterans-affairs/lighthouse-backstage/pulls?head=department-of-veterans-affairs:auto-update-backstage)
+          exists=$(curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/department-of-veterans-affairs/lighthouse-embark/pulls?head=department-of-veterans-affairs:auto-update-backstage)
           url=$(echo $exists | jq .[] | jq .html_url)
           echo ::set-output name=exists::$exists
           echo ::set-output name=url::$url
@@ -78,7 +78,7 @@ jobs:
           body: |
             Pull Request to Update Backstage (auto-generated)
             - ${{ steps.vars.outputs.date }}
-            - [Output Log](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/auto-update-backstage/backstage-update-log.txt):
+            - [Output Log](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/auto-update-backstage/backstage-update-log.txt):
                 - ${{ steps.get-pr-body.outputs.body }}
 
             - [Backstage Create-App Change Log](https://github.com/backstage/backstage/blob/master/packages/create-app/CHANGELOG.md)

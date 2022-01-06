@@ -1,5 +1,5 @@
 name: 'Send Deployment Webhook'
-description: 'Sends a webhook to the backstage-deployment repo containing the latest commit SHA'
+description: 'Sends a webhook to the embark-deployment repo containing the latest commit SHA'
 inputs:
   ENV:
     description: 'Flag used to set environment variable overrides'
@@ -14,11 +14,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Send webhook to backstage-deployment repo
+    - name: Send webhook to embark-deployment repo
       run: |
         curl -H "Accept: application/vnd.github.everest-preview+json" \
         -H "Authorization: token ${{ inputs.WEBHOOK_DEPLOY_PAT }}" \
         --request POST \
         --data '{ "event_type": "${{ inputs.ENV }}", "client_payload": { "commit_sha": "${{ inputs.MAIN_SHA }}" } }' \
-        https://api.github.com/repos/department-of-veterans-affairs/backstage-deployment/dispatches
+        https://api.github.com/repos/department-of-veterans-affairs/embark-deployment/dispatches
       shell: bash

@@ -9,10 +9,10 @@ on:
 
 jobs:
   unit-tests:
-    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/unit-tests.yml@main
+    uses: department-of-veterans-affairs/lighthouse-embark/.github/workflows/unit-tests.yml@main
   pre-build-validation:
     needs: [unit-tests]
-    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/pre-build-validation.yml@main
+    uses: department-of-veterans-affairs/lighthouse-embark/.github/workflows/pre-build-validation.yml@main
     with:
       UNIT_TEST_STATUS: ${{ needs.unit-tests.result }}
     secrets:
@@ -97,7 +97,7 @@ jobs:
         env: [dev]
         include:
           - env: dev
-    # Notify backstage-deployment via webhook https://github.com/department-of-veterans-affairs/backstage-deployment
+    # Notify embark-deployment via webhook https://github.com/department-of-veterans-affairs/embark-deployment
     steps:
       - uses: actions/checkout@v2
       - name: Send deployment event via webhook
