@@ -1,5 +1,5 @@
 yarn run v1.22.17
-$ /home/runner/work/lighthouse-backstage/lighthouse-backstage/node_modules/.bin/backstage-cli versions:bump
+$ /home/runner/work/lighthouse-embark/lighthouse-embark/node_modules/.bin/backstage-cli versions:bump
 Checking for updates of @backstage/dev-utils
 Checking for updates of @backstage/plugin-techdocs-backend
 Checking for updates of @backstage/plugin-search-backend-node

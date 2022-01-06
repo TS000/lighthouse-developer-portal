@@ -18,7 +18,7 @@ Backstage does not support configuring request timeouts using the `app-config.ym
 
 Backstage uses a class called [CatalogClient](https://github.com/backstage/backstage/blob/master/packages/catalog-client/src/CatalogClient.ts#L48) that is in charge of making requests related to the catalog. The `CatalogClient` accepts two parameters, a `DiscoveryApi` and a `FetchApi`.
 
-Embark initializes `CatalogClient` within the [scaffolder](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/configure-timeouts/packages/backend/src/plugins/scaffolder.ts#L18) on the backend. Currently, it only passes a parameter for the `DiscoveryApi` and so the `FetchApi` is defaulted to use [cross-fetch](https://www.npmjs.com/package/cross-fetch).
+Embark initializes `CatalogClient` within the [scaffolder](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/configure-timeouts/packages/backend/src/plugins/scaffolder.ts#L18) on the backend. Currently, it only passes a parameter for the `DiscoveryApi` and so the `FetchApi` is defaulted to use [cross-fetch](https://www.npmjs.com/package/cross-fetch).
 
 ## Recommendations
 
@@ -42,6 +42,6 @@ export default function (url, options, timeout = 10000) {
 - [12 Factor App](https://cloudposse.com/12-factor-app/)
 - [Backstage](https://backstage.io/)
 - [CatalogClient](https://github.com/backstage/backstage/blob/master/packages/catalog-client/src/CatalogClient.ts#L48)
-- [scaffolder](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/configure-timeouts/packages/backend/src/plugins/scaffolder.ts#L18)
+- [scaffolder](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/configure-timeouts/packages/backend/src/plugins/scaffolder.ts#L18)
 - [cross-fetch](https://www.npmjs.com/package/cross-fetch)
 - [StackOverflow](https://stackoverflow.com/questions/46946380/fetch-api-request-timeout)

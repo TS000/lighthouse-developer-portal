@@ -7,12 +7,12 @@ app:
       trackingId: UA-213643760-1
   # Support
   support:
-    url: https://github.com/department-of-veterans-affairs/lighthouse-backstage/issues # Used by common ErrorPage
+    url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues # Used by common ErrorPage
     items: # Used by common SupportButton component
       - title: Contact Support Team
         icon: github
         links:
-          - url: https://github.com/department-of-veterans-affairs/lighthouse-backstage/issues
+          - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
             title: GitHub Issues
 
   # datadogRum:
@@ -112,16 +112,16 @@ catalog:
 
     # app component
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/packages/app/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/app/catalog-info.yaml
 
     # backend component
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/packages/backend/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/backend/catalog-info.yaml
 
     # feature-flags component
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/plugins/feature-flag-ui/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/plugins/feature-flag-ui/catalog-info.yaml
 
     # system
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml

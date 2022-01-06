@@ -27,8 +27,8 @@ We plan to use [Kubernetes](https://kubernetes.io/) to deploy our application. T
 
 - [x] Meets Criteria
 
-- The codebase exists on [GitHub](https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/main) and uses Git for version control.
-- [GitHub Actions](https://github.com/department-of-veterans-affairs/lighthouse-backstage/actions) are used to automate tests/builds/deploys along with requiring peer-approval in order to merge a PR.
+- The codebase exists on [GitHub](https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main) and uses Git for version control.
+- [GitHub Actions](https://github.com/department-of-veterans-affairs/lighthouse-embark/actions) are used to automate tests/builds/deploys along with requiring peer-approval in order to merge a PR.
 - The codebase uses `Docker` for building the Frontend and Backend applications.
 
 ## 2. Dependencies
@@ -37,7 +37,7 @@ We plan to use [Kubernetes](https://kubernetes.io/) to deploy our application. T
 
 - [x] Meets Criteria
 
-- The app [Frontend](https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/twelve-factor-app-adr/packages/app) and [Backend](https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/twelve-factor-app-adr/packages/backend) can each be run individually and are not reliant on each other.
+- The app [Frontend](https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/twelve-factor-app-adr/packages/app) and [Backend](https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/twelve-factor-app-adr/packages/backend) can each be run individually and are not reliant on each other.
 - The package/plugin items each have their own `package.json` files to list each dependency.
 - Each package/plugin uses `semver` to determine individual versions.
 
@@ -74,7 +74,7 @@ We plan to use [Kubernetes](https://kubernetes.io/) to deploy our application. T
 
 - [x] Meets Criteria
 
-- The build process is well defined within the [docs](https://department-of-veterans-affairs.github.io/lighthouse-backstage/deployment/), and within the GitHub Action.
+- The build process is well defined within the [docs](https://department-of-veterans-affairs.github.io/lighthouse-embark/deployment/), and within the GitHub Action.
 - We use a `Dockerfile` and `docker-compose.yml` files to define the entrypoint for the frontend and backend.
 - Uses tags to determine releases.
 
@@ -84,7 +84,7 @@ We plan to use [Kubernetes](https://kubernetes.io/) to deploy our application. T
 
 - [x] Meets Criteria
 
-- Backend exposes a [health check](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/k8s/backstage.yaml#L26) endpoint.
+- Backend exposes a [health check](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/k8s/backstage.yaml#L26) endpoint.
 - Processes do not depend on a process manager.
 - Health checks do not depend on the health of backing services, the backend will just report them.
 - The backend will respond with exit code 1 if it comes across an error.
@@ -96,7 +96,7 @@ We plan to use [Kubernetes](https://kubernetes.io/) to deploy our application. T
 
 - [x] Meets Criteria
 
-- The [Frontend Dockerfile](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/Dockerfile.frontend#L10) defines `PORT` 3000.
+- The [Frontend Dockerfile](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/Dockerfile.frontend#L10) defines `PORT` 3000.
 - Each service listens on a preconfigured bind-address port using the `app-config.yml` file.
 - Listens on [non-privileged](https://www.w3.org/Daemon/User/Installation/PrivilegedPorts.html) ports. (> 1024)
 
@@ -162,13 +162,13 @@ The application will use the 12-factor application checklist to determine if it 
 
 ## Reference Links
 
-- [GitHub](https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/main)
-- [GitHub Actions](https://github.com/department-of-veterans-affairs/lighthouse-backstage/actions)
+- [GitHub](https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main)
+- [GitHub Actions](https://github.com/department-of-veterans-affairs/lighthouse-embark/actions)
 - [12-Factor app](https://12factor.net/)
 - [Kubernetes](https://kubernetes.io/)
-- [App](https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/twelve-factor-app-adr/packages/app)
-- [Backend](https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/twelve-factor-app-adr/packages/backend)
-- [Deployment](https://department-of-veterans-affairs.github.io/lighthouse-backstage/deployment/)
-- [Health Check](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/k8s/backstage.yaml#L26)
-- [Frontend Dockerfile](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/Dockerfile.frontend#L10)
+- [App](https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/twelve-factor-app-adr/packages/app)
+- [Backend](https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/twelve-factor-app-adr/packages/backend)
+- [Deployment](https://department-of-veterans-affairs.github.io/lighthouse-embark/deployment/)
+- [Health Check](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/k8s/backstage.yaml#L26)
+- [Frontend Dockerfile](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/Dockerfile.frontend#L10)
 - [Logging to stdout](https://backstage.io/docs/plugins/observability#logging)

@@ -85,22 +85,22 @@ catalog:
     - type: url
       target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
 
-    # Lighthouse backstage
+    # Embark
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml
 
     # app component
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/packages/app/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/app/catalog-info.yaml
 
     # backend component
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/packages/backend/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/backend/catalog-info.yaml
 
     # feature-flags component
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/plugins/feature-flag-ui/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/plugins/feature-flag-ui/catalog-info.yaml
 
     # system
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml

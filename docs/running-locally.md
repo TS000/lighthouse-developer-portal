@@ -3,17 +3,17 @@
 This repo is configured to run a production-like environment in a GitHub [Codespace](https://github.com/features/codespaces).
 
 1. Generate a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the read:packages permission
-2. Add the following to your [Codespace secrets](https://github.com/settings/codespaces): 
-  
-_For each secret, select only the lighthouse-backstage repository under **Repository Access**._
-  
+2. Add the following to your [Codespace secrets](https://github.com/settings/codespaces):
+
+_For each secret, select only the lighthouse-embark repository under **Repository Access**._
+
 ```
 DEV_CONTAINER_REGISTRY_SERVER = ghcr.io
 DEV_CONTAINER_REGISTRY_USER = <GitHub username>
 DEV_CONTAINER_REGISTRY_PASSWORD = <personal access token>
 ```
 
-3. Create a [Codespace](https://docs.github.com/en/codespaces) for the [lighthouse-backstage](https://github.com/department-of-veterans-affairs/lighthouse-backstage) repo. This option is available by clicking the green **Code** button. 
+3. Create a [Codespace](https://docs.github.com/en/codespaces) for the [lighthouse-embark](https://github.com/department-of-veterans-affairs/lighthouse-embark) repo. This option is available by clicking the green **Code** button.
 4. Run application:
 
 ```bash
@@ -22,13 +22,14 @@ yarn dev
 
 ### Create a Codespace
 
-You can create a new codespace by visiting the [lighthouse-backstage repo](https://github.com/department-of-veterans-affairs/lighthouse-backstage) and by following the listed steps.
+You can create a new codespace by visiting the [lighthouse-embark repo](https://github.com/department-of-veterans-affairs/lighthouse-embark) and by following the listed steps.
 
-**Prerequisites**: 
+**Prerequisites**:
+
 - Install [Visual Studio Code](https://code.visualstudio.com/)
 - Install the Codespaces [extension](https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces) into Visual Studio Code
 
-*Note: The in-browser VS Code doesn't work properly with this project.*
+_Note: The in-browser VS Code doesn't work properly with this project._
 
 1. Click the `<>` green button near the search and "+" buttons.
 2. A dropdown should open up with two tabs, one for "Local" and one for "Codespaces", click "Codespaces".
@@ -64,7 +65,7 @@ sh local.sh copy
 
 The local dev environment is setup to use [chamber](https://github.com/segmentio/chamber) for environment variable injection. A few changes need to be made before this will work.
 
-First you'll need to add a `.env` file within the `.localdevcontainer` folder. An `example.env` is available to copy from. Then, you need to uncomment the `ENTRYPOINT` located at the bottom of the local-Dockerfile, and comment `ENTRYPOINT [ "/entrypoint.sh" ]`. Running `sh local.sh.start` should now inject any environment variables stored within the SSM Parameter Store based on the values within `.env`. It'll grab any variables that start with `lighthouse-backstage`.
+First you'll need to add a `.env` file within the `.localdevcontainer` folder. An `example.env` is available to copy from. Then, you need to uncomment the `ENTRYPOINT` located at the bottom of the local-Dockerfile, and comment `ENTRYPOINT [ "/entrypoint.sh" ]`. Running `sh local.sh.start` should now inject any environment variables stored within the SSM Parameter Store based on the values within `.env`. It'll grab any variables that start with `lighthouse-embark`.
 
 ## Install and run locally (TBD)
 

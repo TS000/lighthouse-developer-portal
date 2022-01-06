@@ -1,5 +1,5 @@
 site_name: 'example-docs'
-repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-backstage'
+repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-embark'
 
 nav:
   - Home: index.md

@@ -4,7 +4,7 @@
   "main": "dist/index.cjs.js",
   "types": "src/index.ts",
   "private": true,
-  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-backstage.git",
+  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-embark.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },

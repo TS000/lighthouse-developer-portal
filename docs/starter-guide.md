@@ -6,10 +6,12 @@ The Embark Software Catalog is a centralized system that keeps track of ownershi
 
 More Information about Embark's [Software Catalog](https://backstage.io/docs/features/software-catalog/software-catalog-overview)
 
-
 # Adding a Catalog Entity
+
 Embark identifies catalog entities by scanning every repository in an organization and looking for a `catalog-info.yaml` file in the root of the repository. The `catalog-info.yaml` file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other Embark users who may wish to use your application.
+
 ## Creating an Entity Descriptor File
+
 In the root directory of your application, create a `catalog-info.yaml` file:
 
 ```
@@ -20,25 +22,29 @@ metadata:
   name: embark
   description: An example of a embark application.
   annotations:
-    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-backstage
-    github.com/project-slug: department-of-veterans-affairs/lighthouse-backstage
+    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-embark
+    github.com/project-slug: department-of-veterans-affairs/lighthouse-embark
 spec:
   type: website
-  owner: 
+  owner:
   lifecycle: experimental
 ```
 
 ## Navigate to Catalog on Developer Portal
+
 TODO: Instructions on how to access developer portal
-![Catalog View](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/images/catalog_view.png)
+![Catalog View](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/images/catalog_view.png)
 
 ## Search Catalog
+
 Search the Catalog to verify your application has been added to the Catalog.
-![Catalog Filtered View](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/images/catalog_filtered_view.png)
+![Catalog Filtered View](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/images/catalog_filtered_view.png)
 
 ## View Catalog Entity
+
 Once you find the new entry to the Catalog, you can select it to view more detailed information about the application.
-![Catalog Entity](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-backstage/main/docs/images/catalog_entity.png)
+![Catalog Entity](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/images/catalog_entity.png)
 
 ## Additional Configuration Information
+
 Visit Backstage's [documentation](https://backstage.io/docs/features/software-catalog/descriptor-format) for more information about how to format catalog entity descriptor files.

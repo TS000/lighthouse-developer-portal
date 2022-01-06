@@ -1,4 +1,4 @@
-# lighthouse-backstage: GitHub Packages
+# lighthouse-embark: GitHub Packages
 
 ## Getting Started
 

@@ -1,16 +1,21 @@
 # Prebuild Validation
 
 ## Pre-build Validation Workflow
-The pre-build validation workflow is defined in [pre-build-validation.yml](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/build-validation/.github/workflows/pre-build-validation.yml)
+
+The pre-build validation workflow is defined in [pre-build-validation.yml](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/build-validation/.github/workflows/pre-build-validation.yml)
 
 ### Name of workflow
+
 This is the name of the workflow as it appears in GitHub's actions tab of the GitHub Repository
+
 ```
 name: Pre-build Validation
 ```
 
 ### Events
+
 This workflow can be triggered by two types of events: on pull requests with the main branch, and by other workflows.
+
 ```
 on:
   pull_request:
@@ -21,18 +26,18 @@ on:
 ### Jobs
 
 The jobs section contains 3 jobs:
-- unit-tests
-    - This job references the workflow for our [unit tests workflow](https://github.com/department-of-veterans-affairs/lighthouse-backstage/blob/main/.github/workflows/unit-tests.yml). The commit SHA is used to identify which version of the workflow we want to use. If `unit-tests.yml` is updated, then the commit SHA will need to be updated in order for the pre-build validation workflow to use the correct version of `unit-tests.yml`.
-- validate-unit-tests
-    - This job interprets the results of the unit test job. If the unit tests were successful, it logs a message and the link to the unit-test run. If the unit tests failed, it posts a message to the `team-bandicoot` Slack channel to alert the team engineers that a changes containing failing unit tests have been merged to the `main` branch. This job will only run when the `pre-build validation` workflow is triggered by the `workflow_call` event which only occurs on merges with the `main` branch.
-- validate linting
-    - This job calls a composite action which invokes the Typescript compiler with `yarn tsc` and linting using yarn and lerna to call `backstage-cli lint` for each plugin and package.
 
+- unit-tests
+  - This job references the workflow for our [unit tests workflow](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/.github/workflows/unit-tests.yml). The commit SHA is used to identify which version of the workflow we want to use. If `unit-tests.yml` is updated, then the commit SHA will need to be updated in order for the pre-build validation workflow to use the correct version of `unit-tests.yml`.
+- validate-unit-tests
+  - This job interprets the results of the unit test job. If the unit tests were successful, it logs a message and the link to the unit-test run. If the unit tests failed, it posts a message to the `team-bandicoot` Slack channel to alert the team engineers that a changes containing failing unit tests have been merged to the `main` branch. This job will only run when the `pre-build validation` workflow is triggered by the `workflow_call` event which only occurs on merges with the `main` branch.
+- validate linting
+  - This job calls a composite action which invokes the Typescript compiler with `yarn tsc` and linting using yarn and lerna to call `backstage-cli lint` for each plugin and package.
 
 ```
 jobs:
   unit-tests:
-    uses: department-of-veterans-affairs/lighthouse-backstage/.github/workflows/unit-tests.yml@b965a7d3fca3d4d4794cd3792ff72c08a7ba0364
+    uses: department-of-veterans-affairs/lighthouse-embark/.github/workflows/unit-tests.yml@b965a7d3fca3d4d4794cd3792ff72c08a7ba0364
 
   validate-unit-tests:
       runs-on: ubuntu-latest

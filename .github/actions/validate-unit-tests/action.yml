@@ -7,7 +7,7 @@ inputs:
   SLACK_UID_001:
     description: 'slack user id'
     required: true
-  SLACK_UID_002: 
+  SLACK_UID_002:
     description: 'slack user id'
     required: true
   SLACK_UID_003:
@@ -19,20 +19,20 @@ inputs:
   SLACK_WEBHOOK_URL:
     description: 'webhook url for slack bot'
     required: true
-  
+
 outputs:
-  url: 
+  url:
     description: 'url to workflow results of unit tests'
     value: ${{ steps.workflow.outputs.url }}
-  conclusion: 
+  conclusion:
     description: 'results of unit tests (i.e. success, failure, etc.)'
     value: ${{ steps.workflow.outputs.conclusion }}
-  SHA: 
+  SHA:
     description: 'commit SHA used to construct url for Slack message'
     value: ${{ steps.commit.outputs.SHA }}
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Filter workflow runs
       id: workflow
@@ -43,7 +43,7 @@ runs:
         echo ${{ github.event }}
       shell: bash
     - name: Success
-      run: | 
+      run: |
         if [[ "${{ inputs.UNIT_TEST_STATUS }}" == "success" ]]; then
           echo "Unit Tests successful! ${{ steps.workflow.outputs.url }}"
         fi

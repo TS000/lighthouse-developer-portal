@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: lighthouse-backstage
+  IMAGE_NAME: lighthouse-embark
 
 jobs:
   build-and-push:

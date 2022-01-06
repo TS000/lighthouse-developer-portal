@@ -6,7 +6,7 @@
 # Generated docs are added to the ./site folder
 #
 # The contents of ./site folder are then published to a `gh-pages` branch.
-# GitHub pages are then available for viewing at https://department-of-veterans-affairs.github.io/lighthouse-backstage/
+# GitHub pages are then available for viewing at https://department-of-veterans-affairs.github.io/lighthouse-embark/
 name: Publish Documentation
 description: Uses techdocs cli to generate documentation using .md files within the docs folder.
 inputs:

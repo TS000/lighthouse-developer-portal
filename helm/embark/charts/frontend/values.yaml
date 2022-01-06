@@ -1,11 +1,11 @@
-# Default values for lighthouse-backstage.
+# Default values for lighthouse-embark.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 replicaCount: 1
 revisionHistoryLimit: 3
 
 image:
-  repository: ghcr.io/department-of-veterans-affairs/lighthouse-backstage
+  repository: ghcr.io/department-of-veterans-affairs/lighthouse-embark
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   # For deployment repo this will be hardcoded and updated with Argo, i.e:
@@ -13,7 +13,7 @@ image:
   # For now we can just pass in a variable with the helm upgrade command:
   tag: ${COMMIT_SHA}
 
-name: http 
+name: http
 port: 3000
 livenessProbe:
   initialDelaySeconds: 5
@@ -24,9 +24,9 @@ readinessProbe:
 
 imagePullSecrets: []
 frontend:
-  name: "frontend"
-nameOverride: ""
-fullnameOverride: ""
+  name: 'frontend'
+nameOverride: ''
+fullnameOverride: ''
 
 nonprod: ${nonprod}
 
@@ -37,10 +37,10 @@ service:
   type: ClusterIP
   port: 8000
 
-resources: 
+resources:
   limits:
-    cpu: "0.5"
-    memory: "500Mi"
+    cpu: '0.5'
+    memory: '500Mi'
 
 autoscaling:
   enabled: false
@@ -53,7 +53,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-
-
-

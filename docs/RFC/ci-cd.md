@@ -1,6 +1,6 @@
 # [RFC] Modifications to existing CI/CD process
 
-**Summary**: 
+**Summary**:
 
 We are currently in the process of building our CI/CD pipeline. We know we need to make modifications to our existing CI/CD process to incorporate changesets for releases and also to use the Lightkeeper CLI for creating Kubernetes clusters.
 
@@ -10,13 +10,13 @@ The process of integrating and delivering new changes for an application from so
 
 ## Goal
 
-Our goal is to build an optimized CI/CD pipeline that produces fast, accurate, reliable, and comprehensive feedback to expedite our development cycle. We plan to achieve this goal by implementing automation tools and workflows that are triggered by merges pushed to the "main" branch of our Lighthouse Backstage repository.
+Our goal is to build an optimized CI/CD pipeline that produces fast, accurate, reliable, and comprehensive feedback to expedite our development cycle. We plan to achieve this goal by implementing automation tools and workflows that are triggered by merges pushed to the "main" branch of our Lighthouse Embark repository.
 
 > Note: Is this an accurate description of our goals relating to creating a CI/CD pipeline? Are there other goals I should include?
 
 ## Sequence Diagram of CI/CD Pipeline (WIP)
 
-This is a rough sequence diagram of the CI/CD pipeline to illustrate the role of each stage and how it can provide feedback to the developer in the event of an error at some stage in the process. 
+This is a rough sequence diagram of the CI/CD pipeline to illustrate the role of each stage and how it can provide feedback to the developer in the event of an error at some stage in the process.
 
 ```plantuml
 actor Developer as dev
@@ -34,7 +34,7 @@ alt Dependency Cache Miss
 end
 ci->ci: Get packages from cache
 alt Package Cache Miss
-    ci->ci: Rebuild packages 
+    ci->ci: Rebuild packages
 end
 ci->ci:Run unit tests\nCheck test coverage\nBrowser Tests
 alt Unit Tests Failed
@@ -55,7 +55,7 @@ ci->registry: Update Container Registry w/\nAssigned tag/version number
 alt Update Container Registry Failed
     ci->dev: Feedback: Unable to upload image to container registry
 end
-ci->source: Creates Release 
+ci->source: Creates Release
 source->int_test: "Release Created" Webhook triggers GitHub Action for integration tests
 int_test->int_test: AWS Integration Tests\nS3 & PostgreSQL
 alt AWS Integration Tests Failed
@@ -76,7 +76,7 @@ alt Failed to deploy to nonprod env
 end
 dev->nonprod: Smoke Test Nonprod Deployment
 alt Smoke Test Failed
-    nonprod->dev: Feedback: Some kind of critical error 
+    nonprod->dev: Feedback: Some kind of critical error
 end
 nonprod->nonprod: Other Tests to Determine Stability?
 nonprod->dev: Determination: Draft release is stable
@@ -85,11 +85,19 @@ source->registry: Release is published to GitHub Packages
 ```
 
 > Note: Still a work in progress and needs more steps or more stages to reflect multiple deployment environments
+
 ### Source Code
+
 Merging to the "main" branch initiates the CI/CD Pipeline so those changes can be deployed to the production environment. The "Release" Github action will automatically generate changesets and create a new release. We can extend this workflow to include different types of releases like prereleases and to store images for the frontend and backend containers.
+
 ### Build Stage
+
 This stage is responsible for building the images for our application and storing these images in a container registry. It is important that we build only once during the CI/CD process to reduce time/resources because the build process is lengthy. Once an image is built, subsequent steps of the CI/CD process that require an image can utilize the already built artifact instead of spending time/resources on rebuilding the image.
+
 ### Testing Stage
-This stage is responsible for running a variety of automated tests and checks to catch potential errors early and provide feedback to the developer. 
+
+This stage is responsible for running a variety of automated tests and checks to catch potential errors early and provide feedback to the developer.
+
 ### Deployment Stage
+
 This stage is responsible for deploying our application as a Kubernetes cluster to a cloud server. We plan to use Lightkeeper CLI to generate the assets for our Kubernetes cluster. Right now the Lightkeeper CLI requires a login to use that must be done manually through the browser.

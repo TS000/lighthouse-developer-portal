@@ -2,7 +2,7 @@
   "name": "@department-of-veterans-affairs/app",
   "version": "0.1.0",
   "private": true,
-  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-backstage.git",
+  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-embark.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },

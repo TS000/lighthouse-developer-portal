@@ -2,22 +2,22 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: backend
-  namespace: lighthouse-backstage
-  description: The backend server for lighthouse-backstage.
+  namespace: lighthouse-embark
+  description: The backend server for lighthouse-embark.
   tags:
     - javascript
     - node
   links:
-    - url: https://github.com/department-of-veterans-affairs/lighthouse-backstage/issues
+    - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
       title: Issues
       icon: alert
-    - url: https://department-of-veterans-affairs.github.io/lighthouse-backstage/
+    - url: https://department-of-veterans-affairs.github.io/lighthouse-embark/
       title: Docs
       icon: help
   annotations:
-    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-backstage
-    github.com/project-slug: department-of-veterans-affairs/lighthouse-backstage/packages/backend
-    backstage.io/definition-at-location: https://github.com/department-of-veterans-affairs/lighthouse-backstage/tree/add-api-spec/packages/backend
+    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-embark
+    github.com/project-slug: department-of-veterans-affairs/lighthouse-embark/packages/backend
+    backstage.io/definition-at-location: https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/add-api-spec/packages/backend
 spec:
   type: openapi
   owner: lighthouse-bandicoot

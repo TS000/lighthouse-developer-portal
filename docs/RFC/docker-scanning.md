@@ -2,11 +2,11 @@
 
 ## Summary
 
-Lighthouse-backstage is a public repo. All deployments are available as public packages. We need to ensure that secrets and private environment variables do not get injected into the docker image. We should be able to fail a build/push script that hardcodes secrets into the image definition. We don't want to commit secrets to GitHub packages.
+lighthouse-embark is a public repo. All deployments are available as public packages. We need to ensure that secrets and private environment variables do not get injected into the docker image. We should be able to fail a build/push script that hardcodes secrets into the image definition. We don't want to commit secrets to GitHub packages.
 
 ## Background
 
-Each lighthouse-backstage deployment is available publicly for anyone to access. This means that if a secret were hardcoded within a docker image, everyone could now see it.
+Each lighthouse-embark deployment is available publicly for anyone to access. This means that if a secret were hardcoded within a docker image, everyone could now see it.
 
 Vulnerability scanning for Docker local images allows developers and development teams to review the security state of the container images and take actions to fix issues identified during the scan, resulting in more secure deployments. Docker Scan runs on the Snyk engine, providing users with visibility into the security posture of their local Dockerfiles and local images.
 
@@ -43,7 +43,7 @@ It scans commits, commit messages, and --no-ff merges to prevent adding secrets 
 
 I tried building a fresh frontend image using `docker build -t backstage-frontend -f Dockerfile.dockerbuild .` and then scanning it by using `docker scan backstage-frontend`
 
-I think using `docker scan` for our CI/CD pipelines would be an excellent fit for our security needs. The only issue is that we'll need to create a Snyk account for lighthouse-backstage to scan Docker images more than ten times a month.
+I think using `docker scan` for our CI/CD pipelines would be an excellent fit for our security needs. The only issue is that we'll need to create a Snyk account for lighthouse-embark to scan Docker images more than ten times a month.
 
 Another thing I found is that scanning the backstage-frontend image returned a large number of issues related to the base image (NGINX). Excluding the base, the image limited the number of issues to just 7, which I think is excellent, and a lot easier to work with.
 
@@ -53,7 +53,7 @@ As stated above, Docker Scan / Snyk only checks for KNOWN vulnerabilities report
 
 ### Git-Secrets
 
-I think that using [git-secrets](https://github.com/awslabs/git-secrets) within a pre-commit hook would be the best route to prevent secrets from being committed to the lighthouse-backstage repo. It's pretty easy to hard-code a secret when building a feature or debugging an issue and forget to remove it.
+I think that using [git-secrets](https://github.com/awslabs/git-secrets) within a pre-commit hook would be the best route to prevent secrets from being committed to the lighthouse-embark repo. It's pretty easy to hard-code a secret when building a feature or debugging an issue and forget to remove it.
 
 ## References
 

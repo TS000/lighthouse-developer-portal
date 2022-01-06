@@ -21,7 +21,7 @@
 - Navigate to Root Directory
 
 ```
-$ cd /workspaces/lighthouse-backstage
+$ cd /workspaces/lighthouse-embark
 ```
 
 - Install Dependencies & Run Typescript Compiler
@@ -31,7 +31,6 @@ $ yarn install --frozen-lockfile && yarn tsc
 ```
 
 - Verify app-config.dev.yaml has the correct values
-
 
 ```
 # app-config.dev.yaml
@@ -72,19 +71,20 @@ $ yarn build
 ```
 
 - Determine commit sha you want to tag images with
+
   - Replace `<commit-sha>` below with the commit sha
   - The commit sha used to tag images is prefixed with "sha-" (i.e. sha-47915d626f95e5b620636376c8adf29ec734...)
 
 - Create Image for Backend Container
 
 ```
-$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:<commit-sha> --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:latest -f Dockerfile.backend .
+$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-embark/backend:<commit-sha> --tag ghcr.io/department-of-veterans-affairs/lighthouse-embark/backend:latest -f Dockerfile.backend .
 ```
 
 - Create Image for Frontend Container
 
 ```
-$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:<commit-sha> --tag ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:latest -f Dockerfile.frontend .
+$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-embark/frontend:<commit-sha> --tag ghcr.io/department-of-veterans-affairs/lighthouse-embark/frontend:latest -f Dockerfile.frontend .
 ```
 
 ## Push Images to GitHub Packages
@@ -107,14 +107,14 @@ $ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-b
 - Push the Images to the Container Registry
 
 ```
-$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-backstage/backend:latest
+$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-embark/backend:latest
 ```
 
 ```
-$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-backstage/frontend:latest
+$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-embark/frontend:latest
 ```
 
-- Verify the images were pushed by checking when the frontend/backend images were last published on the [Lighthouse-Backstage repository](https://github.com/orgs/department-of-veterans-affairs/packages?repo_name=lighthouse-backstage)
+- Verify the images were pushed by checking when the frontend/backend images were last published on the [lighthouse-embark repository](https://github.com/orgs/department-of-veterans-affairs/packages?repo_name=lighthouse-embark)
 
 ## Deploy to Dev Environment
 
@@ -178,7 +178,8 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
   DEPLOY_ENV=dev
   COMMIT_SHA=<commit sha used to tag image or "latest"*>
   ```
-  >* If you manually build, push, and tag the image with "latest", using "latest" as the image tag for the deployment can work as a temporary fix but it is preferable to use something more unique like a commit sha. The "latest" tag changes frequently due to the CI workflow so this may cause the containers to crash by pulling an image definition that the Helm release may not be configured to use.
+
+  > - If you manually build, push, and tag the image with "latest", using "latest" as the image tag for the deployment can work as a temporary fix but it is preferable to use something more unique like a commit sha. The "latest" tag changes frequently due to the CI workflow so this may cause the containers to crash by pulling an image definition that the Helm release may not be configured to use.
 
   - Export file contents
 

@@ -13,6 +13,6 @@ WORKDIR /code
 
 # Unconmment this entrypoint to use chamber for environment variable injection
 # @see https://github.com/segmentio/chamber
-#ENTRYPOINT [ "/bin/chamber", "exec", "lighthouse-backstage", "--", "/entrypoint.sh" ]
+#ENTRYPOINT [ "/bin/chamber", "exec", "lighthouse-embark", "--", "/entrypoint.sh" ]
 
 ENTRYPOINT [ "/entrypoint.sh" ]

@@ -10,15 +10,15 @@ metadata:
     - typescript
     - plugin
   links:
-    - url: https://github.com/department-of-veterans-affairs/lighthouse-backstage/issues
+    - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
       title: Issues
       icon: alert
-    - url: https://department-of-veterans-affairs.github.io/lighthouse-backstage/
+    - url: https://department-of-veterans-affairs.github.io/lighthouse-embark/
       title: Docs
       icon: help
   annotations:
-    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-backstage
-    github.com/project-slug: department-of-veterans-affairs/lighthouse-backstage
+    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-embark
+    github.com/project-slug: department-of-veterans-affairs/lighthouse-embark
 spec:
   type: website
   owner: lighthouse-bandicoot

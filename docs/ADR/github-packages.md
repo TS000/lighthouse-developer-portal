@@ -34,6 +34,6 @@ Private packages will now be pulled from [GitHub Packages.](https://docs.github.
 
 ## Decision
 
-GitHub Packages will be used for managing private packages for the lighthouse-backstage repo.
+GitHub Packages will be used for managing private packages for the lighthouse-embark repo.
 
 [Packages](https://github.com/orgs/department-of-veterans-affairs/packages)
