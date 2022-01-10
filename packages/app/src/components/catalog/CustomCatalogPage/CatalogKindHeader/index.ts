@@ -1,0 +1,1 @@
+export { CatalogKindHeader } from './CatalogKindHeader';

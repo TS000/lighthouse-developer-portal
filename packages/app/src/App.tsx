@@ -3,7 +3,6 @@ import { Route } from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
   CatalogEntityPage,
-  CatalogIndexPage,
   catalogPlugin,
 } from '@backstage/plugin-catalog';
 import {
@@ -43,6 +42,7 @@ import {
 import { FlatRoutes } from '@backstage/core-app-api';
 import { createApp } from '@backstage/app-defaults';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
+import { CustomCatalogPage } from './components/catalog/CustomCatalogPage/CustomCatalogPage';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -105,7 +105,7 @@ const routes = (
     <Route path="/search" element={<SearchPage />}>
       {searchPage}
     </Route>
-    <Route path="/catalog" element={<CatalogIndexPage />} />
+    <Route path="/catalog" element={<CustomCatalogPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
       element={<CatalogEntityPage />}

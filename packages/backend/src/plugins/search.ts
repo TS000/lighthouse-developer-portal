@@ -23,7 +23,10 @@ export default async function createPlugin({
     defaultRefreshIntervalSeconds: 600,
     collator: DefaultCatalogCollator.fromConfig(config, {
       discovery,
-      tokenManager
+      tokenManager,
+      filter: {
+        kind: ['Component', 'API', 'Group', 'User', 'System', 'Domain'],
+      },
     })
   });
 
