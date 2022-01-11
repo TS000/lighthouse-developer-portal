@@ -29,7 +29,10 @@ import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
 import { Settings as SidebarSettings } from '@backstage/plugin-user-settings';
-import { SidebarSearchModal, SearchContextProvider } from '@backstage/plugin-search';
+import {
+  SidebarSearchModal,
+  SearchContextProvider,
+} from '@backstage/plugin-search';
 import {
   Sidebar,
   SidebarPage,
@@ -41,6 +44,7 @@ import {
 } from '@backstage/core-components';
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionNumber } from '../versionNumber/VersionNumber';
+import { FeedbackModal } from '../feedback';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -120,6 +124,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarDivider />
         <VersionNumber />
         <SidebarSettings />
+        <FeedbackModal />
       </Sidebar>
       {children}
     </SidebarPage>

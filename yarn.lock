@@ -4288,7 +4288,7 @@
     node-fetch "^2.6.1"
     universal-user-agent "^6.0.0"
 
-"@octokit/rest@^18.0.12", "@octokit/rest@^18.1.0", "@octokit/rest@^18.5.3":
+"@octokit/rest@^18.0.12", "@octokit/rest@^18.1.0", "@octokit/rest@^18.12.0", "@octokit/rest@^18.5.3":
   version "18.12.0"
   resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-18.12.0.tgz#f06bc4952fc87130308d810ca9d00e79f6988881"
   integrity sha512-gDPiOHlyGavxr72y0guQEhLsemgVjwRePayJ+FcKc2SJqKUbxbkvf5kAZEWA/MKvsfYlQAMVzNJE3ezQcxMJ2Q==
@@ -9495,7 +9495,7 @@ esbuild-windows-arm64@0.14.5:
   resolved "https://registry.yarnpkg.com/esbuild-windows-arm64/-/esbuild-windows-arm64-0.14.5.tgz#c1d575f2c6d27159de9b5d273bcde02445f17a1d"
   integrity sha512-iK41mKG2LG0AKHE+9g/jDYU5ZQpJObt1uIPSGTiiiJKI5qbHdEck6Gaqq2tmBI933F2zB9yqZIX7IAdxwN/q4A==
 
-esbuild@^0.14.0, esbuild@^0.14.1:
+esbuild@^0.14.1:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.14.5.tgz#45ef0287a94cc7a3d367621e4a7ba470a847669f"
   integrity sha512-ofwgH4ITPXhkMo2AM39oXpSe5KIyWjxicdqYVy+tLa1lMgxzPCKwaepcrSRtYbgTUMXwquxB1C3xQYpUNaPAFA==

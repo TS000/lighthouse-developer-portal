@@ -37,6 +37,7 @@
     "@internal/plugin-starter-guide": "^0.1.0",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@octokit/rest": "^18.12.0",
     "@roadiehq/backstage-plugin-datadog": "^1.1.15",
     "@roadiehq/backstage-plugin-github-insights": "^1.1.10",
     "@roadiehq/backstage-plugin-github-pull-requests": "^1.0.3",
@@ -57,7 +58,7 @@
     "@types/node": "^14.14.32",
     "@types/react-dom": "^16.9.8",
     "cross-env": "^7.0.0",
-    "cypress": "^5.0.0",
+    "cypress": "^6.0.0",
     "eslint-plugin-cypress": "^2.10.3",
     "start-server-and-test": "^1.10.11"
   },

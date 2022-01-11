@@ -8,8 +8,12 @@ import {
   configApiRef,
   createApiFactory,
   analyticsApiRef,
+  githubAuthApiRef,
+  discoveryApiRef,
+  oauthRequestApiRef,
 } from '@backstage/core-plugin-api';
 import { GoogleAnalytics } from '@backstage/plugin-analytics-module-ga';
+import { GithubAuth } from '@backstage/core-app-api';
 
 export const apis: AnyApiFactory[] = [
   createApiFactory({
@@ -24,4 +28,17 @@ export const apis: AnyApiFactory[] = [
     factory: ({ configApi }) => GoogleAnalytics.fromConfig(configApi),
   }),
   ScmAuth.createDefaultApiFactory(),
+  createApiFactory({
+    api: githubAuthApiRef,
+    deps: {
+      discoveryApi: discoveryApiRef,
+      oauthRequestApi: oauthRequestApiRef,
+    },
+    factory: ({ discoveryApi, oauthRequestApi }) =>
+      GithubAuth.create({
+        discoveryApi,
+        oauthRequestApi,
+        defaultScopes: ['read:user', 'repo'],
+      }),
+  }),
 ];

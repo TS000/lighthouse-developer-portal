@@ -19,5 +19,6 @@ export const FeatureFlagsPage = featureFlagsPagePlugin.provide(
   createRoutableExtension({
     component: () => import('./components').then(m => m.FeatureFlagsContainer),
     mountPoint: rootRoute,
+    name: 'feature-flags',
   }),
 );
