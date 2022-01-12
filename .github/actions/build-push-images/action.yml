@@ -33,7 +33,7 @@ runs:
         path: |
           **/packages/app/dist
         key: |
-          ${{ runner.os }}-app-v3-static-${{ hashFiles('**/packages/app') }}-${{ hashFiles('**/app-config.*.yaml') }}
+          ${{ runner.os }}-app-v3-static-${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
     - name: Create build assets
       run: |
         yarn tsc
