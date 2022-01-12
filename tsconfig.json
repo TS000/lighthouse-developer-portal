@@ -10,6 +10,7 @@
   "compilerOptions": {
     "outDir": "dist-types",
     "rootDir": ".",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "sourceMap": true
   }
 }

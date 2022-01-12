@@ -12,6 +12,9 @@ inputs:
     description: 'repository owner for container registry'
     required: true
     default: 'department-of-veterans-affairs'
+  DATADOG_API_KEY:
+    description: 'Datadog API key'
+    required: true
 
 runs:
   using: 'composite'
@@ -47,6 +50,12 @@ runs:
           fi
         else
           yarn run "build backend"
+        fi
+      shell: bash
+    - name: Upload sourcemaps
+      run: |
+        if [[ "${{ inputs.type }}" == "frontend" ]]; then
+          ./scripts/sourcemaps.sh ${{ inputs.DATADOG_API_KEY }}
         fi
       shell: bash
     - name: Login to ghcr

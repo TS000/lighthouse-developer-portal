@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@backstage/cli": "^0.10.1",
+    "@datadog/datadog-ci": "^0.17.12",
     "@spotify/prettier-config": "^11.0.0",
     "concurrently": "^6.0.0",
     "husky": "^7.0.4",

@@ -23,7 +23,7 @@ import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { Root } from './components/Root';
 import { HomePage } from './components/homepage';
-import { initDatadogLogs } from './components/datadog';
+import { initDatadogLogs, initDatadogRUM } from './components/datadog';
 import { searchPage } from './components/search/SearchPage';
 import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFLagRegistry';
@@ -51,6 +51,7 @@ const githubProvider: SignInProviderConfig = {
   apiRef: githubAuthApiRef,
 };
 
+initDatadogRUM();
 initDatadogLogs();
 
 const app = createApp({
