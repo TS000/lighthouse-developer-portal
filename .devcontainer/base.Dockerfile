@@ -56,6 +56,9 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor > /usr/sha
 
 RUN bash /tmp/scripts/go-debian.sh "latest" "${GOROOT}" "${GOPATH}" "${USERNAME}" \
     && apt-get clean -y && rm -rf /tmp/scripts
+RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash \
+    && mv kustomize /usr/bin
+RUN cp /usr/local/go/bin/go /usr/bin 
 
 # Mount for docker-in-docker
 VOLUME [ "/var/lib/docker" ]
@@ -63,6 +66,5 @@ VOLUME [ "/var/lib/docker" ]
 # Fire Docker/Moby script
 ENTRYPOINT [ "/usr/local/share/docker-init.sh", "/usr/local/share/ssh-init.sh" ]
 CMD [ "sleep", "infinity" ]
-
 
 USER ${USERNAME}
