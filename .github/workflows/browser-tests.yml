@@ -70,6 +70,8 @@ jobs:
       - uses: cypress-io/github-action@v2
         with:
           browser: edge
+          # Increase install time to prevent timeout
+          install-command: yarn --frozen-lockfile --network-timeout 1000000000
           project: ./packages/app
           build: yarn run build
           command: yarn run test:e2e:ci
