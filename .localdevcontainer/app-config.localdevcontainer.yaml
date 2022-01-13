@@ -5,7 +5,7 @@ backend:
   baseUrl: http://localhost:7007
   database:
     connection:
-      host: db
+      host: postgres
       user: postgres
       password: postgres
   cors:
