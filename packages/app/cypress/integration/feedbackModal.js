@@ -10,24 +10,24 @@ describe('FeedbackModal', () => {
   });
 
   it('should open the feedback modal', () => {
-    cy.contains('Provide feedback for embark').should('be.visible');
+    cy.contains('Provide feedback for Embark').should('be.visible');
   });
 
   it('should close the feedback modal', () => {
-    cy.contains('Provide feedback for embark').should('be.visible');
+    cy.contains('Provide feedback for Embark').should('be.visible');
     cy.get('span').contains('Cancel').should('be.visible').click();
-    cy.contains('Provide feedback for embark').should('not.exist');
+    cy.contains('Provide feedback for Embark').should('not.exist');
   });
 
   it('should not submit when textarea is empty', () => {
-    cy.contains('Provide feedback for embark').should('be.visible');
+    cy.contains('Provide feedback for Embark').should('be.visible');
     cy.get('button').contains('Submit').parent().should('be.disabled');
   });
 
   context('Submitting feedback', () => {
     // Confirm the feedback modal is open, and enter the text within the textarea
     beforeEach(() => {
-      cy.contains('Provide feedback for embark').should('be.visible');
+      cy.contains('Provide feedback for Embark').should('be.visible');
       cy.get('textarea').first().type('feedback is awesome!');
     });
 
@@ -38,7 +38,7 @@ describe('FeedbackModal', () => {
         .parent()
         .should('not.be.disabled')
         .click();
-      cy.contains('Provide feedback for embark').should('not.exist');
+      cy.contains('Provide feedback for Embark').should('not.exist');
     });
 
     it('should submit the issue to github', () => {
@@ -58,7 +58,7 @@ describe('FeedbackModal', () => {
       cy.wait('@submitResponse')
         .its('request.body.body')
         .should('eq', 'feedback is awesome!');
-      cy.contains('Provide feedback for embark').should('not.exist');
+      cy.contains('Provide feedback for Embark').should('not.exist');
     });
 
     it('should display a dismissable message after successful submit', () => {
@@ -75,7 +75,7 @@ describe('FeedbackModal', () => {
       cy.get('div')
         .contains('Feedback submitted! It can be found here.')
         .should('be.visible');
-      cy.contains('Provide feedback for embark').should('not.exist');
+      cy.contains('Provide feedback for Embark').should('not.exist');
     });
 
     it('should display a dismissable message after failed submit', () => {
@@ -100,7 +100,7 @@ describe('FeedbackModal', () => {
       cy.get('div')
         .contains('Failed to submit feedback. Please try again later.')
         .should('be.visible');
-      cy.contains('Provide feedback for embark').should('not.exist');
+      cy.contains('Provide feedback for Embark').should('not.exist');
     });
   });
 });

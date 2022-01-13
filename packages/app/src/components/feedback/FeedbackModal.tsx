@@ -142,7 +142,7 @@ export const Modal = ({
         fullWidth
         maxWidth="lg"
       >
-        <DialogTitle>Provide feedback for embark</DialogTitle>
+        <DialogTitle>Provide feedback for Embark</DialogTitle>
         <DialogContent>
           <Box
             sx={{

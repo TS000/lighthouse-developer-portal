@@ -26,7 +26,7 @@ import { HomePage } from './components/homepage';
 import { initDatadogLogs, initDatadogRUM } from './components/datadog';
 import { searchPage } from './components/search/SearchPage';
 import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
-import { FeatureFlagRegistry } from './FeatureFLagRegistry';
+import { FeatureFlagRegistry } from './FeatureFlagRegistry';
 import { StarterGuidePage } from '@internal/plugin-starter-guide';
 import { DatadogDashboardPage } from '@internal/plugin-datadog-dashboard';
 
