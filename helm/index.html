@@ -709,18 +709,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../RFC/github-app-auth/" title="GitHub App POC" class="md-nav__link">
-      GitHub App POC
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -1168,12 +1156,10 @@ GITHUB_TOKEN: {{ .Values.<b>GITHUB_TOKEN</b> }}</p>
 4
 5
 6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DOCKERCONFIGJSON=&lt;base64 encoded json string&gt;
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>DOCKERCONFIGJSON=&lt;base64 encoded json string&gt;
 GITHUB_TOKEN=&lt;base64 encoded github_token&gt;
 POSTGRES_USER=&lt;base64 encoded postgres username&gt;
 POSTGRES_PASSWORD=&lt;base64 encoded postgres password&gt;
-POSTGRES_DB=&lt;base64 encoded postgres database name&gt;
 HOST=&lt;host url&gt;
 GH_CLIENT_ID=&lt;GH OAuth Client ID&gt;
 GH_CLIENT_SECRET=&lt;GH OAuth Client Secret&gt;
@@ -1190,7 +1176,7 @@ GH_CLIENT_SECRET=&lt;GH OAuth Client Secret&gt;
 <ul>
 <li>Set the variables when installing the helm chart</li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm install backstage-dev helm/lighthouse-embark/ --debug --values helm/lighthouse-embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GITHUB_TOKEN=$GITHUB_TOKEN --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set POSTGRES_DB=$POSTGRES_DB --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm install backstage-dev helm/lighthouse-embark/ --debug --values helm/lighthouse-embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GITHUB_TOKEN=$GITHUB_TOKEN --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET
 </code></pre></div>
 </td></tr></table>
 
