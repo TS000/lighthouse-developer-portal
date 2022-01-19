@@ -153,7 +153,6 @@ DOCKERCONFIGJSON=<base64 encoded json string>
 GITHUB_TOKEN=<base64 encoded github_token>
 POSTGRES_USER=<base64 encoded postgres username>
 POSTGRES_PASSWORD=<base64 encoded postgres password>
-POSTGRES_DB=<base64 encoded postgres database name>
 HOST=<host url>
 GH_CLIENT_ID=<GH OAuth Client ID>
 GH_CLIENT_SECRET=<GH OAuth Client Secret>
@@ -168,7 +167,7 @@ set -o allexport; source .env; set +o allexport
 - Set the variables when installing the helm chart
 
 ```
-$ helm install backstage-dev helm/lighthouse-embark/ --debug --values helm/lighthouse-embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GITHUB_TOKEN=$GITHUB_TOKEN --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set POSTGRES_DB=$POSTGRES_DB --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET
+$ helm install backstage-dev helm/lighthouse-embark/ --debug --values helm/lighthouse-embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GITHUB_TOKEN=$GITHUB_TOKEN --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET
 ```
 
 - View deployment

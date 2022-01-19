@@ -38,9 +38,12 @@ service:
   port: 8000
 
 resources:
+  requests:
+    cpu: '0.1'
+    memory: '25Mi'
   limits:
-    cpu: '0.5'
-    memory: '500Mi'
+    cpu: '0.2'
+    memory: '50Mi'
 
 autoscaling:
   enabled: false

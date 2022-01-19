@@ -8,7 +8,6 @@ secrets:
   DOCKERCONFIGJSON: ${DOCKERCONFIGJSON}
   GH_TOKEN: ${GH_TOKEN}
   BASE_URL: ${BASE_URL}
-  BACKEND_PORT: ${BACKEND_PORT}
   HOST: ${HOST}
   GATEWAY: ${GATEWAY}
   GH_CLIENT_ID: ${GH_CLIENT_ID}
@@ -16,7 +15,6 @@ secrets:
   nonprod: ${nonprod}
   POSTGRES_USER: ${POSTGRES_USER}
   POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-  POSTGRES_DB: ${POSTGRES_DB}
 
 podAnnotations:
   namespace: lighthouse-bandicoot-dev
@@ -32,9 +30,12 @@ virtualService:
       port: 7007
 
 resources:
+  requests:
+    cpu: '0.1'
+    memory: '50Mi'
   limits:
-    cpu: '0.5'
-    memory: '500Mi'
+    cpu: '0.2'
+    memory: '100Mi'
 
 nodeSelector: {}
 

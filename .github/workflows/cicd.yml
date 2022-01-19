@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [pre-build-validation]
     if: | 
-      ${{ github.ref == 'refs/heads/main' }} ||
+      github.ref == 'refs/heads/main' ||
       github.event_name == 'workflow_dispatch'
     permissions:
       packages: write
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-push-images]
     if: | 
-      ${{ github.ref == 'refs/heads/main' }} ||
+      github.ref == 'refs/heads/main' ||
       github.event_name == 'workflow_dispatch'
     strategy:
       matrix:
@@ -61,12 +61,7 @@ jobs:
             GH_CLIENT_ID: DEV_GH_CLIENT_ID
             GH_CLIENT_SECRET: DEV_GH_CLIENT_SECRET
             DEPLOY_TO: Development
-            URL: https://dev.devportal.name
-          # - env: qa
-          #   GH_CLIENT_ID: QA_GH_CLIENT_ID
-          #   GH_CLIENT_SECRET: QA_GH_CLIENT_SECRET
-          #   DEPLOY_TO: QA
-          #   URL: https://qa.devportal.name
+            URL: http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com
     concurrency: ${{ matrix.env }}
     permissions:
       packages: read
@@ -92,7 +87,6 @@ jobs:
           ENV: ${{ matrix.env }}
           POSTGRES_USER: ${{ secrets.DEV_PG_USER }}
           POSTGRES_PASSWORD: ${{ secrets.DEV_PG_PASSWORD }}
-          POSTGRES_DB: ${{ secrets.DEV_PG_DB }}
 
   notify-deployment-repo:
     runs-on: ubuntu-latest

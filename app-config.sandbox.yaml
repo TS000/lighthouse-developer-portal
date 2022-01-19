@@ -1,18 +1,18 @@
 app:
   title: Embark Developer Portal
-  baseUrl: http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com
+  baseUrl: http://internal-a75fe8ee88fef4ce0b6e668b91719f7f-1144368585.us-gov-west-1.elb.amazonaws.com
 
 organization:
   name: Embark
 
 backend:
-  baseUrl: http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com
+  baseUrl: http://internal-a75fe8ee88fef4ce0b6e668b91719f7f-1144368585.us-gov-west-1.elb.amazonaws.com
   listen:
     port: 7007
   csp:
     connect-src: ["'self'", 'http:', 'https:']
   cors:
-    origin: http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com
+    origin: http://internal-a75fe8ee88fef4ce0b6e668b91719f7f-1144368585.us-gov-west-1.elb.amazonaws.com
     methods: [GET, POST, PUT, DELETE]
     credentials: true
   cache:
@@ -21,8 +21,8 @@ backend:
   database:
     client: pg
     connection:
-      host: ${DEV_POSTGRES_SERVICE_HOST}
-      port: ${DEV_POSTGRES_SERVICE_PORT}
+      host: ${SANDBOX_POSTGRES_SERVICE_HOST}
+      port: ${SANDBOX_POSTGRES_SERVICE_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
   reading:
@@ -85,7 +85,7 @@ catalog:
     # target: https://github.com/department-of-veterans-affairs/lighthouse-*/blob/-/catalog-info.yaml
 
     #################### EMBARK #########################
-
+    
     # Embark
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml

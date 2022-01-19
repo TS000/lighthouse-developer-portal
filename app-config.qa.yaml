@@ -24,6 +24,10 @@ backend:
       port: ${QA_POSTGRES_SERVICE_PORT}
       user: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
+  reading:
+    allow:
+      # allow reading evss swagger
+      - host: www.ebenefits.va.gov
 
 integrations:
   github:

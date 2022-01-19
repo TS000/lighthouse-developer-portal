@@ -58,7 +58,6 @@ type: Opaque
 data:
   POSTGRES_USER: {{ .Values.POSTGRES_USER | b64enc }}
   POSTGRES_PASSWORD: {{ .Values.POSTGRES_PASSWORD | b64enc }}
-  POSTGRES_DB: {{ .Values.POSTGRES_DB | b64enc }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

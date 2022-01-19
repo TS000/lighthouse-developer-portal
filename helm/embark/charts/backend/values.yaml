@@ -33,16 +33,18 @@ nonprod: ${NONPROD}
 DEPLOY_ENV: ${DEPLOY_ENV}
 POSTGRES_USER: ${POSTGRES_USER}
 POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-POSTGRES_DB: ${POSTGRES_DB}
 
 service:
   type: ClusterIP
   port: 7007
 
 resources:
+  requests:
+    cpu: '0.25'
+    memory: '100Mi'
   limits:
     cpu: '0.5'
-    memory: '500Mi'
+    memory: '200Mi'
 
 autoscaling:
   enabled: false

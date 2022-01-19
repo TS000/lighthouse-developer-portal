@@ -11,8 +11,9 @@ RUN yarn install --frozen-lockfile --production --network-timeout 300000 && rm -
 
 # Then copy the rest of the backend bundle, along with any other files we might want.
 COPY packages/backend/dist/bundle.tar.gz app-config.yaml ./
-COPY app-config.dev.yaml app-config.qa.yaml ./
-COPY app-config.production.yaml ./
+# We can update this later to use a script to create each yaml for each environment so we do not have an
+# excessive maintenance burden from multiple copies (i.e. changing one thing requires changes in 5 files instead of 1)
+COPY app-config.*.yaml ./
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
 CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]

@@ -25,10 +25,6 @@ inputs:
   POSTGRES_PASSWORD:
     description: 'Password for postgres database'
     required: true
-  POSTGRES_DB:
-    description: 'Name of postgres database'
-    required: true
-
 
 runs:
   using: "composite"
@@ -42,21 +38,9 @@ runs:
     id: overrides
     run: |
       echo "::set-output name=nonprod::true"
-      if [[ "${{ inputs.ENV }}" == "dev" ]]; then
-        echo "::set-output name=BASE_URL::https://dev.devportal.name"
-        echo "::set-output name=BACKEND_PORT::7007"
-        echo "::set-output name=HOST::dev.devportal.name"
-        echo "::set-output name=GATEWAY::istio-system/dev-devportal-name-gateway"
-      fi
-      if [[ "${{ inputs.ENV }}" == "qa" ]]; then
-        echo "::set-output name=BASE_URL::https://qa.devportal.name"
-        echo "::set-output name=BACKEND_PORT::7007"
-        echo "::set-output name=HOST::qa.devportal.name"
-        echo "::set-output name=GATEWAY::istio-system/qa-devportal-name-gateway"
-      fi
-      if [[ "${{ inputs.ENV }}" == "prod" ]]; then
-        echo "::set-output name=nonprod::false"
-      fi
+      echo "::set-output name=BASE_URL::http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
+      echo "::set-output name=HOST::internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
+      echo "::set-output name=GATEWAY::istio-system/ldx-nonprod-dev-gateway"
     shell: bash
   - name: Create image tag
     id: tag
@@ -79,12 +63,10 @@ runs:
       --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }} 
       --set HOST=${{ steps.overrides.outputs.HOST }} 
       --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }} 
-      --set BACKEND_PORT=7007 
       --set DEPLOY_ENV=${{ inputs.ENV }},backend.DEPLOY_ENV=${{ inputs.ENV }} 
       --set backend.image.tag=${{ steps.tag.outputs.sha }},frontend.image.tag=${{ steps.tag.outputs.sha }} 
       --set POSTGRES_USER=${{ inputs.POSTGRES_USER }},backend.POSTGRES_USER=${{ inputs.POSTGRES_USER }} 
       --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }},backend.POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }} 
-      --set POSTGRES_DB=${{ inputs.POSTGRES_DB }},backend.POSTGRES_DB=${{ inputs.POSTGRES_DB }}
       --install 
       --atomic 
       --cleanup-on-fail 
