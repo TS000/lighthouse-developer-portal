@@ -74,5 +74,5 @@ jobs:
         uses: VeryGoodOpenSource/very_good_coverage@cfe8b79401ea7689953705f0d161cb51113f346f # pin@v1.2.0
         with:
           path: ./logs/${{ matrix.packages }}/coverage/lcov.info 
-          min_coverage: 70
-          exclude: '**/node_modules'    
+          min_coverage: 80
+          exclude: '**/node_modules **/src/components **/src/hooks **/src/themes'

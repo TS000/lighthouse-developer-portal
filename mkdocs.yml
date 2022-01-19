@@ -46,6 +46,7 @@ nav:
       - GitHub Packages: ADR/github-packages.md
       - Twelve Factor App: ADR/twelve-factor-app.md
       - Image Signing: ADR/image-signing.md
+      - Unit Test Coverage: ADR/code-coverage.md
 
 plugins:
   - techdocs-core
