@@ -36,6 +36,7 @@ nav:
       - Kustomize Deployment: RFC/kustomize.md
       - Feature Flags: RFC/feature-flags.mdi
       - Configure Timeouts: RFC/configure-timeouts.md
+      - GitHub App POC: RFC/github-app-auth.md
 
   - Decision Records:
       - Yarn Zero Install: ADR/zero-install.md
