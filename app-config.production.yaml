@@ -70,7 +70,7 @@ catalog:
   rules:
     - allow: [Component, System, API, Group, User, Template, Location]
   locations:
-    #################### EBMARK #########################
+    #################### EMBARK #########################
 
     # app component
     - type: url

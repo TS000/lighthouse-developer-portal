@@ -88,10 +88,7 @@ catalog:
     # - type: github-discovery
     # target: https://github.com/department-of-veterans-affairs/lighthouse-*/blob/-/catalog-info.yaml
 
-    #################### EBMARK #########################
-    # Backstage example components
-    - type: url
-      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all-components.yaml
+    #################### EMBARK #########################
 
     # Embark
     - type: url

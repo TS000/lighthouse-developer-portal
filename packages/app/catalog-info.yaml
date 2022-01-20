@@ -3,7 +3,7 @@ kind: Component
 metadata:
   name: frontend
   namespace: embark
-  description: The frontend applicaton for Embark
+  description: The frontend application for Embark
   tags:
     - javascript
     - typescript

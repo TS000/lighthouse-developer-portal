@@ -14,20 +14,33 @@ Embark identifies catalog entities by scanning every repository in an organizati
 
 In the root directory of your application, create a `catalog-info.yaml` file:
 
-```
+```yaml
 # Example catalog-info.yaml
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: embark
-  description: An example of a embark application.
+  name: frontend
+  namespace: embark
+  description: The frontend application for Embark
+  tags:
+    - javascript
+    - typescript
+    - react
+  links:
+    - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
+      title: Issues
+      icon: alert
+    - url: https://department-of-veterans-affairs.github.io/lighthouse-embark/
+      title: Docs
+      icon: help
   annotations:
     backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-embark
     github.com/project-slug: department-of-veterans-affairs/lighthouse-embark
 spec:
   type: website
-  owner:
+  owner: lighthouse-bandicoot
   lifecycle: experimental
+  system: embark
 ```
 
 ## Navigate to Catalog on Developer Portal
