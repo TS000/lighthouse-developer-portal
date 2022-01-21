@@ -34,7 +34,7 @@ nav:
       - Browser Logs: RFC/browser-logs.md
       - Automation with ArgoCD: RFC/argo-automation.md
       - Kustomize Deployment: RFC/kustomize.md
-      - Feature Flags: RFC/feature-flags.mdi
+      - Feature Flags: RFC/feature-flags.md
       - Configure Timeouts: RFC/configure-timeouts.md
       - GitHub App POC: RFC/github-app-auth.md
 
