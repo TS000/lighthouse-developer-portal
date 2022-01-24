@@ -46,23 +46,21 @@ spec:
             httpGet:
               path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.port }}
-          {{- if .Values.nonprod }}
           command: ["/bin/sh"]
           args:
             - -c
             - >-
-                yarn backstage-cli config:print --config app-config.yaml --config app-config.{{ .Values.DEPLOY_ENV }}.yaml &&
                 node packages/backend --config app-config.yaml --config app-config.{{ .Values.DEPLOY_ENV }}.yaml | sed -u -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" >> /var/log/backend.log
           volumeMounts:
-          - name: varlog
-            mountPath: /var/log
+          - mountPath: /var/log
+            name: varlog
+          - mountPath: /etc/config
+            name: config
           envFrom:
           - configMapRef:
               name: "{{ .Release.Name }}-nonprod-configmap"
-          {{- end }}
-          envFrom:
-            - secretRef:
-                name: "{{ .Release.Name }}-secrets"
+          - secretRef:
+              name: "{{ .Release.Name }}-secrets"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
         - name: logger
@@ -81,6 +79,9 @@ spec:
       volumes:
       - name: varlog
         emptyDir: {}
+      - configMap:
+          name: "{{ .Release.Name }}-nonprod-configmap"
+        name: config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
