@@ -69,13 +69,13 @@ jobs:
     # Need to periodically update K8s context
     steps:
       - uses: actions/checkout@v2
-      - name: Create Deployment
-        uses: bobheadxi/deployments@v0.6.2
-        id: deployment
-        with:
-          step: start
-          token: ${{ secrets.DEV_GH_TOKEN }}
-          env: ${{ matrix.DEPLOY_TO }}
+      # - name: Create Deployment
+      #   uses: bobheadxi/deployments@v0.6.1
+      #   id: deployment
+      #   with:
+      #     step: start
+      #     token: ${{ secrets.DEV_GH_TOKEN }}
+      #     env: ${{ matrix.DEPLOY_TO }}
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:

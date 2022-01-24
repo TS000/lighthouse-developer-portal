@@ -83,4 +83,4 @@ runs:
         cache-from: type=gha, scope=${{ inputs.type }}
         cache-to: type=gha, scope=${{ inputs.type }}, mode=max
         secrets: |
-          GIT_AUTH_TOKEN=${{ inputs.token }}
+          "GIT_AUTH_TOKEN=${{ inputs.token }}"
