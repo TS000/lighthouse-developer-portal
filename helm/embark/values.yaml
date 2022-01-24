@@ -15,6 +15,9 @@ secrets:
   nonprod: ${nonprod}
   POSTGRES_USER: ${POSTGRES_USER}
   POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  AWS_BUCKET_NAME: ${AWS_BUCKET_NAME}
+  AWS_REGION: ${AWS_REGION}
+  AWS_ROLE_ARN: ${AWS_ROLE_ARN}
 
 podAnnotations:
   namespace: lighthouse-bandicoot-dev

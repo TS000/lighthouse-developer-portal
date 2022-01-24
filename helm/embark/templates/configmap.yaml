@@ -15,4 +15,8 @@ data:
   {{ if eq .Values.DEPLOY_ENV "dev" }}
   APP_CONFIG_auth_environment: "development"
   {{ end }}
+  AWS_BUCKET_NAME: {{ .Values.AWS_BUCKET_NAME }}
+  AWS_REGION: {{ .Values.AWS_REGION }}
+  AWS_ROLE_ARN: {{ .Values.AWS_ROLE_ARN }}
+
 {{ end }}

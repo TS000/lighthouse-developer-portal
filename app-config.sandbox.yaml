@@ -51,13 +51,17 @@ proxy:
 # Note: After experimenting with basic setup, use CI/CD to generate docs
 # and an external cloud storage when deploying TechDocs for production use-case.
 # https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
-techdocs:
-  builder: 'local' # Alternatives - 'external'
-  generator:
-    runIn: 'docker'
-  publisher:
-    type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
+techdocs:
+  builder: 'external' # Alternatives - 'external'
+  publisher:
+    type: 'awsS3' # Alternatives - 'googleGcs' or 'awsS3' or 'azureBlobStorage' or 'openStackSwift'. Read documentation for using alternatives.
+    awsS3:
+      bucketName: ${AWS_BUCKET_NAME}
+      region: ${AWS_REGION}
+      credentials:
+          roleArn: ${AWS_ROLE_ARN}
+  
 auth:
   # providers: {}
   # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
