@@ -41,12 +41,12 @@
         min-height: 100%;
       }
     </style>
-    <title><%= app.title %></title>
-    <% if (app.googleAnalyticsTrackingId && typeof app.googleAnalyticsTrackingId
-    === 'string') { %>
-    <script
+    <title><%= config.getString('app.title') %></title>
+
+    <% if (config.has('app.googleAnalyticsTrackingId')) { %>
+      <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=<%= app.googleAnalyticsTrackingId %>"
+      src="https://www.googletagmanager.com/gtag/js?id=<%= config.getString('app.googleAnalyticsTrackingId') %>"
     ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -55,7 +55,10 @@
       }
       gtag('js', new Date());
 
-      gtag('config', '<%= app.googleAnalyticsTrackingId %>');
+      gtag(
+        'config',
+        '<%= config.getString("app.googleAnalyticsTrackingId") %>',
+      );
     </script>
     <% } %>
   </head>

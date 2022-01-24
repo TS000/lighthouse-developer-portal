@@ -6,6 +6,9 @@ organization:
   name: Embark
 
 backend:
+  auth:
+    keys:
+      - secret: ${GITHUB_TOKEN}
   baseUrl: http://internal-a75fe8ee88fef4ce0b6e668b91719f7f-1144368585.us-gov-west-1.elb.amazonaws.com
   listen:
     port: 7007

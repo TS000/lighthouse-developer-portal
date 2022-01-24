@@ -6,6 +6,9 @@ organization:
   name: Embark
 
 backend:
+  auth:
+    keys:
+      - secret: ${GITHUB_TOKEN}
   baseUrl: https://qa.devportal.name
   listen:
     port: 7007

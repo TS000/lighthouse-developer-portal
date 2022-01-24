@@ -1,5 +1,5 @@
 import React from 'react';
-import { DismissableBanner } from '@backstage/core';
+import { DismissableBanner } from '@backstage/core-components';
 import { useFeatureFlags } from '@internal/plugin-feature-flags';
 
 const containerStyle = {

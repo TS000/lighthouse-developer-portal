@@ -8,17 +8,18 @@
 
 import Router from 'express-promise-router';
 import {
-  createServiceBuilder,
-  loadBackendConfig,
-  getRootLogger,
-  useHotMemoize,
-  notFoundHandler,
   CacheManager,
+  createServiceBuilder,
+  getRootLogger,
+  loadBackendConfig,
+  notFoundHandler,
   DatabaseManager,
   SingleHostDiscovery,
   UrlReaders,
-  ServerTokenManager
+  useHotMemoize,
+  ServerTokenManager,
 } from '@backstage/backend-common';
+import { TaskScheduler } from '@backstage/backend-tasks';
 import { Config } from '@backstage/config';
 import auth from './plugins/auth';
 import catalog from './plugins/catalog';
@@ -26,26 +27,41 @@ import healthcheck from './plugins/healthcheck';
 import scaffolder from './plugins/scaffolder';
 import proxy from './plugins/proxy';
 import techdocs from './plugins/techdocs';
-import { PluginEnvironment } from './types';
 import search from './plugins/search';
-
-const tokenManager = ServerTokenManager.noop();
+import { PluginEnvironment } from './types';
+import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
   const reader = UrlReaders.default({ logger: root, config });
   const discovery = SingleHostDiscovery.fromConfig(config);
-
-  root.info(`Created UrlReader ${reader}`);
-
+  const tokenManager = ServerTokenManager.fromConfig(config, { logger: root });
+  const permissions = ServerPermissionClient.fromConfig(config, {
+    discovery,
+    tokenManager,
+  });
   const databaseManager = DatabaseManager.fromConfig(config);
   const cacheManager = CacheManager.fromConfig(config);
+  const taskScheduler = TaskScheduler.fromConfig(config);
+
+  root.info(`Created UrlReader ${reader}`);
 
   return (plugin: string): PluginEnvironment => {
     const logger = root.child({ type: 'plugin', plugin });
     const database = databaseManager.forPlugin(plugin);
     const cache = cacheManager.forPlugin(plugin);
-    return { logger, database, cache, config, reader, discovery, tokenManager };
+    const scheduler = taskScheduler.forPlugin(plugin);
+    return {
+      logger,
+      cache,
+      database,
+      config,
+      reader,
+      discovery,
+      tokenManager,
+      permissions,
+      scheduler,
+    };
   };
 }
 

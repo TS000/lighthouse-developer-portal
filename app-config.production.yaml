@@ -4,6 +4,9 @@ app:
   baseUrl: https://www.backhouselightstage.com
 
 backend:
+  auth:
+    keys:
+      - secret: ${BACKEND_SECRET}
   baseUrl: https://www.backhouselightstage.com
   listen:
     port: 7007
