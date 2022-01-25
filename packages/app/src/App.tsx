@@ -44,6 +44,7 @@ import { FlatRoutes } from '@backstage/core-app-api';
 import { createApp } from '@backstage/app-defaults';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { CustomCatalogPage } from './components/catalog/CustomCatalogPage/CustomCatalogPage';
+import { ProviderDashboardPage } from '@internal/plugin-provider-dashboard';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -136,6 +137,7 @@ const routes = (
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/feature-flags" element={<FeatureFlagsPage />} />
     <Route path="/starter-guide" element={<StarterGuidePage />} />
+    <Route path="/provider-dashboard" element={<ProviderDashboardPage />}/>
   </FlatRoutes>
 );
 
