@@ -1,18 +1,9 @@
-FROM segment/chamber:2 AS chamber
-FROM scratch
-
 FROM node:14-buster
 
 COPY ./entrypoint.sh .
 COPY ./app-config.localdevcontainer.yaml .
 RUN chmod +x entrypoint.sh
 
-COPY --from=chamber /chamber /bin/chamber
-
 WORKDIR /code
-
-# Unconmment this entrypoint to use chamber for environment variable injection
-# @see https://github.com/segmentio/chamber
-#ENTRYPOINT [ "/bin/chamber", "exec", "lighthouse-embark", "--", "/entrypoint.sh" ]
 
 ENTRYPOINT [ "/entrypoint.sh" ]
