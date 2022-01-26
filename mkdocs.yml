@@ -37,6 +37,7 @@ nav:
       - Feature Flags: RFC/feature-flags.md
       - Configure Timeouts: RFC/configure-timeouts.md
       - GitHub App POC: RFC/github-app-auth.md
+      - Search Optimization Comparison: RFC/search-comparison.md
 
   - Decision Records:
       - Yarn Zero Install: ADR/zero-install.md
