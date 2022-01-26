@@ -25,6 +25,7 @@ import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import Flag from '@material-ui/icons/Flag';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import AppsIcon from '@material-ui/icons/Apps';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
@@ -42,6 +43,15 @@ import {
   SidebarDivider,
   SidebarSpace,
 } from '@backstage/core-components';
+import {
+  SidebarSubmenuItem,
+  SidebarItemWithSubmenu,
+  SidebarSubmenu,
+} from '../sidebar';
+import {
+  EntityKindFilter,
+  useEntityListProvider,
+} from '@backstage/plugin-catalog-react';
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionNumber } from '../versionNumber/VersionNumber';
 import { FeedbackModal } from '../feedback';
@@ -86,6 +96,14 @@ const SidebarLogo = () => {
 };
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
+  const { updateFilters } = useEntityListProvider();
+
+  const handleFilterChange = (selectedKind: string): void => {
+    updateFilters({
+      kind: selectedKind ? new EntityKindFilter(selectedKind) : undefined,
+    });
+  };
+
   return (
     <SidebarPage>
       <Sidebar>
@@ -96,8 +114,28 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarDivider />
         {/* Global nav, not org-specific */}
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
-        <SidebarItem icon={ListIcon} to="catalog" text="Catalog" />
-        <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
+        <SidebarItemWithSubmenu icon={ListIcon} to="/catalog" text="Catalog">
+          <SidebarSubmenu title="Catalog">
+            <SidebarSubmenuItem
+              title="Components"
+              to="catalog?filters[kind]=component"
+              icon={AppsIcon}
+              callback={() => handleFilterChange('component')}
+            />
+            <SidebarSubmenuItem
+              icon={ExtensionIcon}
+              to="catalog?filters[kind]=api"
+              title="APIs"
+              callback={() => handleFilterChange('api')}
+            />
+            <SidebarSubmenuItem
+              icon={ExtensionIcon}
+              to="catalog?filters[kind]=system"
+              title="System"
+              callback={() => handleFilterChange('system')}
+            />
+          </SidebarSubmenu>
+        </SidebarItemWithSubmenu>
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <HideableSidebarItem
           flagName="datadog-dashboard"

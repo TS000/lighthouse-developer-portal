@@ -10,7 +10,6 @@ import {
 import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import {
   EntityLifecyclePicker,
-  EntityListProvider,
   EntityOwnerPicker,
   EntityTagPicker,
   EntityTypePicker,
@@ -47,13 +46,9 @@ export const CustomCatalogPage = ({
 
   return (
     <PageWithHeader title={`${orgName} Catalog`} themeId="home">
-      <EntityListProvider>
         <Content>
           <ContentHeader titleComponent={<CatalogKindHeader />}>
-            <CreateButton
-              title="Create Component"
-              to='/create'
-            />
+            <CreateButton title="Create Component" to="/create" />
             <SupportButton>All your software catalog entities</SupportButton>
           </ContentHeader>
           <FilteredEntityLayout>
@@ -69,7 +64,6 @@ export const CustomCatalogPage = ({
             </EntityListContainer>
           </FilteredEntityLayout>
         </Content>
-      </EntityListProvider>
     </PageWithHeader>
   );
 };

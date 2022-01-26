@@ -13,6 +13,7 @@ import {
   useEntityKinds,
   useEntityListProvider,
 } from '@backstage/plugin-catalog-react';
+import { parseParams } from '../../../../utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,9 +35,11 @@ export const CatalogKindHeader = ({
   const { updateFilters, queryParameters } = useEntityListProvider();
 
   const [selectedKind, setSelectedKind] = useState(
-    ([queryParameters.kind].flat()[0] ?? initialFilter).toLocaleLowerCase(
-      'en-US',
-    ),
+    (
+      (parseParams(location.search)['filters[kind]'] ||
+        [queryParameters.kind].flat()[0]) ??
+      initialFilter
+    ).toLocaleLowerCase('en-US'),
   );
 
   useEffect(() => {
@@ -57,7 +60,8 @@ export const CatalogKindHeader = ({
       acc[kind.toLocaleLowerCase('en-US')] = kind;
       return acc;
     }, {} as Record<string, string>);
-  delete options.location
+
+  delete options.location;
   return (
     <Select
       input={<InputBase value={selectedKind} />}

@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
-import {
-  CatalogEntityPage,
-  catalogPlugin,
-} from '@backstage/plugin-catalog';
+import { CatalogEntityPage, catalogPlugin } from '@backstage/plugin-catalog';
 import {
   CatalogImportPage,
   catalogImportPlugin,
@@ -29,6 +26,7 @@ import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFlagRegistry';
 import { StarterGuidePage } from '@internal/plugin-starter-guide';
 import { DatadogDashboardPage } from '@internal/plugin-datadog-dashboard';
+import { EntityListProvider } from '@backstage/plugin-catalog-react';
 
 import { lightThemeVA, darkThemeVA } from './themes/index';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
@@ -171,9 +169,11 @@ const App = () => {
         <FeatureFlagRegistry />
         <AlertDisplay />
         <OAuthRequestDialog />
-        <AppRouter>
-          <Root>{routes}</Root>
-        </AppRouter>
+        <EntityListProvider>
+          <AppRouter>
+            <Root>{routes}</Root>
+          </AppRouter>
+        </EntityListProvider>
       </FlagContext.Provider>
     </AppProvider>
   );
