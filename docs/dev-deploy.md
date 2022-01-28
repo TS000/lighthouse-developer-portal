@@ -190,7 +190,7 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 - Install the Helm chart and set secrets using `--set`
 
 ```
-$ helm upgrade lighthouse-embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD,backend.nonprod=$NONPROD,frontend.nonprod=$NONPROD --set BASE_URL=$BASE_URL --set GATEWAY=$GATEWAY --set BACKEND_PORT=7007 --set DEPLOY_ENV=$DEPLOY_ENV,backend.DEPLOY_ENV=$DEPLOY_ENV --set backend.image.tag=$COMMIT_SHA,frontend.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER,backend.POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD,backend.POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME,backend.AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set AWS_REGION=$AWS_REGION,backend.AWS_REGION=$AWS_REGION --set AWS_ROLE_ARN=$AWS_ROLE_ARN,backend.AWS_ROLE_ARN=$AWS_ROLE_ARN --install --atomic --cleanup-on-fail --history-max 5
+$ helm upgrade lighthouse-embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD,backend.nonprod=$NONPROD,frontend.nonprod=$NONPROD --set BASE_URL=$BASE_URL --set GATEWAY=$GATEWAY --set BACKEND_PORT=7007 --set DEPLOY_ENV=$DEPLOY_ENV,backend.DEPLOY_ENV=$DEPLOY_ENV --set backend.image.tag=$COMMIT_SHA,frontend.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER,backend.POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD,backend.POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME,backend.AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set SERVICE_ACCOUNT=$SERVICE_ACCOUNT,backend.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --install --atomic --cleanup-on-fail --history-max 5
 ```
 
 ### Verify Deployment
@@ -202,5 +202,3 @@ $ helm list -n lighthouse-bandicoot-dev
 NAME            NAMESPACE                       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
 embark-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:11:06.6508301 -0800 PST   deployed        embark-0.1.0                    1.16.0
 ```
-
-- Visit https://dev.devportal.name to view the running application

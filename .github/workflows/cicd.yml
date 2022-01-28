@@ -88,9 +88,8 @@ jobs:
           POSTGRES_USER: ${{ secrets.DEV_PG_USER }}
           POSTGRES_PASSWORD: ${{ secrets.DEV_PG_PASSWORD }}
           AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
-    
+          SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+
   notify-deployment-repo:
     runs-on: ubuntu-latest
     needs: [deploy-backstage-app]

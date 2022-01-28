@@ -28,11 +28,8 @@ inputs:
   AWS_BUCKET_NAME:
     description: 'AWS bucket name'
     required: true
-  AWS_REGION:
-    description: 'AWS region'
-    required: true
-  AWS_ROLE_ARN:
-    description: 'AWS Role Arn'
+  SERVICE_ACCOUNT:
+    description: 'Service account name'
     required: true
 
 runs:
@@ -77,8 +74,7 @@ runs:
       --set POSTGRES_USER=${{ inputs.POSTGRES_USER }},backend.POSTGRES_USER=${{ inputs.POSTGRES_USER }} 
       --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }},backend.POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }} 
       --set AWS_BUCKET_NAME=${{ inputs.AWS_BUCKET_NAME }},backend.AWS_BUCKET_NAME=${{ inputs.AWS_BUCKET_NAME }}
-      --set AWS_REGION=${{ inputs.AWS_REGION }},backend.AWS_REGION=${{ inputs.AWS_REGION }} 
-      --set AWS_ROLE_ARN=${{ inputs.AWS_ROLE_ARN }},backend.AWS_ROLE_ARN=${{ inputs.AWS_ROLE_ARN }}
+      --set SERVICE_ACCOUNT=${{ inputs.SERVICE_ACCOUNT }},backend.SERVICE_ACCOUNT=${{ inputs.SERVICE_ACCOUNT }}
       --install 
       --atomic 
       --cleanup-on-fail 

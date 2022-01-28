@@ -57,9 +57,7 @@ techdocs:
     type: 'awsS3' # Alternatives - 'googleGcs' or 'awsS3' or 'azureBlobStorage' or 'openStackSwift'. Read documentation for using alternatives.
     awsS3:
       bucketName: ${AWS_BUCKET_NAME}
-      region: ${AWS_REGION}
-      credentials:
-          roleArn: ${AWS_ROLE_ARN}
+      sse: 'aws:kms'
 
 auth:
   # providers: {}

@@ -37,4 +37,9 @@ RUN openssl x509 -inform DER -in /usr/local/share/ca-certificates/VA-Internal-S2
 
 RUN /usr/sbin/update-ca-certificates
 ENV NODE_EXTRA_CA_CERTS /etc/ssl/certs/ca-certificates.crt
+
+RUN chown -R 1000:1000 /app
+
+USER 1000
+
 CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]

@@ -11,8 +11,6 @@ data:
   APP_CONFIG_backend_cors_origin: {{ .Values.BASE_URL }}
   APP_CONFIG_auth_environment: {{ .Values.DEPLOY_ENV }}
   AWS_BUCKET_NAME: {{ .Values.AWS_BUCKET_NAME }}
-  AWS_REGION: {{ .Values.AWS_REGION }}
-  AWS_ROLE_ARN: {{ .Values.AWS_ROLE_ARN }}
   POSTGRES_USER: {{ .Values.POSTGRES_USER }}
   POSTGRES_PASSWORD: {{ .Values.POSTGRES_PASSWORD }}
   {{ if eq .Values.DEPLOY_ENV "dev" }}
