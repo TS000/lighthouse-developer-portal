@@ -9,11 +9,14 @@ import {
   Tabs,
   Tab,
   Box,
+  IconButton,
   Typography,
   List,
   ListItem,
+  makeStyles,
 } from '@material-ui/core';
 import RateReviewIcon from '@material-ui/icons/RateReview';
+import CloseIcon from '@material-ui/icons/Close';
 import {
   SidebarItem,
   DismissableBanner,
@@ -26,6 +29,18 @@ export interface TabPanelProps {
   index: number;
   children: ReactElement;
 }
+
+/**
+ * Close button styles
+ */
+const useStyles = makeStyles({
+  root: {
+    top: '8px',
+    color: '#9e9e9e',
+    right: '8px',
+    position: 'absolute',
+  },
+});
 
 /**
  * TabPanel used for the material ui tab component. Used to present information.
@@ -57,10 +72,11 @@ export interface SearchModalProps {
  */
 export const Modal = ({
   open = false,
-  toggleModal,
+  toggleModal
 }: SearchModalProps): ReactElement => {
   const [feedbackText, setFeedbackText] = useState<string>('');
   const [currentTab, setCurrentTab] = useState(0);
+  const classes = useStyles()
 
   // Submitted feedback states
   const [hasSubmittedFeedback, setHasSubmittedFeedback] =
@@ -142,7 +158,12 @@ export const Modal = ({
         fullWidth
         maxWidth="lg"
       >
-        <DialogTitle>Provide feedback for Embark</DialogTitle>
+        <DialogTitle>
+          Provide feedback for Embark
+          <IconButton aria-label="close" onClick={toggleModal} className={classes.root}>
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
         <DialogContent>
           <Box
             sx={{
