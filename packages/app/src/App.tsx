@@ -44,6 +44,7 @@ import { FlatRoutes } from '@backstage/core-app-api';
 import { createApp } from '@backstage/app-defaults';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { CustomCatalogPage } from './components/catalog/CustomCatalogPage/CustomCatalogPage';
+import './themes/overrides.css';
 import { ProviderDashboardPage } from '@internal/plugin-provider-dashboard';
 
 const githubProvider: SignInProviderConfig = {
