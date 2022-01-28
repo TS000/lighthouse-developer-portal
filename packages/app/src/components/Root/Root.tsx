@@ -26,6 +26,7 @@ import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import Flag from '@material-ui/icons/Flag';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import AppsIcon from '@material-ui/icons/Apps';
+import LayersIcon from '@material-ui/icons/Layers';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
@@ -158,6 +159,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           to="/starter-guide"
           text="Starter Guide"
         />
+        <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarSpace />
         <SidebarDivider />
         <VersionNumber />

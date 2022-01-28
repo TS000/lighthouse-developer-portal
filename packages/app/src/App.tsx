@@ -27,6 +27,8 @@ import { FeatureFlagRegistry } from './FeatureFlagRegistry';
 import { StarterGuidePage } from '@internal/plugin-starter-guide';
 import { DatadogDashboardPage } from '@internal/plugin-datadog-dashboard';
 import { EntityListProvider } from '@backstage/plugin-catalog-react';
+import { ExplorePage, explorePlugin } from '@backstage/plugin-explore';
+import { ExplorePage as CustomExplorePage } from './components/explore';
 
 import { lightThemeVA, darkThemeVA } from './themes/index';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
@@ -74,6 +76,9 @@ const app = createApp({
     });
     bind(orgPlugin.externalRoutes, {
       catalogIndex: catalogPlugin.routes.catalogIndex,
+    });
+    bind(explorePlugin.externalRoutes, {
+      catalogEntity: catalogPlugin.routes.catalogEntity,
     });
   },
   themes: [
@@ -135,7 +140,10 @@ const routes = (
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/feature-flags" element={<FeatureFlagsPage />} />
     <Route path="/starter-guide" element={<StarterGuidePage />} />
-    <Route path="/provider-dashboard" element={<ProviderDashboardPage />}/>
+    <Route path="/provider-dashboard" element={<ProviderDashboardPage />} />
+    <Route path="/plugins" element={<ExplorePage />}>
+      <CustomExplorePage />
+    </Route>
   </FlatRoutes>
 );
 

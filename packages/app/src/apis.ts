@@ -14,6 +14,8 @@ import {
 } from '@backstage/core-plugin-api';
 import { GoogleAnalytics } from '@backstage/plugin-analytics-module-ga';
 import { GithubAuth } from '@backstage/core-app-api';
+import { exploreToolsConfigRef } from '@backstage/plugin-explore-react';
+import { pluginManifest } from './pluginManifest';
 
 export const apis: AnyApiFactory[] = [
   createApiFactory({
@@ -40,5 +42,15 @@ export const apis: AnyApiFactory[] = [
         oauthRequestApi,
         defaultScopes: ['read:user', 'repo'],
       }),
+  }),
+  // Overwrite the explore plugin to remove defaults
+  createApiFactory({
+    api: exploreToolsConfigRef,
+    deps: {},
+    factory: () => ({
+      async getTools() {
+        return pluginManifest;
+      },
+    }),
   }),
 ];
