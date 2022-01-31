@@ -89,7 +89,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.DEV_PG_PASSWORD }}
           AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
           SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
-          DOCSERVER_BASE_URL: ${DOCSERVER_BASE_URL}
+          DOCSERVER_BASE_URL: ${ secrets.DOCSERVER_BASE_URL}
 
   notify-deployment-repo:
     runs-on: ubuntu-latest
