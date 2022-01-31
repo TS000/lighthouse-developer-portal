@@ -189,8 +189,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../deployment/" title="Deployment" class="md-nav__link">
-      Deployment
+    <a href="../deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
     </a>
   </li>
 
@@ -323,18 +323,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../deployment-arch/" title="Deployment Architecture" class="md-nav__link">
-      Deployment Architecture
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
     <a href="../running-locally/" title="Running Locally" class="md-nav__link">
       Running Locally
     </a>
@@ -349,18 +337,6 @@
   <li class="md-nav__item">
     <a href="../backstage-update/" title="Backstage Update" class="md-nav__link">
       Backstage Update
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../helm/" title="Helm Charts" class="md-nav__link">
-      Helm Charts
     </a>
   </li>
 
@@ -456,16 +432,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-15" type="checkbox" id="nav-15">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
     
-    <label class="md-nav__link" for="nav-15">
+    <label class="md-nav__link" for="nav-13">
       RFCs
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="RFCs" data-md-level="1">
-      <label class="md-nav__title" for="nav-15">
+      <label class="md-nav__title" for="nav-13">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -738,16 +714,16 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-14" type="checkbox" id="nav-14">
     
-    <label class="md-nav__link" for="nav-16">
+    <label class="md-nav__link" for="nav-14">
       Decision Records
       <span class="md-nav__icon md-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Decision Records" data-md-level="1">
-      <label class="md-nav__title" for="nav-16">
+      <label class="md-nav__title" for="nav-14">
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
@@ -990,6 +966,7 @@
                 
                 
                 <h1 id="deploying-to-development-environment">Deploying to Development Environment<a class="headerlink" href="#deploying-to-development-environment" title="Permanent link">&para;</a></h1>
+<p>This document outlines the manual deployment process to the Development Environment provided by the DI team. Currently the Lighthouse-Embark repository is configured to automatically deploy to the Development Environment on all <code>push</code> events with the <code>main</code> branch using <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/.github/workflows/cicd.yml">GitHub actions</a>.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <h3 id="kubectl-install">Kubectl Install<a class="headerlink" href="#kubectl-install" title="Permanent link">&para;</a></h3>
 <blockquote>
@@ -1056,17 +1033,17 @@
 29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code># app-config.dev.yaml
 app:
   title: Embark Developer Portal
-  baseUrl: https://dev.devportal.name
+  baseUrl: &lt;host_url&gt;
 ...
 
 backend:
-  baseUrl: https://dev.devportal.name
+  baseUrl: &lt;host_url&gt;
   listen:
     port: 7007
   csp:
     connect-src: [&quot;&#39;self&#39;&quot;, &#39;http:&#39;, &#39;https:&#39;]
   cors:
-    origin: https://dev.devportal.name
+    origin: &lt;host_url&gt;
     methods: [GET, POST, PUT, DELETE]
     credentials: true
   cache:
@@ -1085,6 +1062,10 @@ auth:
 </code></pre></div>
 </td></tr></table>
 
+<blockquote>
+<p>Refer to <a href="https://github.com/department-of-veterans-affairs/lighthouse-di-platform-servicemesh/blob/main/docs/routing-traffic.md">DI Routing Traffic Guide</a> for most recent information related to the <code>host_url</code> referenced above.</p>
+<p>Note: You can opt to use environment variables instead of modifying the <code>app-config.yaml</code> and rebuilding the image. The <code>baseUrl</code> can be overridden using environment variables prefixed with <code>APP_CONFIG</code> (e.g. <code>APP_CONFIG_app_baseUrl</code> ). Here is an example of a <a href="https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/dist/dev/dev.yaml#L2">ConfigMap</a> in our deployment repository. This will generally work for most fields in the <code>app-config.yaml</code>, but the <code>baseUrl</code> specifically has been known to break the OAuth by generating invalid callback URLs by using the <code>baseUrl</code> from the <code>app-config.yaml</code> instead of the environmental overrides. </p>
+</blockquote>
 <ul>
 <li>Build Static Assets</li>
 </ul>
@@ -1097,7 +1078,7 @@ auth:
 <p>Determine commit sha you want to tag images with</p>
 <ul>
 <li>Replace <code>&lt;commit-sha&gt;</code> below with the commit sha</li>
-<li>The commit sha used to tag images is prefixed with "sha-" (i.e. sha-47915d626f95e5b620636376c8adf29ec734...)</li>
+<li>The commit sha used to tag images is prefixed with "sha-" (e.g. .../backend:sha-47915d626f95e5b620636376c8adf29ec734...)</li>
 </ul>
 </li>
 </ul>
@@ -1172,7 +1153,7 @@ Login Successful!
 </td></tr></table>
 
 <blockquote>
-<p>Note: if using Codespaces then you cannot install Lightkeeper. To work around this, you can set your kube config locally using the steps above and then copy the config to your Codespaces. In Codespaces, you can make a new <code>.kube</code> directory in <code>~/</code> and then make a new file inside <code>~/.kube/</code> called <code>config</code>. Inside <code>~/.kube/config</code> you can copy the contents of your local <code>~/.lightkeeper/config</code> file.</p>
+<p>Note: Lightkeeper cli must be used on GFE or CAG desktop.</p>
 </blockquote>
 <h3 id="install-helm-chart">Install Helm Chart<a class="headerlink" href="#install-helm-chart" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1211,7 +1192,7 @@ Login Successful!
 <li>
 <p>Create Environment Variables for Secrets</p>
 <ul>
-<li>Create <code>.env</code> file with your environment variables; you will need to set all of these variables in order for the deployment to work.</li>
+<li>Create <code>.env</code> file with your environment variables; you will need to set all of these variables in order for the deployment to work. You can reference this <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/helm/embark/templates/configmap.yaml">ConfigMap</a> used by the helm deployment to ensure all environment variables are configured.</li>
 </ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1226,9 +1207,9 @@ Login Successful!
 GH_TOKEN=&lt;github_token&gt;
 GH_CLIENT_ID=&lt;GH OAuth Client ID&gt;
 GH_CLIENT_SECRET=&lt;GH OAuth Client Secret&gt;
-HOST=dev.devportal.name
-BASE_URL=https://dev.devportal.name
-GATEWAY=istio-system/dev-devportal-name-gateway
+HOST=&lt;host_url&gt;
+BASE_URL=http://&lt;host_url&gt;
+GATEWAY=&lt;gateway&gt;
 NONPROD=true
 DEPLOY_ENV=dev
 COMMIT_SHA=&lt;commit sha used to tag image or &quot;latest&quot;*&gt;
@@ -1236,9 +1217,8 @@ COMMIT_SHA=&lt;commit sha used to tag image or &quot;latest&quot;*&gt;
 </td></tr></table>
 
 <blockquote>
-<ul>
-<li>If you manually build, push, and tag the image with "latest", using "latest" as the image tag for the deployment can work as a temporary fix but it is preferable to use something more unique like a commit sha. The "latest" tag changes frequently due to the CI workflow so this may cause the containers to crash by pulling an image definition that the Helm release may not be configured to use.</li>
-</ul>
+<p>Refer to <a href="https://github.com/department-of-veterans-affairs/lighthouse-di-platform-servicemesh/blob/main/docs/routing-traffic.md">DI Routing Traffic Guide</a> for most recent information related to the <code>host_url</code> referenced above.</p>
+<p>If you manually build, push, and tag the image with "latest", using "latest" as the image tag for the deployment can work as a temporary fix but it is preferable to use something more unique like the commit sha. The "latest" tag changes frequently due to the CI workflow so this may cause the containers to crash by pulling an image definition that the Helm release may not be configured to use.</p>
 </blockquote>
 <ul>
 <li>Export file contents</li>
@@ -1252,7 +1232,7 @@ COMMIT_SHA=&lt;commit sha used to tag image or &quot;latest&quot;*&gt;
 <ul>
 <li>Install the Helm chart and set secrets using <code>--set</code></li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade lighthouse-embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD,backend.nonprod=$NONPROD,frontend.nonprod=$NONPROD --set BASE_URL=$BASE_URL --set GATEWAY=$GATEWAY --set BACKEND_PORT=7007 --set DEPLOY_ENV=$DEPLOY_ENV,backend.DEPLOY_ENV=$DEPLOY_ENV --set backend.image.tag=$COMMIT_SHA,frontend.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER,backend.POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD,backend.POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME,backend.AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set SERVICE_ACCOUNT=$SERVICE_ACCOUNT,backend.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --install --atomic --cleanup-on-fail --history-max 5
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade lighthouse-embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GATEWAY=$GATEWAY --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set global.DEPLOY_ENV=$DEPLOY_ENV --set global.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set global.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --install --atomic --cleanup-on-fail --history-max 5
 </code></pre></div>
 </td></tr></table>
 
@@ -1267,6 +1247,11 @@ NAME            NAMESPACE                       REVISION        UPDATED         
 embark-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:11:06.6508301 -0800 PST   deployed        embark-0.1.0                    1.16.0
 </code></pre></div>
 </td></tr></table>
+
+<ul>
+<li>Browser
+Using a CAG browser or GFE, enter the <code>&lt;host_url&gt;</code> used above to access the Embark application.</li>
+</ul>
                 
               
               
@@ -1285,7 +1270,7 @@ embark-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:1
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../deployment/" title="Deployment" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../deployment/" title="Deployment Overview" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1294,19 +1279,19 @@ embark-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:1
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Deployment
+                Deployment Overview
               </div>
             </div>
           </a>
         
         
-          <a href="../deployment-arch/" title="Deployment Architecture" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../running-locally/" title="Running Locally" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Deployment Architecture
+                Running Locally
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
