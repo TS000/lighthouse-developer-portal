@@ -33,6 +33,7 @@ export const CatalogKindHeader = ({
   const classes = useStyles();
   const { kinds: allKinds = [] } = useEntityKinds();
   const { updateFilters, queryParameters } = useEntityListProvider();
+  const [initialized, setInitialized] = useState<boolean>(false);
 
   const [selectedKind, setSelectedKind] = useState(
     (
@@ -47,6 +48,23 @@ export const CatalogKindHeader = ({
       kind: selectedKind ? new EntityKindFilter(selectedKind) : undefined,
     });
   }, [selectedKind, updateFilters]);
+
+  // Updates the selectedKind when the queryParameter changes
+  useEffect(() => {
+    // Keep initial selectedKind if this was the first render
+    if (!initialized && selectedKind) {
+      setInitialized(true);
+
+      // Otherwise update the selectedKind if queryParameters have changed
+    } else if (
+      initialized &&
+      queryParameters.kind &&
+      queryParameters.kind !== selectedKind
+    ) {
+      setSelectedKind(queryParameters.kind);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedKind, queryParameters.kind]);
 
   // Before allKinds is loaded, or when a kind is entered manually in the URL, selectedKind may not
   // be present in allKinds. It should still be shown in the dropdown, but may not have the nice

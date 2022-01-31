@@ -106,6 +106,11 @@ export const SidebarSubmenuItem = (props: SidebarSubmenuItemProps) => {
   const closeSubmenu = () => {
     setIsHoveredOn(false);
 
+    // Unfocus the sidebar
+    if (document.activeElement) {
+      (document.activeElement as HTMLElement).blur();
+    }
+
     // Trigger the callback if present
     if (callback) {
       callback();

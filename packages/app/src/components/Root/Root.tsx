@@ -132,7 +132,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
             <SidebarSubmenuItem
               icon={ExtensionIcon}
               to="catalog?filters[kind]=system"
-              title="System"
+              title="Systems"
               callback={() => handleFilterChange('system')}
             />
           </SidebarSubmenu>
