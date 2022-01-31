@@ -1,4 +1,6 @@
 # Deploying to Development Environment
+This document outlines the manual deployment process to the Development Environment provided by the DI team. Currently the Lighthouse-Embark repository is configured to automatically deploy to the Development Environment on all `push` events with the `main` branch using [GitHub actions](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/.github/workflows/cicd.yml).
+
 
 ## Setup
 
@@ -36,17 +38,17 @@ $ yarn install --frozen-lockfile && yarn tsc
 # app-config.dev.yaml
 app:
   title: Embark Developer Portal
-  baseUrl: https://dev.devportal.name
+  baseUrl: <host_url>
 ...
 
 backend:
-  baseUrl: https://dev.devportal.name
+  baseUrl: <host_url>
   listen:
     port: 7007
   csp:
     connect-src: ["'self'", 'http:', 'https:']
   cors:
-    origin: https://dev.devportal.name
+    origin: <host_url>
     methods: [GET, POST, PUT, DELETE]
     credentials: true
   cache:
@@ -64,6 +66,11 @@ auth:
         clientSecret: ${GH_CLIENT_SECRET}
 ```
 
+> Refer to [DI Routing Traffic Guide](https://github.com/department-of-veterans-affairs/lighthouse-di-platform-servicemesh/blob/main/docs/routing-traffic.md) for most recent information related to the `host_url` referenced above.
+
+> Note: You can opt to use environment variables instead of modifying the `app-config.yaml` and rebuilding the image. The `baseUrl` can be overridden using environment variables prefixed with `APP_CONFIG` (e.g. `APP_CONFIG_app_baseUrl` ). Here is an example of a [ConfigMap](https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/dist/dev/dev.yaml#L2) in our deployment repository. This will generally work for most fields in the `app-config.yaml`, but the `baseUrl` specifically has been known to break the OAuth by generating invalid callback URLs by using the `baseUrl` from the `app-config.yaml` instead of the environmental overrides. 
+
+
 - Build Static Assets
 
 ```
@@ -73,7 +80,7 @@ $ yarn build
 - Determine commit sha you want to tag images with
 
   - Replace `<commit-sha>` below with the commit sha
-  - The commit sha used to tag images is prefixed with "sha-" (i.e. sha-47915d626f95e5b620636376c8adf29ec734...)
+  - The commit sha used to tag images is prefixed with "sha-" (e.g. .../backend:sha-47915d626f95e5b620636376c8adf29ec734...)
 
 - Create Image for Backend Container
 
@@ -133,8 +140,7 @@ Login Successful!
 ```
 $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 ```
-
-> Note: if using Codespaces then you cannot install Lightkeeper. To work around this, you can set your kube config locally using the steps above and then copy the config to your Codespaces. In Codespaces, you can make a new `.kube` directory in `~/` and then make a new file inside `~/.kube/` called `config`. Inside `~/.kube/config` you can copy the contents of your local `~/.lightkeeper/config` file.
+> Note: Lightkeeper cli must be used on GFE or CAG desktop.
 
 ### Install Helm Chart
 
@@ -164,22 +170,24 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 
 - Create Environment Variables for Secrets
 
-  - Create `.env` file with your environment variables; you will need to set all of these variables in order for the deployment to work.
+  - Create `.env` file with your environment variables; you will need to set all of these variables in order for the deployment to work. You can reference this [ConfigMap](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/helm/embark/templates/configmap.yaml) used by the helm deployment to ensure all environment variables are configured.
 
   ```
   DOCKERCONFIGJSON=<base64 encoded json string>
   GH_TOKEN=<github_token>
   GH_CLIENT_ID=<GH OAuth Client ID>
   GH_CLIENT_SECRET=<GH OAuth Client Secret>
-  HOST=dev.devportal.name
-  BASE_URL=https://dev.devportal.name
-  GATEWAY=istio-system/dev-devportal-name-gateway
+  HOST=<host_url>
+  BASE_URL=http://<host_url>
+  GATEWAY=<gateway>
   NONPROD=true
   DEPLOY_ENV=dev
   COMMIT_SHA=<commit sha used to tag image or "latest"*>
   ```
 
-  > - If you manually build, push, and tag the image with "latest", using "latest" as the image tag for the deployment can work as a temporary fix but it is preferable to use something more unique like a commit sha. The "latest" tag changes frequently due to the CI workflow so this may cause the containers to crash by pulling an image definition that the Helm release may not be configured to use.
+  > Refer to [DI Routing Traffic Guide](https://github.com/department-of-veterans-affairs/lighthouse-di-platform-servicemesh/blob/main/docs/routing-traffic.md) for most recent information related to the `host_url` referenced above.
+
+  > If you manually build, push, and tag the image with "latest", using "latest" as the image tag for the deployment can work as a temporary fix but it is preferable to use something more unique like the commit sha. The "latest" tag changes frequently due to the CI workflow so this may cause the containers to crash by pulling an image definition that the Helm release may not be configured to use.
 
   - Export file contents
 
@@ -190,7 +198,7 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 - Install the Helm chart and set secrets using `--set`
 
 ```
-$ helm upgrade lighthouse-embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD,backend.nonprod=$NONPROD,frontend.nonprod=$NONPROD --set BASE_URL=$BASE_URL --set GATEWAY=$GATEWAY --set BACKEND_PORT=7007 --set DEPLOY_ENV=$DEPLOY_ENV,backend.DEPLOY_ENV=$DEPLOY_ENV --set backend.image.tag=$COMMIT_SHA,frontend.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER,backend.POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD,backend.POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME,backend.AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set SERVICE_ACCOUNT=$SERVICE_ACCOUNT,backend.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --install --atomic --cleanup-on-fail --history-max 5
+$ helm upgrade lighthouse-embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GATEWAY=$GATEWAY --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set global.DEPLOY_ENV=$DEPLOY_ENV --set global.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set global.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --install --atomic --cleanup-on-fail --history-max 5
 ```
 
 ### Verify Deployment
@@ -202,3 +210,8 @@ $ helm list -n lighthouse-bandicoot-dev
 NAME            NAMESPACE                       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
 embark-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:11:06.6508301 -0800 PST   deployed        embark-0.1.0                    1.16.0
 ```
+
+- Browser
+Using a CAG browser or GFE, enter the `<host_url>` used above to access the Embark application.
+
+

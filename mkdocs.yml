@@ -3,12 +3,10 @@ repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-embark'
 
 nav:
   - Home: index.md
-  - Deployment: deployment.md
+  - Deployment Overview: deployment.md
   - Deploy to Dev Environment (K8s/Helm): dev-deploy.md
-  - Deployment Architecture: deployment-arch.md
   - Running Locally: running-locally.md
   - Backstage Update: backstage-update.md
-  - Helm Charts: helm.md
   - Allstar: allstar.md
   - Cypress Troubleshooting: cypress-troubleshooting.md
   - Pre-build Validation: pre-build-validation.md
