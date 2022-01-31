@@ -2,20 +2,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "embark.fullname" . }}-nonprod-configmap
+  name: {{ .Values.global.DEPLOY_ENV }}-cm
   labels: 
     {{- include "embark.labels" . | nindent 4 }}
 data:
   APP_CONFIG_app_baseUrl: {{ .Values.BASE_URL }}
   APP_CONFIG_backend_baseUrl: {{ .Values.BASE_URL }}
   APP_CONFIG_backend_cors_origin: {{ .Values.BASE_URL }}
-  APP_CONFIG_auth_environment: {{ .Values.DEPLOY_ENV }}
+  APP_CONFIG_backend_listen_port: "7007"
   AWS_BUCKET_NAME: {{ .Values.AWS_BUCKET_NAME }}
-  POSTGRES_USER: {{ .Values.POSTGRES_USER }}
-  POSTGRES_PASSWORD: {{ .Values.POSTGRES_PASSWORD }}
   DOCSERVER_BASE_URL: {{ .Values.DOCSERVER_BASE_URL }}
-  {{ if eq .Values.DEPLOY_ENV "dev" }}
-  APP_CONFIG_auth_environment: "development"
-  {{ end }}
-
 {{ end }}

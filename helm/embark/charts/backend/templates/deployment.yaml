@@ -14,10 +14,8 @@ spec:
       {{- include "backend.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        namespace: "lighthouse-bandicoot-{{ .Values.global.DEPLOY_ENV }}"
         rollme: {{ randAlphaNum 5 | quote }}
       labels:
         {{- include "backend.selectorLabels" . | nindent 8 }}
@@ -27,12 +25,14 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: 
-        {{ .Values.SERVICE_ACCOUNT }}
+        {{ .Values.global.SERVICE_ACCOUNT }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}/{{ .Chart.Name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}/{{ .Chart.Name }}:{{ .Values.global.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: {{ .Values.name }}
@@ -46,42 +46,16 @@ spec:
             httpGet:
               path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.port }}
-          command: ["/bin/sh"]
-          args:
-            - -c
-            - >-
-                node packages/backend --config app-config.yaml --config app-config.{{ .Values.DEPLOY_ENV }}.yaml | sed -u -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" >> /var/log/backend.log
-          volumeMounts:
-          - mountPath: /var/log
-            name: varlog
-          - mountPath: /etc/config
-            name: config
+          args: ["packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
           envFrom:
           - configMapRef:
-              name: "{{ .Release.Name }}-nonprod-configmap"
+              name: "{{ .Values.global.DEPLOY_ENV }}-cm"
           - secretRef:
-              name: "{{ .Release.Name }}-secrets"
+              name: "{{ .Values.global.DEPLOY_ENV }}-gh-secrets"
+          - secretRef:
+              name: postgres-secrets
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-        - name: logger
-          image: "busybox"
-          command: ["/bin/sh"]
-          args:
-            - -c
-            - >-
-              while ! tail -f /var/log/backend.log; do sleep 1 ; done &&
-              tail -f /var/log/backend.log 
-          volumeMounts:
-          - name: varlog
-            mountPath: /var/log
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      volumes:
-      - name: varlog
-        emptyDir: {}
-      - configMap:
-          name: "{{ .Release.Name }}-nonprod-configmap"
-        name: config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

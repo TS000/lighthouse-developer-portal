@@ -10,8 +10,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   # For deployment repo this will be hardcoded and updated with Argo, i.e:
   # tag: "sha-6dcd760d389e826b58586cde61f5ead1ca464943"
-  # For now we can just pass in a variable with the helm upgrade command:
-  tag: ${COMMIT_SHA}
+  tag: "placeholder"
 
 name: backend-port
 port: 7007
@@ -27,29 +26,23 @@ nameOverride: ''
 fullnameOverride: ''
 
 podAnnotations:
-  namespace: lighthouse-bandicoot-dev
 
-nonprod: ${NONPROD}
-DEPLOY_ENV: ${DEPLOY_ENV}
-POSTGRES_USER: ${POSTGRES_USER}
-POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-AWS_BUCKET_NAME: ${AWS_BUCKET_NAME}
-SERVICE_ACCOUNT: ${SERVICE_ACCOUNT}
+DEPLOY_ENV: "placeholder"
+SERVICE_ACCOUNT: "placeholder"
 
 podSecurityContext:
   fsGroup: 1000
-
 service:
   type: ClusterIP
   port: 7007
 
 resources:
   requests:
-    cpu: '0.25'
-    memory: '100Mi'
-  limits:
     cpu: '0.5'
-    memory: '200Mi'
+    memory: '500Mi'
+  limits:
+    cpu: '2'
+    memory: '2000Mi'
 
 autoscaling:
   enabled: false

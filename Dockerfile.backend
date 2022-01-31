@@ -13,7 +13,7 @@ RUN yarn install --frozen-lockfile --production --network-timeout 300000 && rm -
 COPY packages/backend/dist/bundle.tar.gz app-config.yaml ./
 # We can update this later to use a script to create each yaml for each environment so we do not have an
 # excessive maintenance burden from multiple copies (i.e. changing one thing requires changes in 5 files instead of 1)
-COPY app-config.*.yaml ./
+COPY app-config.production.yaml ./
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
 
 # Install VA certs
@@ -42,4 +42,4 @@ RUN chown -R 1000:1000 /app
 
 USER 1000
 
-CMD ["node", "packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
+ENTRYPOINT [ "node" ]

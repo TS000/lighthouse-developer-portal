@@ -38,7 +38,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ .Values.DEPLOY_ENV }}-postgres"
+  name: postgres
   labels:
     {{- include "embark.labels" . | nindent 4 }}
 spec:
@@ -52,8 +52,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: "{{ .Release.Name }}-postgres-secrets"
-  labels:
-    app: {{ include "backend.fullname" . }}-postgres
+  labels: {{- include "embark.selectorLabels" . | nindent 8 }}
 type: Opaque
 data:
   POSTGRES_USER: {{ .Values.POSTGRES_USER | b64enc }}

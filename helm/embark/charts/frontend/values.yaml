@@ -11,7 +11,7 @@ image:
   # For deployment repo this will be hardcoded and updated with Argo, i.e:
   # tag: "sha-6dcd760d389e826b58586cde61f5ead1ca464943"
   # For now we can just pass in a variable with the helm upgrade command:
-  tag: ${COMMIT_SHA}
+  tag: "placeholder"
 
 name: http
 port: 3000
@@ -28,10 +28,7 @@ frontend:
 nameOverride: ''
 fullnameOverride: ''
 
-nonprod: ${nonprod}
-
-podAnnotations:
-  namespace: lighthouse-bandicoot-dev
+DEPLOY_ENV: "placeholder"
 
 service:
   type: ClusterIP
@@ -39,11 +36,11 @@ service:
 
 resources:
   requests:
-    cpu: '0.1'
-    memory: '25Mi'
-  limits:
     cpu: '0.2'
-    memory: '50Mi'
+    memory: '100Mi'
+  limits:
+    cpu: '0.4'
+    memory: '200Mi'
 
 autoscaling:
   enabled: false

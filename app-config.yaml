@@ -15,17 +15,13 @@ app:
           - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
             title: GitHub Issues
 
-  # datadogRum:
-  #   clientToken: ${DATADOG_CLIENT_TOKEN}
-  #   applicationId: ${DATADOG_APPLICATION_ID}
-
 organization:
   name: Embark
 
 backend:
   auth:
     keys:
-      - secret: ${GITHUB_TOKEN}
+      - secret: ${GH_TOKEN}
   baseUrl: http://127.0.0.1:7007
   listen:
     port: 7007
@@ -50,12 +46,6 @@ backend:
     allow:
       # allow reading evss swagger
       - host: www.ebenefits.va.gov
-    # Config for running local k8s
-    # connection:
-    #   host: ${POSTGRES_SERVICE_HOST}
-    #   port: ${POSTGRES_SERVICE_PORT}
-    #   user: ${POSTGRES_USER}
-    #   password: ${POSTGRES_PASSWORD}
     # https://node-postgres.com/features/ssl
     #ssl: require # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
     #ca: # if you have a CA file and want to verify it you can uncomment this section
@@ -64,7 +54,7 @@ backend:
 integrations:
   github:
     - host: github.com
-      token: ${GITHUB_TOKEN}
+      token: ${GH_TOKEN}
     ### Example for how to add your GitHub Enterprise instance using the API:
     # - host: ghe.example.net
     #   apiBaseUrl: https://ghe.example.net/api/v3
@@ -98,12 +88,12 @@ auth:
   providers:
     github:
       development:
-        clientId: ${LOCAL_GH_CLIENT_ID}
-        clientSecret: ${LOCAL_GH_CLIENT_SECRET}
+        clientId: ${GH_CLIENT_ID}
+        clientSecret: ${GH_CLIENT_SECRET}
 
 scaffolder:
   github:
-    token: ${GITHUB_TOKEN}
+    token: ${GH_TOKEN}
     visibility: public # or 'internal' or 'private'
 
 catalog:
@@ -125,6 +115,10 @@ catalog:
     # backend component
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/backend/catalog-info.yaml
+
+    # deployment repo
+    - type: url
+      target: https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/catalog-info.yaml
 
     # feature-flags component
     - type: url

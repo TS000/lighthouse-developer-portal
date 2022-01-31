@@ -32,7 +32,7 @@ inputs:
     description: 'Service account name'
     required: true
   DOCSERVER_BASE_URL:
-    description: 'Docserver base url
+    description: 'Docserver base url'
     required: true
 
 runs:
@@ -65,19 +65,19 @@ runs:
       --values helm/embark/values.yaml 
       --namespace lighthouse-bandicoot-dev 
       --set DOCKERCONFIGJSON=${{ inputs.DOCKERCONFIGJSON }} 
-      --set GH_TOKEN=${{ inputs.GH_TOKEN }} 
+      --set GH_TOKEN=${{ inputs.GH_TOKEN }}
+      --set HOST=${{ steps.overrides.outputs.HOST }}
+      --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }}  
       --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }} 
       --set GH_CLIENT_SECRET=${{ inputs.GH_CLIENT_SECRET }} 
-      --set nonprod=${{ steps.overrides.outputs.nonprod }},backend.nonprod=${{ steps.overrides.outputs.nonprod }},frontend.nonprod=${{ steps.overrides.outputs.nonprod }} 
+      --set nonprod=${{ steps.overrides.outputs.nonprod }} 
       --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }} 
-      --set HOST=${{ steps.overrides.outputs.HOST }} 
-      --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }} 
-      --set DEPLOY_ENV=${{ inputs.ENV }},backend.DEPLOY_ENV=${{ inputs.ENV }} 
-      --set backend.image.tag=${{ steps.tag.outputs.sha }},frontend.image.tag=${{ steps.tag.outputs.sha }} 
-      --set POSTGRES_USER=${{ inputs.POSTGRES_USER }},backend.POSTGRES_USER=${{ inputs.POSTGRES_USER }} 
-      --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }},backend.POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }} 
-      --set AWS_BUCKET_NAME=${{ inputs.AWS_BUCKET_NAME }},backend.AWS_BUCKET_NAME=${{ inputs.AWS_BUCKET_NAME }}
-      --set SERVICE_ACCOUNT=${{ inputs.SERVICE_ACCOUNT }},backend.SERVICE_ACCOUNT=${{ inputs.SERVICE_ACCOUNT }}
+      --set global.DEPLOY_ENV=${{ inputs.ENV }}
+      --set global.image.tag=${{ steps.tag.outputs.sha }}
+      --set POSTGRES_USER=${{ inputs.POSTGRES_USER }}
+      --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }}
+      --set AWS_BUCKET_NAME=${{ inputs.AWS_BUCKET_NAME }}
+      --set global.SERVICE_ACCOUNT=${{ inputs.SERVICE_ACCOUNT }}
       --set DOCSERVER_BASE_URL=${{ inputs.DOCSERVER_BASE_URL }}
       --install 
       --atomic 

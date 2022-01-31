@@ -14,10 +14,8 @@ spec:
       {{- include "frontend.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        namespace: "lighthouse-bandicoot-{{ .Values.global.DEPLOY_ENV }}"
         rollme: {{ randAlphaNum 5 | quote }}
       labels:
         {{- include "frontend.selectorLabels" . | nindent 8 }}
@@ -32,7 +30,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}/{{ .Chart.Name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}/{{ .Chart.Name }}:{{ .Values.global.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: {{ .Values.name }}
@@ -46,11 +44,9 @@ spec:
             httpGet:
               path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.port }}
-          {{- if .Values.nonprod }}
           envFrom:
           - configMapRef:
-              name: "{{ .Release.Name }}-nonprod-configmap"
-          {{- end }}
+              name: "{{ .Values.global.DEPLOY_ENV }}-cm"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

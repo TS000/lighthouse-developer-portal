@@ -16,11 +16,13 @@ secrets:
   POSTGRES_USER: ${POSTGRES_USER}
   POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
   AWS_BUCKET_NAME: ${AWS_BUCKET_NAME}
-  SERVICE_ACCOUNT: $SERVICE_ACCOUNT}
   DOCSERVER_BASE_URL: ${DOCSERVER_BASE_URL}
 
-podAnnotations:
-  namespace: lighthouse-bandicoot-dev
+global:
+  DEPLOY_ENV: ${DEPLOY_ENV}
+  image:
+    tag: ${COMMIT_SHA}
+  SERVICE_ACCOUNT: ${SERVICE_ACCOUNT}
 
 service:
   type: ClusterIP
