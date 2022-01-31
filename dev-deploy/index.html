@@ -1211,7 +1211,7 @@ Login Successful!
 <li>
 <p>Create Environment Variables for Secrets</p>
 <ul>
-<li>Create <code>.env</code> file with your environment variables; you will need to set all of these variables in order for the deployment to work. You can reference this <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/helm/embark/templates/configmap.yaml">ConfigMap</a> used by the helm deployment to ensure all environment variables are configured.</li>
+<li>Create <code>.env</code> file with your environment variables; you will need to set all of these variables in order for the deployment to work.</li>
 </ul>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1252,7 +1252,7 @@ COMMIT_SHA=&lt;commit sha used to tag image or &quot;latest&quot;*&gt;
 <ul>
 <li>Install the Helm chart and set secrets using <code>--set</code></li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade lighthouse-embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GATEWAY=$GATEWAY --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set global.DEPLOY_ENV=$DEPLOY_ENV --set global.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set global.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --install --atomic --cleanup-on-fail --history-max 5
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade lighthouse-embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set GH_TOKEN=$GH_TOKEN --set HOST=$HOST --set GH_CLIENT_ID=$GH_CLIENT_ID --set GH_CLIENT_SECRET=$GH_CLIENT_SECRET --set nonprod=$NONPROD,backend.nonprod=$NONPROD,frontend.nonprod=$NONPROD --set BASE_URL=$BASE_URL --set GATEWAY=$GATEWAY --set BACKEND_PORT=7007 --set DEPLOY_ENV=$DEPLOY_ENV,backend.DEPLOY_ENV=$DEPLOY_ENV --set backend.image.tag=$COMMIT_SHA,frontend.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER,backend.POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD,backend.POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME,backend.AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set SERVICE_ACCOUNT=$SERVICE_ACCOUNT,backend.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --install --atomic --cleanup-on-fail --history-max 5
 </code></pre></div>
 </td></tr></table>
 
