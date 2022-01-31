@@ -47,6 +47,11 @@ proxy:
   '/test':
     target: 'https://example.com'
     changeOrigin: true
+  '/docserver':
+    target: ${DOCSERVER_BASE_URL}
+    changeOrigin: true
+    pathRewrite:
+      '^/api/proxy/docserver/': '/docserver/'
 
 auth:
   # providers: {}

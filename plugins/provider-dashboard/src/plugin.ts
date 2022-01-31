@@ -1,4 +1,7 @@
-import { createPlugin, createRoutableExtension } from '@backstage/core-plugin-api';
+import {
+  createPlugin,
+  createRoutableExtension,
+} from '@backstage/core-plugin-api';
 
 import { rootRouteRef } from './routes';
 
@@ -13,7 +16,7 @@ export const ProviderDashboardPage = providerDashboardPlugin.provide(
   createRoutableExtension({
     name: 'ProviderDashboardPage',
     component: () =>
-      import('./components/ExampleComponent').then(m => m.ExampleComponent),
+      import('./components/BodyComponent').then(m => m.BodyComponent),
     mountPoint: rootRouteRef,
   }),
 );

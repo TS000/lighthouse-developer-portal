@@ -13,6 +13,7 @@ data:
   AWS_BUCKET_NAME: {{ .Values.AWS_BUCKET_NAME }}
   POSTGRES_USER: {{ .Values.POSTGRES_USER }}
   POSTGRES_PASSWORD: {{ .Values.POSTGRES_PASSWORD }}
+  DOCSERVER_BASE_URL: {{ .Values.DOCSERVER_BASE_URL }}
   {{ if eq .Values.DEPLOY_ENV "dev" }}
   APP_CONFIG_auth_environment: "development"
   {{ end }}

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import {
-  InfoCard,
   Header,
   Page,
   Content,
@@ -9,28 +8,21 @@ import {
   HeaderLabel,
   SupportButton,
 } from '@backstage/core-components';
-import { ExampleFetchComponent } from '../ExampleFetchComponent';
+import { APIFetchComponent } from '../APIFetchComponent';
 
-export const ExampleComponent = () => (
+export const BodyComponent = () => (
   <Page themeId="tool">
-    <Header title="Custom Provider Dashboard" subtitle="">
+    <Header title="Provider Dashboard" subtitle="">
       <HeaderLabel label="Owner" value="Team Quokka" />
       <HeaderLabel label="Lifecycle" value="Alpha" />
     </Header>
     <Content>
-      <ContentHeader title="Plugin title">
+      <ContentHeader title="">
         <SupportButton>A description of your plugin goes here.</SupportButton>
       </ContentHeader>
       <Grid container spacing={3} direction="column">
         <Grid item>
-          <InfoCard title="Information card">
-            <Typography variant="body1">
-              All content should be wrapped in a card like this.
-            </Typography>
-          </InfoCard>
-        </Grid>
-        <Grid item>
-          <ExampleFetchComponent />
+          <APIFetchComponent />
         </Grid>
       </Grid>
     </Content>

@@ -21,3 +21,10 @@ auth:
       development:
         clientId: '12345'
         clientSecret: '12345'
+
+proxy:
+  '/docserver':
+    target: ${DOCSERVER_BASE_URL}
+    changeOrigin: true
+    pathRewrite:
+      '^/api/proxy/docserver/': '/docserver/'

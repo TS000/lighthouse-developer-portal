@@ -46,6 +46,11 @@ proxy:
   '/test':
     target: 'https://example.com'
     changeOrigin: true
+  '/docserver':
+    target: ${DOCSERVER_BASE_URL}
+    changeOrigin: true
+    pathRewrite:
+      '^/api/proxy/docserver/': '/docserver/'
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -59,7 +64,7 @@ techdocs:
     awsS3:
       bucketName: ${AWS_BUCKET_NAME}
       sse: 'aws:kms'
-  
+
 auth:
   # providers: {}
   # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
@@ -90,7 +95,7 @@ catalog:
     # target: https://github.com/department-of-veterans-affairs/lighthouse-*/blob/-/catalog-info.yaml
 
     #################### EMBARK #########################
-    
+
     # Embark
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml

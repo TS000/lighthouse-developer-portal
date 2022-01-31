@@ -6,7 +6,7 @@ createDevApp()
   .registerPlugin(providerDashboardPlugin)
   .addPage({
     element: <ProviderDashboardPage />,
-    title: 'Custom Provider Dashboard',
+    title: 'Provider Dashboard',
     path: '/provider-dashboard'
   })
   .render();

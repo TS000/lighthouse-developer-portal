@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExampleComponent } from './ExampleComponent';
+import { BodyComponent } from './BodyComponent';
 import { ThemeProvider } from '@material-ui/core';
 import { lightTheme } from '@backstage/theme';
 import { rest } from 'msw';
@@ -9,7 +9,7 @@ import {
   renderInTestApp,
 } from "@backstage/test-utils";
 
-describe('ExampleComponent', () => {
+describe('BodyComponent', () => {
   const server = setupServer();
   // Enable sane handlers for network requests
   setupRequestMockHandlers(server);
@@ -24,9 +24,9 @@ describe('ExampleComponent', () => {
   it('should render', async () => {
     const rendered = await renderInTestApp(
       <ThemeProvider theme={lightTheme}>
-        <ExampleComponent />
+        <BodyComponent />
       </ThemeProvider>,
     );
-    expect(rendered.getByText('Custom Provider Dashboard')).toBeInTheDocument();
+    expect(rendered.getByText('Provider Dashboard')).toBeInTheDocument();
   });
 });

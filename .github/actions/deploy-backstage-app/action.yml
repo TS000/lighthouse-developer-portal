@@ -31,6 +31,9 @@ inputs:
   SERVICE_ACCOUNT:
     description: 'Service account name'
     required: true
+  DOCSERVER_BASE_URL:
+    description: 'Docserver base url
+    required: true
 
 runs:
   using: "composite"
@@ -75,6 +78,7 @@ runs:
       --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }},backend.POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }} 
       --set AWS_BUCKET_NAME=${{ inputs.AWS_BUCKET_NAME }},backend.AWS_BUCKET_NAME=${{ inputs.AWS_BUCKET_NAME }}
       --set SERVICE_ACCOUNT=${{ inputs.SERVICE_ACCOUNT }},backend.SERVICE_ACCOUNT=${{ inputs.SERVICE_ACCOUNT }}
+      --set DOCSERVER_BASE_URL=${{ inputs.DOCSERVER_BASE_URL }}
       --install 
       --atomic 
       --cleanup-on-fail 
