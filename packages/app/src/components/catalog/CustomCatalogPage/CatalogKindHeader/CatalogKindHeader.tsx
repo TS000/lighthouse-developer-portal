@@ -64,7 +64,7 @@ export const CatalogKindHeader = ({
       setSelectedKind(queryParameters.kind);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedKind, queryParameters.kind]);
+  }, [queryParameters.kind]);
 
   // Before allKinds is loaded, or when a kind is entered manually in the URL, selectedKind may not
   // be present in allKinds. It should still be shown in the dropdown, but may not have the nice

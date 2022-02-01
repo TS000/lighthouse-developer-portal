@@ -20,6 +20,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import ListIcon from '@material-ui/icons/List';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import GrainIcon from '@material-ui/icons/Grain';
 import MapIcon from '@material-ui/icons/MyLocation';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
@@ -130,7 +131,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               callback={() => handleFilterChange('api')}
             />
             <SidebarSubmenuItem
-              icon={ExtensionIcon}
+              icon={GrainIcon}
               to="catalog?filters[kind]=system"
               title="Systems"
               callback={() => handleFilterChange('system')}

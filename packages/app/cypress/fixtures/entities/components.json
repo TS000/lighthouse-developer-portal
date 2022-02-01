@@ -1,0 +1,118 @@
+[
+  {
+    "metadata": {
+      "annotations": {
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main/plugins/feature-flag-ui/catalog-info.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/plugins/feature-flag-ui/catalog-info.yaml",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main/plugins/feature-flag-ui/catalog-info.yaml",
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/main/plugins/feature-flag-ui/catalog-info.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main/plugins/feature-flag-ui/",
+        "backstage.io/techdocs-ref": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark",
+        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-embark"
+      },
+      "name": "plugin-feature-flags",
+      "namespace": "lighthouse-embark",
+      "description": "A plugin to include feature-flags to a frontend.",
+      "tags": ["javascript", "react", "typescript", "plugin"],
+      "links": [
+        {
+          "url": "https://github.com/department-of-veterans-affairs/lighthouse-embark/issues",
+          "title": "Issues",
+          "icon": "alert"
+        },
+        {
+          "url": "https://department-of-veterans-affairs.github.io/lighthouse-embark/",
+          "title": "Docs",
+          "icon": "help"
+        }
+      ],
+      "uid": "70d232fe-a7ab-4dbb-8427-8741129641f6",
+      "generation": 1,
+      "etag": "e3d56f30fe9aff14b36a60444666640d59ee99d0"
+    },
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "spec": {
+      "type": "website",
+      "owner": "lighthouse-bandicoot",
+      "lifecycle": "experimental",
+      "system": "embark"
+    },
+    "relations": [
+      {
+        "type": "ownedBy",
+        "target": {
+          "kind": "group",
+          "namespace": "lighthouse-embark",
+          "name": "lighthouse-bandicoot"
+        }
+      },
+      {
+        "type": "partOf",
+        "target": {
+          "kind": "system",
+          "namespace": "lighthouse-embark",
+          "name": "embark"
+        }
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "annotations": {
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main/packages/app/catalog-info.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/app/catalog-info.yaml",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main/packages/app/catalog-info.yaml",
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/main/packages/app/catalog-info.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main/packages/app/",
+        "backstage.io/techdocs-ref": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark",
+        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-embark"
+      },
+      "name": "frontend",
+      "namespace": "lighthouse-embark",
+      "description": "The frontend application for Embark",
+      "tags": ["javascript", "typescript", "react"],
+      "links": [
+        {
+          "url": "https://github.com/department-of-veterans-affairs/lighthouse-embark/issues",
+          "title": "Issues",
+          "icon": "alert"
+        },
+        {
+          "url": "https://department-of-veterans-affairs.github.io/lighthouse-embark/",
+          "title": "Docs",
+          "icon": "help"
+        }
+      ],
+      "uid": "803c54fd-eb9d-46fa-b006-6808b6ec0fe9",
+      "generation": 1,
+      "etag": "0ef1113b8debc87f9abcbd464d9a614c9b9ba30b"
+    },
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "spec": {
+      "type": "website",
+      "owner": "lighthouse-bandicoot",
+      "lifecycle": "experimental",
+      "system": "embark"
+    },
+    "relations": [
+      {
+        "type": "ownedBy",
+        "target": {
+          "kind": "group",
+          "namespace": "lighthouse-embark",
+          "name": "lighthouse-bandicoot"
+        }
+      },
+      {
+        "type": "partOf",
+        "target": {
+          "kind": "system",
+          "namespace": "lighthouse-embark",
+          "name": "embark"
+        }
+      }
+    ]
+  }
+]
