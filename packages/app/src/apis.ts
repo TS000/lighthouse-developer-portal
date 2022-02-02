@@ -7,12 +7,10 @@ import {
   AnyApiFactory,
   configApiRef,
   createApiFactory,
-  analyticsApiRef,
   githubAuthApiRef,
   discoveryApiRef,
   oauthRequestApiRef,
 } from '@backstage/core-plugin-api';
-import { GoogleAnalytics } from '@backstage/plugin-analytics-module-ga';
 import { GithubAuth } from '@backstage/core-app-api';
 import { exploreToolsConfigRef } from '@backstage/plugin-explore-react';
 import { pluginManifest } from './pluginManifest';
@@ -22,12 +20,6 @@ export const apis: AnyApiFactory[] = [
     api: scmIntegrationsApiRef,
     deps: { configApi: configApiRef },
     factory: ({ configApi }) => ScmIntegrationsApi.fromConfig(configApi),
-  }),
-  // Instantiate and register the GA Analytics API Implementation.
-  createApiFactory({
-    api: analyticsApiRef,
-    deps: { configApi: configApiRef },
-    factory: ({ configApi }) => GoogleAnalytics.fromConfig(configApi),
   }),
   ScmAuth.createDefaultApiFactory(),
   createApiFactory({

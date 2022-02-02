@@ -1,10 +1,6 @@
 app:
   title: Embark Developer Portal
   baseUrl: http://127.0.0.1:3000
-  # Analytics
-  analytics:
-    ga:
-      trackingId: UA-213643760-1
   # Support
   support:
     url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues # Used by common ErrorPage

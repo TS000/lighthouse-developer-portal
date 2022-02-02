@@ -47,6 +47,7 @@ nav:
       - Twelve Factor App: ADR/twelve-factor-app.md
       - Image Signing: ADR/image-signing.md
       - Unit Test Coverage: ADR/code-coverage.md
+      - Remove Google Analytics: ADR/google-analytics.md
 
 plugins:
   - techdocs-core
