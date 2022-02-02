@@ -73,7 +73,7 @@ describe('FeedbackModal', () => {
         .click();
 
       cy.get('div')
-        .contains('Feedback submitted! It can be found here.')
+        .contains('Feedback submitted! View it on GitHub.')
         .should('be.visible');
       cy.contains('Provide feedback for Embark').should('not.exist');
     });

@@ -72,11 +72,11 @@ export interface SearchModalProps {
  */
 export const Modal = ({
   open = false,
-  toggleModal
+  toggleModal,
 }: SearchModalProps): ReactElement => {
   const [feedbackText, setFeedbackText] = useState<string>('');
   const [currentTab, setCurrentTab] = useState(0);
-  const classes = useStyles()
+  const classes = useStyles();
 
   // Submitted feedback states
   const [hasSubmittedFeedback, setHasSubmittedFeedback] =
@@ -127,12 +127,12 @@ export const Modal = ({
         <DismissableBanner
           message={
             <Typography>
-              Feedback submitted! It can be found{' '}
+              Feedback submitted!{' '}
               <Link
                 to="https://github.com/department-of-veterans-affairs/lighthouse-embark/issues"
-                style={{ color: 'white' }}
+                style={{ color: 'white', textDecoration: 'underline' }}
               >
-                here
+                View it on GitHub
               </Link>
               .
             </Typography>
@@ -160,7 +160,11 @@ export const Modal = ({
       >
         <DialogTitle>
           Provide feedback for Embark
-          <IconButton aria-label="close" onClick={toggleModal} className={classes.root}>
+          <IconButton
+            aria-label="close"
+            onClick={toggleModal}
+            className={classes.root}
+          >
             <CloseIcon />
           </IconButton>
         </DialogTitle>
