@@ -56,6 +56,13 @@ spec:
               name: postgres-secrets
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          - mountPath: /etc/app-config/
+            name: gh-app-config
+      volumes:
+      - name: gh-app-config
+        secret:
+          secretName: gh-app-secrets
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

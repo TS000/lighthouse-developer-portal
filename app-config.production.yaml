@@ -29,7 +29,11 @@ backend:
       # allow reading evss swagger
       - host: www.ebenefits.va.gov
 
-#integrations:
+integrations:
+  github:
+    - host: github.com
+      apps:
+        - $include: /etc/app-config/app-creds.yaml
 proxy:
   '/test':
     target: 'https://example.com'

@@ -7,8 +7,8 @@ inputs:
   DOCKERCONFIGJSON:
     description: 'Authentication for pulling from image registry'
     required: true
-  GH_TOKEN:  
-    description: 'Base64 encoded github token'
+  BACKEND_SECRET:  
+    description: 'Randomly generated string for backend-to-backend authentication'
     required: true
   GH_CLIENT_ID:
     description: 'OAuth client ID'
@@ -33,6 +33,9 @@ inputs:
     required: true
   DOCSERVER_BASE_URL:
     description: 'Docserver base url'
+    required: true
+  APP_CREDS_YAML:
+    description: 'GitHub app secret credentials yaml file'
     required: true
 
 runs:
@@ -59,13 +62,14 @@ runs:
       echo "::set-output name=sha::$prefix"
     shell: bash
   - name: Upgrade(or install) helm release
+    id: upgrade
     run: >
       helm upgrade lighthouse-embark-${{ inputs.ENV }} helm/embark/ 
       --debug 
       --values helm/embark/values.yaml 
       --namespace lighthouse-bandicoot-dev 
       --set DOCKERCONFIGJSON=${{ inputs.DOCKERCONFIGJSON }} 
-      --set GH_TOKEN=${{ inputs.GH_TOKEN }}
+      --set BACKEND_SECRET=${{ inputs.BACKEND_SECRET }}
       --set HOST=${{ steps.overrides.outputs.HOST }}
       --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }}  
       --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }} 
@@ -83,4 +87,10 @@ runs:
       --atomic 
       --cleanup-on-fail 
       --history-max 5
+    shell: bash
+  - name: Add App credential secret
+    run: |
+      if [[ steps.upgrade.conclusion == 'success' ]]; then
+        echo -e "$APP_CREDS_YAML" | kubectl apply -f -
+      fi
     shell: bash

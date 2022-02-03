@@ -15,9 +15,11 @@ organization:
   name: Embark
 
 backend:
+  # Randomly generated string used for backend-to-backend Authentication
+  # See https://backstage.io/docs/tutorials/backend-to-backend-auth
   auth:
     keys:
-      - secret: ${GH_TOKEN}
+      - secret: ${BACKEND_SECRET}
   baseUrl: http://127.0.0.1:7007
   listen:
     port: 7007
@@ -88,9 +90,9 @@ auth:
         clientSecret: ${GH_CLIENT_SECRET}
 
 scaffolder:
-  github:
-    token: ${GH_TOKEN}
-    visibility: public # or 'internal' or 'private'
+  # github:
+  #   token: ${GH_TOKEN}
+  #   visibility: public # or 'internal' or 'private'
 
 catalog:
   processors:

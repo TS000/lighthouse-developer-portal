@@ -56,13 +56,6 @@ jobs:
     strategy:
       matrix:
         env: [dev]
-        include:
-          - env: dev
-            GH_CLIENT_ID: DEV_GH_CLIENT_ID
-            GH_CLIENT_SECRET: DEV_GH_CLIENT_SECRET
-            DEPLOY_TO: Development
-            URL: http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com
-    concurrency: ${{ matrix.env }}
     permissions:
       packages: read
       contents: read
@@ -81,15 +74,16 @@ jobs:
         with:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
           DOCKERCONFIGJSON: ${{ secrets.DEV_DOCKERCONFIGJSON }}
-          GH_TOKEN: ${{ secrets.DEV_GH_TOKEN }}
-          GH_CLIENT_ID: ${{ secrets[matrix.GH_CLIENT_ID] }}
-          GH_CLIENT_SECRET: ${{ secrets[matrix.GH_CLIENT_SECRET] }}
+          BACKEND_SECRET: ${{ secrets.BACKEND_SECRET }}
+          GH_CLIENT_ID: ${{ secrets.GHA_CLIENT_ID }}
+          GH_CLIENT_SECRET: ${{ secrets.GHA_CLIENT_SECRET }}
           ENV: ${{ matrix.env }}
           POSTGRES_USER: ${{ secrets.DEV_PG_USER }}
           POSTGRES_PASSWORD: ${{ secrets.DEV_PG_PASSWORD }}
           AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
           SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
           DOCSERVER_BASE_URL: ${{ secrets.DOCSERVER_BASE_URL }}
+          APP_CREDS_YAML: ${{ secrets.APP_CREDS_YAML }}
 
   notify-deployment-repo:
     runs-on: ubuntu-latest
