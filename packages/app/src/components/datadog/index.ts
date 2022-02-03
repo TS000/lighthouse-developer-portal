@@ -1,1 +1,1 @@
-export { initDatadogLogs, initDatadogRUM } from './rum-logs';
+export { initDatadogLogs } from './rum-logs';

@@ -1,22 +1,6 @@
 import { datadogLogs, LogsInitConfiguration } from '@datadog/browser-logs';
-import { datadogRum, RumInitConfiguration } from '@datadog/browser-rum';
 
 const DATADOG_CLIENT_TOKEN = 'pubf1d9baf385e683e30ed4988a3a00a668';
-
-function getRUMConfig(): RumInitConfiguration {
-    return {
-        applicationId: '5a6a52f9-271e-4715-9482-e85b426e7da9',
-        clientToken: DATADOG_CLIENT_TOKEN,
-        site: 'datadoghq.com',
-        service:'lighthouse-embark-rum',
-        env: process.env.NODE_ENV,
-        // Specify a version number to identify the deployed version of your application in Datadog 
-        version: '1.0.0',
-        sampleRate: 100,
-        trackInteractions: true,
-        defaultPrivacyLevel: 'mask-user-input'
-    }
-}
 
 function getLoggerConfig(): LogsInitConfiguration {
     const initConfig: LogsInitConfiguration = {
@@ -46,11 +30,6 @@ function getLoggerConfig(): LogsInitConfiguration {
     };
     return initConfig;
 };
-
-export function initDatadogRUM(): void {
-    datadogRum.init(getRUMConfig());
-    // datadogRum.startSessionReplayRecording();
-}
 
 export function initDatadogLogs(): void {
     datadogLogs.init(getLoggerConfig());

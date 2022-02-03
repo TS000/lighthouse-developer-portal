@@ -10,6 +10,15 @@ app:
         links:
           - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
             title: GitHub Issues
+  datadogRum:
+    clientToken: 'pubf1d9baf385e683e30ed4988a3a00a668'
+    applicationId: 5a6a52f9-271e-4715-9482-e85b426e7da9
+    site: 'datadoghq.com'
+    service: 'lighthouse-embark'
+    env: development
+    sampleRate: 100
+    trackInteractions: true
+    defaultPrivacyLevel: 'mask-user-input'
 
 organization:
   name: Embark
