@@ -1,15 +1,22 @@
 yarn run v1.22.17
 $ /home/runner/work/lighthouse-embark/lighthouse-embark/node_modules/.bin/backstage-cli versions:bump
+Using default pattern glob @backstage/*
 Checking for updates of @backstage/dev-utils
 Checking for updates of @backstage/plugin-techdocs-backend
 Checking for updates of @backstage/plugin-search-backend-node
 Checking for updates of @backstage/plugin-search-backend
 Checking for updates of @backstage/plugin-scaffolder-backend
 Checking for updates of @backstage/plugin-proxy-backend
+Checking for updates of @backstage/plugin-permission-node
+Checking for updates of @backstage/plugin-permission-common
+Checking for updates of @backstage/plugin-permission-backend
 Checking for updates of @backstage/plugin-catalog-backend
 Checking for updates of @backstage/plugin-auth-backend
+Checking for updates of @backstage/plugin-app-backend
+Checking for updates of @backstage/integration
 Checking for updates of @backstage/config
 Checking for updates of @backstage/catalog-client
+Checking for updates of @backstage/backend-tasks
 Checking for updates of @backstage/backend-common
 Checking for updates of @backstage/theme
 Checking for updates of @backstage/test-utils
@@ -29,7 +36,6 @@ Checking for updates of @backstage/integration-react
 Checking for updates of @backstage/core-plugin-api
 Checking for updates of @backstage/core-components
 Checking for updates of @backstage/core-app-api
-Checking for updates of @backstage/core
 Checking for updates of @backstage/cli
 Checking for updates of @backstage/catalog-model
 Checking for updates of @backstage/app-defaults
@@ -39,137 +45,22 @@ Checking for updates of @backstage/techdocs-common
 Checking for updates of @backstage/search-common
 Checking for updates of @backstage/plugin-scaffolder-common
 Checking for updates of @backstage/plugin-scaffolder-backend-module-cookiecutter
-Checking for updates of @backstage/integration
+Checking for updates of @backstage/plugin-permission-react
+Checking for updates of @backstage/plugin-catalog-common
 Checking for updates of @backstage/errors
-Checking for updates of @backstage/core-api
 Checking for updates of @backstage/config-loader
 Checking for updates of @backstage/cli-common
 
 Some packages are outdated, updating
 
-unlocking @backstage/plugin-techdocs-backend@^0.12.0 ~> 0.12.2
-unlocking @backstage/dev-utils@^0.2.6 ~> 0.2.16
-unlocking @backstage/plugin-scaffolder-backend@^0.15.0 ~> 0.15.19
-unlocking @backstage/catalog-client@^0.5.0 ~> 0.5.3
-unlocking @backstage/plugin-catalog-backend@^0.19.1 ~> 0.19.4
-unlocking @backstage/plugin-user-settings@^0.3.3 ~> 0.3.15
-unlocking @backstage/plugin-proxy-backend@^0.2.6 ~> 0.2.15
-unlocking @backstage/plugin-search@^0.5.1 ~> 0.5.4
-unlocking @backstage/plugin-techdocs@^0.12.0 ~> 0.12.13
-unlocking @backstage/plugin-org@^0.3.12 ~> 0.3.33
-unlocking @backstage/plugin-scaffolder@^0.11.0 ~> 0.11.17
-unlocking @backstage/plugin-catalog-import@^0.7.0 ~> 0.7.8
-unlocking @backstage/plugin-github-actions@^0.4.7 ~> 0.4.30
-unlocking @backstage/integration-react@^0.1.1 ~> 0.1.17
-unlocking @backstage/plugin-api-docs@^0.6.0 ~> 0.6.21
-unlocking @backstage/plugin-catalog-react@^0.6.2 ~> 0.6.10
-unlocking @backstage/plugin-catalog@^0.7.0 ~> 0.7.7
-unlocking @backstage/core-components@^0.8.0 ~> 0.8.3
-unlocking @backstage/plugin-analytics-module-ga@^0.1.3 ~> 0.1.5
-unlocking @backstage/app-defaults@^0.1.2 ~> 0.1.3
-unlocking @backstage/cli@^0.10.1 ~> 0.10.5
-unlocking @backstage/plugin-scaffolder-backend@^0.15.15 ~> 0.15.19
-unlocking @backstage/plugin-catalog@^0.7.4 ~> 0.7.7
-unlocking @backstage/plugin-catalog-react@^0.6.5 ~> 0.6.10
-unlocking @backstage/plugin-catalog-react@^0.6.7 ~> 0.6.10
-unlocking @backstage/plugin-catalog-backend@^0.19.2 ~> 0.19.4
-unlocking @backstage/integration-react@^0.1.10 ~> 0.1.17
-unlocking @backstage/integration-react@^0.1.15 ~> 0.1.17
-unlocking @backstage/core-components@^0.8.1 ~> 0.8.3
-unlocking @backstage/catalog-client@^0.5.2 ~> 0.5.3
-unlocking @backstage/techdocs-common@^0.11.0 ~> 0.11.2
-unlocking @backstage/plugin-scaffolder-common@^0.1.1 ~> 0.1.2
-unlocking @backstage/plugin-scaffolder-backend-module-cookiecutter@^0.1.5 ~> 0.1.7
-bumping @backstage/test-utils in @internal/plugin-starter-guide to ^0.2.1
-bumping @backstage/core-plugin-api in @internal/plugin-starter-guide to ^0.4.1
-bumping @backstage/core-app-api in @internal/plugin-starter-guide to ^0.3.1
-bumping @backstage/test-utils in @internal/plugin-feature-flags to ^0.2.1
-bumping @backstage/core-plugin-api in @internal/plugin-feature-flags to ^0.4.1
-bumping @backstage/core-app-api in @internal/plugin-feature-flags to ^0.3.1
-bumping @backstage/test-utils in @internal/plugin-datadog-dashboard to ^0.2.1
-bumping @backstage/core-plugin-api in @internal/plugin-datadog-dashboard to ^0.4.1
-bumping @backstage/core-app-api in @internal/plugin-datadog-dashboard to ^0.3.1
-bumping @backstage/test-utils in @department-of-veterans-affairs/app to ^0.2.1
-bumping @backstage/plugin-tech-radar in @department-of-veterans-affairs/app to ^0.5.1
-bumping @backstage/core-plugin-api in @department-of-veterans-affairs/app to ^0.4.1
-bumping @backstage/core-app-api in @department-of-veterans-affairs/app to ^0.3.1
-bumping @backstage/plugin-search-backend in @department-of-veterans-affairs/backend to ^0.3.0
-bumping @backstage/backend-common in @department-of-veterans-affairs/backend to ^0.10.2
-bumping @backstage/plugin-auth-backend in @department-of-veterans-affairs/backend to ^0.6.1
 
-Bumping version in backstage.json
 
 Running yarn install to install new versions
 
 [2K[1G[2m[1/5][22m Validating package.json...
 [2K[1G[2m[2/5][22m Resolving packages...
-[2K[1G[2m[3/5][22m Fetching packages...
-[2K[1G[2m[4/5][22m Linking dependencies...
-[2K[1G[33mwarning[39m "@backstage/cli > @hot-loader/react-dom@16.14.0" has unmet peer dependency "react@^16.14.0".
-[2K[1G[33mwarning[39m "@backstage/cli > react-hot-loader@4.13.0" has unmet peer dependency "react@^15.0.0 || ^16.0.0 || ^17.0.0 ".
-[2K[1G[33mwarning[39m "@backstage/cli > react-hot-loader@4.13.0" has unmet peer dependency "react-dom@^15.0.0 || ^16.0.0 || ^17.0.0 ".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > react-dom@17.0.2" has incorrect peer dependency "react@17.0.2".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @testing-library/user-event@12.8.3" has unmet peer dependency "@testing-library/dom@>=7.21.4".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > eslint-plugin-cypress@2.12.1" has unmet peer dependency "eslint@>= 3.2.1".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @internal/plugin-datadog-dashboard > @testing-library/user-event@13.5.0" has unmet peer dependency "@testing-library/dom@>=7.21.4".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core > @testing-library/react-hooks@3.7.0" has unmet peer dependency "react-test-renderer@>=16.9.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core > material-table@1.69.3" has unmet peer dependency "@date-io/core@^1.3.6".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @roadiehq/backstage-plugin-datadog > @backstage/core-app-api@0.2.1" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @roadiehq/backstage-plugin-datadog > @backstage/core-plugin-api@0.3.1" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core > material-table > @material-ui/pickers@3.2.2" has unmet peer dependency "@date-io/core@^1.3.6".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core-app-api > @backstage/version-bridge@0.1.1" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core-app-api@0.3.1" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core-components@0.8.3" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core-components > @material-table/core@3.2.5" has unmet peer dependency "@date-io/core@^1.3.13".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core-components > react-markdown@7.1.0" has unmet peer dependency "@types/react@>=16".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core-components > @material-table/core > @material-ui/pickers@3.3.10" has unmet peer dependency "@date-io/core@^1.3.6".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/core-plugin-api@0.4.1" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-analytics-module-ga > react-ga@3.3.0" has unmet peer dependency "prop-types@^15.6.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-api-docs@0.6.21" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-api-docs > swagger-ui-react@4.1.3" has incorrect peer dependency "react@>=17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-api-docs > graphiql > @graphiql/toolkit@0.4.2" has unmet peer dependency "graphql-ws@>= 4.5.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-api-docs > graphiql > graphql-language-service > graphql-language-service-interface > graphql-config > @endemolshinegroup/cosmiconfig-typescript-loader > ts-node@9.1.1" has unmet peer dependency "typescript@>=2.7".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-catalog@0.7.7" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-catalog-react@0.6.10" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-catalog-import@0.7.8" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-scaffolder@0.11.17" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-search@0.5.4" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/plugin-techdocs@0.12.13" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/test-utils@0.2.1" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @department-of-veterans-affairs/app > @backstage/app-defaults > @backstage/plugin-permission-react@0.2.1" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m "workspace-aggregator-36477079-1b03-4634-9367-778a372605e4 > @internal/plugin-datadog-dashboard > @backstage/dev-utils@0.2.16" has unmet peer dependency "@types/react@^16.13.1 || ^17.0.0".
-[2K[1G[33mwarning[39m Workspaces can only be enabled in private projects.
-[2K[1G[33mwarning[39m Workspaces can only be enabled in private projects.
-[2K[1G[2m[5/5][22m Building fresh packages...
-[2K[1G[32msuccess[39m Saved lockfile.
-
-⚠️  The following packages may have breaking changes:
-
-  @backstage/backend-common : 0.9.14 ~> 0.10.2
-    https://github.com/backstage/backstage/blob/master/packages/backend-common/CHANGELOG.md
-
-  @backstage/core-app-api : 0.2.1 ~> 0.3.1
-    https://github.com/backstage/backstage/blob/master/packages/core-app-api/CHANGELOG.md
-
-  @backstage/core-plugin-api : 0.3.1 ~> 0.4.1
-    https://github.com/backstage/backstage/blob/master/packages/core-plugin-api/CHANGELOG.md
-
-  @backstage/plugin-auth-backend : 0.5.1 ~> 0.6.1
-    https://github.com/backstage/backstage/blob/master/plugins/auth-backend/CHANGELOG.md
-
-  @backstage/plugin-search-backend : 0.2.8 ~> 0.3.0
-    https://github.com/backstage/backstage/blob/master/plugins/search-backend/CHANGELOG.md
-
-  @backstage/plugin-tech-radar : 0.4.13 ~> 0.5.1
-    https://github.com/backstage/backstage/blob/master/plugins/tech-radar/CHANGELOG.md
-
-  @backstage/test-utils : 0.1.24 ~> 0.2.1
-    https://github.com/backstage/backstage/blob/master/packages/test-utils/CHANGELOG.md
+[2K[1G[32msuccess[39m Already up-to-date.
 
 Version bump complete!
 
-
-Error: Version bump failed for @backstage/core-app-api
-
-error Command failed with exit code 1.
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+Done in 14.96s.

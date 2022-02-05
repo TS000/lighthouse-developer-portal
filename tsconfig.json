@@ -12,6 +12,7 @@
     "rootDir": ".",
     "skipLibCheck": true,
     "sourceMap": true,
-    "jsx": "react"
+    "jsx": "react",
+    "useUnknownInCatchVariables": false
   }
 }
