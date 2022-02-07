@@ -7,9 +7,18 @@ import {
   TableColumn,
   TableProps,
 } from '@backstage/core-components';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import { configApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
+import {
+  catalogPlugin,
+  CatalogTable,
+  CatalogTableRow as EntityRow, 
+  FilteredEntityLayout,
+  EntityListContainer,
+  FilterContainer
+} from '@backstage/plugin-catalog';
 import {
   EntityLifecyclePicker,
+  EntityListProvider,
   EntityOwnerPicker,
   EntityTagPicker,
   EntityTypePicker,
@@ -17,17 +26,10 @@ import {
   UserListPicker,
 } from '@backstage/plugin-catalog-react';
 import React from 'react';
-import { CatalogTable } from './CatalogTable';
-import { EntityRow } from './CatalogTable/types';
-import {
-  FilteredEntityLayout,
-  EntityListContainer,
-  FilterContainer,
-} from './FilteredEntityLayout';
 import { CatalogKindHeader } from './CatalogKindHeader';
 
 /**
- * DefaultCatalogPageProps
+ * CustomCatalogPageProps
  * @public
  */
 export type CustomCatalogPageProps = {
@@ -43,27 +45,34 @@ export const CustomCatalogPage = ({
 }: CustomCatalogPageProps) => {
   const orgName =
     useApi(configApiRef).getOptionalString('organization.name') ?? 'Backstage';
-
+    const createComponentLink = useRouteRef(
+      catalogPlugin.externalRoutes.createComponent,
+    );
   return (
     <PageWithHeader title={`${orgName} Catalog`} themeId="home">
-        <Content>
-          <ContentHeader titleComponent={<CatalogKindHeader />}>
-            <CreateButton title="Create Component" to="/create" />
-            <SupportButton>All your software catalog entities</SupportButton>
-          </ContentHeader>
-          <FilteredEntityLayout>
-            <FilterContainer>
-              <EntityTypePicker />
-              <UserListPicker initialFilter={initiallySelectedFilter} />
-              <EntityOwnerPicker />
-              <EntityLifecyclePicker />
-              <EntityTagPicker />
-            </FilterContainer>
-            <EntityListContainer>
-              <CatalogTable columns={columns} actions={actions} />
-            </EntityListContainer>
-          </FilteredEntityLayout>
-        </Content>
-    </PageWithHeader>
+    <EntityListProvider>
+      <Content>
+        <ContentHeader titleComponent={<CatalogKindHeader />}>
+          <CreateButton
+            title="Create Component"
+            to={createComponentLink && createComponentLink()}
+          />
+          <SupportButton>All your software catalog entities</SupportButton>
+        </ContentHeader>
+        <FilteredEntityLayout>
+          <FilterContainer>
+            <EntityTypePicker />
+            <UserListPicker initialFilter={initiallySelectedFilter} />
+            <EntityOwnerPicker />
+            <EntityLifecyclePicker />
+            <EntityTagPicker />
+          </FilterContainer>
+          <EntityListContainer>
+            <CatalogTable columns={columns} actions={actions} />
+          </EntityListContainer>
+        </FilteredEntityLayout>
+      </Content>
+    </EntityListProvider>
+  </PageWithHeader>
   );
 };

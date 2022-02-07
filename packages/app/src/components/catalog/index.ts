@@ -1,0 +1,1 @@
+export { CustomCatalogIndexPage } from './CustomCatalogIndexPage';

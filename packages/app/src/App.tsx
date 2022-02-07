@@ -29,10 +29,8 @@ import { DatadogDashboardPage } from '@internal/plugin-datadog-dashboard';
 import { EntityListProvider } from '@backstage/plugin-catalog-react';
 import { ExplorePage, explorePlugin } from '@backstage/plugin-explore';
 import { ExplorePage as CustomExplorePage } from './components/explore';
-
 import { lightThemeVA, darkThemeVA } from './themes/index';
 import { ThemeProvider, CssBaseline } from '@material-ui/core';
-
 import {
   AlertDisplay,
   OAuthRequestDialog,
@@ -43,9 +41,9 @@ import { orgPlugin } from '@backstage/plugin-org';
 import { FlatRoutes } from '@backstage/core-app-api';
 import { createApp } from '@backstage/app-defaults';
 import { githubAuthApiRef } from '@backstage/core-plugin-api';
-import { CustomCatalogPage } from './components/catalog/CustomCatalogPage/CustomCatalogPage';
 import './themes/overrides.css';
 import { ProviderDashboardPage } from '@internal/plugin-provider-dashboard';
+import { CustomCatalogIndexPage } from './components/catalog/CustomCatalogIndexPage';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -114,7 +112,7 @@ const routes = (
     <Route path="/search" element={<SearchPage />}>
       {searchPage}
     </Route>
-    <Route path="/catalog" element={<CustomCatalogPage />} />
+    <Route path="/catalog" element={<CustomCatalogIndexPage />} />
     <Route
       path="/catalog/:namespace/:kind/:name"
       element={<CatalogEntityPage />}

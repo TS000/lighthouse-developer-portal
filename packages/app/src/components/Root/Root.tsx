@@ -99,7 +99,6 @@ const SidebarLogo = () => {
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
   const { updateFilters } = useEntityListProvider();
-
   const handleFilterChange = (selectedKind: string): void => {
     updateFilters({
       kind: selectedKind ? new EntityKindFilter(selectedKind) : undefined,
