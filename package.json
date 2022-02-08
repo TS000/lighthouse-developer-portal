@@ -19,7 +19,7 @@
     "clean": "backstage-cli clean && lerna run clean",
     "diff": "lerna run diff --",
     "test": "backstage-cli test",
-    "test:all": "mkdir -p ./logs && lerna run test -- --coverage 2>&1 | tee ./logs/unit-tests.txt",
+    "test:all": "/bin/bash -c \"set -o pipefail && mkdir -p ./logs && lerna run test -- --coverage 2>&1 | tee ./logs/unit-tests.txt\"",
     "lint": "lerna run lint --since origin/main --",
     "lint:all": "lerna run lint --",
     "create-plugin": "backstage-cli create-plugin --scope internal",

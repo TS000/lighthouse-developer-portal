@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import React from 'react';
+import useAsync from 'react-use/lib/useAsync';
 import {
-  InfoCard,
-  Header,
-  Page,
   Content,
   ContentHeader,
+  InfoCard,
+  Header,
   HeaderLabel,
-  SupportButton,
   MarkdownContent,
+  Page,
+  Progress,
+  SupportButton,
 } from '@backstage/core-components';
+import { Typography, Grid } from '@material-ui/core';
 
 export const StarterGuideComponent = () => {
-  const [text, setText] = useState({ markdown: '' });
-  useEffect(() => {
-    fetch(
-      'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/starter-guide.md',
-    )
-      .then(response => {
-        return response.text();
-      })
-      .then(responseText => {
-        setText({
-          markdown: responseText,
-        });
-      });
+  const { value, loading, error } = useAsync(async (): Promise<string> => {
+    const response = await fetch('https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/starter-guide.md');
+    const body = await response.text();
+    return body;
   }, []);
 
-  const { markdown } = text;
+  if (loading) {
+    return <Progress />;
+  } else if (error) {
+    return <Alert severity="error">{error.message}</Alert>;
+  } else if (!value) {
+    const somethingBad = "Uh Oh! Something went wrong..."
+    return <Alert severity="error">{somethingBad}</Alert>;
+  }
 
   return (
     <Page themeId="tool">
@@ -43,7 +44,7 @@ export const StarterGuideComponent = () => {
           <Grid item>
             <InfoCard title="">
               <Typography variant="body1">
-                <MarkdownContent content={markdown} />
+                <MarkdownContent content={value} />
               </Typography>
             </InfoCard>
           </Grid>
@@ -51,4 +52,4 @@ export const StarterGuideComponent = () => {
       </Content>
     </Page>
   );
-};
+}

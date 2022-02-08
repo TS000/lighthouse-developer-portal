@@ -1,31 +1,23 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import { APIFetchComponent } from './APIFetchComponent';
-import { rest } from 'msw';
-import { setupServer } from 'msw/node';
-import { setupRequestMockHandlers } from '@backstage/test-utils';
-import { useApi, configApiRef } from '@backstage/core-plugin-api';
+import { TestApiProvider, renderInTestApp, MockConfigApi } from '@backstage/test-utils';
+import { configApiRef } from '@backstage/core-plugin-api';
+
 
 describe('APIFetchComponent', () => {
-  const server = setupServer();
-  // Enable sane handlers for network requests
-  setupRequestMockHandlers(server);
-
-  // setup mock response
   beforeEach(() => {
-    const config = useApi(configApiRef);
-    const backendUrl = config.getString('backend.baseUrl');
-    const proxyPath = '/api/proxy';
-    const basePath = `${backendUrl}${proxyPath}`;
-    
-    server.use(
-      rest.get(`${basePath}/docserver/apis/`, (_, res, ctx) =>    // TODO: Move this call into a proper client soon
-        res(ctx.status(200), ctx.delay(2000), ctx.json({})),
-      ),
-    );
+    jest.resetModules(); // clear the cache
   });
+
   it('should render', async () => {
-    const rendered = render(<APIFetchComponent />);
+    const mockConfig = new MockConfigApi({
+      backend: { baseUrl: 'http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com' },
+    })
+    const rendered = await renderInTestApp(
+      <TestApiProvider apis={[[configApiRef, mockConfig]]}>
+        <APIFetchComponent />
+      </TestApiProvider>);
+      
     expect(await rendered.findByTestId('progress')).toBeInTheDocument();
   });
 });

@@ -1,12 +1,11 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 import { StarterGuideComponent } from './StarterGuideComponent';
-import { ThemeProvider } from '@material-ui/core';
-import { lightTheme } from '@backstage/theme';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { setupRequestMockHandlers, renderInTestApp } from '@backstage/test-utils';
+import { setupRequestMockHandlers } from '@backstage/test-utils';
 
-describe('StarterGuide', () => {
+describe('StarterGuideComponent', () => {
   const server = setupServer();
   // Enable sane handlers for network requests
   setupRequestMockHandlers(server);
@@ -14,16 +13,13 @@ describe('StarterGuide', () => {
   // setup mock response
   beforeEach(() => {
     server.use(
-      rest.get('/*', (_, res, ctx) => res(ctx.status(200), ctx.json({}))),
+      rest.get('https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/starter-guide.md', (_, res, ctx) =>
+        res(ctx.status(200), ctx.delay(2000), ctx.json({})),
+      ),
     );
   });
-
   it('should render', async () => {
-    const rendered = await renderInTestApp(
-      <ThemeProvider theme={lightTheme}>
-        <StarterGuideComponent />
-      </ThemeProvider>,
-    );
-    expect(rendered.getByText('Starter Guide')).toBeInTheDocument();
+    const rendered = render(<StarterGuideComponent />);
+    expect(await rendered.findByTestId('progress')).toBeInTheDocument();
   });
 });
