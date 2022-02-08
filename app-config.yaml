@@ -23,6 +23,9 @@ app:
 organization:
   name: Embark
 
+permission:
+  enabled: true
+
 backend:
   # Randomly generated string used for backend-to-backend Authentication
   # See https://backstage.io/docs/tutorials/backend-to-backend-auth

@@ -28,6 +28,7 @@ import scaffolder from './plugins/scaffolder';
 import proxy from './plugins/proxy';
 import techdocs from './plugins/techdocs';
 import search from './plugins/search';
+import permission from './plugins/permission';
 import { PluginEnvironment } from './types';
 import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 
@@ -66,9 +67,10 @@ function makeCreateEnv(config: Config) {
 }
 
 async function main() {
+  const logger = getRootLogger();
   const config = await loadBackendConfig({
     argv: process.argv,
-    logger: getRootLogger(),
+    logger,
   });
   const createEnv = makeCreateEnv(config);
 
@@ -77,31 +79,33 @@ async function main() {
   const scaffolderEnv = useHotMemoize(module, () => createEnv('scaffolder'));
   const authEnv = useHotMemoize(module, () => createEnv('auth'));
   const proxyEnv = useHotMemoize(module, () => createEnv('proxy'));
-  const techdocsEnv = useHotMemoize(module, () => createEnv('techdocs'));
   const searchEnv = useHotMemoize(module, () => createEnv('search'));
+  const techdocsEnv = useHotMemoize(module, () => createEnv('techdocs'));
+  const permissionEnv = useHotMemoize(module, () => createEnv('permission'));
 
   const apiRouter = Router();
   apiRouter.use('/catalog', await catalog(catalogEnv));
   apiRouter.use('/scaffolder', await scaffolder(scaffolderEnv));
   apiRouter.use('/auth', await auth(authEnv));
+  apiRouter.use('/search', await search(searchEnv));
   apiRouter.use('/techdocs', await techdocs(techdocsEnv));
   apiRouter.use('/proxy', await proxy(proxyEnv));
-  apiRouter.use('/search', await search(searchEnv));
+  apiRouter.use('/permission', await permission(permissionEnv));
   apiRouter.use(notFoundHandler());
 
   const service = createServiceBuilder(module)
     .loadConfig(config)
     .addRouter('', await healthcheck(healthcheckEnv))
-    .addRouter('/api', apiRouter);
+    .addRouter('/api', apiRouter)
 
   await service.start().catch(err => {
-    console.log(err);
+    logger.error(err);
     process.exit(1);
   });
 }
 
 module.hot?.accept();
 main().catch(error => {
-  console.error(`Backend failed to start up, ${error}`);
+  console.error('Backend failed to start up', error);
   process.exit(1);
 });

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { hot } from 'react-hot-loader/root';
 import { Route } from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import { CatalogEntityPage, catalogPlugin } from '@backstage/plugin-catalog';
@@ -44,6 +45,8 @@ import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import './themes/overrides.css';
 import { ProviderDashboardPage } from '@internal/plugin-provider-dashboard';
 import { CustomCatalogIndexPage } from './components/catalog/CustomCatalogIndexPage';
+import { PermissionedRoute } from '@backstage/plugin-permission-react';
+import { viewExplorePagePermission } from './utils/';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -139,9 +142,13 @@ const routes = (
     <Route path="/feature-flags" element={<FeatureFlagsPage />} />
     <Route path="/starter-guide" element={<StarterGuidePage />} />
     <Route path="/provider-dashboard" element={<ProviderDashboardPage />} />
-    <Route path="/plugins" element={<ExplorePage />}>
+    <PermissionedRoute
+      path="/plugins"
+      permission={viewExplorePagePermission}
+      element={<ExplorePage />}
+    >
       <CustomExplorePage />
-    </Route>
+    </PermissionedRoute>
   </FlatRoutes>
 );
 
@@ -185,4 +192,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default hot(App);
