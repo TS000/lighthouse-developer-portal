@@ -6,6 +6,8 @@ import {
 } from '@backstage/plugin-search-backend-node';
 import { PluginEnvironment } from '../types';
 import { DefaultCatalogCollator } from '@backstage/plugin-catalog-backend';
+import { DefaultTechDocsCollator } from '@backstage/plugin-techdocs-backend';
+import { DefaultAPICollator } from '../collators';
 
 export default async function createPlugin({
   logger,
@@ -28,7 +30,29 @@ export default async function createPlugin({
       filter: {
         kind: ['Component', 'API', 'Group', 'User', 'System', 'Domain'],
       },
-    })
+    }),
+  });
+
+  // Adds spec definition to searchable content.
+  indexBuilder.addCollator({
+    defaultRefreshIntervalSeconds: 600,
+    collator: DefaultAPICollator.fromConfig(config, {
+      discovery,
+      tokenManager,
+      filter: {
+        kind: ['API'],
+      },
+    }),
+  });
+
+  // Indexes TechDocs documents
+  indexBuilder.addCollator({
+    defaultRefreshIntervalSeconds: 600,
+    collator: DefaultTechDocsCollator.fromConfig(config, {
+      discovery,
+      logger,
+      tokenManager,
+    }),
   });
 
   // The scheduler controls when documents are gathered from collators and sent

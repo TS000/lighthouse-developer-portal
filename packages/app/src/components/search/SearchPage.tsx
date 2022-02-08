@@ -1,14 +1,24 @@
 import React from 'react';
 import { makeStyles, Theme, Grid, List, Paper } from '@material-ui/core';
+import ExtensionIcon from '@material-ui/icons/Extension';
 
 import { CatalogResultListItem } from '@backstage/plugin-catalog';
+import { DocsResultListItem } from '@backstage/plugin-techdocs';
+
 import {
   SearchBar,
   SearchFilter,
   SearchResult,
+  SearchType,
   DefaultResultListItem,
 } from '@backstage/plugin-search';
-import { Content, Header, Lifecycle, Page } from '@backstage/core-components';
+import {
+  CatalogIcon,
+  Content,
+  DocsIcon,
+  Header,
+  Page,
+} from '@backstage/core-components';
 
 const useStyles = makeStyles((theme: Theme) => ({
   bar: {
@@ -16,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   filters: {
     padding: theme.spacing(2),
+    marginTop: theme.spacing(2),
   },
   filter: {
     '& + &': {
@@ -29,23 +40,46 @@ const SearchPage = () => {
 
   return (
     <Page themeId="home">
-      <Header title="Search" subtitle={<Lifecycle alpha />} />
+      <Header title="Search" />
       <Content>
         <Grid container direction="row">
           <Grid item xs={12}>
             <Paper className={classes.bar}>
-              <SearchBar debounceTime={100} />
+              <SearchBar />
             </Paper>
           </Grid>
           <Grid item xs={3}>
+            <SearchType.Accordion
+              name="Result Type"
+              defaultValue="software-catalog"
+              types={[
+                {
+                  value: 'software-catalog',
+                  name: 'Software Catalog',
+                  icon: <CatalogIcon />,
+                },
+                {
+                  value: 'techdocs',
+                  name: 'Documentation',
+                  icon: <DocsIcon />,
+                },
+                {
+                  value: 'api-catalog',
+                  name: 'API Catalog',
+                  icon: <ExtensionIcon />,
+                },
+              ]}
+            />
             <Paper className={classes.filters}>
               <SearchFilter.Select
                 className={classes.filter}
+                label="Kind"
                 name="kind"
-                values={['Component', 'Template']}
+                values={['Component', 'Template', 'API']}
               />
               <SearchFilter.Checkbox
                 className={classes.filter}
+                label="Lifecycle"
                 name="lifecycle"
                 values={['experimental', 'production']}
               />
@@ -60,6 +94,13 @@ const SearchPage = () => {
                       case 'software-catalog':
                         return (
                           <CatalogResultListItem
+                            key={document.location}
+                            result={document}
+                          />
+                        );
+                      case 'techdocs':
+                        return (
+                          <DocsResultListItem
                             key={document.location}
                             result={document}
                           />
