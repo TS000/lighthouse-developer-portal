@@ -161,10 +161,10 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         />
         <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarSpace />
-        <SidebarDivider />
-        <VersionNumber />
         <SidebarSettings />
         <FeedbackModal />
+        <SidebarDivider />
+        <VersionNumber />
       </Sidebar>
       {children}
     </SidebarPage>
