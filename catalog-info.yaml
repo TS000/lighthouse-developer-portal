@@ -5,6 +5,17 @@ metadata:
   description: Keeps track off all packages and plugins related to Embark
   tags:
     - monorepo
+  links:
+    - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
+      title: Issues
+      icon: help
+    - url: https://backstage.io/
+      title: Backstage.io
+      icon: web
+    - url: https://lighthouseva.slack.com/archives/C020ZR4UL8H
+      title: lighthouse-bandicoot slack
+      icon: group
+
 spec:
   domain: embark
   owner: lighthouse-bandicoot

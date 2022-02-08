@@ -11,10 +11,16 @@ metadata:
   links:
     - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
       title: Issues
-      icon: alert
+      icon: help
     - url: https://department-of-veterans-affairs.github.io/lighthouse-embark/
       title: Docs
-      icon: help
+      icon: dashboard
+    - url: https://backstage.io/
+      title: Backstage.io
+      icon: web
+    - url: https://lighthouseva.slack.com/archives/C020ZR4UL8H
+      title: lighthouse-bandicoot slack
+      icon: group
   annotations:
     backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-embark
     github.com/project-slug: department-of-veterans-affairs/lighthouse-embark
