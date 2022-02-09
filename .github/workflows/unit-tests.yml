@@ -71,7 +71,7 @@ jobs:
           path: ./logs
       - name: Check coverage for ${{ matrix.packages }}
         if: matrix.packages != 'backend'
-        uses: VeryGoodOpenSource/very_good_coverage@cfe8b79401ea7689953705f0d161cb51113f346f # pin@v1.2.0
+        uses: VeryGoodOpenSource/very_good_coverage@feed99cc060453828a8f12e74b404baace8e4502 # pin@v1.2.0
         with:
           path: ./logs/${{ matrix.packages }}/coverage/lcov.info
           min_coverage: 70
