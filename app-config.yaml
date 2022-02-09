@@ -138,6 +138,6 @@ catalog:
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml
     
-    # catalog test set
+    # catalog repo
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-tests/catalog-test.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-all.yaml

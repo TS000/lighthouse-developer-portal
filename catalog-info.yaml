@@ -17,6 +17,6 @@ metadata:
       icon: group
 
 spec:
-  domain: embark
+  domain: lighthouse
   owner: lighthouse-bandicoot
   lifecycle: experimental

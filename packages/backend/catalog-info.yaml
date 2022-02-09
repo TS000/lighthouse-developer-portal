@@ -2,7 +2,6 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: backend
-  namespace: lighthouse-embark
   description: The backend server for lighthouse-embark.
   tags:
     - javascript
@@ -28,6 +27,7 @@ spec:
   type: openapi
   owner: lighthouse-bandicoot
   lifecycle: experimental
+  system: embark
   # All routes for catalogs entities were found by viewing the @backstage/catalog-client source code
   # @see https://github.com/backstage/backstage/blob/master/packages/catalog-client/src/CatalogClient.ts
   definition: |
