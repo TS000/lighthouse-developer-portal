@@ -55,7 +55,7 @@ import {
   useEntityListProvider,
 } from '@backstage/plugin-catalog-react';
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
-import { VersionNumber } from '../versionNumber/VersionNumber';
+import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';
 import { FeedbackModal } from '../feedback';
 
 const useSidebarLogoStyles = makeStyles({
@@ -164,7 +164,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarSettings />
         <FeedbackModal />
         <SidebarDivider />
-        <VersionNumber />
+        <VersionAndEnv />
       </Sidebar>
       {children}
     </SidebarPage>

@@ -14,6 +14,8 @@ describe('FeedbackModal', () => {
   });
 
   it('should close the feedback modal', () => {
+    cy.visit('/');
+    cy.get('h6').contains('Feedback').click();
     cy.contains('Provide feedback for Embark').should('be.visible');
     cy.get('span').contains('Cancel').should('be.visible').click();
     cy.contains('Provide feedback for Embark').should('not.exist');
