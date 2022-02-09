@@ -5,6 +5,10 @@ describe('FeedbackModal', () => {
   // Set current user as guest, visit the homepage, and open the feedback modal
   beforeEach(() => {
     window.localStorage.setItem('@backstage/core:SignInPage:provider', 'guest');
+    window.localStorage.setItem(
+      '/notifications/dismissedBanners',
+      '["beta_dismissable"]',
+    );
     cy.visit('/');
     cy.get('h6').contains('Feedback').click();
   });

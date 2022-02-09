@@ -47,6 +47,7 @@ import { ProviderDashboardPage } from '@internal/plugin-provider-dashboard';
 import { CustomCatalogIndexPage } from './components/catalog/CustomCatalogIndexPage';
 import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { viewExplorePagePermission } from './utils/';
+import { Banner } from './components/banner';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -183,6 +184,7 @@ const App = () => {
         <AlertDisplay />
         <OAuthRequestDialog />
         <EntityListProvider>
+          <Banner />
           <AppRouter>
             <Root>{routes}</Root>
           </AppRouter>
