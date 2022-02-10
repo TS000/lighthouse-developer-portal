@@ -1,4 +1,4 @@
-site_name: 'example-docs'
+site_name: 'Embark Documentation'
 repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-embark'
 
 nav:
@@ -14,6 +14,8 @@ nav:
   - GitHub Packages: github-packages.md
   - Starter Guide: starter-guide.md
   - GHA Dependencies: gha-dependencies.md
+  - Codespace: codespace.md
+  - Repo Setup: repo-setup.md
   - RFCs:
       - Doc Generator: RFC/doc-generator.md
       - CI/CD Modifications: RFC/ci-cd.md
