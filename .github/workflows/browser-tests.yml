@@ -28,7 +28,7 @@ jobs:
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v3
         with:
           project: ./packages/app
           build: yarn run build
@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v3
         with:
           browser: chrome
           project: ./packages/app
@@ -67,7 +67,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v3
         with:
           browser: edge
           # Increase install time to prevent timeout

@@ -1,7 +1,6 @@
 {
   "baseUrl": "http://localhost:3000",
-  "fixturesFolder": false,
   "pluginsFile": false,
   "video": false,
-  "retries": 0
+  "retries": 2
 }

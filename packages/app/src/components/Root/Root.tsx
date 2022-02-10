@@ -19,6 +19,9 @@ import { Link, makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import ListIcon from '@material-ui/icons/List';
+import PersonIcon from '@material-ui/icons/Person';
+import GroupIcon from '@material-ui/icons/Group';
+import WebIcon from '@material-ui/icons/Web';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import GrainIcon from '@material-ui/icons/Grain';
 import MapIcon from '@material-ui/icons/MyLocation';
@@ -57,6 +60,8 @@ import {
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';
 import { FeedbackModal } from '../feedback';
+import { useKinds } from '../../hooks';
+import { IconComponent } from '@backstage/core-plugin-api';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -97,6 +102,19 @@ const SidebarLogo = () => {
   );
 };
 
+interface CatalogKindIcon {
+  [key: string]: IconComponent;
+}
+
+const catalogKindIcon: CatalogKindIcon = {
+  Component: AppsIcon,
+  API: ExtensionIcon,
+  Group: GroupIcon,
+  User: PersonIcon,
+  System: GrainIcon,
+  Domain: WebIcon,
+};
+
 export const Root = ({ children }: PropsWithChildren<{}>) => {
   const { updateFilters } = useEntityListProvider();
   const handleFilterChange = (selectedKind: string): void => {
@@ -104,6 +122,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
       kind: selectedKind ? new EntityKindFilter(selectedKind) : undefined,
     });
   };
+
+  const kinds = useKinds();
 
   return (
     <SidebarPage>
@@ -117,24 +137,14 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
         <SidebarItemWithSubmenu icon={ListIcon} to="/catalog" text="Catalog">
           <SidebarSubmenu title="Catalog">
-            <SidebarSubmenuItem
-              title="Components"
-              to="catalog?filters[kind]=component"
-              icon={AppsIcon}
-              callback={() => handleFilterChange('component')}
-            />
-            <SidebarSubmenuItem
-              icon={ExtensionIcon}
-              to="catalog?filters[kind]=api"
-              title="APIs"
-              callback={() => handleFilterChange('api')}
-            />
-            <SidebarSubmenuItem
-              icon={GrainIcon}
-              to="catalog?filters[kind]=system"
-              title="Systems"
-              callback={() => handleFilterChange('system')}
-            />
+            {kinds.map(kind => (
+              <SidebarSubmenuItem
+                title={`${kind}s`}
+                to={`catalog?filters[kind]=${kind.toLowerCase()}`}
+                icon={catalogKindIcon[kind] || AppsIcon}
+                callback={() => handleFilterChange(kind.toLowerCase())}
+              />
+            ))}
           </SidebarSubmenu>
         </SidebarItemWithSubmenu>
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
