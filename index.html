@@ -15,7 +15,7 @@
     
     
       
-        <title>Embark Documentation</title>
+        <title>example-docs</title>
       
     
     
@@ -60,7 +60,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="." title="Embark Documentation" class="md-header-nav__button md-logo" aria-label="Embark Documentation">
+    <a href="." title="example-docs" class="md-header-nav__button md-logo" aria-label="example-docs">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -73,11 +73,11 @@
       
         <div class="md-header-nav__ellipsis">
           <span class="md-header-nav__topic md-ellipsis">
-            Embark Documentation
+            example-docs
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Starter Guide
+              Home
             
           </span>
         </div>
@@ -147,13 +147,13 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Embark Documentation" class="md-nav__button md-logo" aria-label="Embark Documentation">
+    <a href="." title="example-docs" class="md-nav__button md-logo" aria-label="example-docs">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    Embark Documentation
+    example-docs
   </label>
   
     <div class="md-nav__source">
@@ -175,11 +175,20 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="." title="Home" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="." title="Home" class="md-nav__link md-nav__link--active">
       Home
     </a>
+    
   </li>
 
     
@@ -295,20 +304,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="." title="Starter Guide" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="starter-guide/" title="Starter Guide" class="md-nav__link">
       Starter Guide
     </a>
-    
   </li>
 
     
@@ -805,79 +805,6 @@
                 
                 <h1 id="example-docs">example docs<a class="headerlink" href="#example-docs" title="Permanent link">&para;</a></h1>
 <p>This is a basic example of documentation.</p>
-<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
-<p>Embark is an implementation of <a href="https://backstage.io/">Backstage</a>.</p>
-<p>The Embark Software Catalog is a centralized system that keeps track of ownership and metadata for all the software in your ecosystem (services, websites, libraries, data pipelines, etc). The catalog is built around the concept of metadata YAML files stored together with the code, which are then harvested and visualized in Embark.</p>
-<p>More Information about Embark's <a href="https://backstage.io/docs/features/software-catalog/software-catalog-overview">Software Catalog</a></p>
-<h1 id="adding-a-catalog-entity">Adding a Catalog Entity<a class="headerlink" href="#adding-a-catalog-entity" title="Permanent link">&para;</a></h1>
-<p>Embark identifies catalog entities by scanning every repository in an organization and looking for a <code>catalog-info.yaml</code> file in the root of the repository. The <code>catalog-info.yaml</code> file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other Embark users who may wish to use your application.</p>
-<h2 id="creating-an-entity-descriptor-file">Creating an Entity Descriptor File<a class="headerlink" href="#creating-an-entity-descriptor-file" title="Permanent link">&para;</a></h2>
-<p>In the root directory of your application, create a <code>catalog-info.yaml</code> file:</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Example catalog-info.yaml</span>
-<span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">backstage.io/v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Component</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">frontend</span>
-  <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">embark</span>
-  <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The frontend application for Embark</span>
-  <span class="nt">tags</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">javascript</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">typescript</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">react</span>
-  <span class="nt">links</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/department-of-veterans-affairs/lighthouse-embark/issues</span>
-      <span class="nt">title</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Issues</span>
-      <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">alert</span>
-    <span class="p p-Indicator">-</span> <span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://department-of-veterans-affairs.github.io/lighthouse-embark/</span>
-      <span class="nt">title</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Docs</span>
-      <span class="nt">icon</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">help</span>
-  <span class="nt">annotations</span><span class="p">:</span>
-    <span class="nt">backstage.io/techdocs-ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">url:https://github.com/department-of-veterans-affairs/lighthouse-embark</span>
-    <span class="nt">github.com/project-slug</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">department-of-veterans-affairs/lighthouse-embark</span>
-<span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">website</span>
-  <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lighthouse-bandicoot</span>
-  <span class="nt">lifecycle</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">experimental</span>
-  <span class="nt">system</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">embark</span>
-</code></pre></div>
-</td></tr></table>
-
-<h2 id="navigate-to-catalog-on-developer-portal">Navigate to Catalog on Developer Portal<a class="headerlink" href="#navigate-to-catalog-on-developer-portal" title="Permanent link">&para;</a></h2>
-<p>TODO: Instructions on how to access developer portal
-<img alt="Catalog View" src="https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/images/catalog_view.png" /></p>
-<h2 id="search-catalog">Search Catalog<a class="headerlink" href="#search-catalog" title="Permanent link">&para;</a></h2>
-<p>Search the Catalog to verify your application has been added to the Catalog.
-<img alt="Catalog Filtered View" src="https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/images/catalog_filtered_view.png" /></p>
-<h2 id="view-catalog-entity">View Catalog Entity<a class="headerlink" href="#view-catalog-entity" title="Permanent link">&para;</a></h2>
-<p>Once you find the new entry to the Catalog, you can select it to view more detailed information about the application.
-<img alt="Catalog Entity" src="https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/images/catalog_entity.png" /></p>
-<h2 id="additional-configuration-information">Additional Configuration Information<a class="headerlink" href="#additional-configuration-information" title="Permanent link">&para;</a></h2>
-<p>Visit Backstage's <a href="https://backstage.io/docs/features/software-catalog/descriptor-format">documentation</a> for more information about how to format catalog entity descriptor files.</p>
                 
               
               
@@ -896,28 +823,14 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="github-packages/" title="GitHub Packages" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                GitHub Packages
-              </div>
-            </div>
-          </a>
         
-        
-          <a href="gha-dependencies/" title="GHA Dependencies" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="deployment/" title="Deployment Overview" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                GHA Dependencies
+                Deployment Overview
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
