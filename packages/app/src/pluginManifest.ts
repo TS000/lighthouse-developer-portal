@@ -13,7 +13,7 @@ type pluginManifestTypes = {
 export const pluginManifest: pluginManifestTypes[] = [
   {
     title: 'Starter Guide',
-    description: 'Start here if your new to embark!',
+    description: 'Start here if your new to Embark!',
     url: '/starter-guide',
     image: '',
     tags: ['getting-started', 'doc'],

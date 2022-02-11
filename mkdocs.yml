@@ -14,6 +14,7 @@ nav:
   - GitHub Packages: github-packages.md
   - Starter Guide: starter-guide.md
   - GHA Dependencies: gha-dependencies.md
+  - Contributing: contributing-guide.md
   - Codespace: codespace.md
   - Repo Setup: repo-setup.md
   - RFCs:
