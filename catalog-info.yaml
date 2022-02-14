@@ -14,7 +14,7 @@ metadata:
       icon: web
     - url: https://lighthouseva.slack.com/archives/C020ZR4UL8H
       title: lighthouse-bandicoot slack
-      icon: group
+      icon: slack
 
 spec:
   domain: lighthouse

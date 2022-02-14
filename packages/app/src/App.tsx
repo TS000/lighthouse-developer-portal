@@ -42,13 +42,14 @@ import {
 import { orgPlugin } from '@backstage/plugin-org';
 import { FlatRoutes } from '@backstage/core-app-api';
 import { createApp } from '@backstage/app-defaults';
-import { githubAuthApiRef } from '@backstage/core-plugin-api';
+import { githubAuthApiRef, IconComponent } from '@backstage/core-plugin-api';
 import './themes/overrides.css';
 import { ProviderDashboardPage } from '@internal/plugin-provider-dashboard';
 import { CustomCatalogIndexPage } from './components/catalog/CustomCatalogIndexPage';
 import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { viewExplorePagePermission } from './utils/';
 import { Banner } from './components/banner';
+import SlackIcon from './icons/Slack';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -106,6 +107,9 @@ const app = createApp({
       ),
     },
   ],
+  icons: {
+    slack: SlackIcon as IconComponent,
+  },
 });
 
 const AppProvider = app.getProvider();

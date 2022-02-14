@@ -20,7 +20,7 @@ metadata:
       icon: web
     - url: https://lighthouseva.slack.com/archives/C020ZR4UL8H
       title: lighthouse-bandicoot slack
-      icon: group
+      icon: slack
   annotations:
     backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-embark
     github.com/project-slug: department-of-veterans-affairs/lighthouse-embark
