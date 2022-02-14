@@ -1,22 +1,23 @@
 apiVersion: backstage.io/v1alpha1
-kind: System
+kind: Component
 metadata:
-  name: embark
+  name: embark-monorepo
   description: Keeps track off all packages and plugins related to Embark
   tags:
     - monorepo
   links:
+    - url: https://github.com/department-of-veterans-affairs/lighthouse-embark
+      title: Embark Monorepo
+      icon: web
     - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
       title: Issues
       icon: help
-    - url: https://backstage.io/
-      title: Backstage.io
-      icon: web
     - url: https://lighthouseva.slack.com/archives/C020ZR4UL8H
       title: lighthouse-bandicoot slack
       icon: slack
-
 spec:
   domain: lighthouse
+  system: embark-developer-portal
+  type: website
   owner: lighthouse-bandicoot
   lifecycle: experimental

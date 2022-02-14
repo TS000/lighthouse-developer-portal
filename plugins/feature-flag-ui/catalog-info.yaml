@@ -22,10 +22,9 @@ metadata:
       title: lighthouse-bandicoot slack
       icon: slack
   annotations:
-    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-embark
     github.com/project-slug: department-of-veterans-affairs/lighthouse-embark
 spec:
   type: website
   owner: lighthouse-bandicoot
   lifecycle: experimental
-  system: embark
+  subcomponentOf: component:default/embark-monorepo

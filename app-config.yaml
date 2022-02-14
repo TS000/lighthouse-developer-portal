@@ -126,18 +126,18 @@ catalog:
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/backend/catalog-info.yaml
 
+    # catalog repo
+    - type: url
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-all.yaml
+
     # deployment repo
     - type: url
       target: https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/catalog-info.yaml
+    
+    # embark monorepo
+    - type: url
+      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml
 
     # feature-flags component
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/plugins/feature-flag-ui/catalog-info.yaml
-
-    # system
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml
-    
-    # catalog repo
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-all.yaml
