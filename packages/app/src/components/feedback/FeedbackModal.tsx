@@ -22,7 +22,7 @@ import {
   DismissableBanner,
   Link,
 } from '@backstage/core-components';
-import { useOctokit } from '../../hooks/useOctokit';
+import { useOctokit, useDismissableBanner } from '../../hooks';
 
 export interface TabPanelProps {
   value: number;
@@ -65,6 +65,9 @@ export interface SearchModalProps {
   toggleModal: () => void;
 }
 
+const FEEDBACK_SUCCESS_ID = 'feedback_success';
+const FEEDBACK_ERROR_ID = 'feedback_error';
+
 /**
  * Modal containing a form to submit feedback for embark
  *
@@ -76,6 +79,8 @@ export const Modal = ({
 }: SearchModalProps): ReactElement => {
   const [feedbackText, setFeedbackText] = useState<string>('');
   const [currentTab, setCurrentTab] = useState(0);
+
+  const { removeBanner } = useDismissableBanner();
   const classes = useStyles();
 
   // Submitted feedback states
@@ -110,6 +115,16 @@ export const Modal = ({
    * Attempts to submit the feedback from the textarea to the lighthouse-embark repo as an issue.
    */
   const handleFeedbackSubmit = async () => {
+    // Remove success banner message if already dismissed
+    if (hasSubmittedFeedback) {
+      removeBanner(FEEDBACK_SUCCESS_ID);
+    }
+
+    // Remove error banner message if already dismissed
+    if (hasFeedbackError) {
+      removeBanner(FEEDBACK_ERROR_ID);
+    }
+
     try {
       await createNewIssue('lighthouse-embark feedback', feedbackText);
       setHasSubmittedFeedback(true);
@@ -138,7 +153,7 @@ export const Modal = ({
             </Typography>
           }
           variant="info"
-          id="feedback_submit"
+          id={FEEDBACK_SUCCESS_ID}
           fixed
         />
       ) : null}
@@ -146,7 +161,7 @@ export const Modal = ({
         <DismissableBanner
           message="Failed to submit feedback. Please try again later."
           variant="warning"
-          id="feedback_failed"
+          id={FEEDBACK_ERROR_ID}
           fixed
         />
       ) : null}

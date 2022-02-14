@@ -84,6 +84,31 @@ describe('FeedbackModal', () => {
       cy.contains('Provide feedback for Embark').should('not.exist');
     });
 
+    it('should display a dismissable message after successful submit multiple times', () => {
+      // Intercept the submitted feedback
+      cy.intercept({ method: 'POST', url: GITHUB_ISSUE_URL }, 'success');
+
+      for (let i = 0; i < 3; i++) {
+        cy.visit('/');
+        cy.get('h6').contains('Feedback').click();
+
+        cy.contains('Provide feedback for Embark').should('be.visible');
+        cy.get('textarea').first().type('feedback is awesome!');
+
+        // Submit the form
+        cy.get('button')
+          .contains('Submit')
+          .parent()
+          .should('not.be.disabled')
+          .click();
+
+        cy.get('div')
+          .contains('Feedback submitted! View it on GitHub.')
+          .should('be.visible');
+        cy.contains('Provide feedback for Embark').should('not.exist');
+      }
+    });
+
     it('should display a dismissable message after failed submit', () => {
       cy.intercept(
         { method: 'POST', url: GITHUB_ISSUE_URL },
