@@ -1,0 +1,1544 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-5.3.2">
+    
+    
+      
+        <title>Investigate Pact - Embark Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rfc-investigate-pact" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Embark Documentation" class="md-header-nav__button md-logo" aria-label="Embark Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Embark Documentation
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Investigate Pact
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Embark Documentation" class="md-nav__button md-logo" aria-label="Embark Documentation">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Embark Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../dev-deploy/" title="Deploy to Dev Environment (K8s/Helm)" class="md-nav__link">
+      Deploy to Dev Environment (K8s/Helm)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../running-locally/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../backstage-update/" title="Backstage Update" class="md-nav__link">
+      Backstage Update
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../allstar/" title="Allstar" class="md-nav__link">
+      Allstar
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cypress-troubleshooting/" title="Cypress Troubleshooting" class="md-nav__link">
+      Cypress Troubleshooting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../pre-build-validation/" title="Pre-build Validation" class="md-nav__link">
+      Pre-build Validation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../catalog-entry/" title="Catalog Entry" class="md-nav__link">
+      Catalog Entry
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../github-packages/" title="GitHub Packages" class="md-nav__link">
+      GitHub Packages
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../starter-guide/" title="Starter Guide" class="md-nav__link">
+      Starter Guide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gha-dependencies/" title="GHA Dependencies" class="md-nav__link">
+      GHA Dependencies
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing-guide/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../codespace/" title="Codespace" class="md-nav__link">
+      Codespace
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../repo-setup/" title="Repo Setup" class="md-nav__link">
+      Repo Setup
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-16" type="checkbox" id="nav-16" checked>
+    
+    <label class="md-nav__link" for="nav-16">
+      RFCs
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="RFCs" data-md-level="1">
+      <label class="md-nav__title" for="nav-16">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        RFCs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../doc-generator/" title="Doc Generator" class="md-nav__link">
+      Doc Generator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ci-cd/" title="CI/CD Modifications" class="md-nav__link">
+      CI/CD Modifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../catalog-import-research/" title="Catalog Import Research" class="md-nav__link">
+      Catalog Import Research
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../node-app-logging/" title="Node App Logging" class="md-nav__link">
+      Node App Logging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker-scanning/" title="Docker Scanning" class="md-nav__link">
+      Docker Scanning
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../enforce-build-performance/" title="Enforce Build Performance" class="md-nav__link">
+      Enforce Build Performance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../investigate-esbuild-and-vite/" title="Investigate Esbuild and Vite" class="md-nav__link">
+      Investigate Esbuild and Vite
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linting/" title="Linting Rules" class="md-nav__link">
+      Linting Rules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Investigate Pact
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Investigate Pact" class="md-nav__link md-nav__link--active">
+      Investigate Pact
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    Findings
+  </a>
+  
+    <nav class="md-nav" aria-label="Findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pact" class="md-nav__link">
+    Pact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumer-side-testing" class="md-nav__link">
+    Consumer Side Testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pact-broker" class="md-nav__link">
+    Pact Broker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-tests" class="md-nav__link">
+    Provider tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    Recommendation
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommendation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consumer-tests" class="md-nav__link">
+    Consumer Tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pact-broker_1" class="md-nav__link">
+    Pact Broker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-tests_1" class="md-nav__link">
+    Provider Tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../env-promotion/" title="Environment Promotion" class="md-nav__link">
+      Environment Promotion
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-actions/" title="Custom Actions" class="md-nav__link">
+      Custom Actions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../github-access/" title="GitHub Access" class="md-nav__link">
+      GitHub Access
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../google-analytics/" title="Google Analytics" class="md-nav__link">
+      Google Analytics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../configurable-variables/" title="Configurable Variables" class="md-nav__link">
+      Configurable Variables
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../browser-logs/" title="Browser Logs" class="md-nav__link">
+      Browser Logs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../argo-automation/" title="Automation with ArgoCD" class="md-nav__link">
+      Automation with ArgoCD
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kustomize/" title="Kustomize Deployment" class="md-nav__link">
+      Kustomize Deployment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../feature-flags/" title="Feature Flags" class="md-nav__link">
+      Feature Flags
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../configure-timeouts/" title="Configure Timeouts" class="md-nav__link">
+      Configure Timeouts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../github-app-auth/" title="GitHub App POC" class="md-nav__link">
+      GitHub App POC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../search-comparison/" title="Search Optimization Comparison" class="md-nav__link">
+      Search Optimization Comparison
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plugin-authentication/" title="Plugin Authentication and Authorization" class="md-nav__link">
+      Plugin Authentication and Authorization
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-17" type="checkbox" id="nav-17">
+    
+    <label class="md-nav__link" for="nav-17">
+      Decision Records
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Decision Records" data-md-level="1">
+      <label class="md-nav__title" for="nav-17">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Decision Records
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/zero-install/" title="Yarn Zero Install" class="md-nav__link">
+      Yarn Zero Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/split-fe-be/" title="Split FE/BE" class="md-nav__link">
+      Split FE/BE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/cypress-e2e-tests/" title="Cypress e2e Tests" class="md-nav__link">
+      Cypress e2e Tests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/code-cov/" title="Ignore Backend Code Coverage" class="md-nav__link">
+      Ignore Backend Code Coverage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/vite/" title="Vite" class="md-nav__link">
+      Vite
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/github-packages/" title="GitHub Packages" class="md-nav__link">
+      GitHub Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/twelve-factor-app/" title="Twelve Factor App" class="md-nav__link">
+      Twelve Factor App
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/image-signing/" title="Image Signing" class="md-nav__link">
+      Image Signing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/code-coverage/" title="Unit Test Coverage" class="md-nav__link">
+      Unit Test Coverage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ADR/google-analytics/" title="Remove Google Analytics" class="md-nav__link">
+      Remove Google Analytics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    Findings
+  </a>
+  
+    <nav class="md-nav" aria-label="Findings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pact" class="md-nav__link">
+    Pact
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumer-side-testing" class="md-nav__link">
+    Consumer Side Testing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pact-broker" class="md-nav__link">
+    Pact Broker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-tests" class="md-nav__link">
+    Provider tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendation" class="md-nav__link">
+    Recommendation
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommendation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consumer-tests" class="md-nav__link">
+    Consumer Tests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pact-broker_1" class="md-nav__link">
+    Pact Broker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-tests_1" class="md-nav__link">
+    Provider Tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/master/docs/RFC/investigate-pact.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="rfc-investigate-pact">[RFC] Investigate Pact<a class="headerlink" href="#rfc-investigate-pact" title="Permanent link">&para;</a></h1>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>Contract testing is a tool used for testing HTTP and message integrations. It could help us catch CORS issues that can occur when the fronted communicates with the backend app.</p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>Pact is a code-first tool for testing HTTP and message integrations using contract tests. Contract tests assert that inter-application messages conform to a shared understanding that is documented in a contract. Without contract testing, the only way to ensure that applications will work correctly together is by using expensive and brittle integration tests.</p>
+<h2 id="goal">Goal<a class="headerlink" href="#goal" title="Permanent link">&para;</a></h2>
+<p>Decide whether using Pact would allow us to catch CORS issues.</p>
+<h2 id="findings">Findings<a class="headerlink" href="#findings" title="Permanent link">&para;</a></h2>
+<h3 id="pact">Pact<a class="headerlink" href="#pact" title="Permanent link">&para;</a></h3>
+<p>Pact can be used within a JS app by using <a href="https://github.com/pact-foundation/pact-js">pact-js</a>. They provide multiple testing examples for various frameworks, including Jest.</p>
+<p>There is a <a href="https://docs.pact.io/5-minute-getting-started-guide">5 Minute Guide</a> to understand how Pact works. I highly recommend reading through it.</p>
+<p>Basic steps to using Pact:</p>
+<ol>
+<li>Configure the mock API</li>
+<li>Write a consumer test.</li>
+<li>Run the consumer test.</li>
+<li>Share the created contracts with the broker.</li>
+<li>Write provider verification tests.</li>
+<li>Run the provider tests.</li>
+</ol>
+<h3 id="consumer-side-testing">Consumer Side Testing<a class="headerlink" href="#consumer-side-testing" title="Permanent link">&para;</a></h3>
+<p>Pact has a package specifically for working with Jest, <a href="https://github.com/pact-foundation/jest-pact">jest-pact</a>. This can make writing tests much more effortless.</p>
+<p>Instead of setting up a <code>new Pact({...})</code> we can use <code>pactWith</code>. <code>pactWith(JestPactOptions, (providerMock) =&gt; { /* tests go here */ })</code> is a wrapper that sets up a pact mock provider, applies sensible default options, and applies the setup and verification hooks so you don't have to.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">pactWith</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;jest-pact&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Matchers</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@pact-foundation/pact&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">api</span> <span class="nx">from</span> <span class="s1">&#39;yourCode&#39;</span><span class="p">;</span>
+
+<span class="nx">pactWith</span><span class="p">({</span> <span class="nx">consumer</span><span class="o">:</span> <span class="s1">&#39;MyConsumer&#39;</span><span class="p">,</span> <span class="nx">provider</span><span class="o">:</span> <span class="s1">&#39;MyProvider&#39;</span> <span class="p">},</span> <span class="nx">provider</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">client</span><span class="p">;</span>
+
+  <span class="nx">beforeEach</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">client</span> <span class="o">=</span> <span class="nx">api</span><span class="p">(</span><span class="nx">provider</span><span class="p">.</span><span class="nx">mockService</span><span class="p">.</span><span class="nx">baseUrl</span><span class="p">)</span>
+  <span class="p">});</span>
+
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;health endpoint&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Here we set up the interaction that the Pact</span>
+    <span class="c1">// mock provider will expect.</span>
+    <span class="c1">//</span>
+    <span class="c1">// jest-pact takes care of validating and tearing</span>
+    <span class="c1">// down the provider for you.</span>
+    <span class="nx">beforeEach</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="c1">// note the implicit return.</span>
+      <span class="c1">// addInteraction returns a promise.</span>
+      <span class="c1">// If you don&#39;t want to implicit return,</span>
+      <span class="c1">// you will need to `await` the result</span>
+      <span class="nx">provider</span><span class="p">.</span><span class="nx">addInteraction</span><span class="p">({</span>
+        <span class="nx">state</span><span class="o">:</span> <span class="s2">&quot;Server is healthy&quot;</span><span class="p">,</span>
+        <span class="nx">uponReceiving</span><span class="o">:</span> <span class="s1">&#39;A request for API health&#39;</span><span class="p">,</span>
+        <span class="nx">willRespondWith</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">status</span><span class="o">:</span> <span class="mf">200</span><span class="p">,</span>
+          <span class="nx">body</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">status</span><span class="o">:</span> <span class="nx">Matchers</span><span class="p">.</span><span class="nx">like</span><span class="p">(</span><span class="s1">&#39;up&#39;</span><span class="p">),</span>
+          <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="nx">withRequest</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+          <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/health&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+      <span class="p">})</span>
+    <span class="p">);</span>
+
+    <span class="c1">// You also test that the API returns the correct</span>
+    <span class="c1">// response to the data layer.</span>
+    <span class="c1">//</span>
+    <span class="c1">// Although Pact will ensure that the provider</span>
+    <span class="c1">// returned the expected object. You need to test that</span>
+    <span class="c1">// your code receives the right object.</span>
+    <span class="c1">//</span>
+    <span class="c1">// This is often the same as the object that was</span>
+    <span class="c1">// in the network response, but (as illustrated</span>
+    <span class="c1">// here) not always.</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns server health&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="c1">// implicit return again</span>
+      <span class="nx">client</span><span class="p">.</span><span class="nx">getHealth</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">health</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">expect</span><span class="p">(</span><span class="nx">health</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="s1">&#39;up&#39;</span><span class="p">);</span>
+      <span class="p">}));</span>
+  <span class="p">});</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="pact-broker">Pact Broker<a class="headerlink" href="#pact-broker" title="Permanent link">&para;</a></h3>
+<p>It enables you to share your pacts and verification results between projects and make them useful for people too. It is the recommended way forward for serious Pact development.</p>
+<p>You can run an example <code>pact-broker</code> using Ruby and Rails. <a href="https://github.com/pact-foundation/pact_broker#usage">https://github.com/pact-foundation/pact_broker#usage</a></p>
+<p>It's also possible to use their docker image, <a href="https://github.com/pact-foundation/pact-broker-docker">https://github.com/pact-foundation/pact-broker-docker</a></p>
+<p>Otherwise, you'll need to run your own <a href="https://github.com/pact-foundation/pact_broker#rolling-your-own">pact-broker</a>.</p>
+<p>Once the broker is up and running, you can publish your pact files to it using the following command:</p>
+<p><code>"pact:publish": "pact-broker publish &lt;YOUR_PACT_FILES_OR_DIR&gt; --consumer-app-version=1.0.0 --tag-with-git-branch --broker-base-url=https://your-broker-url.example.com"</code></p>
+<p>Additional CLI options can be found <a href="https://github.com/pact-foundation/pact-ruby-standalone/releases">here</a> under <code>pact-broker client</code>. You can also include the username and password with <code>--broker-username</code> and <code>--broker-password.</code> Obviously, you should NEVER hard code these values. ENV variables can/should be used for this.</p>
+<p>It's also possible to create a script that can further control publishing pacts to a broker.</p>
+<h3 id="provider-tests">Provider tests<a class="headerlink" href="#provider-tests" title="Permanent link">&para;</a></h3>
+<p>Provider tests are a lot simpler than consumer tests. We need to pull the contract from the Pact Broker and verify that the contract is correct.</p>
+<p><a href="https://github.com/pact-foundation/pact-js#provider-api-testing">Provider API Testing</a></p>
+<p>Here is a very basic example of a Provider Test:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">Verifier</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;@pact-foundation/pact&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">providerBaseUrl</span><span class="o">:</span> <span class="s1">&#39;http://127.0.0.1:7007&#39;</span><span class="p">,</span>
+  <span class="nx">pactBrokerUrl</span><span class="o">:</span> <span class="s1">&#39;broker_url&#39;</span><span class="p">,</span>
+  <span class="nx">provider</span><span class="o">:</span> <span class="s1">&#39;MyProvider&#39;</span><span class="p">,</span>
+  <span class="nx">providerVersion</span><span class="o">:</span> <span class="s1">&#39;1.0.0&#39;</span><span class="p">,</span>
+  <span class="nx">pactBrokerUsername</span><span class="o">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+  <span class="nx">pactBrokerPassword</span><span class="o">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+  <span class="nx">logLevel</span><span class="o">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Pact Verification&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should validate the expectations of our consumer&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Verifier</span><span class="p">(</span><span class="nx">opts</span><span class="p">).</span><span class="nx">verifyProvider</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="recommendation">Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">&para;</a></h2>
+<p>Pact was pretty confusing to set up and get running. Everything eventually fell into place once I was able to get the full loop working.
+Pact testing would be a great idea to test any endpoints that we hit when communicating with the backend. Because of this, Pact would be a great fit for preventing CORS issues when merging branches into main or testing before we make a deployment.</p>
+<p>I also think it'd be worth our time to get the pact broker running on Docker. However, using a host like Heroku would work as well.</p>
+<p>Unfortunately, I couldn't get Pact working with Cypress, but I was able to get it working by using Jest. It wasn't easy at first, but some great documentation and some articles can walk through the setup. They are listed under the Reference section.</p>
+<p>To make setup extra easy, I'll include the files I used to create the tests below.</p>
+<h3 id="consumer-tests">Consumer Tests<a class="headerlink" href="#consumer-tests" title="Permanent link">&para;</a></h3>
+<p>The Function:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="nx">axios</span> <span class="nx">from</span> <span class="s1">&#39;axios&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">defaultBaseUrl</span> <span class="o">=</span> <span class="s1">&#39;http://127.0.0.1:5000&#39;</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getCatalogs</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span>
+  <span class="nx">axios</span>
+    <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">defaultBaseUrl</span><span class="si">}</span><span class="sb">/catalog`</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">Accept</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>The test:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">pactWith</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;jest-pact&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Matchers</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@pact-foundation/pact&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">getCatalogs</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./pactCode.js&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">EXPECTED_BODY</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">metadata</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">namespace</span><span class="o">:</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;guest&#39;</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">apiVersion</span><span class="o">:</span> <span class="s1">&#39;backstage.io/v1alpha1&#39;</span><span class="p">,</span>
+  <span class="nx">kind</span><span class="o">:</span> <span class="s1">&#39;User&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="nx">pactWith</span><span class="p">(</span>
+  <span class="p">{</span> <span class="nx">consumer</span><span class="o">:</span> <span class="s1">&#39;MyConsumer&#39;</span><span class="p">,</span> <span class="nx">provider</span><span class="o">:</span> <span class="s1">&#39;MyProvider&#39;</span><span class="p">,</span> <span class="nx">port</span><span class="o">:</span> <span class="mf">5000</span> <span class="p">},</span>
+  <span class="nx">provider</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;health endpoint&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="c1">// Here we set up the interaction that the Pact</span>
+      <span class="c1">// mock provider will expect.</span>
+      <span class="c1">//</span>
+      <span class="c1">// jest-pact takes care of validating and tearing</span>
+      <span class="c1">// down the provider for you.</span>
+      <span class="nx">beforeEach</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">provider</span><span class="p">.</span><span class="nx">addInteraction</span><span class="p">({</span>
+          <span class="nx">state</span><span class="o">:</span> <span class="s1">&#39;Server is healthy&#39;</span><span class="p">,</span>
+          <span class="nx">uponReceiving</span><span class="o">:</span> <span class="s1">&#39;A request for the Catalogs&#39;</span><span class="p">,</span>
+          <span class="nx">willRespondWith</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">status</span><span class="o">:</span> <span class="mf">200</span><span class="p">,</span>
+            <span class="nx">body</span><span class="o">:</span> <span class="p">{</span>
+              <span class="nx">status</span><span class="o">:</span> <span class="nx">Matchers</span><span class="p">.</span><span class="nx">like</span><span class="p">(</span><span class="nx">EXPECTED_BODY</span><span class="p">),</span>
+            <span class="p">},</span>
+            <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span> <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="o">:</span> <span class="s1">&#39;*&#39;</span> <span class="p">},</span>
+          <span class="p">},</span>
+          <span class="nx">withRequest</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+            <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/catalog&#39;</span><span class="p">,</span>
+          <span class="p">},</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+
+      <span class="c1">// You also test that the API returns the correct</span>
+      <span class="c1">// response to the data layer.</span>
+      <span class="c1">//</span>
+      <span class="c1">// Although Pact will ensure that the provider</span>
+      <span class="c1">// returned the expected object. You need to test that</span>
+      <span class="c1">// your code receives the right object.</span>
+      <span class="c1">//</span>
+      <span class="c1">// This is often the same as the object that was</span>
+      <span class="c1">// in the network response, but (as illustrated</span>
+      <span class="c1">// here) not always.</span>
+      <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns catalogs&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span>
+        <span class="nx">getCatalogs</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">catalogs</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">catalogs</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">EXPECTED_BODY</span><span class="p">);</span>
+        <span class="p">}));</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+<span class="p">);</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="pact-broker_1">Pact Broker<a class="headerlink" href="#pact-broker_1" title="Permanent link">&para;</a></h3>
+<p>The pact broker was made using Ruby and Rails, then published to Heroku. Information can be found within the findings section.</p>
+<h3 id="provider-tests_1">Provider Tests<a class="headerlink" href="#provider-tests_1" title="Permanent link">&para;</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">Verifier</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;@pact-foundation/pact&#39;</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">providerBaseUrl</span><span class="o">:</span> <span class="s1">&#39;http://127.0.0.1:7007&#39;</span><span class="p">,</span>
+  <span class="nx">pactBrokerUrl</span><span class="o">:</span> <span class="s1">&#39;https://polar-forest-27410.herokuapp.com/&#39;</span><span class="p">,</span>
+  <span class="nx">provider</span><span class="o">:</span> <span class="s1">&#39;MyProvider&#39;</span><span class="p">,</span>
+  <span class="nx">providerVersion</span><span class="o">:</span> <span class="s1">&#39;1.0.0&#39;</span><span class="p">,</span>
+  <span class="nx">pactBrokerUsername</span><span class="o">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+  <span class="nx">pactBrokerPassword</span><span class="o">:</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+  <span class="nx">logLevel</span><span class="o">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Pact Verification&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should validate the expectations of our consumer&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Verifier</span><span class="p">(</span><span class="nx">opts</span><span class="p">).</span><span class="nx">verifyProvider</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{});</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.pact.io/">Pact</a></li>
+<li><a href="https://github.com/pact-foundation/pact-js">pact-js</a></li>
+<li><a href="https://github.com/pact-foundation/jest-pact">jest-pact</a></li>
+<li><a href="https://github.com/pact-foundation/pact_broker">pact-broker</a></li>
+<li><a href="https://github.com/pact-foundation/pact-broker-docker">pact-broker-docker</a></li>
+<li><a href="https://www.mariedrake.com/post/contract-testing-with-pact-js-and-jest">jest-pact-article</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../linting/" title="Linting Rules" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Linting Rules
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../env-promotion/" title="Environment Promotion" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Environment Promotion
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7f4f3c92.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
