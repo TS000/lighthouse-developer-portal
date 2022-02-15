@@ -60,7 +60,6 @@ import {
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';
 import { FeedbackModal } from '../feedback';
-import { useKinds } from '../../hooks';
 import { IconComponent } from '@backstage/core-plugin-api';
 
 const useSidebarLogoStyles = makeStyles({
@@ -123,8 +122,6 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
     });
   };
 
-  const kinds = useKinds();
-
   return (
     <SidebarPage>
       <Sidebar>
@@ -137,14 +134,16 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
         <SidebarItemWithSubmenu icon={ListIcon} to="/catalog" text="Catalog">
           <SidebarSubmenu title="Catalog">
-            {kinds.map(kind => (
-              <SidebarSubmenuItem
-                title={`${kind}s`}
-                to={`catalog?filters[kind]=${kind.toLowerCase()}`}
-                icon={catalogKindIcon[kind] || AppsIcon}
-                callback={() => handleFilterChange(kind.toLowerCase())}
-              />
-            ))}
+            {['Component', 'API', 'Group', 'User', 'System', 'Domain'].map(
+              kind => (
+                <SidebarSubmenuItem
+                  title={`${kind}s`}
+                  to={`catalog?filters[kind]=${kind.toLowerCase()}`}
+                  icon={catalogKindIcon[kind] || AppsIcon}
+                  callback={() => handleFilterChange(kind.toLowerCase())}
+                />
+              ),
+            )}
           </SidebarSubmenu>
         </SidebarItemWithSubmenu>
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
@@ -154,7 +153,11 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           text="Datadog"
           icon={BarChartIcon}
         />
-        <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
+        <SidebarItem
+          icon={CreateComponentIcon}
+          to="catalog-import"
+          text="Register New"
+        />
         <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
         {/* End global nav */}
         <SidebarDivider />

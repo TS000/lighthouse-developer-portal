@@ -4,7 +4,6 @@ import ExtensionIcon from '@material-ui/icons/Extension';
 
 import { CatalogResultListItem } from '@backstage/plugin-catalog';
 import { DocsResultListItem } from '@backstage/plugin-techdocs';
-import { useKinds } from '../../hooks';
 
 import {
   SearchBar,
@@ -38,7 +37,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const SearchPage = () => {
   const classes = useStyles();
-  const kinds = useKinds();
 
   return (
     <Page themeId="home">
@@ -77,7 +75,14 @@ const SearchPage = () => {
                 className={classes.filter}
                 label="Kind"
                 name="kind"
-                values={kinds}
+                values={[
+                  'Component',
+                  'API',
+                  'Group',
+                  'User',
+                  'System',
+                  'Domain',
+                ]}
               />
               <SearchFilter.Checkbox
                 className={classes.filter}
