@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import {
   Header,
   Page,
@@ -10,21 +10,34 @@ import {
 } from '@backstage/core-components';
 import { APIFetchComponent } from '../APIFetchComponent';
 
-export const BodyComponent = () => (
-  <Page themeId="tool">
-    <Header title="Provider Dashboard" subtitle="">
-      <HeaderLabel label="Owner" value="Team Quokka" />
-      <HeaderLabel label="Lifecycle" value="Alpha" />
-    </Header>
-    <Content>
-      <ContentHeader title="">
-        <SupportButton>A description of your plugin goes here.</SupportButton>
-      </ContentHeader>
-      <Grid container spacing={3} direction="column">
-        <Grid item>
-          <APIFetchComponent />
+export const BodyComponent = () => {
+
+  const handleAddClick = () => {
+    return; // TODO When access management ticket completed
+  };
+
+  return (
+    <Page themeId="tool">
+      <Header title="Provider Dashboard" subtitle="">
+        <HeaderLabel label="Owner" value="Team Quokka" />
+        <HeaderLabel label="Lifecycle" value="Alpha" />
+      </Header>
+      <Content>
+        <ContentHeader title="APIs">
+          <Button
+            disabled
+            onClick={handleAddClick}
+          >
+            Add
+          </Button>
+          <SupportButton>Dashboard offers a set of tools to view/manage provider configurations, specifications, and automated test results.</SupportButton>
+        </ContentHeader>
+        <Grid container spacing={3} direction="column">
+          <Grid item>
+            <APIFetchComponent />
+          </Grid>
         </Grid>
-      </Grid>
-    </Content>
-  </Page>
-);
+      </Content>
+    </Page>
+    )
+};

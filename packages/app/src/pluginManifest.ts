@@ -35,7 +35,8 @@ export const pluginManifest: pluginManifestTypes[] = [
   },
   {
     title: 'Provider Dashboard',
-    description: '',
+    description:
+      'Dashboard offers a set of tools to view/manage provider configurations, specifications, and automated test results.',
     url: '/provider-dashboard',
     image: '',
     tags: ['dashboard'],
