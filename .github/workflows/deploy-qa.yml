@@ -25,6 +25,8 @@ jobs:
           commit_sha: ${{ steps.main.outputs.COMMIT_SHA }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - if: ${{ steps.deployment-check.outputs.has_active_deployment == true }}
+        run: echo "Something is deployed to Dev using this commit sha"
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:
