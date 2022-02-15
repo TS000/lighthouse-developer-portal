@@ -36,11 +36,11 @@ virtualService:
 
 resources:
   requests:
-    cpu: '0.1'
-    memory: '50Mi'
+    cpu: '0.5'
+    memory: '512Mi'
   limits:
-    cpu: '0.2'
-    memory: '100Mi'
+    cpu: '1'
+    memory: '1024Mi'
 
 nodeSelector: {}
 

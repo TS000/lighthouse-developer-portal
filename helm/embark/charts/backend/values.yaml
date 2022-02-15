@@ -6,7 +6,7 @@ revisionHistoryLimit: 3
 
 image:
   repository: ghcr.io/department-of-veterans-affairs/lighthouse-embark
-  pullPolicy: Always
+  pullPolicy: 'IfNotPresent'
   # Overrides the image tag whose default is the chart appVersion.
   # For deployment repo this will be hardcoded and updated with Argo, i.e:
   # tag: "sha-6dcd760d389e826b58586cde61f5ead1ca464943"

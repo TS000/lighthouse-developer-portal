@@ -15,7 +15,6 @@ spec:
   template:
     metadata:
       annotations:
-        namespace: "lighthouse-bandicoot-{{ .Values.global.DEPLOY_ENV }}"
         rollme: {{ randAlphaNum 5 | quote }}
       labels:
         {{- include "frontend.selectorLabels" . | nindent 8 }}

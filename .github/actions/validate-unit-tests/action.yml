@@ -15,7 +15,7 @@ inputs:
     required: true
   SLACK_UID_004:
     description: 'slack user id'
-    required: true
+    required: false
   SLACK_WEBHOOK_URL:
     description: 'webhook url for slack bot'
     required: true

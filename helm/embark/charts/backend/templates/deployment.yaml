@@ -15,7 +15,6 @@ spec:
   template:
     metadata:
       annotations:
-        namespace: "lighthouse-bandicoot-{{ .Values.global.DEPLOY_ENV }}"
         rollme: {{ randAlphaNum 5 | quote }}
       labels:
         {{- include "backend.selectorLabels" . | nindent 8 }}
@@ -47,13 +46,16 @@ spec:
               path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.port }}
           args: ["packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
+          env:
+          - name: POSTGRES_SERVICE_HOST
+            value: "$({{ .Values.global.DEPLOY_ENV | upper }}_POSTGRES_SERVICE_HOST)"
           envFrom:
           - configMapRef:
               name: "{{ .Values.global.DEPLOY_ENV }}-cm"
           - secretRef:
               name: "{{ .Values.global.DEPLOY_ENV }}-gh-secrets"
           - secretRef:
-              name: postgres-secrets
+              name: "{{ .Values.global.DEPLOY_ENV }}-postgres-secrets"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:

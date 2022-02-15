@@ -17,9 +17,8 @@ jobs:
       UNIT_TEST_STATUS: ${{ needs.unit-tests.result }}
     secrets:
       SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
-      SLACK_UID_002: ${{ secrets.SLACK_UID_FOWLER }}
-      SLACK_UID_003: ${{ secrets.SLACK_UID_LOVENDAHL }}
-      SLACK_UID_004: ${{ secrets.SLACK_UID_LUCKEY }}
+      SLACK_UID_002: ${{ secrets.SLACK_UID_LOVENDAHL }}
+      SLACK_UID_003: ${{ secrets.SLACK_UID_LUCKEY }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
 
@@ -47,39 +46,31 @@ jobs:
           owner: ${{ github.repository_owner }}
           DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
 
-  deploy-backstage-app:
+  deploy-app-dev:
     runs-on: ubuntu-latest
     needs: [build-push-images]
     if: | 
       github.ref == 'refs/heads/main' ||
       github.event_name == 'workflow_dispatch'
-    strategy:
-      matrix:
-        env: [dev]
+    environment:
+      name: Development
     permissions:
       packages: read
       contents: read
     # Need to periodically update K8s context
     steps:
       - uses: actions/checkout@v2
-      # - name: Create Deployment
-      #   uses: bobheadxi/deployments@v0.6.1
-      #   id: deployment
-      #   with:
-      #     step: start
-      #     token: ${{ secrets.DEV_GH_TOKEN }}
-      #     env: ${{ matrix.DEPLOY_TO }}
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-          DOCKERCONFIGJSON: ${{ secrets.DEV_DOCKERCONFIGJSON }}
+          DOCKERCONFIGJSON: ${{ secrets.DOCKERCONFIGJSON }}
           BACKEND_SECRET: ${{ secrets.BACKEND_SECRET }}
           GH_CLIENT_ID: ${{ secrets.GHA_CLIENT_ID }}
           GH_CLIENT_SECRET: ${{ secrets.GHA_CLIENT_SECRET }}
-          ENV: ${{ matrix.env }}
-          POSTGRES_USER: ${{ secrets.DEV_PG_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.DEV_PG_PASSWORD }}
+          ENV: "dev"
+          POSTGRES_USER: ${{ secrets.PG_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.PG_PASSWORD }}
           AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
           SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
           DOCSERVER_BASE_URL: ${{ secrets.DOCSERVER_BASE_URL }}
@@ -87,18 +78,13 @@ jobs:
 
   notify-deployment-repo:
     runs-on: ubuntu-latest
-    needs: [deploy-backstage-app]
-    strategy:
-      matrix:
-        env: [dev]
-        include:
-          - env: dev
+    needs: [deploy-app-dev]
     # Notify embark-deployment via webhook https://github.com/department-of-veterans-affairs/embark-deployment
     steps:
       - uses: actions/checkout@v2
       - name: Send deployment event via webhook
         uses: ./.github/actions/send-deployment-webhook
         with:
-          ENV: ${{ matrix.env }}
+          ENV: "dev"
           WEBHOOK_DEPLOY_PAT: ${{ secrets.WEBHOOK_DEPLOY_PAT }}
           MAIN_SHA: ${{ github.sha }}

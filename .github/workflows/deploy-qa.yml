@@ -1,0 +1,36 @@
+name: Deploy to QA Environment
+
+on:
+  push:
+    tags:
+    - '**.**.**'
+    
+jobs:
+  deploy-app-qa:
+    runs-on: ubuntu-latest
+    environment: 
+      name: QA
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
+      - name: Get current SHA from Main branch
+        id: main
+        run: |
+          echo "::set-output name=COMMIT_SHA::$(git log -n 1  --format='%H' main)"
+      - name: Deploy app
+        uses: ./.github/actions/deploy-backstage-app
+        with:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+          DOCKERCONFIGJSON: ${{ secrets.DOCKERCONFIGJSON }}
+          BACKEND_SECRET: ${{ secrets.BACKEND_SECRET }}
+          COMMIT_SHA: ${{ steps.main.outputs.COMMIT_SHA }}
+          GH_CLIENT_ID: ${{ secrets.GHA_CLIENT_ID }}
+          GH_CLIENT_SECRET: ${{ secrets.GHA_CLIENT_SECRET }}
+          ENV: "qa"
+          POSTGRES_USER: ${{ secrets.PG_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.PG_PASSWORD }}
+          AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+          SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+          DOCSERVER_BASE_URL: ${{ secrets.DOCSERVER_BASE_URL }}
+          APP_CREDS_YAML: ${{ secrets.APP_CREDS_YAML }}

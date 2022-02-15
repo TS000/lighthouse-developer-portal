@@ -37,6 +37,9 @@ inputs:
   APP_CREDS_YAML:
     description: 'GitHub app secret credentials yaml file'
     required: true
+  COMMIT_SHA:
+    description: 'Commit SHA used to tag images'
+    required: false
 
 runs:
   using: "composite"
@@ -50,24 +53,37 @@ runs:
     id: overrides
     run: |
       echo "::set-output name=nonprod::true"
-      echo "::set-output name=BASE_URL::http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
-      echo "::set-output name=HOST::internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
-      echo "::set-output name=GATEWAY::istio-system/ldx-nonprod-dev-gateway"
+      echo "${{ inputs.ENV }}"
+      if [[ "${{ inputs.ENV }}" == "dev" ]]; then
+        echo "::set-output name=BASE_URL::http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
+        echo "::set-output name=HOST::internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
+        echo "::set-output name=GATEWAY::istio-system/ldx-nonprod-dev-gateway"
+      fi
+  
+      if [[ "${{ inputs.ENV }}" == "qa" ]]; then
+        echo "::set-output name=BASE_URL::http://internal-ac82ef17b50b144ff98d45d6fc6af502-971600415.us-gov-west-1.elb.amazonaws.com"
+        echo "::set-output name=HOST::internal-ac82ef17b50b144ff98d45d6fc6af502-971600415.us-gov-west-1.elb.amazonaws.com"
+        echo "::set-output name=GATEWAY::istio-system/ldx-nonprod-qa-gateway"
+      fi
     shell: bash
   - name: Create image tag
     id: tag
     run: |
       prefix="sha-"
-      prefix+=${{ github.sha }}
+      if [[ "${{ inputs.COMMIT_SHA }}" ]]; then
+        prefix+=${{ inputs.COMMIT_SHA }}
+      else
+        prefix+=${{ github.sha }}
+      fi
       echo "::set-output name=sha::$prefix"
     shell: bash
   - name: Upgrade(or install) helm release
     id: upgrade
     run: >
-      helm upgrade lighthouse-embark-${{ inputs.ENV }} helm/embark/ 
+      helm upgrade embark-${{ inputs.ENV }} helm/embark/ 
       --debug 
       --values helm/embark/values.yaml 
-      --namespace lighthouse-bandicoot-dev 
+      --namespace lighthouse-bandicoot-dev
       --set DOCKERCONFIGJSON=${{ inputs.DOCKERCONFIGJSON }} 
       --set BACKEND_SECRET=${{ inputs.BACKEND_SECRET }}
       --set HOST=${{ steps.overrides.outputs.HOST }}

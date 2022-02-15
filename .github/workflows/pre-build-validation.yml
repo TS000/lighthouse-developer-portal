@@ -19,7 +19,7 @@ on:
         required: true
       SLACK_UID_004:
         description: 'Slack User ID 4'
-        required: true
+        required: false
       SLACK_WEBHOOK_URL:
         description: 'Slack Webhook Url to post slack messages'
         required: true
