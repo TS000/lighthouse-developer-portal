@@ -22,7 +22,7 @@ jobs:
         uses: AminFazlMondo/check-deployed-environment@0248df0facfa270f9cc37a2895ed3411ce648c02 # v1.0.13 
         with:
           environment: 'Development'
-          commitSha: ${{ steps.main.outputs.COMMIT_SHA }}
+          commit_sha: ${{ steps.main.outputs.COMMIT_SHA }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy app
