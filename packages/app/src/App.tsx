@@ -25,8 +25,8 @@ import { initDatadogLogs } from './components/datadog';
 import { searchPage } from './components/search/SearchPage';
 import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFlagRegistry';
-import { StarterGuidePage } from '@internal/plugin-starter-guide';
-import { ContributingGuidePage } from '@internal/plugin-contributing-guide';
+import { StarterGuide } from './components/starterGuide';
+import { ContributingGuide } from './components/contributing';
 import { DatadogDashboardPage } from '@internal/plugin-datadog-dashboard';
 import { EntityListProvider } from '@backstage/plugin-catalog-react';
 import { ExplorePage, explorePlugin } from '@backstage/plugin-explore';
@@ -146,8 +146,8 @@ const routes = (
     <Route path="/search" element={<SearchPage />} />
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/feature-flags" element={<FeatureFlagsPage />} />
-    <Route path="/starter-guide" element={<StarterGuidePage />} />
-    <Route path="/contributing-guide" element={<ContributingGuidePage />} />
+    <Route path="/starter-guide" element={<StarterGuide />} />
+    <Route path="/contributing-guide" element={<ContributingGuide />} />
     <Route path="/provider-dashboard" element={<ProviderDashboardPage />} />
     <PermissionedRoute
       path="/plugins"

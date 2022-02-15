@@ -14,9 +14,11 @@ import {
 } from '@backstage/core-components';
 import { Typography, Grid } from '@material-ui/core';
 
-export const StarterGuideComponent = () => {
+export const ContributingGuide = () => {
   const { value, loading, error } = useAsync(async (): Promise<string> => {
-    const response = await fetch('https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/starter-guide.md');
+    const response = await fetch(
+      'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/contributing-guide.md',
+    );
     const body = await response.text();
     return body;
   }, []);
@@ -26,19 +28,19 @@ export const StarterGuideComponent = () => {
   } else if (error) {
     return <Alert severity="error">{error.message}</Alert>;
   } else if (!value) {
-    const somethingBad = "Uh Oh! Something went wrong..."
+    const somethingBad = 'Uh Oh! Something went wrong...';
     return <Alert severity="error">{somethingBad}</Alert>;
   }
 
   return (
-    <Page themeId="tool">
-      <Header title="Starter Guide">
+    <Page themeId="tool" data-testid="progress">
+      <Header title="Contributing Guide">
         <HeaderLabel label="Owner" value="Team Bandicoot" />
         <HeaderLabel label="Lifecycle" value="Alpha" />
       </Header>
       <Content>
-        <ContentHeader title="Getting Started">
-          <SupportButton>Need additional help getting started?</SupportButton>
+        <ContentHeader title="Contributing">
+          <SupportButton>Want to start contributing to Embark?</SupportButton>
         </ContentHeader>
         <Grid container spacing={3} direction="column">
           <Grid item>
@@ -52,4 +54,4 @@ export const StarterGuideComponent = () => {
       </Content>
     </Page>
   );
-}
+};

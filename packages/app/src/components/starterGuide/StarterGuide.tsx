@@ -1,5 +1,5 @@
-import Alert from '@material-ui/lab/Alert';
 import React from 'react';
+import Alert from '@material-ui/lab/Alert';
 import useAsync from 'react-use/lib/useAsync';
 import {
   Content,
@@ -14,10 +14,10 @@ import {
 } from '@backstage/core-components';
 import { Typography, Grid } from '@material-ui/core';
 
-export const ContributingGuideComponent = () => {
+export const StarterGuide = () => {
   const { value, loading, error } = useAsync(async (): Promise<string> => {
     const response = await fetch(
-      'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/contributing-guide.md',
+      'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/starter-guide.md',
     );
     const body = await response.text();
     return body;
@@ -33,14 +33,14 @@ export const ContributingGuideComponent = () => {
   }
 
   return (
-    <Page themeId="tool">
-      <Header title="Contributing Guide">
+    <Page themeId="tool" data-testid="progress">
+      <Header title="Starter Guide">
         <HeaderLabel label="Owner" value="Team Bandicoot" />
         <HeaderLabel label="Lifecycle" value="Alpha" />
       </Header>
       <Content>
-        <ContentHeader title="Contributing">
-          <SupportButton>Want to start contributing to Embark?</SupportButton>
+        <ContentHeader title="Getting Started">
+          <SupportButton>Need additional help getting started?</SupportButton>
         </ContentHeader>
         <Grid container spacing={3} direction="column">
           <Grid item>

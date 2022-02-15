@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { ContributingGuideComponent } from './ContributingGuideComponent';
+import { ContributingGuide } from './ContributingGuide';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { setupRequestMockHandlers } from '@backstage/test-utils';
@@ -20,7 +20,7 @@ describe('ContributingGuideComponent', () => {
     );
   });
   it('should render', async () => {
-    const rendered = render(<ContributingGuideComponent />);
+    const rendered = render(<ContributingGuide />);
     expect(await rendered.findByTestId('progress')).toBeInTheDocument();
   });
 });
