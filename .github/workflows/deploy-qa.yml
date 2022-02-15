@@ -25,8 +25,15 @@ jobs:
           commit_sha: ${{ steps.main.outputs.COMMIT_SHA }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - if: ${{ steps.deployment-check.outputs.has_active_deployment == true }}
-        run: echo "Something is deployed to Dev using this commit sha"
+      - name: check output
+        run: |
+          if [[ "${{ steps.deployment-check.outputs.has_active_deployment" == "true" }} ]]; then
+            echo "Something is deployed to Dev using this commit sha"
+            echo "${{ steps.deployment-check.outputs.has_active_deployment"
+          else
+            echo "${{ steps.deployment-check.outputs.has_active_deployment"
+            echo "nothing is deployed to Dev"
+          fi
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:
