@@ -75,7 +75,7 @@ jobs:
           name: edge
           path: packages/app/cypress/screenshots
           retention-days: 5
-    
+
   deploy-app-qa:
     runs-on: ubuntu-latest
     needs: [validate-dev-deployment, browser-test-windows-edge]
