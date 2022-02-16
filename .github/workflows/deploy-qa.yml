@@ -37,6 +37,9 @@ jobs:
   browser-test-windows-edge:
     runs-on: windows-latest
     needs: [validate-dev-deployment]
+    strategy:
+      matrix:
+        node: [14]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -50,6 +53,7 @@ jobs:
           build: yarn run build
           command: yarn run test:e2e:ci
           working-directory: packages/app
+          cache-key: node-v${{ matrix.node }}-on-${{ runner.os }}-hash-${{ hashFiles('yarn.lock') }}
         # Upload screenshots as "edge" if tests fail
       - name: Upload Screenshots of failed tests
         uses: actions/upload-artifact@v2
