@@ -61,7 +61,7 @@ jobs:
           name: chrome
           path: packages/app/cypress/screenshots
           retention-days: 5
-
+ 
   browser-tests-edge:
     runs-on: macos-latest
     steps:
