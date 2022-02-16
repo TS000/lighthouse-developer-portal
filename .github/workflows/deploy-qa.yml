@@ -4,12 +4,15 @@ on:
   push:
     tags:
     - '[0-9]+[0-9]+\.[0-9]+[0-9]+\.[0-9]+[0-9]+'
+
+env:
+  COMMIT_SHA: ${{ jobs.validate-dev-deployment.outputs.COMMIT_SHA }}
     
 jobs:
-  deploy-app-qa:
+  validate-dev-deployment:
     runs-on: ubuntu-latest
-    environment: 
-      name: QA
+    outputs:
+      COMMIT_SHA: ${{ steps.main.outputs.COMMIT_SHA }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -33,13 +36,65 @@ jobs:
             echo "No Development Deployment with this commit sha"
             exit 1
           fi
+
+  browser-test-windows-edge:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
+      - uses: cypress-io/github-action@v3
+        with:
+          browser: edge
+          # Increase install time to prevent timeout
+          install-command: yarn --frozen-lockfile --network-timeout 1000000000
+          project: ./packages/app
+          build: yarn run build
+          command: yarn run test:e2e:ci
+          working-directory: packages/app
+        # Upload screenshots as "edge" if tests fail
+      - name: Upload Screenshots of failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: edge
+          path: packages/app/cypress/screenshots
+          retention-days: 5
+    
+  deploy-app-qa:
+    runs-on: ubuntu-latest
+    environment: 
+      name: QA
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
+      # - name: Get current SHA from Main branch
+      #   id: main
+      #   run: |
+      #     echo "::set-output name=COMMIT_SHA::$(git log -n 1 --format='%H' main)"
+      # - id: deployment-check
+      #   uses: AminFazlMondo/check-deployed-environment@0248df0facfa270f9cc37a2895ed3411ce648c02 # v1.0.13 
+      #   with:
+      #     environment: 'Development'
+      #     commit_sha: ${{ steps.main.outputs.COMMIT_SHA }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: check output
+      #   run: |
+      #     if [[ "${{ steps.deployment-check.outputs.has_active_deployment }}" == "true" ]]; then
+      #       echo -e "Valid Development deployment found...\nDeploying to QA..."
+      #     else
+      #       echo "No Development Deployment with this commit sha"
+      #       exit 1
+      #     fi
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
           DOCKERCONFIGJSON: ${{ secrets.DOCKERCONFIGJSON }}
           BACKEND_SECRET: ${{ secrets.BACKEND_SECRET }}
-          COMMIT_SHA: ${{ steps.main.outputs.COMMIT_SHA }}
+          COMMIT_SHA: ${{ env.COMMIT_SHA }}
           GH_CLIENT_ID: ${{ secrets.GHA_CLIENT_ID }}
           GH_CLIENT_SECRET: ${{ secrets.GHA_CLIENT_SECRET }}
           ENV: "qa"
