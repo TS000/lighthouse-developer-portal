@@ -53,13 +53,11 @@ runs:
     id: overrides
     run: |
       echo "::set-output name=nonprod::true"
-      echo "${{ inputs.ENV }}"
       if [[ "${{ inputs.ENV }}" == "dev" ]]; then
         echo "::set-output name=BASE_URL::http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
         echo "::set-output name=HOST::internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
         echo "::set-output name=GATEWAY::istio-system/ldx-nonprod-dev-gateway"
       fi
-  
       if [[ "${{ inputs.ENV }}" == "qa" ]]; then
         echo "::set-output name=BASE_URL::http://internal-ac82ef17b50b144ff98d45d6fc6af502-971600415.us-gov-west-1.elb.amazonaws.com"
         echo "::set-output name=HOST::internal-ac82ef17b50b144ff98d45d6fc6af502-971600415.us-gov-west-1.elb.amazonaws.com"
