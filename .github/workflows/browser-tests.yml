@@ -61,31 +61,8 @@ jobs:
           name: chrome
           path: packages/app/cypress/screenshots
           retention-days: 5
- 
-  browser-tests-edge:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: cypress-io/github-action@v3
-        with:
-          browser: edge
-          # Increase install time to prevent timeout
-          # install-command: yarn --frozen-lockfile --network-timeout 1000000000
-          project: ./packages/app
-          build: yarn run build
-          command: yarn run test:e2e:ci
-          working-directory: packages/app
-          cache-key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
-        # Upload screenshots as "edge" if tests fail
-      - name: Upload Screenshots of failed tests
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: edge
-          path: packages/app/cypress/screenshots
-          retention-days: 5
 
-  browser-tests-edge-linux:
+  browser-tests-edge:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -99,8 +76,6 @@ jobs:
       - uses: cypress-io/github-action@v3
         with:
           browser: edge
-          # Increase install time to prevent timeout
-          # install-command: yarn --frozen-lockfile --network-timeout 1000000000
           project: ./packages/app
           build: yarn run build
           command: yarn run test:e2e:ci
