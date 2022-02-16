@@ -28,11 +28,10 @@ jobs:
       - name: check output
         run: |
           if [[ "${{ steps.deployment-check.outputs.has_active_deployment }}" == "true" ]]; then
-            echo "Something is deployed to Dev using this commit sha"
-            echo "${{ steps.deployment-check.outputs.has_active_deployment }}"
+            echo -e "Valid Development deployment found...\nDeploying to QA..."
           else
-            echo "${{ steps.deployment-check.outputs.has_active_deployment }}"
-            echo "nothing is deployed to Dev"
+            echo "No Development Deployment with this commit sha"
+            exit 1
           fi
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
