@@ -67,7 +67,7 @@ jobs:
           retention-days: 5
 
   browser-tests-edge:
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
