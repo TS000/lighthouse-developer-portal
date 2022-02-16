@@ -75,6 +75,7 @@ jobs:
           build: yarn run build
           command: yarn run test:e2e:ci
           working-directory: packages/app
+          cache-key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
         # Upload screenshots as "edge" if tests fail
       - name: Upload Screenshots of failed tests
         uses: actions/upload-artifact@v2
