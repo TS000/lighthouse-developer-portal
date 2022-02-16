@@ -24,9 +24,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
       - name: Cypress run
         uses: cypress-io/github-action@v3
         with:
@@ -47,6 +48,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
       - uses: cypress-io/github-action@v3
         with:
           browser: chrome
@@ -67,6 +70,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
       - uses: cypress-io/github-action@v3
         with:
           browser: edge
