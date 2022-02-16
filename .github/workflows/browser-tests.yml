@@ -84,3 +84,36 @@ jobs:
           name: edge
           path: packages/app/cypress/screenshots
           retention-days: 5
+
+  browser-tests-edge-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install edge
+        run: | 
+          curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+          sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+          sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+          sudo rm microsoft.gpg
+          sudo apt update && sudo apt install microsoft-edge-stable
+      - uses: cypress-io/github-action@v3
+        with:
+          browser: edge
+          # Increase install time to prevent timeout
+          # install-command: yarn --frozen-lockfile --network-timeout 1000000000
+          project: ./packages/app
+          build: yarn run build
+          command: yarn run test:e2e:ci
+          working-directory: packages/app
+          cache-key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
+        # Upload screenshots as "edge" if tests fail
+      - name: Upload Screenshots of failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: edge
+          path: packages/app/cypress/screenshots
+          retention-days: 5
+
+
+
