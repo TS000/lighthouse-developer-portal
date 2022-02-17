@@ -60,9 +60,7 @@ jobs:
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: |
-            ~/.cache/Cypress
-            node_modules
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            D:\a\lighthouse-embark\lighthouse-embark\packages\app\node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
