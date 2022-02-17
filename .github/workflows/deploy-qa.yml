@@ -47,6 +47,7 @@ jobs:
       - name: Setup npm config
         run: |
           npm config set registry http://registry.npmjs.org/ --global
+          yarn config set registry "http://registry.npmjs.org"
           npm config rm proxy
           npm config rm https-proxy
       - name: Get yarn cache directory path
