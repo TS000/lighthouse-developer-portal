@@ -35,7 +35,7 @@ jobs:
           fi
 
   browser-test-windows-edge:
-    runs-on: windows-latest
+    runs-on: windows-2022
     needs: [validate-dev-deployment]
     strategy:
       matrix:
