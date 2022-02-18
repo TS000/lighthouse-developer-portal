@@ -47,12 +47,9 @@ import {
   SidebarItem,
   SidebarDivider,
   SidebarSpace,
-} from '@backstage/core-components';
-import {
   SidebarSubmenuItem,
-  SidebarItemWithSubmenu,
   SidebarSubmenu,
-} from '../sidebar';
+} from '@backstage/core-components';
 import {
   EntityKindFilter,
   useEntityListProvider,
@@ -132,20 +129,32 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarDivider />
         {/* Global nav, not org-specific */}
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
-        <SidebarItemWithSubmenu icon={ListIcon} to="/catalog" text="Catalog">
+        <SidebarItem icon={ListIcon} to="/catalog" text="Catalog">
           <SidebarSubmenu title="Catalog">
             {['Component', 'API', 'Group', 'User', 'System', 'Domain'].map(
               kind => (
-                <SidebarSubmenuItem
-                  title={`${kind}s`}
-                  to={`catalog?filters[kind]=${kind.toLowerCase()}`}
-                  icon={catalogKindIcon[kind] || AppsIcon}
-                  callback={() => handleFilterChange(kind.toLowerCase())}
-                />
+                <div
+                  aria-hidden
+                  style={{ width: '100%' }}
+                  onClick={() => {
+                    handleFilterChange(kind.toLowerCase());
+
+                    // Unfocus the sidebar
+                    if (document.activeElement) {
+                      (document.activeElement as HTMLElement).blur();
+                    }
+                  }}
+                >
+                  <SidebarSubmenuItem
+                    title={`${kind}s`}
+                    to={`catalog?filters[kind]=${kind.toLowerCase()}`}
+                    icon={catalogKindIcon[kind] || AppsIcon}
+                  />
+                </div>
               ),
             )}
           </SidebarSubmenu>
-        </SidebarItemWithSubmenu>
+        </SidebarItem>
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <HideableSidebarItem
           flagName="datadog-dashboard"
