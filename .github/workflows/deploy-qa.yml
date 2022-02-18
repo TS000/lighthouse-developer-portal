@@ -6,10 +6,10 @@ on:
     - '[0-9]+[0-9]+\.[0-9]+[0-9]+\.[0-9]+[0-9]+'
     
 jobs:
-  deploy-app-qa:
+  validate-dev-deployment:
     runs-on: ubuntu-latest
-    environment: 
-      name: QA
+    outputs:
+      COMMIT_SHA: ${{ steps.main.outputs.COMMIT_SHA }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -28,18 +28,50 @@ jobs:
       - name: check output
         run: |
           if [[ "${{ steps.deployment-check.outputs.has_active_deployment }}" == "true" ]]; then
-            echo -e "Valid Development deployment found...\nDeploying to QA..."
+            echo -e "Valid Development deployment found"
           else
             echo "No Development Deployment with this commit sha"
             exit 1
           fi
+
+  browser-tests-windows-edge:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v3
+        with:
+          browser: edge
+          # Increase install time to prevent timeout
+          install-command: yarn --frozen-lockfile --network-timeout 1000000000
+          project: ./packages/app
+          build: yarn run build
+          command: yarn run test:e2e:ci
+          working-directory: packages/app
+        # Upload screenshots as "edge" if tests fail
+      - name: Upload Screenshots of failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: edge
+          path: packages/app/cypress/screenshots
+          retention-days: 5
+
+  deploy-app-qa:
+    runs-on: ubuntu-latest
+    needs: [validate-dev-deployment, browser-test-windows-edge]
+    environment: 
+      name: QA
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
           DOCKERCONFIGJSON: ${{ secrets.DOCKERCONFIGJSON }}
           BACKEND_SECRET: ${{ secrets.BACKEND_SECRET }}
-          COMMIT_SHA: ${{ steps.main.outputs.COMMIT_SHA }}
+          COMMIT_SHA: ${{ needs.validate-dev-deployment.outputs.COMMIT_SHA }}
           GH_CLIENT_ID: ${{ secrets.GHA_CLIENT_ID }}
           GH_CLIENT_SECRET: ${{ secrets.GHA_CLIENT_SECRET }}
           ENV: "qa"
