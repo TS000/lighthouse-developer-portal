@@ -298,6 +298,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache-store" class="md-nav__link">
+    Cache Store
+  </a>
+  
+    <nav class="md-nav" aria-label="Cache Store">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#verify-deployment" class="md-nav__link">
     Verify Deployment
@@ -993,6 +1006,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cache-store" class="md-nav__link">
+    Cache Store
+  </a>
+  
+    <nav class="md-nav" aria-label="Cache Store">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#verify-deployment" class="md-nav__link">
     Verify Deployment
@@ -1292,7 +1318,15 @@ COMMIT_SHA=&lt;commit sha used to tag image or &quot;latest&quot;*&gt;
 <ul>
 <li>Install the Helm chart and set secrets using <code>--set</code></li>
 </ul>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set BACKEND_SECRET=$BACKEND_SECRET --set HOST=$HOST --set GATEWAY=$GATEWAY --set GH_CLIENT_ID=$GHA_CLIENT_ID --set GH_CLIENT_SECRET=$GHA_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set global.DEPLOY_ENV=$DEPLOY_ENV --set global.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set global.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --set DOCSERVER_BASE_URL=$DOCSERVER_BASE_URL --install --atomic --cleanup-on-fail --history-max 5
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm upgrade embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set BACKEND_SECRET=$BACKEND_SECRET --set HOST=$HOST --set GATEWAY=$GATEWAY --set GH_CLIENT_ID=$GHA_CLIENT_ID --set GH_CLIENT_SECRET=$GHA_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set global.DEPLOY_ENV=$DEPLOY_ENV --set global.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set global.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --set DOCSERVER_BASE_URL=$DOCSERVER_BASE_URL --set global.MEMCACHED_USER=$MEMCACHED_USER --set global.MEMCACHED_PASSWORD=$MEMCACHED_PASSWORD --install --atomic --cleanup-on-fail --history-max 5
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="cache-store">Cache Store<a class="headerlink" href="#cache-store" title="Permanent link">&para;</a></h2>
+<p>Backstage can be configured to use Memcached as a cache store. To deploy the cache store using Bitnami's Memcached Helm charts use the following commands:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>$ helm repo add bitnami https://charts.bitnami.com/bitnami
+$ helm upgrade embark-cache-store -f helm/embark/memcached/values.yaml --set auth.username=$MEMCACHED_USER --set auth.password=$MEMCACHED_PASSWORD bitnami/memcached --install --atomic --cleanup-on-fail 
 </code></pre></div>
 </td></tr></table>
 
