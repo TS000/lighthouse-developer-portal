@@ -56,6 +56,10 @@ Be sure to skim through our [Decision Records](https://department-of-veterans-af
 
 All new documentation files should be added to the `docs` folder, that includes guides, troubleshooting, ADRs, RFCs, etc. You must also add the filename to the `mkdocs.yml` file or else it won't show up on the documentation website.
 
+### Pre-Commit
+
+Prior to making your first commit for this repo, be sure to run `pre-commit install` from the root of the repo to ensure pre-commit hooks are run, which perform a variety of validations against your changes. Pre-commit installation instructions can be found at [pre-commit.com](https://pre-commit.com/index.html#install).
+
 ## Creating Changesets
 
 We use [changesets](https://github.com/atlassian/changesets) to help us prepare releases. They help us make sure that every package affected by a change gets a proper version number and an entry in its `CHANGELOG.md`. To make the process of generating releases easy, it helps when contributors include changesets with their pull requests.
