@@ -97,6 +97,11 @@ const SearchPage = () => {
               {({ results }) => (
                 <List>
                   {results.map(({ type, document }) => {
+                    // Limit results to 2 lines of text, maximum
+                    if (document.text && document.text.length > 300) {
+                      document.text = `${document.text.slice(0, 300)}...`;
+                    }
+
                     switch (type) {
                       case 'software-catalog':
                         return (

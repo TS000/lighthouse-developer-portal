@@ -118,17 +118,24 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
         <SearchResult>
           {({ results }) => (
             <List>
-              {results.map(({ type, document }) => (
-                <div
-                  role="button"
-                  tabIndex={0}
-                  key={`${document.location}-btn`}
-                  onClick={handleResultClick}
-                  onKeyPress={handleKeyPress}
-                >
-                  {getResultType(type, document)}
-                </div>
-              ))}
+              {results.map(({ type, document }) => {
+                // Limit results to 2 lines of text, maximum
+                if (document.text && document.text.length > 300) {
+                  document.text = `${document.text.slice(0, 300)}...`;
+                }
+
+                return (
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    key={`${document.location}-btn`}
+                    onClick={handleResultClick}
+                    onKeyPress={handleKeyPress}
+                  >
+                    {getResultType(type, document)}
+                  </div>
+                );
+              })}
             </List>
           )}
         </SearchResult>
