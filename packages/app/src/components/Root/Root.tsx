@@ -35,10 +35,7 @@ import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
 import { Settings as SidebarSettings } from '@backstage/plugin-user-settings';
-import {
-  SidebarSearchModal,
-  SearchContextProvider,
-} from '@backstage/plugin-search';
+import { SidebarSearchModal } from '../search';
 import {
   Sidebar,
   SidebarPage,
@@ -123,9 +120,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
     <SidebarPage>
       <Sidebar>
         <SidebarLogo />
-        <SearchContextProvider>
-          <SidebarSearchModal />
-        </SearchContextProvider>
+        <SidebarSearchModal />
         <SidebarDivider />
         {/* Global nav, not org-specific */}
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
@@ -135,6 +130,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
               kind => (
                 <div
                   aria-hidden
+                  key={kind}
                   style={{ width: '100%' }}
                   onClick={() => {
                     handleFilterChange(kind.toLowerCase());

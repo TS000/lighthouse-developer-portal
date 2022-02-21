@@ -33,6 +33,7 @@
     "@backstage/plugin-tech-radar": "^0.5.1",
     "@backstage/plugin-techdocs": "^0.13.0",
     "@backstage/plugin-user-settings": "^0.3.18",
+    "@backstage/search-common": "^0.2.2",
     "@backstage/test-utils": "^0.2.1",
     "@backstage/theme": "^0.2.6",
     "@datadog/browser-logs": "^3.10.1",

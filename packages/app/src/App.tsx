@@ -8,7 +8,7 @@ import {
   catalogImportPlugin,
 } from '@backstage/plugin-catalog-import';
 import { ScaffolderPage, scaffolderPlugin } from '@backstage/plugin-scaffolder';
-import { SearchPage } from '@backstage/plugin-search';
+import { SearchPage, SearchContextProvider } from '@backstage/plugin-search';
 import { TechRadarPage } from '@backstage/plugin-tech-radar';
 import {
   DefaultTechDocsHome,
@@ -192,7 +192,9 @@ const App = () => {
         <EntityListProvider>
           <Banner />
           <AppRouter>
-            <Root>{routes}</Root>
+            <SearchContextProvider>
+              <Root>{routes}</Root>
+            </SearchContextProvider>
           </AppRouter>
         </EntityListProvider>
       </FlagContext.Provider>
