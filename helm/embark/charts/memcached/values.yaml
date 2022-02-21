@@ -1,0 +1,97 @@
+global:
+  storageClass: "efs-sc"
+  DEPLOY_ENV: "placeholder"
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "1024Mi" 
+
+auth:
+  enabled: true
+  MEMCACHED_USER: "placeholder"
+  MEMCACHED_PASSWORD: "placeholder"
+
+persistence:
+  enabled: "true"
+  size: "5G"
+  existingClaim: "embark-efs-claim"
+  storageClass: "efs-sc"
+  accessModes: ["ReadWriteMany"]
+
+extraVolumes: 
+  - name: "persistent-storage"
+    persistentVolumeClaim:
+      claimName: "embark-efs-claim"
+extraVolumeMounts:
+  - name: persistent-storage
+    mountPath: /data
+
+args:
+  - /run.sh
+  - -vv
+
+clusterDomain: cluster.local
+fullnameOverride: ""
+nameOverride: ""
+
+serviceAccount:
+  name: ""
+
+image:
+  registry: docker.io
+  repository: bitnami/memcached
+  tag: 1.6.14-debian-10-r0
+  pullPolicy: IfNotPresent
+  pullSecrets: []
+  debug: true
+
+replicaCount: 1
+containerPorts:
+  memcached: 11211
+
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 6
+  successThreshold: 1
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 6
+  successThreshold: 1
+startupProbe:
+  enabled: false
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 1
+  failureThreshold: 15
+  successThreshold: 1
+
+podSecurityContext:
+  enabled: true
+  fsGroup: 1001
+containerSecurityContext:
+  enabled: true
+  runAsUser: 1001
+  runAsNonRoot: true
+
+podAntiAffinityPreset: soft
+nodeAffinityPreset:
+podManagementPolicy: Parallel
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate: {}
+
+service:
+  type: ClusterIP
+  ports:
+    memcached: 11211
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+
+

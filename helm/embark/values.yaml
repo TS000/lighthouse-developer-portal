@@ -23,6 +23,8 @@ global:
   image:
     tag: ${COMMIT_SHA}
   SERVICE_ACCOUNT: ${SERVICE_ACCOUNT}
+  MEMCACHED_USER: ${MEMCACHED_USER}
+  MEMCACHED_PASSWORD: ${MEMCACHED_PASSWORD} 
 
 service:
   type: ClusterIP

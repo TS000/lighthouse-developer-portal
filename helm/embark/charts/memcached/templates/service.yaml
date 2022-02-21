@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.global.DEPLOY_ENV }}-memcached"
+  labels: {{- include "memcached.labels" . | nindent 4 }}
+  annotations:
+spec:
+  selector: {{- include "memcached.selectorLabels" . | nindent 4 }}
+  type: {{ .Values.service.type }}
+  sessionAffinity: {{ .Values.service.sessionAffinity }}
+  clusterIP: {{ .Values.service.clusterIP }}
+  ports:
+    - name: memcache
+      port: {{ .Values.service.ports.memcached }}
+      targetPort: memcache
+      nodePort: null

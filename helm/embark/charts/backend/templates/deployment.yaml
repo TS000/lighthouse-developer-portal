@@ -49,6 +49,8 @@ spec:
           env:
           - name: POSTGRES_SERVICE_HOST
             value: "$({{ .Values.global.DEPLOY_ENV | upper }}_POSTGRES_SERVICE_HOST)"
+          - name: MEMCACHED_DNS
+            value: "$({{ .Values.global.DEPLOY_ENV | upper }}_MEMCACHED_SERVICE_HOST)"
           envFrom:
           - configMapRef:
               name: "{{ .Values.global.DEPLOY_ENV }}-cm"
@@ -56,6 +58,8 @@ spec:
               name: "{{ .Values.global.DEPLOY_ENV }}-gh-secrets"
           - secretRef:
               name: "{{ .Values.global.DEPLOY_ENV }}-postgres-secrets"
+          - secretRef:
+              name: "{{ .Values.global.DEPLOY_ENV }}-memcached-secrets"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:

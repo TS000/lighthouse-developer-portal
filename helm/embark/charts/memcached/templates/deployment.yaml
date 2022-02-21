@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.global.DEPLOY_ENV }}-memcached"
+  labels: {{- include "memcached.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels: {{- include "memcached.selectorLabels" . | nindent 6 }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels: {{- include "memcached.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- if .Values.podSecurityContext.enabled }}
+      securityContext: {{- omit .Values.podSecurityContext "enabled" | toYaml | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: memcached
+          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          {{- if .Values.containerSecurityContext.enabled }}
+          securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
+          {{- end }}
+          args: {{ .Values.args | toYaml | nindent 12 }}
+          env:
+            - name: BITNAMI_DEBUG
+              value: {{ ternary "true" "false" .Values.image.debug | quote }}
+            - name: MEMCACHED_USERNAME
+              value: {{ .Values.global.MEMCACHED_USER }}
+            - name: MEMCACHED_PASSWORD
+              value: {{ .Values.global.MEMCACHED_PASSWORD }}
+          ports:
+            - name: memcache
+              containerPort: {{ .Values.containerPorts.memcached }}
+          resources: {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: persistent-storage
+              mountPath: /data
+      volumes:
+        - name: "persistent-storage"
+          persistentVolumeClaim:
+            claimName: "{{ .Values.global.DEPLOY_ENV }}-memcached-efs-claim"

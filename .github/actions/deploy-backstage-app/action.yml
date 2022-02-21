@@ -38,8 +38,14 @@ inputs:
     description: 'GitHub app secret credentials yaml file'
     required: true
   COMMIT_SHA:
-    description: 'Commit SHA used to tag images'
+    description: 'Commit SHA used to tag images - required for QA workflow'
     required: false
+  MEMCACHED_USER:
+    description: 'Memcached username'
+    required: true
+  MEMCACHED_PASSWORD:
+    description: 'Memcached password'
+    required: true
 
 runs:
   using: "composite"
@@ -97,6 +103,8 @@ runs:
       --set AWS_BUCKET_NAME=${{ inputs.AWS_BUCKET_NAME }}
       --set global.SERVICE_ACCOUNT=${{ inputs.SERVICE_ACCOUNT }}
       --set DOCSERVER_BASE_URL=${{ inputs.DOCSERVER_BASE_URL }}
+      --set MEMCACHED_USER=${{ inputs.MEMCACHED_USER }}
+      --set MEMCACHED_PASSWORD=${{ inputs.MEMCACHED_PASSWORD }}
       --install 
       --atomic 
       --cleanup-on-fail 

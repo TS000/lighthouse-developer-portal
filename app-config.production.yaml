@@ -14,8 +14,8 @@ backend:
     methods: [GET, POST, PUT, DELETE]
     credentials: true
   cache:
-    # TODO: update to use memcache in production  https://backstage.io/docs/overview/architecture-overview#cache
-  store: memory
+    store: memcache
+    connection: ${MEMCACHED_USER}:${MEMCACHED_PASSWORD}@${MEMCACHED_DNS}:11211
   database:
     # config options: https://node-postgres.com/api/client
     client: pg
@@ -66,3 +66,6 @@ techdocs:
     type: 'awsS3' # Alternatives - 'googleGcs' or 'awsS3' or 'azureBlobStorage' or 'openStackSwift'. Read documentation for using alternatives.
     awsS3:
       bucketName: ${AWS_BUCKET_NAME}
+  cache:
+    ttl: 3600000
+    readTimeout: 500

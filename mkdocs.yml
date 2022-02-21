@@ -40,6 +40,7 @@ nav:
       - GitHub App POC: RFC/github-app-auth.md
       - Search Optimization Comparison: RFC/search-comparison.md
       - Plugin Authentication and Authorization: RFC/plugin-authentication.md
+      - Cache Store: RFC/cache-store.md
 
   - Decision Records:
       - Yarn Zero Install: ADR/zero-install.md

@@ -75,6 +75,8 @@ jobs:
           SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
           DOCSERVER_BASE_URL: ${{ secrets.DOCSERVER_BASE_URL }}
           APP_CREDS_YAML: ${{ secrets.APP_CREDS_YAML }}
+          MEMCACHED_USER: ${{ secrets.MEMCACHED_USER }}
+          MEMCACHED_PASSWORD: ${{ secrets.MEMCACHED_PASSWORD }}
 
   notify-deployment-repo:
     runs-on: ubuntu-latest
