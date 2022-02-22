@@ -1,10 +1,6 @@
 [
   { "kind": "Location" },
-  { "kind": "Location" },
-  { "kind": "Location" },
-  { "kind": "Component" },
   { "kind": "Component" },
   { "kind": "System" },
-  { "kind": "API" },
-  { "kind": "Location" }
+  { "kind": "API" }
 ]

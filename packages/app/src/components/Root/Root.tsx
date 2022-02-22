@@ -17,19 +17,13 @@
 import React, { useContext, PropsWithChildren } from 'react';
 import { Link, makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
-import ExtensionIcon from '@material-ui/icons/Extension';
 import ListIcon from '@material-ui/icons/List';
-import PersonIcon from '@material-ui/icons/Person';
-import GroupIcon from '@material-ui/icons/Group';
-import WebIcon from '@material-ui/icons/Web';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import GrainIcon from '@material-ui/icons/Grain';
 import MapIcon from '@material-ui/icons/MyLocation';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import Flag from '@material-ui/icons/Flag';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import AppsIcon from '@material-ui/icons/Apps';
 import LayersIcon from '@material-ui/icons/Layers';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
@@ -44,17 +38,15 @@ import {
   SidebarItem,
   SidebarDivider,
   SidebarSpace,
-  SidebarSubmenuItem,
-  SidebarSubmenu,
 } from '@backstage/core-components';
 import {
-  EntityKindFilter,
-  useEntityListProvider,
-} from '@backstage/plugin-catalog-react';
+  SidebarItem as SidebarItemWithSubmenu,
+  SidebarSubmenu,
+  SidebarKinds,
+} from '../sidebar';
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';
 import { FeedbackModal } from '../feedback';
-import { IconComponent } from '@backstage/core-plugin-api';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -95,27 +87,7 @@ const SidebarLogo = () => {
   );
 };
 
-interface CatalogKindIcon {
-  [key: string]: IconComponent;
-}
-
-const catalogKindIcon: CatalogKindIcon = {
-  Component: AppsIcon,
-  API: ExtensionIcon,
-  Group: GroupIcon,
-  User: PersonIcon,
-  System: GrainIcon,
-  Domain: WebIcon,
-};
-
 export const Root = ({ children }: PropsWithChildren<{}>) => {
-  const { updateFilters } = useEntityListProvider();
-  const handleFilterChange = (selectedKind: string): void => {
-    updateFilters({
-      kind: selectedKind ? new EntityKindFilter(selectedKind) : undefined,
-    });
-  };
-
   return (
     <SidebarPage>
       <Sidebar>
@@ -124,33 +96,11 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarDivider />
         {/* Global nav, not org-specific */}
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
-        <SidebarItem icon={ListIcon} to="/catalog" text="Catalog">
+        <SidebarItemWithSubmenu icon={ListIcon} text="Catalog">
           <SidebarSubmenu title="Catalog">
-            {['Component', 'API', 'Group', 'User', 'System', 'Domain'].map(
-              kind => (
-                <div
-                  aria-hidden
-                  key={kind}
-                  style={{ width: '100%' }}
-                  onClick={() => {
-                    handleFilterChange(kind.toLowerCase());
-
-                    // Unfocus the sidebar
-                    if (document.activeElement) {
-                      (document.activeElement as HTMLElement).blur();
-                    }
-                  }}
-                >
-                  <SidebarSubmenuItem
-                    title={`${kind}s`}
-                    to={`catalog?filters[kind]=${kind.toLowerCase()}`}
-                    icon={catalogKindIcon[kind] || AppsIcon}
-                  />
-                </div>
-              ),
-            )}
+            <SidebarKinds />
           </SidebarSubmenu>
-        </SidebarItem>
+        </SidebarItemWithSubmenu>
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <HideableSidebarItem
           flagName="datadog-dashboard"
