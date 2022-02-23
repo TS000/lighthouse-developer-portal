@@ -23,9 +23,9 @@ import {
 import { IndexableDocument } from '@backstage/search-common';
 import { useRouteRef } from '@backstage/core-plugin-api';
 import { Link, useContent } from '@backstage/core-components';
+import { useNavigate } from 'react-router-dom';
 import { CatalogResultListItem } from '../resultListItems/CatalogResultListItem'
 import { DocsResultListItem } from '../resultListItems/DocsResultListItem'
-
 
 export interface SearchModalProps {
   open?: boolean;
@@ -50,6 +50,7 @@ const useStyles = makeStyles(theme => ({
 export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
   const getSearchLink = useRouteRef(searchPlugin.routes.root);
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const { term } = useSearch();
   const { focusContent } = useContent();
@@ -83,6 +84,10 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
     }
   };
 
+  const handleSubmit = () => {
+    navigate(`${getSearchLink()}?query=${term}`);
+  };
+
   return (
     <Dialog
       classes={{
@@ -96,7 +101,11 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
     >
       <DialogTitle>
         <Paper className={classes.container}>
-          <SearchBar debounceTime={300} className={classes.input} />
+          <SearchBar
+            debounceTime={300}
+            className={classes.input}
+            onSubmit={handleSubmit}
+          />
         </Paper>
       </DialogTitle>
       <DialogContent>
@@ -156,6 +165,9 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
   );
 };
 
-export const SearchModal = ({ open = true, toggleModal }: SearchModalProps) => {
+export const SearchModal = ({
+  open = false,
+  toggleModal,
+}: SearchModalProps) => {
   return <Modal open={open} toggleModal={toggleModal} />;
 };

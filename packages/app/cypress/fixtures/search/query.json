@@ -1,0 +1,68 @@
+{
+  "results": [
+    {
+      "document": {
+        "authorization": {
+          "resourceRef": "component:default/backend"
+        },
+        "componentType": "website",
+        "kind": "Component",
+        "lifecycle": "experimental",
+        "location": "/catalog/default/component/backend",
+        "namespace": "default",
+        "owner": "lighthouse-bandicoot",
+        "text": "The backend server for lighthouse-embark.",
+        "title": "backend"
+      },
+      "type": "software-catalog"
+    },
+    {
+      "document": {
+        "authorization": {
+          "resourceRef": "component:default/embark-monorepo"
+        },
+        "componentType": "website",
+        "kind": "Component",
+        "lifecycle": "experimental",
+        "location": "/catalog/default/component/embark-monorepo",
+        "namespace": "default",
+        "owner": "lighthouse-bandicoot",
+        "text": "Keeps track off all packages and plugins related to Embark",
+        "title": "embark-monorepo"
+      },
+      "type": "software-catalog"
+    },
+    {
+      "document": {
+        "authorization": {
+          "resourceRef": "component:default/frontend"
+        },
+        "componentType": "website",
+        "kind": "Component",
+        "lifecycle": "experimental",
+        "location": "/catalog/default/component/frontend",
+        "namespace": "default",
+        "owner": "lighthouse-bandicoot",
+        "text": "The frontend application for Embark",
+        "title": "frontend"
+      },
+      "type": "software-catalog"
+    },
+    {
+      "document": {
+        "authorization": {
+          "resourceRef": "component:default/plugin-feature-flags"
+        },
+        "componentType": "website",
+        "kind": "Component",
+        "lifecycle": "experimental",
+        "location": "/catalog/default/component/plugin-feature-flags",
+        "namespace": "default",
+        "owner": "lighthouse-bandicoot",
+        "text": "A plugin to include feature-flags to a frontend.",
+        "title": "plugin-feature-flags"
+      },
+      "type": "software-catalog"
+    }
+  ]
+}

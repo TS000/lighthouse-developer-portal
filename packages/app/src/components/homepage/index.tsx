@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MaintenanceBanner } from '../MaintenanceBanner/MaintenanceBanner';
 import { Content, Header, InfoCard, Page } from '@backstage/core-components';
+import { Search } from '../search';
 
 const homepage: any = {
   title: 'Embark Homepage',
@@ -18,6 +19,9 @@ export const HomePage = () => {
       <MaintenanceBanner />
       <Content>
         <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Search />
+          </Grid>
           <Grid item xs={4}>
             <InfoCard
               title="Starter Guide"
