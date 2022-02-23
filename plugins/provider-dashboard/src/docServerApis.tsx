@@ -27,16 +27,6 @@ export class docServerApiClient implements DocServerApi {
         this.discoveryApi = discoveryApi;
     }
 
-    // const { value, loading, error } = useAsync(async (): Promise<API[]> => {
-    // const backendUrl = config.getString('backend.baseUrl');
-    // const proxyPath = '/api/proxy';
-    // const basePath = `${backendUrl}${proxyPath}`;
-    //
-    // const response = await fetch(`${basePath}/docserver/apis/`);
-    // const data = await response.json();
-    // return data;
-    // }, []);
-
     private async fetch<T = any>(input: string, init?: RequestInit): Promise<T> {
         // const backendUrl = config.getString('backend.baseUrl');
         const proxyPath = '/api/proxy';
