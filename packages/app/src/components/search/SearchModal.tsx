@@ -23,8 +23,9 @@ import {
 import { IndexableDocument } from '@backstage/search-common';
 import { useRouteRef } from '@backstage/core-plugin-api';
 import { Link, useContent } from '@backstage/core-components';
-import { CatalogResultListItem } from '@backstage/plugin-catalog';
-import { DocsResultListItem } from '@backstage/plugin-techdocs';
+import { CatalogResultListItem } from '../resultListItems/CatalogResultListItem'
+import { DocsResultListItem } from '../resultListItems/DocsResultListItem'
+
 
 export interface SearchModalProps {
   open?: boolean;
@@ -67,7 +68,11 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
     switch (type) {
       case 'software-catalog':
         return (
-          <CatalogResultListItem key={document.location} result={document} />
+          <CatalogResultListItem key={document.location} result={document} type="Catalog entitty" />
+        );
+      case 'api-catalog':
+        return (
+          <CatalogResultListItem key={document.location} result={document} type="API spec" />
         );
       case 'techdocs':
         return <DocsResultListItem key={document.location} result={document} />;

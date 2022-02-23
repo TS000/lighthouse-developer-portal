@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles, Theme, Grid, List, Paper } from '@material-ui/core';
 import ExtensionIcon from '@material-ui/icons/Extension';
+import { CatalogResultListItem } from '../resultListItems/CatalogResultListItem'
+import { DocsResultListItem } from '../resultListItems/DocsResultListItem'
 
-import { CatalogResultListItem } from '@backstage/plugin-catalog';
-import { DocsResultListItem } from '@backstage/plugin-techdocs';
 
 import {
   SearchBar,
@@ -108,6 +108,15 @@ const SearchPage = () => {
                           <CatalogResultListItem
                             key={document.location}
                             result={document}
+                            type="Catalog entitty"
+                          />
+                        );
+                      case 'api-catalog':
+                        return (
+                          <CatalogResultListItem
+                            key={document.location}
+                            result={document}
+                            type="API spec"
                           />
                         );
                       case 'techdocs':
