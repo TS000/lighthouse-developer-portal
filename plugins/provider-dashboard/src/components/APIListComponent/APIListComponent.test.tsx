@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyComponent } from './BodyComponent';
+import { APIListComponent } from './APIListComponent';
 import { ThemeProvider } from '@material-ui/core';
 import { lightTheme } from '@backstage/theme';
 import { rest } from 'msw';
@@ -9,7 +9,7 @@ import {
   renderInTestApp,
 } from "@backstage/test-utils";
 
-describe('BodyComponent', () => {
+describe('APIListComponent', () => {
   const server = setupServer();
   // Enable sane handlers for network requests
   setupRequestMockHandlers(server);
@@ -24,11 +24,9 @@ describe('BodyComponent', () => {
   it('should render', async () => {
     const rendered = await renderInTestApp(
       <ThemeProvider theme={lightTheme}>
-        <BodyComponent />
+        <APIListComponent />
       </ThemeProvider>,
     );
-    expect(rendered.getByText('Provider Dashboard')).toBeInTheDocument();
-    expect(rendered.getByText('Owner')).toBeInTheDocument();
-    expect(rendered.getByText('Lifecycle')).toBeInTheDocument();
+    expect(rendered.getByText('Add')).toBeInTheDocument();
   });
 });

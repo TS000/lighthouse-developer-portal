@@ -1,0 +1,1 @@
+export { APIComponent } from './APIComponent';

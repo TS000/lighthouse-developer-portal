@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Table, TableColumn, Progress } from '@backstage/core-components';
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
 import Alert from '@material-ui/lab/Alert';
 import { useAsync } from 'react-use';
 import OpenInNew from '@material-ui/icons/OpenInNew';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton, Tooltip} from '@material-ui/core';
 
 type API = {
   name: string;
@@ -17,18 +18,16 @@ type DenseTableProps = {
   apis: API[];
 };
 
-function viewAPIPage (api: API){
-  // TODO Full effort for this function to be completed by component navigation ticket
-  window.location.href =`/provider-dashboard/${api.name}`;
-}
-
 const actions = (api: API) => {
+  const viewURL = `/provider-dashboard/apis/${api.name}`;
   return (
-    <Tooltip title="View">
-      <IconButton onClick={() => viewAPIPage(api)}>
-        <OpenInNew aria-label="View" fontSize="small" />
-      </IconButton>
-    </Tooltip>
+    <Link to={viewURL}>
+      <Tooltip title="View">
+        <IconButton>
+          <OpenInNew aria-label="View" fontSize="small" />
+        </IconButton>
+      </Tooltip>
+    </Link>
   );
 };
 
