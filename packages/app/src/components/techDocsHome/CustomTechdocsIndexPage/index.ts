@@ -1,0 +1,1 @@
+export { TechDocsIndexPage } from './TechDocsIndexPage';

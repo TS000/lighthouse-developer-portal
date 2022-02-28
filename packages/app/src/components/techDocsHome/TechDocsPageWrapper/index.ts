@@ -1,0 +1,1 @@
+export { TechDocsPageWrapper } from './TechDocsPageWrapper';

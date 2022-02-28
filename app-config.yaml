@@ -20,7 +20,7 @@ app:
     trackInteractions: true
     defaultPrivacyLevel: 'mask-user-input'
 organization:
-  name: Department of Veterans Affairs
+  name: Lighthouse Developer Portal
 permission:
   enabled: true
 backend:
