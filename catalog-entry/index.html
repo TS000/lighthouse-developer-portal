@@ -1192,9 +1192,9 @@
 
 
 <h1 id="catalog-entry-best-practices">Catalog Entry Best Practices<a class="headerlink" href="#catalog-entry-best-practices" title="Permanent link">&para;</a></h1>
-<p>This is a <code>best-practices</code> guide to setting up catalog entries for Embark. It covers the most frequently used or suggested setup for the catalog <code>yaml</code> file. For more in-depth coverage, you can check the <a href="https://backstage.io/docs/features/software-catalog/descriptor-format">Backstage YAML File Format</a> doc.</p>
+<p>This is a <code>best practices</code> guide to setting up catalog entries for the Lighthouse developer portal. It covers the most frequently-used or suggested setup for the catalog <code>yaml</code> file. For more in-depth coverage, you can review <a href="https://backstage.io/docs/features/software-catalog/descriptor-format">Backstage YAML file format</a> documentation.</p>
 <p>Usually named <code>catalog-info.yaml</code>, the <code>yaml</code> file used for catalog configurations can have any name.</p>
-<p>The following is an example of a descriptor file for a Component entity:</p>
+<p>The following is an example of a descriptor file for an entity with the Kind of Component:</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1242,41 +1242,41 @@
 <p>The root fields <code>apiVersion</code>, <code>kind</code>, <code>metadata</code>, and <code>spec</code> are part of the <strong>envelope</strong>, defining the overall structure of all kinds of entities. Some metadata fields like <code>name</code>, <code>labels</code>, and <code>annotations</code> are of particular significance and have reserved purposes and distinct shapes.</p>
 <h2 id="kind-required">kind [required]<a class="headerlink" href="#kind-required" title="Permanent link">&para;</a></h2>
 <p>The high-level entity type.</p>
-<p>Also known as <em>System Models</em>, additional information can be found on the Backstage docs <a href="https://backstage.io/docs/features/software-catalog/system-model">here.</a> Software within the Backstage catalog can fit into three core entities.</p>
+<p>Also known as <em>System Models</em>, additional information can be found in <a href="https://backstage.io/docs/features/software-catalog/system-model">Backstage documentation</a>. Software within the catalog can fit into three common kinds of entities:</p>
 <ul>
 <li><em>Component</em> - Individual pieces of software</li>
 <li><em>API</em> - Boundaries between different components</li>
 <li><em>Resource</em> - Physical or virtual infrastructure needed to operate a component</li>
 </ul>
-<p>An extensive catalog of components, APIs, and resources can be hard to understand as a whole. There are additional categories that can help make sense of an ecosystem.</p>
+<p>In ecosystems that are very complex and include many components, APIs, and resources in the catalog, there are two additional kinds that can help make sense of relationships between entitites:</p>
 <ul>
 <li><em>System</em> - Collection of entities that cooperate to perform some function</li>
-<li><em>Domain</em> - Relates entities and systems to part of the business.</li>
+<li><em>Domain</em> - Relates entities and systems to part of the business</li>
 </ul>
 <h2 id="apiversion-required">apiVersion [required]<a class="headerlink" href="#apiversion-required" title="Permanent link">&para;</a></h2>
 <p>The version of specification format for that particular entity that the specification is made against. The tuple of <code>apiVersion</code> and <code>kind</code> should be enough for a parser to know how to interpret the contents of the rest of the data.</p>
-<p>Early catalog versions will be using alpha/beta versions, e.g., <code>backstage.io/v1alpha1</code>, to signal that the format may still change. After that, we will be using <code>backstage.io/v1</code> and up.</p>
+<p>Early catalog versions will be using alpha/beta versions, e.g., <code>backstage.io/v1alpha1</code>, to signal that the format may still change. When Backstage core is promoted to 1.0, catalog versions will use <code>backstage.io/v1</code> and up.</p>
 <h2 id="metadata-required">metadata [required]<a class="headerlink" href="#metadata-required" title="Permanent link">&para;</a></h2>
 <p>A structure containing metadata about the entity: these aren't directly part of the entity specification itself.</p>
 <h3 id="name-required">name [required]<a class="headerlink" href="#name-required" title="Permanent link">&para;</a></h3>
-<p>The name of the entity. They are used to recognize the entity along with being used in components to reference the entity. Names must be unique per <code>kind</code> within a given namespace (if specified) at any point in time. The uniqueness constraint is case-sensitive.</p>
+<p>The name of the entity. The name is also used to identify a given entity when other items in the catalog have relationships references to it. Names must be unique per <code>kind</code> within a given namespace (if specified) at any point in time. The uniqueness constraint is case-sensitive.</p>
 <p>Names have two requirements:</p>
 <ul>
 <li>Strings of length at least 1, and at most 63</li>
 <li>Must consist of sequences of <code>[a-z0-9A-Z]</code> possibly separated by one of <code>[-_.]</code></li>
 </ul>
-<p>Namespaces can also be used, see <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#namespace-optional">here</a></p>
+<p>Namespaces can also be used, see <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#namespace-optional">Backstage documentation</a> for more information.</p>
 <h3 id="title-optional">title [optional]<a class="headerlink" href="#title-optional" title="Permanent link">&para;</a></h3>
-<p>A <code>title</code> can also be used to represent the entity when available. The title can be helpful when the <code>name</code> is cumbersome or perceived as overly technical. There are no requirements on it, but please keep it short.</p>
+<p>A <code>title</code> can also be used to represent the entity when available. The title can be helpful when the <code>name</code> is cumbersome or perceived as overly technical. There are no requirements on this field, but it should be short and simple.</p>
 <h3 id="description-optional">description [optional]<a class="headerlink" href="#description-optional" title="Permanent link">&para;</a></h3>
-<p>A human-readable description of the entity. It should be kept short and informative.</p>
+<p>A human-readable description of the entity. It should be brief and informative.</p>
 <h3 id="labels-optional">labels [optional]<a class="headerlink" href="#labels-optional" title="Permanent link">&para;</a></h3>
 <p>Labels are optional key/value pairs attached to the entity, and their use is identical to <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">Kubernetes object labels</a>.</p>
-<p>Their primary purpose is for references to other entities and for information that is in one way or another classifying for the current entity. They are often used as values in queries or filters.</p>
+<p>Their primary purpose is for references to other entities, and for information that is in one way or another classifying the current entity. They are often used as values in queries or filters.</p>
 <p>Values are strings that follow the same restrictions as <code>name</code>.</p>
 <h3 id="annotations-optional">annotations [optional]<a class="headerlink" href="#annotations-optional" title="Permanent link">&para;</a></h3>
-<p>An object with arbitrary non-identifying metadata attached to the entity, identical in use to <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/">Kubernetes object annotations</a>. Their purpose is mainly, but not limited to, to reference external systems.</p>
-<p>You can also view this section of <a href="https://backstage.io/docs/features/software-catalog/well-known-annotations">well-known annotations</a>.</p>
+<p>An object with arbitrary non-identifying metadata attached to the entity, identical in use to <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/">Kubernetes object annotations</a>. Their purpose is mainly, but not limited to, referencing external systems.</p>
+<p>You can also review <a href="https://backstage.io/docs/features/software-catalog/well-known-annotations">Backstage's list of well-known annotations</a>.</p>
 <h3 id="tags-optional">tags [optional]<a class="headerlink" href="#tags-optional" title="Permanent link">&para;</a></h3>
 <p>A list of single-valued strings, for example, to classify catalog entities in various ways. This is different from the labels in metadata, as labels are key-value pairs.</p>
 <h3 id="links-optional">links [optional]<a class="headerlink" href="#links-optional" title="Permanent link">&para;</a></h3>
@@ -1285,24 +1285,24 @@
 <ul>
 <li><strong>url</strong>: [required] - A <code>url</code> in a standard <code>uri</code> format. (<a href="https://example.com">https://example.com</a>)</li>
 <li><strong>title</strong>: [optional] - A user friendly display name for the link</li>
-<li><strong>icon</strong>: [optional] - A key representing a visual icon to be displayed in the UI.</li>
+<li><strong>icon</strong>: [optional] - A key representing a visual icon to be displayed in the UI</li>
 </ul>
 <blockquote>
-<p>Note: The icon field value is meant to be a semantic key that will map to a specific icon that an icon library may provide (e.g., material-ui icons).</p>
+<p>Note: The icon field value is meant to be a semantic key that will map to a specific icon in material-ui icons. The default icon, also used for fallback if a mapping cannot be resolved, is the <code>language</code> icon.</p>
 </blockquote>
 <h2 id="spec-varies">spec [varies]<a class="headerlink" href="#spec-varies" title="Permanent link">&para;</a></h2>
 <p>Data that describes the entity. The structure of spec is dependent on the <code>apiVersion</code> and <code>kind</code> combination. Some might not have a spec at all.</p>
-<h1 id="kinds">Kinds<a class="headerlink" href="#kinds" title="Permanent link">&para;</a></h1>
-<p>The following will talk about fields specific to a <code>kind</code>. There are usually <code>apiVersion</code> and <code>kind</code> requirements for each of these. This article will only cover the most common <code>kind</code> templates. That being <code>component</code>, <code>template</code>, and <code>API</code>. Additional <code>kind</code> options can be found <a href="https://backstage.io/docs/features/software-catalog/descriptor-format">here</a>.</p>
+<h1 id="spec-fields-for-different-kinds">spec Fields for Different Kinds<a class="headerlink" href="#spec-fields-for-different-kinds" title="Permanent link">&para;</a></h1>
+<p>The following information covers the fields specific to particular kinds of entity, focusing on the most common <code>kind</code> options: <code>component</code>, <code>template</code>, <code>API</code>, and <code>location</code>. Fields for additional <code>kind</code> options can be found in <a href="https://backstage.io/docs/features/software-catalog/descriptor-format">Backstage documentation</a>.</p>
 <h2 id="relations-all">relations [all]<a class="headerlink" href="#relations-all" title="Permanent link">&para;</a></h2>
-<p>The <code>relations</code> root field is a read-only list of references between the current entity and other entities. More information can be found <a href="https://backstage.io/docs/features/software-catalog/well-known-relations">here</a></p>
+<p>The <code>relations</code> root field is a read-only list of references between the current entity and other entities. More information can be found in <a href="https://backstage.io/docs/features/software-catalog/well-known-relations">Backstage documentation</a>.</p>
 <p>The fields of a relation are:</p>
 <ul>
-<li><strong>target</strong>: A [compound reference] to the other end of the relation.</li>
-<li><strong>type</strong>: The type of relation FROM a source entity TO the target entity.</li>
+<li><strong>target</strong>: A [compound reference] to the other end of the relation</li>
+<li><strong>type</strong>: The type of relation FROM a source entity TO the target entity</li>
 </ul>
 <h2 id="status-all">status [all]<a class="headerlink" href="#status-all" title="Permanent link">&para;</a></h2>
-<p>The <code>status</code> root object is a read-only set of statuses about the current state of health of the entity, described in the <a href="https://backstage.io/docs/features/software-catalog/well-known-statuses">well-known statuses section</a>.</p>
+<p>The <code>status</code> root object is a read-only set of statuses about the current state of health of the entity, described in <a href="https://backstage.io/docs/features/software-catalog/well-known-statuses">Backstage's well-known statuses</a> documentation.</p>
 <p>The only defined field is the <code>items</code> array. Each item describes some aspect of the entity's state, as seen from the point of view of some specific system. The current primary use case for this field is for the ingestion processes for the catalog itself to convey information about errors and warnings back to the user.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1348,50 +1348,51 @@
 
 <p>The fields of a status item are:</p>
 <ul>
-<li><strong>type</strong> - The type of status as a unique key per source. Each type may appear more than once in the array.</li>
+<li><strong>type</strong> - The type of status as a unique key per source; each type may appear more than once in the array</li>
 <li><strong>level</strong> - The level/severity of the status item: 'info', 'warning', or 'error'</li>
-<li><strong>message</strong> - A brief message describing the status intended for human consumption.</li>
-<li><strong>error</strong> - An optional serialized error object related to the status.</li>
+<li><strong>message</strong> - A brief message describing the status intended for human consumption</li>
+<li><strong>error</strong> - An optional serialized error object related to the status</li>
 </ul>
 <h2 id="kind-component">Kind: Component<a class="headerlink" href="#kind-component" title="Permanent link">&para;</a></h2>
 <p>A Component describes a software component. It is typically intimately linked to the source code that constitutes the component and should be what a developer may regard a "unit of software," usually with a distinct deployable or linkable artifact.</p>
-<p>This section covers the <code>required</code> fields. Additional fields can be found <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component">here</a>.</p>
+<p>This section covers the <code>required</code> fields for Components. Additional fields can be found in <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component">Backstage documentation</a>.</p>
 <h3 id="spectype-required">spec.type [required]<a class="headerlink" href="#spectype-required" title="Permanent link">&para;</a></h3>
-<p>The software catalog accepts any value. Still, an organization should take great care to establish a proper taxonomy for these. Tools, including Backstage itself, may read this field and behave differently depending on its value.</p>
+<p>The software catalog accepts any value, but developers should be intentional about values used for this field, as the Lighthouse developer portal will read this field and behave differently depending on its value.</p>
 <p>The current set of well-known and standard values for this field is:</p>
 <ul>
 <li><strong>service</strong> - A backend service, typically exposing an API</li>
-<li><strong>website</strong> - A website.</li>
-<li><strong>library</strong> - A software library, such as an npm module or a java library.</li>
+<li><strong>website</strong> - A website</li>
+<li><strong>library</strong> - A software library, such as an npm module or a java library</li>
 </ul>
+<p>If you have a unique type that you would like to be displayed in the Lighthouse software catalog in a particular way, please submit feedback as an issue in GitHub or use the feedback form within the Lighthouse developer portal.</p>
 <h3 id="speclifecycle-required">spec.lifecycle [required]<a class="headerlink" href="#speclifecycle-required" title="Permanent link">&para;</a></h3>
 <p>The lifecycle state of the component.</p>
 <p>The current set of well-known and common values for this field is:</p>
 <ul>
-<li><strong>experimental</strong> - An experiment or early, non-production component, signaling that users may not prefer to consume it over other more established components or that there are low or no reliability guarantees.</li>
-<li><strong>production</strong> - An established, owned, maintained component.</li>
-<li><strong>deprecated</strong> - A component that is at the end of its lifecycle and may disappear at a later point in time.</li>
+<li><strong>experimental</strong> - An experiment or early, non-production component, signaling that users may not prefer to consume it over other more established components or that there are low or no reliability guarantees</li>
+<li><strong>production</strong> - An established, owned, maintained component</li>
+<li><strong>deprecated</strong> - A component that is at the end of its lifecycle and may disappear at a later point in time</li>
 </ul>
 <h3 id="specowner-required">spec.owner [required]<a class="headerlink" href="#specowner-required" title="Permanent link">&para;</a></h3>
-<p>An <a href="https://backstage.io/docs/features/software-catalog/references#string-references">entity reference</a> to the owner of the component. In Backstage, a component owner is a singular entity (commonly a team) that bears ultimate responsibility for the component and has the authority and capability to develop and maintain it.</p>
+<p>An <a href="https://backstage.io/docs/features/software-catalog/references#string-references">entity reference</a> to the owner of the component, i.e. a singular entity (commonly a team) that bears ultimate responsibility for the component and has the authority and capability to develop and maintain it.</p>
 <h2 id="kind-template">Kind: Template<a class="headerlink" href="#kind-template" title="Permanent link">&para;</a></h2>
-<p>A complete list of <code>kind: Template</code> specific fields can be found <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template">here</a>.</p>
+<p>A complete list of <code>kind: Template</code> specific fields can be found in <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template">Backstage documentation</a>.</p>
 <h3 id="spectype-required_1">spec.type [required]<a class="headerlink" href="#spectype-required_1" title="Permanent link">&para;</a></h3>
 <p>The type of component created by the template. See <code>spec.type</code> above. The available options are <code>website</code>, <code>service</code> and <code>library</code>.</p>
 <h3 id="specparameters-required">spec.parameters [required]<a class="headerlink" href="#specparameters-required" title="Permanent link">&para;</a></h3>
 <p>These are template variables that can be modified in the frontend as a sequence. It can either be one Step if you want one extensive list of different fields in the frontend, or it can be broken up into multiple extra steps, rendered as additional steps in the scaffolder plugin frontend.</p>
-<p>You can find more <a href="https://backstage.io/docs/features/software-templates/writing-templates">here</a>.</p>
+<p>You can learn more about writing templates in <a href="https://backstage.io/docs/features/software-templates/writing-templates">Backstage documentation</a>.</p>
 <h2 id="kind-api">Kind: API<a class="headerlink" href="#kind-api" title="Permanent link">&para;</a></h2>
-<p>A complete list of <code>kind: API</code> specific fields can be found <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api">here</a>.</p>
+<p>A complete list of <code>kind: API</code> specific fields can be found in <a href="https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api">Backstage documentation</a>.</p>
 <h3 id="spectype-required_2">spec.type [required]<a class="headerlink" href="#spectype-required_2" title="Permanent link">&para;</a></h3>
-<p>The type of the API definition as a string. The software catalog accepts any kind of value, but an organization should take great care to establish a proper taxonomy for these.</p>
-<p>The current set of well-known and common values for this field is:</p>
+<p>The type of the API definition as a string. The software catalog accepts any kind of value, but the Lighthouse developer portal understands the following set of well-known and common values for this field:</p>
 <ul>
 <li><strong>openapi</strong> - An API definition in YAML or JSON format based on the <a href="https://swagger.io/specification/">OpenAPI</a> v2 or v3 spec.</li>
-<li><strong>asyncapi</strong> - An API definition baesd on the <a href="https://www.asyncapi.com/docs/specifications/v2.2.0">AsyncAPI</a> spec.</li>
+<li><strong>asyncapi</strong> - An API definition based on the <a href="https://www.asyncapi.com/docs/specifications/v2.2.0">AsyncAPI</a> spec.</li>
 <li><strong>graphql</strong> - An API definition based on <a href="https://spec.graphql.org/">GraphQL schemas</a> for consuming GraphQL based APIs.</li>
 <li><strong>grpc</strong> An API definition based on <a href="https://developers.google.com/protocol-buffers">Protocol Bufferes</a> to use with <a href="https://grpc.io/">gRPC</a>.</li>
 </ul>
+<p>Again, if you have a unique type not covered by this list, please submit feedback.</p>
 <h3 id="speclifecycle-required_1">spec.lifecycle [required]<a class="headerlink" href="#speclifecycle-required_1" title="Permanent link">&para;</a></h3>
 <p>The lifecycle state of the API. It can be <code>experimental</code>, <code>production</code>, or <code>deprecated. See the lifecycle definition within</code>kind: Component` for further information.</p>
 <h3 id="specowner-required_1">spec.owner [required]<a class="headerlink" href="#specowner-required_1" title="Permanent link">&para;</a></h3>
