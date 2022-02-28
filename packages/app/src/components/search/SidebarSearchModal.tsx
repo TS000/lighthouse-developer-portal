@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { SidebarItem } from '@backstage/core-components';
 import { IconComponent } from '@backstage/core-plugin-api';
@@ -11,7 +11,17 @@ export type SidebarSearchModalProps = {
 
 export const SidebarSearchModal = (props: SidebarSearchModalProps) => {
   const { open, toggleModal } = useSearch();
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const Icon = props.icon ? props.icon : SearchIcon;
+
+  // This handles a situation where submitting a search query propagates up to the sidebarItem.
+  // Which causes the modal to stay open when it should be closed.
+  const handleToggleModal = (type?: string) => {
+    if (type === 'submit') {
+      setHasSubmitted(true);
+    }
+    toggleModal();
+  };
 
   return (
     <>
@@ -19,9 +29,16 @@ export const SidebarSearchModal = (props: SidebarSearchModalProps) => {
         className="search-icon"
         icon={Icon}
         text="Search"
-        onClick={toggleModal}
+        onClick={() => {
+          // Prevents the modal from reopening from event propagation.
+          if (hasSubmitted) {
+            setHasSubmitted(false);
+          } else {
+            toggleModal();
+          }
+        }}
       />
-      <SearchModal open={open} toggleModal={toggleModal} />
+      <SearchModal open={open} toggleModal={handleToggleModal} />
     </>
   );
 };

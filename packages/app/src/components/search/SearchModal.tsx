@@ -24,12 +24,12 @@ import { IndexableDocument } from '@backstage/search-common';
 import { useRouteRef } from '@backstage/core-plugin-api';
 import { Link, useContent } from '@backstage/core-components';
 import { useNavigate } from 'react-router-dom';
-import { CatalogResultListItem } from '../resultListItems/CatalogResultListItem'
-import { DocsResultListItem } from '../resultListItems/DocsResultListItem'
+import { CatalogResultListItem } from '../resultListItems/CatalogResultListItem';
+import { DocsResultListItem } from '../resultListItems/DocsResultListItem';
 
 export interface SearchModalProps {
   open?: boolean;
-  toggleModal: () => void;
+  toggleModal: (type?: string) => void;
 }
 
 const useStyles = makeStyles(theme => ({
@@ -69,22 +69,19 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
     switch (type) {
       case 'software-catalog':
         return (
-          <CatalogResultListItem key={document.location} result={document} type="Catalog entitty" />
+          <CatalogResultListItem result={document} type="Catalog entity" />
         );
       case 'api-catalog':
-        return (
-          <CatalogResultListItem key={document.location} result={document} type="API spec" />
-        );
+        return <CatalogResultListItem result={document} type="API spec" />;
       case 'techdocs':
-        return <DocsResultListItem key={document.location} result={document} />;
+        return <DocsResultListItem result={document} />;
       default:
-        return (
-          <DefaultResultListItem key={document.location} result={document} />
-        );
+        return <DefaultResultListItem result={document} />;
     }
   };
 
   const handleSubmit = () => {
+    toggleModal('submit');
     navigate(`${getSearchLink()}?query=${term}`);
   };
 
@@ -93,7 +90,9 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
       classes={{
         paperFullWidth: classes.paperFullWidth,
       }}
-      onClose={toggleModal}
+      onClose={() => {
+        toggleModal();
+      }}
       aria-labelledby="search-modal-title"
       open={open}
       fullWidth
@@ -105,6 +104,8 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
             debounceTime={300}
             className={classes.input}
             onSubmit={handleSubmit}
+            // eslint-disable-next-line
+            autoFocus
           />
         </Paper>
       </DialogTitle>
