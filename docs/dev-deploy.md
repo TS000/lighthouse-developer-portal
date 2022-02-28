@@ -1,7 +1,6 @@
 # Deploying to Development Environment
 This document outlines the manual deployment process to the Development Environment provided by the DI team. Currently the lighthouse-developer-portal repository is configured to automatically deploy to the Development Environment on all `push` events with the `main` branch using [GitHub actions](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/.github/workflows/cicd.yml).
 
-
 ## Setup
 
 ### Kubectl Install
@@ -67,9 +66,6 @@ auth:
 ```
 
 > Refer to [DI Routing Traffic Guide](https://github.com/department-of-veterans-affairs/lighthouse-di-platform-servicemesh/blob/main/docs/routing-traffic.md) for most recent information related to the `host_url` referenced above.
-
-> Note: You can opt to use environment variables instead of modifying the `app-config.yaml` and rebuilding the image. The `baseUrl` can be overridden using environment variables prefixed with `APP_CONFIG` (e.g. `APP_CONFIG_app_baseUrl` ). Here is an example of a [ConfigMap](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/dist/dev/dev.yaml#L2) in our deployment repository. This will generally work for most fields in the `app-config.yaml`, but the `baseUrl` specifically has been known to break the OAuth by generating invalid callback URLs by using the `baseUrl` from the `app-config.yaml` instead of the environmental overrides.
-
 
 - Build Static Assets
 

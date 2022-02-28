@@ -4,7 +4,6 @@ import { Route } from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import { CatalogEntityPage, catalogPlugin } from '@backstage/plugin-catalog';
 import {
-  CatalogImportPage,
   catalogImportPlugin,
 } from '@backstage/plugin-catalog-import';
 import { ScaffolderPage, scaffolderPlugin } from '@backstage/plugin-scaffolder';
@@ -45,7 +44,8 @@ import { createApp } from '@backstage/app-defaults';
 import { githubAuthApiRef, IconComponent } from '@backstage/core-plugin-api';
 import './themes/overrides.css';
 import { ProviderDashboardPage } from '@internal/plugin-provider-dashboard';
-import { CustomCatalogIndexPage } from './components/catalog/CustomCatalogIndexPage';
+import { CustomCatalogImportPage } from './components/catalogImportPage';
+import { CustomCatalogIndexPage } from './components/catalog';
 import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { viewExplorePagePermission } from './utils/';
 import { Banner } from './components/banner';
@@ -142,7 +142,7 @@ const routes = (
       path="/tech-radar"
       element={<TechRadarPage width={1500} height={800} />}
     />
-    <Route path="/catalog-import" element={<CatalogImportPage />} />
+    <Route path="/catalog-import" element={<CustomCatalogImportPage />} />
     <Route path="/search" element={<SearchPage />} />
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/feature-flags" element={<FeatureFlagsPage />} />

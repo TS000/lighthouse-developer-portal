@@ -2,6 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: embark-monorepo
+  namespace: lighthouse-bandicoot
   description: Keeps track off all packages and plugins related to Embark
   tags:
     - monorepo

@@ -1,18 +1,20 @@
 {
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "dist-types",
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "useUnknownInCatchVariables": false
+  },
+  "exclude": [
+    "node_modules"
+  ],
   "extends": "@backstage/cli/config/tsconfig.json",
   "include": [
     "packages/*/src",
     "plugins/*/src",
     "plugins/*/dev",
     "plugins/*/migrations"
-  ],
-  "exclude": ["node_modules"],
-  "compilerOptions": {
-    "outDir": "dist-types",
-    "rootDir": ".",
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "jsx": "react",
-    "useUnknownInCatchVariables": false
-  }
+  ]
 }
