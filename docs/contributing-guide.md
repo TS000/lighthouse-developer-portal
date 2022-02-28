@@ -1,4 +1,4 @@
-# Contributing to lighthouse-embark
+# Contributing to lighthouse-developer-portal
 
 ## Table of contents
 
@@ -13,13 +13,13 @@
 
 ## Ways to contribute
 
-[Create an Issue](https://github.com/department-of-veterans-affairs/lighthouse-embark/issues) to:
+[Create an Issue](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues) to:
 
 - Report a Bug
 - Suggest a Plugin
 - Submit Feedback
 
-[Create a PR](https://github.com/department-of-veterans-affairs/lighthouse-embark/pulls) to:
+[Create a PR](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/pulls) to:
 
 - Fix a Bug
 - Build New Features
@@ -27,13 +27,13 @@
 
 ## Get Started
 
-Follow along the [Running Locally](https://department-of-veterans-affairs.github.io/lighthouse-embark/running-locally/) doc to start working on lighthouse-embark. You can use GitHub Codespaces (preferred) or run the app locally using Docker.
+Follow along the [Running Locally](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/running-locally/) doc to start working on lighthouse-developer-portal. You can use GitHub Codespaces (preferred) or run the app locally using Docker.
 
-_lighthouse-embark was built from [Backstage](https://backstage.io/docs/overview/what-is-backstage) by using `npx @backstage/create-app`. The @department-of-veterans-affairs/lighthouse-bandicoot team upgrades Backstage regularly to maintain access to the latest features._
+_lighthouse-developer-portal was built from [Backstage](https://backstage.io/docs/overview/what-is-backstage) by using `npx @backstage/create-app`. The @department-of-veterans-affairs/lighthouse-bandicoot team upgrades Backstage regularly to maintain access to the latest features._
 
 ## Code of conduct
 
-This project adheres to the [Spotify FOSS Code of Conduct](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/CODE_OF_CONDUCT.md). By participating, you are expected to honor this code.
+This project adheres to the [Spotify FOSS Code of Conduct](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/CODE_OF_CONDUCT.md). By participating, you are expected to honor this code.
 
 ## Contribution requirements
 
@@ -52,7 +52,7 @@ This project adheres to the [Spotify FOSS Code of Conduct](https://github.com/de
 
 All code is formatted with `prettier` using hte configuration in the repo. If possible we recommend configuring your editor to format automatically, but you can also use the `yarn prettier --write <file>` command to format files.
 
-Be sure to skim through our [Decision Records](https://department-of-veterans-affairs.github.io/lighthouse-embark) to see if they cover what you're working on.
+Be sure to skim through our [Decision Records](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal) to see if they cover what you're working on.
 
 All new documentation files should be added to the `docs` folder, that includes guides, troubleshooting, ADRs, RFCs, etc. You must also add the filename to the `mkdocs.yml` file or else it won't show up on the documentation website.
 

@@ -20,7 +20,7 @@ Unit testing our frontend code should only check util files.
 
 ## History
 
-[Github Unit-Test action](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/.github/workflows/unit-tests.yml)
+[Github Unit-Test action](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/.github/workflows/unit-tests.yml)
 
 We use a github action called [VeryGoodOpenSource/very_good_coverage](https://github.com/VeryGoodOpenSource/very_good_coverage) to check code coverage within our packages. This action runs jest within the `app` and `backend` packages, and compares the coverage to all `.js` files.
 

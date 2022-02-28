@@ -3,7 +3,7 @@
 ## Deployment architecture overview
 
 ## Local Deployment
-Local Deployment using Codespaces from the [Embark Deployment Repository](https://github.com/department-of-veterans-affairs/embark-deployment)
+Local Deployment using Codespaces from the [Lighthouse Developer Portal Deployment Repository](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment)
 ```plantuml
 package "Local Computer" {
         component LC as "VS Code remote"
@@ -33,14 +33,14 @@ cloud "Microsoft Azure" {
                 IGW -r-> BESC
                 IGW -r-> FESC
                 IGW -r-> PGESC
-            }  
+            }
         }
-    } 
+    }
 }
 
 [LC] -d-> Codespaces
 ```
-A local computer can connect remotely to a Codespace instance hosted on Microsoft Azure using VS Code and the [Embark Deployment Repository](https://github.com/department-of-veterans-affairs/embark-deployment). The Codespace instance creates and runs a devcontainer. The devcontainer is configured to use Minikube to create a local cluster. The local minikube cluster is installed with Argo CD for deployment management and Istio service mesh to handle traffic management. The Local Deployment was setup to emulate the nonprod deployment using the DI that was provided by the DI team.
+A local computer can connect remotely to a Codespace instance hosted on Microsoft Azure using VS Code and the [Lighthouse Developer Portal Deployment Repository](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment). The Codespace instance creates and runs a devcontainer. The devcontainer is configured to use Minikube to create a local cluster. The local minikube cluster is installed with Argo CD for deployment management and Istio service mesh to handle traffic management. The Local Deployment was setup to emulate the nonprod deployment using the DI that was provided by the DI team.
 
 ## Nonprod Deployment
 ```plantuml
@@ -74,19 +74,19 @@ rectangle "TIC" {
                 IGW -r-> FESC
                 IGW -r-> PGESC
                 }
-        } 
+        }
     }
 }
 
 ```
-The Embark Deployment consists of 3 Pods: Backend, Frontend, and Postgres. Each of the pods contains an Istio-Proxy sidecar as part of the Service Mesh. The sidecars act as a proxy to mediate inbound and outbound traffic to each of the pods. The Frontend pod also contains a Nginx Container that serves static files adapted from this [example](https://github.com/backstage/backstage/tree/master/contrib/docker/frontend-with-nginx) from the [Backstage Documentation](https://backstage.io/docs/deployment/docker). The Postgres Pod contains a Postgres container and mostly acts as a dependency for the Backend container(i.e. the Backend container will fail on start up if it cannot make a successful connection to a database). Finally, the Backend Pod is composed of 2 containers: a Backend container running the Embark application, and a BusyBox container that acts as a logger.
+The Lighthouse Developer Portal Deployment consists of 3 Pods: Backend, Frontend, and Postgres. Each of the pods contains an Istio-Proxy sidecar as part of the Service Mesh. The sidecars act as a proxy to mediate inbound and outbound traffic to each of the pods. The Frontend pod also contains a Nginx Container that serves static files adapted from this [example](https://github.com/backstage/backstage/tree/master/contrib/docker/frontend-with-nginx) from the [Backstage Documentation](https://backstage.io/docs/deployment/docker). The Postgres Pod contains a Postgres container and mostly acts as a dependency for the Backend container(i.e. the Backend container will fail on start up if it cannot make a successful connection to a database). Finally, the Backend Pod is composed of 2 containers: a Backend container running the Lighthouse Developer Portal application, and a BusyBox container that acts as a logger.
 
 ## Deployment components overview
 
-### lighthouse-embark and lighthouse-embark-deployment
+### lighthouse-developer-portal and lighthouse-developer-portal-deployment
 
 ```plantuml
-package "lighthouse-embark actions" {
+package "lighthouse-developer-portal actions" {
   component rel as "release"
 }
 
@@ -102,12 +102,12 @@ database "GitHub Container Registry" {
 [rel] --> fe: pushes
 [rel] --> be: pushes
 
-package "lighthouse-embark-deployment actions" {
+package "lighthouse-developer-portal-deployment actions" {
   component fdep as "FE deployment"
   component bdep as "BE deployment"
 }
 
-database "lighthouse-embark-deployment repo" {
+database "lighthouse-developer-portalper-portalper-portal-deployment repo" {
   component fev as "Frontend Values"
   component bev as "Backend Values"
 }
@@ -131,7 +131,7 @@ database "GitHub Container Registry" {
   component be as "Backend Image"
 }
 
-database "lighthouse-embark-deployment repo" {
+database "lighthouse-developer-portalper-portalper-portalper-portalper-portalper-portalper-portalper-portalper-portalper-portalper-portal-deployment repo" {
   component fev as "Frontend Values"
   component bev as "Backend Values"
 }
@@ -176,12 +176,12 @@ _GitHub deployments contain the values needed for each environment specific depl
 
 ```plantuml
 participant "Trigger"
-box "lighthouse-embark"
+box "lighthouse-developer-portalper-portalper-portalper-portalper-portalper-portalper-portalper-portalper-portalper-portalper-portal"
 participant "Create release action" as builder
 queue "GitHub" as platform
 database "GCR" as storage
 end box
-box "lighthouse-embark-deployment"
+box "lighthouse-developer-portalper-portal-deployment"
 participant "Deployment action" as depaction
 database "Deployment repo" as drepo
 end box
@@ -193,7 +193,7 @@ Trigger -> builder: trigger release
 note right
 Dev or cron job
 end note
-group Embark deployment
+group Lighthouse Developer Portal Deployment
 builder->storage: release Docker images
 builder->platform: create deployment
 builder->depaction: trigger deploy webhook
@@ -213,10 +213,10 @@ end
 ```
 
 - There are two automated processes for deployment:
-  - The **Embark deployment** handles the creation and tagging of docker images, the creation of GitHub deployments, and the management of deployment definitions. These processes **push** changes.
+  - The **Lighthouse Developer Portal Deployment** handles the creation and tagging of docker images, the creation of GitHub deployments, and the management of deployment definitions. These processes **push** changes.
   - The **Argo sync** handles the synchronization of deployment definitions between the deployment repo and Kubernetes. These processes **pull** when changes are detected.
 
-### Embark deployment detail
+### Lighthouse Developer Portal Deployment detail
 
 - The deployment repo contains a **values file** for each environment e.g. /dev.yaml.
 - The goal of this process is to update the **values file** for the **target environment** with the correct **application version**.
@@ -235,16 +235,16 @@ Helm -> output
 output -> (ArgoCD)
 ```
 
-#### Embark deployment automation
+#### Lighthouse Developer Portal Deployment automation
 
 ```plantuml
 participant "Trigger"
-box "lighthouse-embark"
+box "lighthouse-developer-portal"
 participant "Create release action" as builder
 queue "GitHub" as platform
 database "GCR" as storage
 end box
-box "lighthouse-embark-deployment"
+box "lighthouse-developer-portal-deployment"
 participant "Deployment action" as depaction
 database "Deployment repo" as drepo
 end box
@@ -252,7 +252,7 @@ Trigger -> builder: trigger release
 note right
 Developer or cron job
 end note
-group Embark deployment
+group Lighthouse Developer Portal Deployment
 builder->storage: release Docker images
 else Frontend image change
 group Frontend deployment
@@ -290,12 +290,12 @@ end
 
 ```plantuml
 actor Developer as dev
-box "lighthouse-embark"
+box "lighthouse-developer-portal"
 participant "Create release action" as builder
 queue "GitHub" as platform
 database "GCR" as storage
 end box
-box "lighthouse-embark-deployment"
+box "lighthouse-developer-portal-deployment"
 participant "Deployment action" as depaction
 database "Deployment repo" as drepo
 end box
@@ -304,7 +304,7 @@ participant "ArgoCD" as deployer
 participant "EKS" as runner
 end box
 dev -> builder: Merge PR into main
-group Embark deployment
+group Lighthouse Developer Portal Deployment
 builder-> drepo: Create dev deployment
 end
 builder -> dev: Notify
@@ -330,12 +330,12 @@ _See overview and detail in previous sections for more info_
 
 ```plantuml
 actor Developer as dev
-box "lighthouse-embark"
+box "lighthouse-developer-portalper-portal"
 participant "Create release action" as builder
 queue "GitHub" as platform
 database "GCR" as storage
 end box
-box "lighthouse-embark-deployment"
+box "lighthouse-developer-portal-deployment"
 participant "Deployment action" as depaction
 database "Deployment repo" as drepo
 end box
@@ -344,7 +344,7 @@ participant "ArgoCD" as deployer
 participant "EKS" as runner
 end box
 builder -> builder: Create Changeset PR
-group Embark deployment
+group Lighthouse Developer Portal Deployment
 builder-> drepo: Create qa deployment
 end
 builder -> dev: Notify
@@ -354,7 +354,7 @@ storage->runner : Deploy to qa
 end
 dev -> builder: Merge release PR
 builder-> platform : Publish release notes
-group Embark deployment
+group Lighthouse Developer Portal Deployment
 builder-> drepo: Create production deployment
 end
 group ArgoCD sync
@@ -368,12 +368,12 @@ _See overview and detail in previous sections for more info_
 - The **Create release action** is started with a cron job
 - The Changeset bot is run and a new release branch and PR are created
 - The application version is incremented in `package.json`
-- The **Embark deployment** process is triggered.
+- The **Lighthouse Developer Portal Deployment** process is triggered.
   - The Docker images are released with the branch commit SHA as the **version tag**
   - This image is deployed to qa.
 - The developer merges the release PR
 - The **Create release action** creates the release notes.
-- The **Embark deployment** process is triggered.
+- The **Lighthouse Developer Portal Deployment** process is triggered.
   - The Docker images that were deployed to qa are tagged with the new application version as the **version tag**.
   - **Important**: \_The image on production must match the image that was deployed and verified on qa.
   - This image is deployed to production.

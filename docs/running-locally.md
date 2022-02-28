@@ -5,7 +5,7 @@ This repo is configured to run a production-like environment in a GitHub [Codesp
 1. Generate a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the read:packages permission
 2. Add the following to your [Codespace secrets](https://github.com/settings/codespaces):
 
-_For each secret, select only the lighthouse-embark repository under **Repository Access**._
+_For each secret, select only the lighthouse-developer-portal repository under **Repository Access**._
 
 ```env
 DEV_CONTAINER_REGISTRY_SERVER = ghcr.io
@@ -13,7 +13,7 @@ DEV_CONTAINER_REGISTRY_USER = <GitHub username>
 DEV_CONTAINER_REGISTRY_PASSWORD = <personal access token>
 ```
 
-3. Create a [Codespace](https://docs.github.com/en/codespaces) for the [lighthouse-embark](https://github.com/department-of-veterans-affairs/lighthouse-embark) repo. This option is available by clicking the green **Code** button.
+3. Create a [Codespace](https://docs.github.com/en/codespaces) for the [lighthouse-developer-portal](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal) repo. This option is available by clicking the green **Code** button.
 4. Run application:
 
 ```bash
@@ -22,7 +22,7 @@ yarn dev
 
 ### Create a Codespace
 
-You can create a new codespace by visiting the [lighthouse-embark repo](https://github.com/department-of-veterans-affairs/lighthouse-embark) and by following the listed steps.
+You can create a new codespace by visiting the [lighthouse-developer-portal repo](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal) and by following the listed steps.
 
 ### Prerequisites
 
@@ -39,7 +39,7 @@ _Note: The in-browser VS Code doesn't work properly with this project._
 
 ## Install and run locally with Docker
 
-Running lighthouse-embark locally with Docker can be a great way to work on the app if you don't want to use `Codespaces`. Building the application using `docker-compose` will take a few minutes, but having more control over the application can be nice.
+Running lighthouse-developer-portal locally with Docker can be a great way to work on the app if you don't want to use `Codespaces`. Building the application using `docker-compose` will take a few minutes, but having more control over the application can be nice.
 
 ### Prerequisites
 

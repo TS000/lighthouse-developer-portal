@@ -9,7 +9,7 @@ There are three major concerns for choosing a suitable logging library: recordin
 ## Background
 
 Backstage comes with [Winston](https://github.com/winstonjs/winston#readme) already included which is nice as Winston is a popular logger for node applications. The logger is being used within various points of the `src/backend`. Routes seem to be the only thing being logged at the moment.
-Backstage initiate's the logger within the [makeCreateEnv()](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/backend/src/index.ts#L32) function.
+Backstage initiate's the logger within the [makeCreateEnv()](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/packages/backend/src/index.ts#L32) function.
 
 Whether we decide to use Winston or another logging service ([Bunyan](https://github.com/trentm/node-bunyan#readme)) we should decouple the various import statements for winston and only use it within a single file. Any file wanting to use the logger should then import from our controlled logger making it easy to manage and/or change in the future.
 

@@ -6,7 +6,7 @@ The default image Codespace uses, [mcr.microsoft.com/vscode/devcontainers/univer
 
 ## Creating a Custom Image
 
-To reduce our rebuilding wait times, I created a [smaller image](https://github.com/department-of-veterans-affairs/lighthouse-embark/pkgs/container/lighthouse-embark%2Fdevcontainer), around ~2gb.
+To reduce our rebuilding wait times, I created a [smaller image](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/pkgs/container/lighthouse-developer-portal%2Fdevcontainer), around ~2gb.
 
 The new devcontainer image is uploaded to ghcr.io. To be able to access GitHub Packages uploaded to ghcr.io, we need to have some kind of authorization. For Codespaces this is done by creating secrets with a specific naming convention. Once Codespaces has the secrets, you will have [authorization to access a private registry](https://docs.github.com/en/codespaces/codespaces-reference/allowing-your-codespace-to-access-a-private-image-registry#about-private-image-registries-and-codespaces) when pulling Docker images for your Codespace's devcontainer.
 
@@ -43,7 +43,7 @@ $ cd /path/to/workspace/.devcontainer
 - Rebuild the image
 
 ```
-$ docker build -f base.Dockerfile . -t ghcr.io/department-of-veterans-affairs/lighthouse-embark/devcontainer:latest
+$ docker build -f base.Dockerfile . -t ghcr.io/department-of-veterans-affairs/lighthouse-developer-portal/devcontainer:latest
 ```
 
 - [Log into container registry using PAT](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry)
@@ -57,5 +57,5 @@ $ echo $CR_PAT | docker login ghcr.io -u <USERNAME> --password-stdin
 - Push the image
 
 ```
-$ docker push ghcr.io/department-of-veterans-affairs/lighthouse-embark/devcontainer:latest
+$ docker push ghcr.io/department-of-veterans-affairs/lighthouse-developer-portal/devcontainer:latest
 ```

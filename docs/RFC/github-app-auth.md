@@ -14,7 +14,7 @@ An authorized OAuth App has access to all of the user's or organization owner's 
 
 ## Goal
 
-Provide a Proof-of-concept work for implementing GitHub App within Embark.
+Provide a Proof-of-concept work for implementing GitHub App within the Lighthouse developer portal.
 
 ## Findings
 
@@ -57,7 +57,7 @@ These are teh minimum permissions required for creating a pull request with Back
 
 ## Recommendation
 
-Implementing a GitHub App integration for embark was fairly easy following the [Backstage GitHub App Guide](https://backstage.io/docs/plugins/github-apps#docsNav). However this might be something we want to wait on until some of the listed caveats are updated. If we're all okay with the listed issues, I think it'd be a great tool for backend authentication.
+Implementing a GitHub App integration for the Lighthouse developer portal was fairly easy following the [Backstage GitHub App Guide](https://backstage.io/docs/plugins/github-apps#docsNav). However this might be something we want to wait on until some of the listed caveats are updated. If we're all okay with the listed issues, I think it'd be a great tool for backend authentication.
 
 We'll also need to find a way to store the `YAML` file that includes all the GitHub App secrets as it shouldn't ever ever ever be committed to the repository.
 

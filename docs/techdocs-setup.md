@@ -7,9 +7,9 @@ Techdocs is how documentation is created in backstage. It uses yaml files to gen
 
 ## Teams
 
-The Embark team has decided it's best for each team to maintain their own documentation. Below are examples of a github action and a kubernetes configuration file that can be used and or modified based on each teams needs.
+The the Lighthouse developer portal team has decided it's best for each team to maintain their own documentation. Below are examples of a github action and a kubernetes configuration file that can be used and or modified based on each teams needs.
 
-[publish-and-build-documentation.yaml](https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/.github/workflows/build-and-publish-documentation.yaml)
+[publish-and-build-documentation.yaml](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/.github/workflows/build-and-publish-documentation.yaml)
 
 ```
 name: Build and publish backstage documentation
@@ -32,18 +32,18 @@ jobs:
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
       - name: Set namespace
         run: kubectl config set-context --current --namespace=lighthouse-bandicoot-dev
-      - name: Build and publish - embark
-        run: kubectl apply -f techdocs/embark-techdocs.yaml
-      - name: Build and publish - embark-deployment
-        run: kubectl apply -f techdocs/embark-deployment-techdocs.yaml
+      - name: Build and publish - the Lighthouse developer portal
+        run: kubectl apply -f techdocs/lighthouse-developer-portal-techdocs.yaml
+      - name: Build and publish - lighthouse-developer-portal-deployment
+        run: kubectl apply -f techdocs/lighthouse-developer-portal-deployment-techdocs.yaml
 ```
-In this example the github action is using kubectl to run the kubernetes [embark-deployment-techdocs.yaml](https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/techdocs/embark-techdocs.yaml) configuration file.
+In this example the github action is using kubectl to run the kubernetes [lighthouse-developer-portal-deployment-techdocs.yaml](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/techdocs/lighthouse-developer-portal-techdocs.yaml) configuration file.
 
 Each user will need to update the args section in the kubernetes file to reflect their own repo information:
 
 ```
 args:
-    - "--repo=https://github.com/department-of-veterans-affairs/lighthouse-embark"
+    - "--repo=https://github.com/department-of-veterans-affairs/lighthouse-developer-portal"
     - "--branch=main"
     - "--depth=1"
     - "--one-time"
@@ -53,7 +53,7 @@ args:
 
 If using a private or internal repo, the user will need to add a `imagePullSecrets` property as shown below:
 
-[embark-deployment-techdocs.yaml](https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/techdocs/embark-deployment-techdocs.yaml#L62)
+[lighthouse-developer-portal-deployment-techdocs.yaml](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/techdocs/lighthouse-developer-portal-deployment-techdocs.yaml#L62)
 
 ```
 imagePullSecrets:

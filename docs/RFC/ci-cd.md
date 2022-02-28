@@ -10,7 +10,7 @@ The process of integrating and delivering new changes for an application from so
 
 ## Goal
 
-Our goal is to build an optimized CI/CD pipeline that produces fast, accurate, reliable, and comprehensive feedback to expedite our development cycle. We plan to achieve this goal by implementing automation tools and workflows that are triggered by merges pushed to the "main" branch of our Lighthouse Embark repository.
+Our goal is to build an optimized CI/CD pipeline that produces fast, accurate, reliable, and comprehensive feedback to expedite our development cycle. We plan to achieve this goal by implementing automation tools and workflows that are triggered by merges pushed to the "main" branch of the Lighthouse developer portal repository.
 
 > Note: Is this an accurate description of our goals relating to creating a CI/CD pipeline? Are there other goals I should include?
 

@@ -1,4 +1,4 @@
-# lighthouse-embark: GitHub Packages
+# lighthouse-developer-portal: GitHub Packages
 
 ## Getting Started
 

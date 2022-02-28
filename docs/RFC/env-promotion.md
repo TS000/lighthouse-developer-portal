@@ -48,11 +48,11 @@ We can modify `app-config.yaml` to use variables so a single image can be re-use
 <pre>
 # Example app-config.yaml
 app:
-  title: Embark Developer Portal
+  title: Lighthouse Developer Portal
   baseUrl: <b>${FE_ENDPOINT}</b>
 
 organization:
-  name: Embark
+  name: Department of Veterans Affairs
 
 backend:
   baseUrl: <b>${BE_ENDPOINT}</b>

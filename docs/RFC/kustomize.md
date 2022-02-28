@@ -36,7 +36,7 @@ $ yarn install --frozen-lockfile && yarn tsc
 ```
 # app-config.dev.yaml
 app:
-  title: Embark Developer Portal
+  title: Lighthouse Developer Portal
   baseUrl: https://dev.devportal.name
 ...
 
@@ -201,7 +201,7 @@ $ cp .env deployments/scripts/
 - Create the environment specific resource files for the deployment using the `env-config-secrets.sh` file
 
 ```
-$ chmod +x deployment/scripts/env-config-secrets.sh 
+$ chmod +x deployment/scripts/env-config-secrets.sh
 $ ./env-config-secrets.sh
 ```
 

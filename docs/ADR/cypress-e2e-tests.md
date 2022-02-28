@@ -22,7 +22,7 @@ Backstage came with Cypress [already installed](https://backstage.io/docs/gettin
 
 For Linux users, or those using WSL. You can install all of the Cypress dependencies by following [this guide.](https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements)
 
-Tests are also run as part of the CI/CD. [Here](https://github.com/department-of-veterans-affairs/lighthouse-embark/pull/121) is the PR adding them.
+Tests are also run as part of the CI/CD. [Here](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/pull/121) is the PR adding them.
 
 ## Pros
 

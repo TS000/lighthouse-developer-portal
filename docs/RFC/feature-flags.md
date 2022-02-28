@@ -6,11 +6,11 @@ Feature flags are built upon conditional logic that control visibility of functi
 
 ## Background
 
-Currently, the Embark app has an internal feature-flag API. The flags are set by the user, and cannot be controlled by admins. These flags should be used to provide a more personalized experience for each user. A feature-flag application must be run alongside Embark in order to allow admins to toggle features for every user of the app. Feature-flags will allow admins to toggle new experimental features, or turn off app functionality if a bug is found, etc.
+Currently, the Lighthouse Developer Portal application has an internal feature-flag API. The flags are set by the user, and cannot be controlled by admins. These flags should be used to provide a more personalized experience for each user. A feature-flag application must be run alongside the Lighthouse developer portal in order to allow admins to toggle features for every user of the app. Feature-flags will allow admins to toggle new experimental features, or turn off app functionality if a bug is found, etc.
 
 ## Goal
 
-Decide on a Feature-Flag service that will work well with Embark.
+Decide on a Feature-Flag service that will work well with the Lighthouse developer portal.
 
 ## Findings
 
@@ -30,7 +30,7 @@ Running the application this way will allow us to access feature-flags from our 
 
 Accessing feature-flags from the frontend requires we also run a [proxy](https://docs.getunleash.io/sdks/unleash-proxy).
 
-Using feature-flags within Embark is easy. Unleash provides an SDK that creates a react Context object, and a few hooks that allow us to check/toggle flags.
+Using feature-flags within the Lighthouse developer portal is easy. Unleash provides an SDK that creates a react Context object, and a few hooks that allow us to check/toggle flags.
 
 ### Flagsmith
 

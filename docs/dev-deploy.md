@@ -1,5 +1,5 @@
 # Deploying to Development Environment
-This document outlines the manual deployment process to the Development Environment provided by the DI team. Currently the Lighthouse-Embark repository is configured to automatically deploy to the Development Environment on all `push` events with the `main` branch using [GitHub actions](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/.github/workflows/cicd.yml).
+This document outlines the manual deployment process to the Development Environment provided by the DI team. Currently the lighthouse-developer-portal repository is configured to automatically deploy to the Development Environment on all `push` events with the `main` branch using [GitHub actions](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/.github/workflows/cicd.yml).
 
 
 ## Setup
@@ -23,7 +23,7 @@ This document outlines the manual deployment process to the Development Environm
 - Navigate to Root Directory
 
 ```
-$ cd /workspaces/lighthouse-embark
+$ cd /workspaces/lighthouse-developer-portal
 ```
 
 - Install Dependencies & Run Typescript Compiler
@@ -37,7 +37,7 @@ $ yarn install --frozen-lockfile && yarn tsc
 ```
 # app-config.dev.yaml
 app:
-  title: Embark Developer Portal
+  title: Lighthouse Developer Portal
   baseUrl: <host_url>
 ...
 
@@ -68,7 +68,7 @@ auth:
 
 > Refer to [DI Routing Traffic Guide](https://github.com/department-of-veterans-affairs/lighthouse-di-platform-servicemesh/blob/main/docs/routing-traffic.md) for most recent information related to the `host_url` referenced above.
 
-> Note: You can opt to use environment variables instead of modifying the `app-config.yaml` and rebuilding the image. The `baseUrl` can be overridden using environment variables prefixed with `APP_CONFIG` (e.g. `APP_CONFIG_app_baseUrl` ). Here is an example of a [ConfigMap](https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/dist/dev/dev.yaml#L2) in our deployment repository. This will generally work for most fields in the `app-config.yaml`, but the `baseUrl` specifically has been known to break the OAuth by generating invalid callback URLs by using the `baseUrl` from the `app-config.yaml` instead of the environmental overrides. 
+> Note: You can opt to use environment variables instead of modifying the `app-config.yaml` and rebuilding the image. The `baseUrl` can be overridden using environment variables prefixed with `APP_CONFIG` (e.g. `APP_CONFIG_app_baseUrl` ). Here is an example of a [ConfigMap](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/dist/dev/dev.yaml#L2) in our deployment repository. This will generally work for most fields in the `app-config.yaml`, but the `baseUrl` specifically has been known to break the OAuth by generating invalid callback URLs by using the `baseUrl` from the `app-config.yaml` instead of the environmental overrides.
 
 
 - Build Static Assets
@@ -85,13 +85,13 @@ $ yarn build
 - Create Image for Backend Container
 
 ```
-$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-embark/backend:<commit-sha> --tag ghcr.io/department-of-veterans-affairs/lighthouse-embark/backend:latest -f Dockerfile.backend .
+$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-developer-portal/backend:<commit-sha> --tag ghcr.io/department-of-veterans-affairs/lighthouse-developer-portal/backend:latest -f Dockerfile.backend .
 ```
 
 - Create Image for Frontend Container
 
 ```
-$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-embark/frontend:<commit-sha> --tag ghcr.io/department-of-veterans-affairs/lighthouse-embark/frontend:latest -f Dockerfile.frontend .
+$ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-developer-portal/frontend:<commit-sha> --tag ghcr.io/department-of-veterans-affairs/lighthouse-developer-portal/frontend:latest -f Dockerfile.frontend .
 ```
 
 ## Push Images to GitHub Packages
@@ -114,14 +114,14 @@ $ docker build --tag ghcr.io/ghcr.io/department-of-veterans-affairs/lighthouse-e
 - Push the Images to the Container Registry
 
 ```
-$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-embark/backend:latest
+$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-developer-portal/backend:latest
 ```
 
 ```
-$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-embark/frontend:latest
+$ docker push --all-tags ghcr.io/department-of-veterans-affairs/lighthouse-developer-portal/frontend:latest
 ```
 
-- Verify the images were pushed by checking when the frontend/backend images were last published on the [lighthouse-embark repository](https://github.com/orgs/department-of-veterans-affairs/packages?repo_name=lighthouse-embark)
+- Verify the images were pushed by checking when the frontend/backend images were last published on the [lighthouse-developer-portal repository](https://github.com/orgs/department-of-veterans-affairs/packages?repo_name=lighthouse-developer-portal)
 
 ## Deploy to Dev Environment
 
@@ -170,7 +170,7 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 
 - Create Environment Variables for Secrets
 
-  - Create `.env` file with your environment variables; you will need to set all of these variables in order for the deployment to work. You can reference this [ConfigMap](https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/helm/embark/templates/configmap.yaml) used by the helm deployment to ensure all environment variables are configured.
+  - Create `.env` file with your environment variables; you will need to set all of these variables in order for the deployment to work. You can reference this [ConfigMap](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/helm/lighthouse-developer-portal/templates/configmap.yaml) used by the helm deployment to ensure all environment variables are configured.
 
   ```
   DOCKERCONFIGJSON=<base64 encoded json string>
@@ -198,7 +198,7 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 - Install the Helm chart and set secrets using `--set`
 
 ```
-$ helm upgrade embark-dev helm/embark/ --debug --values helm/embark/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set BACKEND_SECRET=$BACKEND_SECRET --set HOST=$HOST --set GATEWAY=$GATEWAY --set GH_CLIENT_ID=$GHA_CLIENT_ID --set GH_CLIENT_SECRET=$GHA_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set global.DEPLOY_ENV=$DEPLOY_ENV --set global.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set global.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --set DOCSERVER_BASE_URL=$DOCSERVER_BASE_URL --set global.MEMCACHED_USER=$MEMCACHED_USER --set global.MEMCACHED_PASSWORD=$MEMCACHED_PASSWORD --install --atomic --cleanup-on-fail --history-max 5
+$ helm upgrade lighthouse-dev-portal-dev helm/lighthouse-developer-portal/ --debug --values helm/lighthouse-developer-portal/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set BACKEND_SECRET=$BACKEND_SECRET --set HOST=$HOST --set GATEWAY=$GATEWAY --set GH_CLIENT_ID=$GHA_CLIENT_ID --set GH_CLIENT_SECRET=$GHA_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set global.DEPLOY_ENV=$DEPLOY_ENV --set global.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set global.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --set DOCSERVER_BASE_URL=$DOCSERVER_BASE_URL --set global.MEMCACHED_USER=$MEMCACHED_USER --set global.MEMCACHED_PASSWORD=$MEMCACHED_PASSWORD --install --atomic --cleanup-on-fail --history-max 5
 ```
 
 ### Verify Deployment
@@ -208,8 +208,8 @@ $ helm upgrade embark-dev helm/embark/ --debug --values helm/embark/values.yaml 
 ```
 $ helm list -n lighthouse-bandicoot-dev
 NAME            NAMESPACE                       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
-embark-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:11:06.6508301 -0800 PST   deployed        embark-0.1.0                    1.16.0
+lighthouse-dev-portal-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:11:06.6508301 -0800 PST   deployed       lighthouse-dev-portal-0.1.0                    1.16.0
 ```
 
 - Browser
-Using a CAG browser or GFE, enter the `<host_url>` used above to access the Embark application.
+Using a CAG browser or GFE, enter the `<host_url>` used above to access the Lighthouse Developer Portal application.

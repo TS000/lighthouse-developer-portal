@@ -47,7 +47,7 @@ Create custom Github Actions with simple interfaces that we can use in our workf
 
 I created an example of a `composite` action using this repository. This method uses the path to `.github/actions/<custom_action_name>` to find the custom action's manifest file.
 
-> Note: There is another method of locating actions by creating a separate repository with tags to reference. I created a repository `lighthouse-embark-actions` but it is currently set to `internal` by default and an organization owner/admin needs to change it to `public` for us to use it.
+> Note: There is another method of locating actions by creating a separate repository with tags to reference. I created a repository `lighthouse-developer-portal-actions` but it is currently set to `internal` by default and an organization owner/admin needs to change it to `public` for us to use it.
 
 - Inside the `.github` directory is an `actions` directory
 
@@ -109,14 +109,14 @@ jobs:
 example-custom-action:
 runs-on: ubuntu-latest
 continue-on-error: true
-steps: - uses: actions/checkout@v2 # Using path to same repo works  
+steps: - uses: actions/checkout@v2 # Using path to same repo works
  <b>- uses: ./.github/actions/logger
 with:
 string-to-log: 'This should log in the console'</b>
 
 </pre>
 
-- Result from [workflow run](https://github.com/department-of-veterans-affairs/lighthouse-embark/runs/3883781943?check_suite_focus=true):
+- Result from [workflow run](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/runs/3883781943?check_suite_focus=true):
 
 ```
 Run actions/github-script@v3

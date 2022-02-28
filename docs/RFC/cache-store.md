@@ -6,7 +6,7 @@ Backstage plugins are configured so they can utilize a cache store to improve pe
 
 ## Background
 
-[Backstage](https://backstage.io/docs/overview/architecture-overview#cache) allows configuring the use of a cache from the `app-config.yml` file. For local development the `app-config.yaml` can use an in `memory` option for the cache store but it is recommended to switch to cache store, like Memcached, for production environments. 
+[Backstage](https://backstage.io/docs/overview/architecture-overview#cache) allows configuring the use of a cache from the `app-config.yml` file. For local development the `app-config.yaml` can use an in `memory` option for the cache store but it is recommended to switch to cache store, like Memcached, for production environments.
 ## Goal
 
 Investigate the use of a cache store for deployments that replaces the local in memory cache configuration.
@@ -17,13 +17,13 @@ The `backend` implementation of the cache store starts by allowing each plugin t
 
 Even though all the plugins contain a `cacheManager` it appears only a couple plugins have cache implementations: the [GitLab Discovery Processor](https://github.com/backstage/backstage/blob/master/plugins/catalog-backend/src/ingestion/processors/GitLabDiscoveryProcessor.ts#L45) and the [Techdocs-backend](https://github.com/backstage/backstage/blob/master/plugins/techdocs-backend/src/cache/TechDocsCache.ts#L23). We don't use the `GitLab Discovery Processor` but I was able to cache Techdocs using a Memcached deployment to verify the configurations necessary to leverage a cache store.
 
-First I updated the `app-config.production.yaml` to include a cache-store and built the new image to retrieve a commit sha for the deployment. I updated the Helm charts to include a new subchart called `memcached` located in the `helm/embark/charts` directory. This subchart contains a deployment with a single container using the `bitnami/memcached` image as well as a corresponding service to manage traffic to the `memcached` pod. The memcached pod is backed by its own PVC `sandbox-memcached-efs-claim` for handling persistence. I deployed the application to the `lighthouse-bandicoot-sandbox` environment on the `nonprod` cluster for testing. I observed the following:
+First I updated the `app-config.production.yaml` to include a cache-store and built the new image to retrieve a commit sha for the deployment. I updated the Helm charts to include a new subchart called `memcached` located in the `helm/lighthouse-developer-portal/charts` directory. This subchart contains a deployment with a single container using the `bitnami/memcached` image as well as a corresponding service to manage traffic to the `memcached` pod. The memcached pod is backed by its own PVC `sandbox-memcached-efs-claim` for handling persistence. I deployed the application to the `lighthouse-bandicoot-sandbox` environment on the `nonprod` cluster for testing. I observed the following:
 
 - All pods in the deployment with all containers ready and `running` status:
 ```
 NAME                                           READY   STATUS    RESTARTS   AGE
-pod/embark-sandbox-backend-68fd45fb89-svkk7    2/2     Running   2          41s
-pod/embark-sandbox-frontend-7d7895b8f4-6mqvr   2/2     Running   0          41s
+pod/lighthouse-dev-portal-sandbox-backend-68fd45fb89-svkk7    2/2     Running   2          41s
+pod/lighthouse-dev-portal-sandbox-frontend-7d7895b8f4-6mqvr   2/2     Running   0          41s
 pod/sandbox-memcached-7fbb698654-sv8hj         2/2     Running   0          41s
 pod/sandbox-postgres-766dfd978b-7p8dw          2/2     Running   0          41s
 ```

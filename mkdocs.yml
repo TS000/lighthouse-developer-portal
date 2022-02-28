@@ -1,5 +1,14 @@
-site_name: 'Embark Documentation'
-repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-embark'
+  - Decision Records:
+      - Yarn Zero Install: ADR/zero-install.md
+      - Split FE/BE: ADR/split-fe-be.md
+      - Cypress e2e Tests: ADR/cypress-e2e-tests.md
+      - Ignore Backend Code Coverage: ADR/code-cov.md
+      - Vite: ADR/vite.md
+      - GitHub Packages: ADR/github-packages.md
+      - Twelve Factor App: ADR/twelve-factor-app.md
+      - Image Signing: ADR/image-signing.md
+      - Unit Test Coverage: ADR/code-coverage.md
+      - Remove Google Analytics: ADR/google-analytics.md
 
 nav:
   - Home: index.md
@@ -42,17 +51,8 @@ nav:
       - Plugin Authentication and Authorization: RFC/plugin-authentication.md
       - Cache Store: RFC/cache-store.md
 
-  - Decision Records:
-      - Yarn Zero Install: ADR/zero-install.md
-      - Split FE/BE: ADR/split-fe-be.md
-      - Cypress e2e Tests: ADR/cypress-e2e-tests.md
-      - Ignore Backend Code Coverage: ADR/code-cov.md
-      - Vite: ADR/vite.md
-      - GitHub Packages: ADR/github-packages.md
-      - Twelve Factor App: ADR/twelve-factor-app.md
-      - Image Signing: ADR/image-signing.md
-      - Unit Test Coverage: ADR/code-coverage.md
-      - Remove Google Analytics: ADR/google-analytics.md
-
 plugins:
   - techdocs-core
+
+site_name: 'Lighthouse Developer Portal Documentation'
+repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-developer-portal'

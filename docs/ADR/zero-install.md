@@ -17,7 +17,7 @@ Decision Makers: @kaemonisland, @rianfowler
 
 ## tl;dr
 
-CI/CD can take up to 10+ minutes to complete, specifically the [build-containers action.](https://github.com/department-of-veterans-affairs/lighthouse-embark/actions/workflows/build-containers.yml) Being able to use [Yarn Zero-Install](https://yarnpkg.com/features/zero-installs) would allow us to cache dependencies thus lowering the run-time of CI/CD by a significant amount.
+CI/CD can take up to 10+ minutes to complete, specifically the [build-containers action.](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/actions/workflows/build-containers.yml) Being able to use [Yarn Zero-Install](https://yarnpkg.com/features/zero-installs) would allow us to cache dependencies thus lowering the run-time of CI/CD by a significant amount.
 
 ## History
 

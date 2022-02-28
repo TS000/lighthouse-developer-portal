@@ -21,7 +21,7 @@ Google Analytics will be removed.
 
 Previously we wanted to use an analytics tool to track usage of the app.
 
-[Google Analytics](https://github.com/department-of-veterans-affairs/lighthouse-embark/pull/206) was added to embark.
+[Google Analytics](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/pull/206) was added to the Lighthouse developer portal.
 
 GA was not really used, and was not being checked for user behavior. At most we were only tracking page views. Most of the relevant user behavior is output into the backend logs.
 
@@ -36,6 +36,6 @@ GA was not really used, and was not being checked for user behavior. At most we 
 
 ## Decision
 
-Google Analytics will be removed from Embark to be replaced by Datadog.
+Google Analytics will be removed from the Lighthouse developer portal to be replaced by Datadog.
 
 Datadog will now be the primary source of truth for analytics and logging information.
