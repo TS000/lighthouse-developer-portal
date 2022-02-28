@@ -1,9 +1,9 @@
 import React from 'react';
 import { createDevApp } from '@backstage/dev-utils';
 import {
-    providerDashboardPlugin,
-    ProviderDashboardPage,
-    docServerApiFactoryConfig
+  providerDashboardPlugin,
+  ProviderDashboardPage,
+  docServerApiFactoryConfig,
 } from '../src/plugin';
 
 createDevApp()
@@ -11,7 +11,7 @@ createDevApp()
   .addPage({
     element: <ProviderDashboardPage />,
     title: 'Provider Dashboard',
-    path: '/provider-dashboard'
+    path: '/provider-dashboard',
   })
   .registerApi(docServerApiFactoryConfig)
   .render();
