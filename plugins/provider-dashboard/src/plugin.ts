@@ -1,7 +1,14 @@
 import {
-  createPlugin,
-  createRoutableExtension,
+  // createPlugin,
+  // createRoutableExtension,
+    createPlugin,
+    // createRouteRef,
+    createApiFactory,
+    createRoutableExtension,
+    // createComponentExtension,
+    discoveryApiRef,
 } from '@backstage/core-plugin-api';
+import { docServerApiRef, docServerApiClient } from './docServerApis';
 
 import { rootRouteRef } from './routes';
 
@@ -10,6 +17,19 @@ export const providerDashboardPlugin = createPlugin({
   routes: {
     root: rootRouteRef,
   },
+});
+
+export const myCustomPlugin = createPlugin({
+    id: 'plugin.docserver-api.service',
+
+    // Configure a factory for myAwesomeApiRef
+    apis: [
+        createApiFactory({
+            api: docServerApiRef,
+            deps: { discoveryApi: discoveryApiRef },
+            factory: ({ discoveryApi }) => new docServerApiClient({ discoveryApi }),
+        }),
+    ],
 });
 
 export const ProviderDashboardPage = providerDashboardPlugin.provide(

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Table, TableColumn, Progress } from '@backstage/core-components';
-import { useApi, configApiRef } from '@backstage/core-plugin-api';
+// import { useApi, configApiRef } from '@backstage/core-plugin-api';
+import { useApi } from '@backstage/core-plugin-api';
 import Alert from '@material-ui/lab/Alert';
 import { useAsync } from 'react-use';
 import OpenInNew from '@material-ui/icons/OpenInNew';
 import { IconButton, Tooltip } from '@material-ui/core';
+import { docServerApiRef } from '../../docServerApis';
+
 
 type API = {
   name: string;
@@ -80,16 +83,17 @@ export const DenseTable = ({ apis }: DenseTableProps) => {
 };
 
 export const APIFetchComponent = () => {
-  const config = useApi(configApiRef);
+  // const config = useApi(configApiRef);
+  const apiClient = useApi(docServerApiRef);
 
   const { value, loading, error } = useAsync(async (): Promise<API[]> => {
-    const backendUrl = config.getString('backend.baseUrl');
-    const proxyPath = '/api/proxy';
-    const basePath = `${backendUrl}${proxyPath}`;
-
-    const response = await fetch(`${basePath}/docserver/apis/`);  // TODO: Move this call into a proper client soon
-    const data = await response.json();
-    return data;
+    // const backendUrl = config.getString('backend.baseUrl');
+    // const proxyPath = '/api/proxy';
+    // const basePath = `${backendUrl}${proxyPath}`;
+    // const data = await response.json();
+    // return data;
+    const docServerData = apiClient.listApis();
+    return docServerData;
   }, []);
 
   if (loading) {
