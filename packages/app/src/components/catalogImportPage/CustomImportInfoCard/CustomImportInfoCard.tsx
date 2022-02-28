@@ -95,13 +95,14 @@ export const CustomImportInfoCard = (props: ImportInfoCardProps) => {
             </Typography>
           )}
           <Typography variant="h6">
-            Tieing in Techdocs{' '}
+            Tying in Techdocs{' '}
             <Chip label="Techdocs" variant="outlined" size="small" />
           </Typography>
           <Typography variant="body2" paragraph>
-            To create Techdocs you'll need to include a <code>backstage.io/techdocs-ref</code>
-            annotation in your <code>{catalogFilename}</code> as well as a <code>mkdocs.yml</code>
-            file in your repository. Visit the <a href={starterGuide}>Starter Guide</a> for more information about creating Techdocs.
+            To create Techdocs you'll need to include a <code>backstage.io/techdocs-ref </code>
+            annotation in your <code>{catalogFilename}</code> as well as a <code>mkdocs.yml </code>
+            file in your repository. Visit the <a href={starterGuide}>Starter Guide</a> for more
+            information about creating Techdocs.
           </Typography>
         </>
       )}

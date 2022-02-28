@@ -16,6 +16,7 @@ describe('Search', () => {
       '["beta_dismissable"]',
     );
     cy.visit('/');
+
     cy.get('h1').contains('Developer Portal').should('be.visible');
   });
 
@@ -31,6 +32,7 @@ describe('Search', () => {
     cy.get('input')
       .invoke('attr', 'placeholder')
       .should('contain', 'Search in Lighthouse Developer Portal');
+
     cy.contains('monorepo').should('be.visible');
   });
 
@@ -42,6 +44,7 @@ describe('Search', () => {
     cy.get('input')
       .invoke('attr', 'placeholder')
       .should('contain', 'Search in Lighthouse Developer Portal');
+
     cy.contains('monorepo').should('be.visible').click();
 
     cy.url().should('match', /catalog\/default\/component\/embark-monorepo/);
