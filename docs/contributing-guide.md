@@ -58,7 +58,7 @@ All new documentation files should be added to the `docs` folder, that includes 
 
 ### Pre-Commit
 
-Prior to making your first commit for this repo, be sure to run `pre-commit install` from the root of the repo to ensure pre-commit hooks are run, which perform a variety of validations against your changes. Pre-commit installation instructions can be found at [pre-commit.com](https://pre-commit.com/index.html#install).
+Prior to making your first commit for this repo, be sure to run `pre-commit install && pre-commit install --hook-type commit-msg` from the root of the repo to ensure pre-commit hooks are run, which perform a variety of validations against your changes. Pre-commit installation instructions can be found at [pre-commit.com](https://pre-commit.com/index.html#install).
 
 ## Creating Changesets
 
