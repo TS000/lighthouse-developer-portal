@@ -11,8 +11,8 @@ import React from 'react';
 export const ExplorePage = () => {
   return (
     <ExploreLayout
-      title="Explore the Embark ecosystem"
-      subtitle="Browse our ecosystem"
+      title="Plugins"
+      subtitle="Browse the plugins ecosystem for the Lighthouse developer portal"
     >
       <ExploreLayout.Route path="tools" title="Tools">
         <ToolExplorerContent />

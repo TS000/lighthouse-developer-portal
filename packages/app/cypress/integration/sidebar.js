@@ -59,12 +59,12 @@ describe('sidebar', () => {
     it('changes with dropdown', () => {
       cy.contains('Components').should('be.visible').click();
       cy.url().should('match', /\?filters.*kind.*=component/);
-      cy.get('h1').contains('Embark Catalog').click();
+      cy.get('h1').contains('Catalog').click();
 
       cy.get('div').contains('Components').should('be.visible').click();
       cy.get('li[data-value="api"]').should('be.visible').click();
       cy.url().should('match', /\?filters.*kind.*=api/);
-      cy.contains('lighthouse-embark/backend').should('be.visible');
+      cy.contains('/backend').should('be.visible');
     });
   });
 

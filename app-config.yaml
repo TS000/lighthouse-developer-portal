@@ -1,5 +1,5 @@
 app:
-  title: Embark Developer Portal
+  title: Lighthouse Developer Portal
   baseUrl: http://127.0.0.1:3000
   # Support
   support:
@@ -14,18 +14,15 @@ app:
     clientToken: 'pubf1d9baf385e683e30ed4988a3a00a668'
     applicationId: 5a6a52f9-271e-4715-9482-e85b426e7da9
     site: 'datadoghq.com'
-    service: 'lighthouse-embark'
+    service: 'lighthouse-developer-portal'
     env: development
     sampleRate: 100
     trackInteractions: true
     defaultPrivacyLevel: 'mask-user-input'
-
 organization:
-  name: Embark
-
+  name: Department of Veterans Affairs
 permission:
   enabled: true
-
 backend:
   # Randomly generated string used for backend-to-backend Authentication
   # See https://backstage.io/docs/tutorials/backend-to-backend-auth
@@ -59,7 +56,6 @@ backend:
     #ssl: require # see https://www.postgresql.org/docs/current/libpq-ssl.html Table 33.1. SSL Mode Descriptions (e.g. require)
     #ca: # if you have a CA file and want to verify it you can uncomment this section
     #$file: <file-path>/ca/server.crt
-
 integrations:
   github:
     - host: github.com
@@ -68,7 +64,6 @@ integrations:
     # - host: ghe.example.net
     #   apiBaseUrl: https://ghe.example.net/api/v3
     #   token: ${GHE_TOKEN}
-
 proxy:
   '/test':
     target: 'https://example.com'
@@ -78,7 +73,6 @@ proxy:
     changeOrigin: true
     pathRewrite:
       '^/api/proxy/docserver/': '/docserver/'
-
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
 # and an external cloud storage when deploying TechDocs for production use-case.
@@ -89,7 +83,6 @@ techdocs:
     runIn: 'docker'
   publisher:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
-
 auth:
   # providers: {}
   # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
@@ -99,12 +92,10 @@ auth:
       development:
         clientId: ${GH_CLIENT_ID}
         clientSecret: ${GH_CLIENT_SECRET}
-
 scaffolder:
   # github:
   #   token: ${GH_TOKEN}
   #   visibility: public # or 'internal' or 'private'
-
 catalog:
   processors:
     githubOrg:
@@ -116,27 +107,21 @@ catalog:
     - allow: [Component, API, Resource, Group, User, Template, System, Domain, Location]
   locations:
     #################### EMBARK #########################
-
     # app component
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/app/catalog-info.yaml
-
     # backend component
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/backend/catalog-info.yaml
-
     # catalog repo
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-all.yaml
-
     # deployment repo
     - type: url
       target: https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/catalog-info.yaml
-    
     # embark monorepo
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml
-
     # feature-flags component
     - type: url
       target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/plugins/feature-flag-ui/catalog-info.yaml
