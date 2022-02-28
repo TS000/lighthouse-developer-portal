@@ -1,15 +1,5 @@
-  - Decision Records:
-      - Yarn Zero Install: ADR/zero-install.md
-      - Split FE/BE: ADR/split-fe-be.md
-      - Cypress e2e Tests: ADR/cypress-e2e-tests.md
-      - Ignore Backend Code Coverage: ADR/code-cov.md
-      - Vite: ADR/vite.md
-      - GitHub Packages: ADR/github-packages.md
-      - Twelve Factor App: ADR/twelve-factor-app.md
-      - Image Signing: ADR/image-signing.md
-      - Unit Test Coverage: ADR/code-coverage.md
-      - Remove Google Analytics: ADR/google-analytics.md
-
+site_name: 'Lighthouse Developer Portal Documentation'
+repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-developer-portal'
 nav:
   - Home: index.md
   - Deployment Overview: deployment.md
@@ -27,32 +17,39 @@ nav:
   - Codespace: codespace.md
   - Repo Setup: repo-setup.md
   - RFCs:
-      - Doc Generator: RFC/doc-generator.md
-      - CI/CD Modifications: RFC/ci-cd.md
-      - Catalog Import Research: RFC/catalog-import-research.md
-      - Node App Logging: RFC/node-app-logging.md
-      - Docker Scanning: RFC/docker-scanning.md
-      - Enforce Build Performance: RFC/enforce-build-performance.md
-      - Investigate Esbuild and Vite: RFC/investigate-esbuild-and-vite.md
-      - Linting Rules: RFC/linting.md
-      - Investigate Pact: RFC/investigate-pact.md
-      - Environment Promotion: RFC/env-promotion.md
-      - Custom Actions: RFC/custom-actions.md
-      - GitHub Access: RFC/github-access.md
-      - Google Analytics: RFC/google-analytics.md
-      - Configurable Variables: RFC/configurable-variables.md
-      - Browser Logs: RFC/browser-logs.md
-      - Automation with ArgoCD: RFC/argo-automation.md
-      - Kustomize Deployment: RFC/kustomize.md
-      - Feature Flags: RFC/feature-flags.md
-      - Configure Timeouts: RFC/configure-timeouts.md
-      - GitHub App POC: RFC/github-app-auth.md
-      - Search Optimization Comparison: RFC/search-comparison.md
-      - Plugin Authentication and Authorization: RFC/plugin-authentication.md
-      - Cache Store: RFC/cache-store.md
-
+    - Doc Generator: RFC/doc-generator.md
+    - CI/CD Modifications: RFC/ci-cd.md
+    - Catalog Import Research: RFC/catalog-import-research.md
+    - Node App Logging: RFC/node-app-logging.md
+    - Docker Scanning: RFC/docker-scanning.md
+    - Enforce Build Performance: RFC/enforce-build-performance.md
+    - Investigate Esbuild and Vite: RFC/investigate-esbuild-and-vite.md
+    - Linting Rules: RFC/linting.md
+    - Investigate Pact: RFC/investigate-pact.md
+    - Environment Promotion: RFC/env-promotion.md
+    - Custom Actions: RFC/custom-actions.md
+    - GitHub Access: RFC/github-access.md
+    - Google Analytics: RFC/google-analytics.md
+    - Configurable Variables: RFC/configurable-variables.md
+    - Browser Logs: RFC/browser-logs.md
+    - Automation with ArgoCD: RFC/argo-automation.md
+    - Kustomize Deployment: RFC/kustomize.md
+    - Feature Flags: RFC/feature-flags.md
+    - Configure Timeouts: RFC/configure-timeouts.md
+    - GitHub App POC: RFC/github-app-auth.md
+    - Search Optimization Comparison: RFC/search-comparison.md
+    - Plugin Authentication and Authorization: RFC/plugin-authentication.md
+    - Cache Store: RFC/cache-store.md
+  - Decision Records:
+    - Yarn Zero Install: ADR/zero-install.md
+    - Split FE/BE: ADR/split-fe-be.md
+    - Cypress e2e Tests: ADR/cypress-e2e-tests.md
+    - Ignore Backend Code Coverage: ADR/code-cov.md
+    - Vite: ADR/vite.md
+    - GitHub Packages: ADR/github-packages.md
+    - Twelve Factor App: ADR/twelve-factor-app.md
+    - Image Signing: ADR/image-signing.md
+    - Unit Test Coverage: ADR/code-coverage.md
+    - Remove Google Analytics: ADR/google-analytics.md
 plugins:
   - techdocs-core
-
-site_name: 'Lighthouse Developer Portal Documentation'
-repo_url: 'https://github.com/department-of-veterans-affairs/lighthouse-developer-portal'

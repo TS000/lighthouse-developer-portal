@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Techdocs webhook
-        uses: department-of-veterans-affairs/lighthouse-github-actions/.github/actions/techdocs-webhook@main
-        with:
-          repository: ${{ github.repository }}
-          descriptor-file: 'catalog-info.yaml'
-          team-name: 'lighthouse-bandicoot'
-          token: ${{ secrets.WEBHOOK_DEPLOY_PAT }}
+      # Disable while Techdocs repo is internal
+      # - name: Techdocs webhook
+      #   uses: department-of-veterans-affairs/lighthouse-github-actions/.github/actions/techdocs-webhook@main
+      #   with:
+      #     repository: ${{ github.repository }}
+      #     descriptor-file: 'catalog-info.yaml'
+      #     team-name: 'lighthouse-bandicoot'
+      #     token: ${{ secrets.WEBHOOK_DEPLOY_PAT }}
