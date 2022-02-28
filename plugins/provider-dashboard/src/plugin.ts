@@ -19,7 +19,7 @@ export const providerDashboardPlugin = createPlugin({
   },
 });
 
-export const myCustomPlugin = createPlugin({
+export const docServerApiClientDiscoveryConfig = {
     id: 'plugin.docserver-api.service',
 
     // Configure a factory for myAwesomeApiRef
@@ -30,7 +30,15 @@ export const myCustomPlugin = createPlugin({
             factory: ({ discoveryApi }) => new docServerApiClient({ discoveryApi }),
         }),
     ],
+};
+
+export const docServerApiFactoryConfig = createApiFactory({
+    api: docServerApiRef,
+    deps: { discoveryApi: discoveryApiRef },
+    factory: ({ discoveryApi }) => new docServerApiClient({ discoveryApi }),
 });
+
+export const docServerApiPlugin = createPlugin(docServerApiClientDiscoveryConfig);
 
 export const ProviderDashboardPage = providerDashboardPlugin.provide(
   createRoutableExtension({
