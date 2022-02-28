@@ -174,7 +174,7 @@ export const Modal = ({
         maxWidth="lg"
       >
         <DialogTitle>
-          Provide feedback for Embark
+          Provide feedback on the Lighthouse developer portal
           <IconButton
             aria-label="close"
             onClick={toggleModal}
