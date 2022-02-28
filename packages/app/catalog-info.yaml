@@ -2,16 +2,16 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: frontend
-  description: The frontend application for Embark
+  description: The frontend application for the Lighthouse Developer Portal
   tags:
     - javascript
     - typescript
     - react
   links:
-    - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
+    - url: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues
       title: Issues
       icon: help
-    - url: https://department-of-veterans-affairs.github.io/lighthouse-embark/
+    - url: https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/
       title: Docs
       icon: dashboard
     - url: https://backstage.io/
@@ -21,10 +21,10 @@ metadata:
       title: lighthouse-bandicoot slack
       icon: slack
   annotations:
-    github.com/project-slug: department-of-veterans-affairs/lighthouse-embark
+    github.com/project-slug: department-of-veterans-affairs/lighthouse-developer-portal
 spec:
   type: website
   owner: lighthouse-bandicoot
   lifecycle: experimental
-  system: embark-developer-portal
-  subcomponentOf: embark-monorepo
+  system: lighthouse-developer-portal
+  subcomponentOf: lighthouse-developer-portal-monorepo
