@@ -2,5 +2,5 @@
 
 # Commands run when Devcontainer starts up
 yarn install --frozen-lockfile;
-cd /workspaces/lighthouse-embark && pre-commit > start_up.log 2>&1;
-exit 0;
+pre-commit install > start_up.log 2>&1;
+pre-commit install --hook-type commit-msg >> start_up.log 2>&1;
