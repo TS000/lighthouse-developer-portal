@@ -43,7 +43,6 @@ export const CustomImportInfoCard = (props: ImportInfoCardProps) => {
   } = props;
 
   const configApi = useApi(configApiRef);
-  const appTitle = configApi.getOptional('app.title') || 'Backstage';
   const catalogImportApi = useApi(catalogImportApiRef);
 
   const integrations = configApi.getConfig('integrations');
@@ -62,7 +61,7 @@ export const CustomImportInfoCard = (props: ImportInfoCardProps) => {
       }}
     >
       <Typography variant="body2" paragraph>
-        Enter the URL to your source code repository to add it to {appTitle}.
+      Enter the URL to your source code repository to add it to the Lighthouse developer portal software catalog.
       </Typography>
       <Typography variant="h6">Link to an existing entity file</Typography>
       <Typography variant="subtitle2" color="textSecondary" paragraph>
@@ -70,7 +69,7 @@ export const CustomImportInfoCard = (props: ImportInfoCardProps) => {
       </Typography>
       <Typography variant="body2" paragraph>
         The wizard analyzes the file, previews the entities, and adds them to
-        the {appTitle} catalog.
+        the Lighthouse software catalog.
       </Typography>
       {hasGithubIntegration && (
         <>
@@ -83,15 +82,15 @@ export const CustomImportInfoCard = (props: ImportInfoCardProps) => {
           </Typography>
           <Typography variant="body2" paragraph>
             The wizard discovers all <code>{catalogFilename}</code> files in the
-            repository, previews the entities, and adds them to the {appTitle}{' '}
-            catalog.
+            repository, previews the entities, and adds them to the them to the Lighthouse
+            software catalog.
           </Typography>
           {catalogImportApi.preparePullRequest && (
             <Typography variant="body2" paragraph>
               If no entities are found, the wizard will prepare a Pull Request
               that adds an example <code>{catalogFilename}</code> and prepares
-              the {appTitle} catalog to load all entities as soon as the Pull
-              Request is merged.
+              the Lighthouse software catalog to load all entities as soon as the
+              Pull Request is merged.
             </Typography>
           )}
           <Typography variant="h6">

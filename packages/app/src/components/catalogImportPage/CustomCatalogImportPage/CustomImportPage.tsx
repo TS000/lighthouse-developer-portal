@@ -22,11 +22,11 @@ import {
 
     return (
       <Page themeId="home">
-        <Header title="Register an existing component" />
+        <Header title="Catalog Import" pageTitleOverride={`Catalog Import | ${appTitle}`} />
         <Content>
-          <ContentHeader title={`Start tracking your component in ${appTitle}`}>
+          <ContentHeader title="Start tracking your component in the Lighthouse developer portal" >
             <SupportButton>
-              Start tracking your component in {appTitle} by adding it to the
+              Start tracking your component in the {appTitle} by adding it to the
               software catalog.
             </SupportButton>
           </ContentHeader>
