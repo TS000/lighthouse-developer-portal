@@ -1,22 +1,17 @@
 import { createApiRef } from '@backstage/core-plugin-api';
+import { DiscoveryApi } from '@backstage/core-plugin-api';
 
-export interface Api {
+export interface API {
   name: string;
-  // description: string;
-  // owner: string;
-  // health: string;
 }
 
 export interface DocServerApi {
-  // listApis: () => Promise<List<Api>>;
-  listApis: () => Promise<any>;
+  listApis: () => Promise<API[]>;
 }
 
 export const docServerApiRef = createApiRef<DocServerApi>({
   id: 'plugin.docserver-api.service',
 });
-
-import { DiscoveryApi } from '@backstage/core-plugin-api';
 
 export class DocServerApiClient implements DocServerApi {
   discoveryApi: DiscoveryApi;
@@ -33,10 +28,8 @@ export class DocServerApiClient implements DocServerApi {
     return data;
   }
 
-  // async listApis(): Promise<List<Api>> {
-  //     return await this.fetch<List<Api>>('/apis');
   async listApis(): Promise<any> {
     const docServerPath = '/docserver/apis/';
-    return await this.fetch<any>(docServerPath);
+    return await this.fetch<API[]>(docServerPath);
   }
 }
