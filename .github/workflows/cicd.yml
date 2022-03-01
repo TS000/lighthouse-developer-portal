@@ -32,7 +32,7 @@ jobs:
       matrix:
         type: [backend, frontend]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
       - name: Build and push image
@@ -55,7 +55,7 @@ jobs:
       contents: read
     # Need to periodically update K8s context
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:
@@ -78,7 +78,7 @@ jobs:
     needs: [deploy-app-dev]
     # Notify lighthouse-developer-portal-deployment via webhook https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Send deployment event via webhook
         uses: ./.github/actions/send-deployment-webhook
         with:
