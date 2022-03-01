@@ -7,7 +7,7 @@ import {
   TableColumn,
   TableProps,
 } from '@backstage/core-components';
-import { configApiRef, useApi, useRouteRef } from '@backstage/core-plugin-api';
+import { useRouteRef } from '@backstage/core-plugin-api';
 import { scaffolderPlugin } from '@backstage/plugin-scaffolder';
 import {
   CatalogTable,
@@ -43,13 +43,11 @@ export const CustomCatalogPage = ({
   actions,
   initiallySelectedFilter = 'owned',
 }: CustomCatalogPageProps) => {
-  const orgName =
-    useApi(configApiRef).getOptionalString('organization.name') ?? 'Backstage';
   const registerComponentLink = useRouteRef(
     scaffolderPlugin.externalRoutes.registerComponent,
   );
   return (
-    <PageWithHeader title={`${orgName} Catalog`} themeId="home">
+    <PageWithHeader title="Software Catalog" themeId="home">
       <EntityListProvider>
         <Content>
           <ContentHeader titleComponent={<CatalogKindHeader />}>
