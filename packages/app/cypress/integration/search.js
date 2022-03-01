@@ -17,7 +17,7 @@ describe('Search', () => {
     );
     cy.visit('/');
 
-    cy.get('h1').contains('Developer Portal').should('be.visible');
+    cy.get('h1').contains('Home').should('be.visible');
   });
 
   it('should show the search button', () => {

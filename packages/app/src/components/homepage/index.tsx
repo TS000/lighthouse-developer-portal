@@ -6,7 +6,7 @@ import { Content, Header, InfoCard, Page } from '@backstage/core-components';
 import { Search } from '../search';
 
 const homepage: any = {
-  title: 'Embark Homepage',
+  title: 'Homepage',
   component: InfoCard,
 };
 
@@ -15,7 +15,7 @@ export default homepage;
 export const HomePage = () => {
   return (
     <Page themeId="home">
-      <Header title="Embark Developer Portal" />
+      <Header title="Home" />
       <MaintenanceBanner />
       <Content>
         <Grid container spacing={4}>
@@ -25,12 +25,9 @@ export const HomePage = () => {
           <Grid item xs={4}>
             <InfoCard
               title="Starter Guide"
-              subheader="A guide to getting started with Embark."
+              subheader="A guide to getting started with the Lighthouse developer portal."
             >
-              <p>
-                Learn how to add Catalog Entities to the Embark Software Catalog
-                and more!
-              </p>
+              <p>Learn how to add catalog entities to the software catalog and more!</p>
               <Button
                 component={Link}
                 to="/starter-guide"
@@ -44,9 +41,9 @@ export const HomePage = () => {
           <Grid item xs={4}>
             <InfoCard
               title="Contributing Guide"
-              subheader="A guide to getting started with contributing to Embark."
+              subheader="A guide to contributing to the Lighthouse developer portal."
             >
-              <p>Learn how to make meaningful contributions to Embark!</p>
+              <p>Learn how to build plugins, submit feedback, and more!</p>
               <Button
                 component={Link}
                 to="/contributing-guide"
