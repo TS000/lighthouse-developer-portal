@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Octokit } from '@octokit/rest';
 import { OctokitOptions } from '@octokit/core/dist-types/types';
+import { githubAuthApiRef, useApi } from '@backstage/core-plugin-api';
 
 /**
  * React hook that create an Octokit instance.
@@ -14,21 +15,8 @@ import { OctokitOptions } from '@octokit/core/dist-types/types';
  * @returns
  */
 export const useOctokit = () => {
-  const [octokit, setOctokit] = useState<Octokit>();
-
-  /**
-   * Attempts to parse a json string.
-   * Returns undefined on error.
-   *
-   * @returns {object | undefined} - returns the parsed object if successful, otherwise returns undefined
-   */
-  const safeJSONParse = (str: string) => {
-    try {
-      return str && JSON.parse(str);
-    } catch (error) {
-      return undefined;
-    }
-  };
+  const auth = useApi(githubAuthApiRef);
+  const [octokit, setOctokit] = useState<Octokit | null>();
 
   /**
    * Attempts to obtain the current GH authorized user information.
@@ -57,26 +45,38 @@ export const useOctokit = () => {
     return undefined;
   };
 
+  /**
+   * Obtains the users gh access token and initializes octokit
+   */
+  const initializeOctokit = async () => {
+    try {
+      const token = await auth.getAccessToken();
+
+      if (typeof token !== 'string') {
+        throw new Error('Token not found');
+      }
+      
+      const octokitOptions: OctokitOptions = {
+        userAgent: 'lighthouse-developer-portal',
+        auth: token,
+      };
+
+
+      setOctokit(new Octokit(octokitOptions));
+    } catch (error) {
+      setOctokit(null);
+    }
+  };
+
   // Creates the octokit instance with an authorized user if present.
   useEffect(() => {
-    // Obtain user GitHub session from localStorage
-    const userGithubSession = localStorage.getItem('githubSession');
+    const user = localStorage.getItem('@backstage/core:SignInPage:provider');
 
-    const parsedSession = safeJSONParse(userGithubSession || '');
-
-    const octokitOptions: OctokitOptions = {
-      userAgent: 'lighthouse-developer-portal',
-    };
-
-    if (
-      parsedSession &&
-      parsedSession.providerInfo &&
-      parsedSession.providerInfo.accessToken
-    ) {
-      octokitOptions.auth = parsedSession.providerInfo.accessToken;
+    // Prevent asking for gitHub auth if the user is a guest
+    if (user !== 'guest') {
+      initializeOctokit();
     }
-
-    setOctokit(new Octokit(octokitOptions));
+    // eslint-disable-next-line
   }, []);
 
   return {

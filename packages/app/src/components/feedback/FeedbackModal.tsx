@@ -126,7 +126,14 @@ export const Modal = ({
     }
 
     try {
-      await createNewIssue('lighthouse-developer-portal feedback', feedbackText);
+      const response = await createNewIssue(
+        'lighthouse-developer-portal feedback',
+        feedbackText,
+      );
+
+      if (!response) {
+        throw new Error('Unable to submit feedback');
+      }
       setHasSubmittedFeedback(true);
       setFeedbackText('');
     } catch (error) {

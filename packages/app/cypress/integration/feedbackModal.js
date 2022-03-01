@@ -14,26 +14,36 @@ describe('FeedbackModal', () => {
   });
 
   it('should open the feedback modal', () => {
-    cy.contains('Provide feedback on the Lighthouse developer portal').should('be.visible');
+    cy.contains('Provide feedback on the Lighthouse developer portal').should(
+      'be.visible',
+    );
   });
 
   it('should close the feedback modal', () => {
     cy.visit('/');
     cy.get('h6').contains('Feedback').click();
-    cy.contains('Provide feedback on the Lighthouse developer portal').should('be.visible');
+    cy.contains('Provide feedback on the Lighthouse developer portal').should(
+      'be.visible',
+    );
     cy.get('span').contains('Cancel').should('be.visible').click();
-    cy.contains('Provide feedback on the Lighthouse developer portal').should('not.exist');
+    cy.contains('Provide feedback on the Lighthouse developer portal').should(
+      'not.exist',
+    );
   });
 
   it('should not submit when textarea is empty', () => {
-    cy.contains('Provide feedback on the Lighthouse developer portal').should('be.visible');
+    cy.contains('Provide feedback on the Lighthouse developer portal').should(
+      'be.visible',
+    );
     cy.get('button').contains('Submit').parent().should('be.disabled');
   });
 
   context('Submitting feedback', () => {
     // Confirm the feedback modal is open, and enter the text within the textarea
     beforeEach(() => {
-      cy.contains('Provide feedback on the Lighthouse developer portal').should('be.visible');
+      cy.contains('Provide feedback on the Lighthouse developer portal').should(
+        'be.visible',
+      );
       cy.get('textarea').first().type('feedback is awesome!');
     });
 
@@ -44,70 +54,13 @@ describe('FeedbackModal', () => {
         .parent()
         .should('not.be.disabled')
         .click();
-      cy.contains('Provide feedback on the Lighthouse developer portal').should('not.exist');
-    });
-
-    it('should submit the issue to github', () => {
-      // Intercept the submitted feedback
-      cy.intercept({ method: 'POST', url: GITHUB_ISSUE_URL }, 'success').as(
-        'submitResponse',
+      cy.contains('Provide feedback on the Lighthouse developer portal').should(
+        'not.exist',
       );
-
-      // Submit the form
-      cy.get('button')
-        .contains('Submit')
-        .parent()
-        .should('not.be.disabled')
-        .click();
-
-      // Validate that the request body contains the same text we submitted
-      cy.wait('@submitResponse')
-        .its('request.body.body')
-        .should('eq', 'feedback is awesome!');
-      cy.contains('Provide feedback on the Lighthouse developer portal').should('not.exist');
     });
 
-    it('should display a dismissable message after successful submit', () => {
-      // Intercept the submitted feedback
-      cy.intercept({ method: 'POST', url: GITHUB_ISSUE_URL }, 'success');
-
-      // Submit the form
-      cy.get('button')
-        .contains('Submit')
-        .parent()
-        .should('not.be.disabled')
-        .click();
-
-      cy.get('div')
-        .contains('Feedback submitted! View it on GitHub.')
-        .should('be.visible');
-      cy.contains('Provide feedback on the Lighthouse developer portal').should('not.exist');
-    });
-
-    it('should display a dismissable message after successful submit multiple times', () => {
-      // Intercept the submitted feedback
-      cy.intercept({ method: 'POST', url: GITHUB_ISSUE_URL }, 'success');
-
-      for (let i = 0; i < 3; i++) {
-        cy.visit('/');
-        cy.get('h6').contains('Feedback').click();
-
-        cy.contains('Provide feedback on the Lighthouse developer portal').should('be.visible');
-        cy.get('textarea').first().type('feedback is awesome!');
-
-        // Submit the form
-        cy.get('button')
-          .contains('Submit')
-          .parent()
-          .should('not.be.disabled')
-          .click();
-
-        cy.get('div')
-          .contains('Feedback submitted! View it on GitHub.')
-          .should('be.visible');
-        cy.contains('Provide feedback on the Lighthouse developer portal').should('not.exist');
-      }
-    });
+    // TODO: re add tests for successful feedback once we can fake authentication
+    // @see https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/pull/468
 
     it('should display a dismissable message after failed submit', () => {
       cy.intercept(
@@ -131,7 +84,9 @@ describe('FeedbackModal', () => {
       cy.get('div')
         .contains('Failed to submit feedback. Please try again later.')
         .should('be.visible');
-      cy.contains('Provide feedback on the Lighthouse developer portal').should('not.exist');
+      cy.contains('Provide feedback on the Lighthouse developer portal').should(
+        'not.exist',
+      );
     });
   });
 });
