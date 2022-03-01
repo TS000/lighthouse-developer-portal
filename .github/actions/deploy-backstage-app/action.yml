@@ -1,13 +1,13 @@
-name: 'Deploy Backstage app'
-description: 'Deploys Backstage application to an environment using helm'
+name: 'Deploy Lighthouse Developer Portal app'
+description: 'Deploys Lighthouse Developer Portal application to an environment using helm'
 inputs:
-  KUBE_CONFIG: 
+  KUBE_CONFIG:
     description: 'Kubernetes context'
     required: true
   DOCKERCONFIGJSON:
     description: 'Authentication for pulling from image registry'
     required: true
-  BACKEND_SECRET:  
+  BACKEND_SECRET:
     description: 'Randomly generated string for backend-to-backend authentication'
     required: true
   GH_CLIENT_ID:
@@ -55,7 +55,7 @@ runs:
     with:
       method: kubeconfig
       kubeconfig: ${{ inputs.KUBE_CONFIG }}
-  - name: Set env overrides 
+  - name: Set env overrides
     id: overrides
     run: |
       echo "::set-output name=nonprod::true"
@@ -84,18 +84,18 @@ runs:
   - name: Upgrade(or install) helm release
     id: upgrade
     run: >
-      helm upgrade embark-${{ inputs.ENV }} helm/embark/ 
-      --debug 
-      --values helm/embark/values.yaml 
+      helm upgrade lighthouse-developer-portal-${{ inputs.ENV }} helm/lighthouse-developer-portal/
+      --debug
+      --values helm/lighthouse-developer-portal/values.yaml
       --namespace lighthouse-bandicoot-dev
-      --set DOCKERCONFIGJSON=${{ inputs.DOCKERCONFIGJSON }} 
+      --set DOCKERCONFIGJSON=${{ inputs.DOCKERCONFIGJSON }}
       --set BACKEND_SECRET=${{ inputs.BACKEND_SECRET }}
       --set HOST=${{ steps.overrides.outputs.HOST }}
-      --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }}  
-      --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }} 
-      --set GH_CLIENT_SECRET=${{ inputs.GH_CLIENT_SECRET }} 
-      --set nonprod=${{ steps.overrides.outputs.nonprod }} 
-      --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }} 
+      --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }}
+      --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }}
+      --set GH_CLIENT_SECRET=${{ inputs.GH_CLIENT_SECRET }}
+      --set nonprod=${{ steps.overrides.outputs.nonprod }}
+      --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }}
       --set global.DEPLOY_ENV=${{ inputs.ENV }}
       --set global.image.tag=${{ steps.tag.outputs.sha }}
       --set POSTGRES_USER=${{ inputs.POSTGRES_USER }}
@@ -105,9 +105,9 @@ runs:
       --set DOCSERVER_BASE_URL=${{ inputs.DOCSERVER_BASE_URL }}
       --set MEMCACHED_USER=${{ inputs.MEMCACHED_USER }}
       --set MEMCACHED_PASSWORD=${{ inputs.MEMCACHED_PASSWORD }}
-      --install 
-      --atomic 
-      --cleanup-on-fail 
+      --install
+      --atomic
+      --cleanup-on-fail
       --history-max 5
     shell: bash
   - name: Add App credential secret

@@ -1,13 +1,3 @@
 fileignoreconfig:
-- filename: docs/RFC/env-promotion.md
-  checksum: 6a8d65a78b68e4c60ca2f6159b146418502d52c724e11adc99963a8a4aa2fc80
-- filename: docs/pre-build-validation.md
-  checksum: 38433e76986c1e44ac0231973e0f1ed705baf84a7a5d8cc03628eaf73aced946
-- filename: docs/RFC/plugin-authentication.md
-  checksum: d11c162b889d11095c7ee93f902a1df6136a66d5dbfcc9e2945468007e917c06
-- filename: docs/RFC/configure-timeouts.md
-  checksum: ff1cb79cf31c422e34d96c82006eac619c52f66b0dd16e6ca2f94032e31f0b0a
-- filename: docs/RFC/docker-scanning.md
-  checksum: 1f942858b2a8c5615f15507905dc8cec98b2e0cefe658ecdbb53eed02b8117b1
-- filename: docs/dev-deploy.md
-  checksum: a039e7ddf3596c23146e48b3335886a99438c47cad5ba9c2e947b74293025319
+- filename: .github/workflows/meaure-build-time.yml
+  checksum: 0d3894fe6cb4bedf1b61936dddc137c0b7b59e7ef110f0248fea825636c115d8

@@ -30,11 +30,11 @@ RUN yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencie
 
 # # Static Labels
 # LABEL org.opencontainers.image.authors="leeroy-jenkles@va.gov" \
-#       org.opencontainers.image.url="https://github.com/department-of-veterans-affairs/lighthouse-embark" \
-#       org.opencontainers.image.documentation="https://github.com/department-of-veterans-affairs/lighthouse-embark/README.md" \
+#       org.opencontainers.image.url="https://github.com/department-of-veterans-affairs/lighthouse-developer-portal" \
+#       org.opencontainers.image.documentation="https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/README.md" \
 #       org.opencontainers.image.vendor="lighthouse" \
-#       org.opencontainers.image.title="lighthouse-embark" \
-#       org.opencontainers.image.source="https://github.com/department-of-veterans-affairs/lighthouse-embark/Dockerfile" \
+#       org.opencontainers.image.title="lighthouse-developer-portal" \
+#       org.opencontainers.image.source="https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/Dockerfile" \
 #       org.opencontainers.image.description="Backstage developer portal for lighthouse project" \
 #       gov.va.image.ssm_parent_version="1.4.3" \
 #       gov.va.image.ssm_get_parameter_version="0.3.0" \
@@ -65,7 +65,7 @@ COPY app-config.yaml ./
 COPY app-config.production.yaml ./
 COPY --from=chamber /chamber /bin/chamber
 
-ENTRYPOINT [ "/bin/chamber", "exec", "lighthouse-embark", "--", "packages/backend" ]
+ENTRYPOINT [ "/bin/chamber", "exec", "lighthouse-developer-portal", "--", "packages/backend" ]
 
 # Configs are merged with left-lower right-higher priority
 # see https://backstage.io/docs/conf/writing#configuration-files

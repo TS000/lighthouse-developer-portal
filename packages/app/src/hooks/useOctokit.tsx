@@ -41,7 +41,7 @@ export const useOctokit = () => {
   };
 
   /**
-   * Attempts to create a new issue for the lighthouse-embark repo
+   * Attempts to create a new issue for the lighthouse-developer-portal repo
    *
    * @see https://octokit.github.io/rest.js/v18#issues-create
    */
@@ -49,7 +49,7 @@ export const useOctokit = () => {
     if (title && body && octokit) {
       return await octokit.rest.issues.create({
         owner: 'department-of-veterans-affairs',
-        repo: 'lighthouse-embark',
+        repo: 'lighthouse-developer-portal',
         title: title,
         body: body,
       });
@@ -65,7 +65,7 @@ export const useOctokit = () => {
     const parsedSession = safeJSONParse(userGithubSession || '');
 
     const octokitOptions: OctokitOptions = {
-      userAgent: 'lighthouse-embark',
+      userAgent: 'lighthouse-developer-portal',
     };
 
     if (

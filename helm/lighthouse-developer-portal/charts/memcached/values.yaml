@@ -1,42 +1,27 @@
-global:
-  storageClass: "efs-sc"
-  DEPLOY_ENV: "placeholder"
-
-resources:
-  limits:
-    cpu: "500m"
-    memory: "1024Mi" 
+args:
+  - /run.sh
+  - -vv
 
 auth:
   enabled: true
   MEMCACHED_USER: "placeholder"
   MEMCACHED_PASSWORD: "placeholder"
 
-persistence:
-  enabled: "true"
-  size: "5G"
-  existingClaim: "embark-efs-claim"
-  storageClass: "efs-sc"
-  accessModes: ["ReadWriteMany"]
-
-extraVolumes: 
-  - name: "persistent-storage"
-    persistentVolumeClaim:
-      claimName: "embark-efs-claim"
-extraVolumeMounts:
-  - name: persistent-storage
-    mountPath: /data
-
-args:
-  - /run.sh
-  - -vv
-
 clusterDomain: cluster.local
 fullnameOverride: ""
 nameOverride: ""
 
-serviceAccount:
-  name: ""
+extraVolumes:
+  - name: "persistent-storage"
+    persistentVolumeClaim:
+      claimName: "lighthouse-developer-portal-efs-claim"
+extraVolumeMounts:
+  - name: persistent-storage
+    mountPath: /data
+
+global:
+  storageClass: "efs-sc"
+  DEPLOY_ENV: "placeholder"
 
 image:
   registry: docker.io
@@ -45,10 +30,6 @@ image:
   pullPolicy: IfNotPresent
   pullSecrets: []
   debug: true
-
-replicaCount: 1
-containerPorts:
-  memcached: 11211
 
 livenessProbe:
   enabled: true
@@ -72,13 +53,12 @@ startupProbe:
   failureThreshold: 15
   successThreshold: 1
 
-podSecurityContext:
-  enabled: true
-  fsGroup: 1001
-containerSecurityContext:
-  enabled: true
-  runAsUser: 1001
-  runAsNonRoot: true
+persistence:
+  enabled: "true"
+  size: "5G"
+  existingClaim: "lighthouse-developer-portal-efs-claim"
+  storageClass: "efs-sc"
+  accessModes: ["ReadWriteMany"]
 
 podAntiAffinityPreset: soft
 nodeAffinityPreset:
@@ -87,6 +67,23 @@ updateStrategy:
   type: RollingUpdate
   rollingUpdate: {}
 
+podSecurityContext:
+  enabled: true
+  fsGroup: 1001
+containerSecurityContext:
+  enabled: true
+  runAsUser: 1001
+  runAsNonRoot: true
+
+replicaCount: 1
+containerPorts:
+  memcached: 11211
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "1024Mi"
+
 service:
   type: ClusterIP
   ports:
@@ -94,4 +91,5 @@ service:
   sessionAffinity: None
   externalTrafficPolicy: Cluster
 
-
+serviceAccount:
+  name: ""

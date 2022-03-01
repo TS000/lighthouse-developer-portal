@@ -13,14 +13,14 @@ type pluginManifestTypes = {
 export const pluginManifest: pluginManifestTypes[] = [
   {
     title: 'Starter Guide',
-    description: 'Start here if your new to Embark!',
+    description: 'Start here if your new to the Lighthouse developer portal!',
     url: '/starter-guide',
     image: '',
     tags: ['getting-started', 'doc'],
   },
   {
     title: 'Feature-Flags',
-    description: 'Allows users to toggle client-side features on Embark',
+    description: 'Allows users to toggle client-side features on the Lighthouse developer portal',
     url: '/feature-flags',
     image: '',
     tags: ['feature-flag'],
@@ -28,7 +28,7 @@ export const pluginManifest: pluginManifestTypes[] = [
   {
     title: 'Datadog Dashboard',
     description:
-      'Provides build-time overviews, errors, and other information for Embark',
+      'Provides build-time overviews, errors, and other information for the Lighthouse developer portal',
     url: '/datadog',
     image: '',
     tags: ['datadog', 'logs', 'errors', 'dashboard'],

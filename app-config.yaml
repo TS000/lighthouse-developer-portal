@@ -3,12 +3,12 @@ app:
   baseUrl: http://127.0.0.1:3000
   # Support
   support:
-    url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues # Used by common ErrorPage
+    url: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues # Used by common ErrorPage
     items: # Used by common SupportButton component
       - title: Contact Support Team
         icon: github
         links:
-          - url: https://github.com/department-of-veterans-affairs/lighthouse-embark/issues
+          - url: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues
             title: GitHub Issues
   datadogRum:
     clientToken: 'pubf1d9baf385e683e30ed4988a3a00a668'
@@ -106,22 +106,22 @@ catalog:
   rules:
     - allow: [Component, API, Resource, Group, User, Template, System, Domain, Location]
   locations:
-    #################### EMBARK #########################
+    #################### Lighthouse Developer Portal #########################
     # app component
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/app/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/packages/app/catalog-info.yaml
     # backend component
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/backend/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/packages/backend/catalog-info.yaml
     # catalog repo
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark-catalog-entries/blob/main/catalog-all.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/catalog-all.yaml
     # deployment repo
     - type: url
-      target: https://github.com/department-of-veterans-affairs/embark-deployment/blob/main/catalog-info.yaml
-    # embark monorepo
+      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/catalog-info.yaml
+    # lighthouse developer portal monorepo
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/catalog-info.yaml
     # feature-flags component
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/plugins/feature-flag-ui/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/plugins/feature-flag-ui/catalog-info.yaml

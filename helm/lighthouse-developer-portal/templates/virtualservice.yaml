@@ -14,11 +14,11 @@ spec:
     route:
     - destination:
         host: "{{ .Values.global.DEPLOY_ENV }}-backend-service"
-        port: 
+        port:
           number: {{ .Values.virtualService.destination.backend.port }}
   - match:
     route:
     - destination:
         host: "{{ .Values.global.DEPLOY_ENV }}-frontend-service"
-        port: 
+        port:
           number: {{ .Values.virtualService.destination.frontend.port }}

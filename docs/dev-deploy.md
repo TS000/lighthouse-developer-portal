@@ -194,7 +194,7 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
 - Install the Helm chart and set secrets using `--set`
 
 ```
-$ helm upgrade lighthouse-dev-portal-dev helm/lighthouse-developer-portal/ --debug --values helm/lighthouse-developer-portal/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set BACKEND_SECRET=$BACKEND_SECRET --set HOST=$HOST --set GATEWAY=$GATEWAY --set GH_CLIENT_ID=$GHA_CLIENT_ID --set GH_CLIENT_SECRET=$GHA_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set global.DEPLOY_ENV=$DEPLOY_ENV --set global.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set global.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --set DOCSERVER_BASE_URL=$DOCSERVER_BASE_URL --set global.MEMCACHED_USER=$MEMCACHED_USER --set global.MEMCACHED_PASSWORD=$MEMCACHED_PASSWORD --install --atomic --cleanup-on-fail --history-max 5
+$ helm upgrade lighthouse-developer-portal-dev helm/lighthouse-developer-portal/ --debug --values helm/lighthouse-developer-portal/values.yaml --namespace lighthouse-bandicoot-dev --set DOCKERCONFIGJSON=$DOCKERCONFIGJSON --set BACKEND_SECRET=$BACKEND_SECRET --set HOST=$HOST --set GATEWAY=$GATEWAY --set GH_CLIENT_ID=$GHA_CLIENT_ID --set GH_CLIENT_SECRET=$GHA_CLIENT_SECRET --set nonprod=$NONPROD --set BASE_URL=$BASE_URL --set global.DEPLOY_ENV=$DEPLOY_ENV --set global.image.tag=$COMMIT_SHA --set POSTGRES_USER=$POSTGRES_USER --set POSTGRES_PASSWORD=$POSTGRES_PASSWORD --set AWS_BUCKET_NAME=$AWS_BUCKET_NAME --set global.SERVICE_ACCOUNT=$SERVICE_ACCOUNT --set DOCSERVER_BASE_URL=$DOCSERVER_BASE_URL --set global.MEMCACHED_USER=$MEMCACHED_USER --set global.MEMCACHED_PASSWORD=$MEMCACHED_PASSWORD --install --atomic --cleanup-on-fail --history-max 5
 ```
 
 ### Verify Deployment
@@ -204,7 +204,7 @@ $ helm upgrade lighthouse-dev-portal-dev helm/lighthouse-developer-portal/ --deb
 ```
 $ helm list -n lighthouse-bandicoot-dev
 NAME            NAMESPACE                       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
-lighthouse-dev-portal-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:11:06.6508301 -0800 PST   deployed       lighthouse-dev-portal-0.1.0                    1.16.0
+lighthouse-developer-portal-dev       lighthouse-bandicoot-dev        15              2021-12-08 18:11:06.6508301 -0800 PST   deployed       lighthouse-developer-portal-0.1.0                    1.16.0
 ```
 
 - Browser

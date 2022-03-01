@@ -25,9 +25,9 @@ import {
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 
- 
 
-class EmbarkPermissionPolicy implements PermissionPolicy {
+
+class CustomPermissionPolicy implements PermissionPolicy {
   async handle(
     request: PolicyAuthorizeQuery,
     user?: BackstageIdentityResponse,
@@ -52,7 +52,7 @@ export default async function createPlugin(
   return await createRouter({
     logger,
     discovery,
-    policy: new EmbarkPermissionPolicy(),
+    policy: new CustomPermissionPolicy(),
     identity: new IdentityClient({
       discovery,
       issuer: await discovery.getExternalBaseUrl('auth'),

@@ -17,7 +17,7 @@ import { Typography, Grid } from '@material-ui/core';
 export const ContributingGuide = () => {
   const { value, loading, error } = useAsync(async (): Promise<string> => {
     const response = await fetch(
-      'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/contributing-guide.md',
+      'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-developer-portal/main/docs/contributing-guide.md',
     );
     const body = await response.text();
     return body;
@@ -40,7 +40,7 @@ export const ContributingGuide = () => {
       </Header>
       <Content>
         <ContentHeader title="Contributing">
-          <SupportButton>Want to start contributing to Embark?</SupportButton>
+          <SupportButton>Want to start contributing to the Lighthouse developer portal?</SupportButton>
         </ContentHeader>
         <Grid container spacing={3} direction="column">
           <Grid item>

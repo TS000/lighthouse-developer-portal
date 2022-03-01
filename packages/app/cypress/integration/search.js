@@ -47,7 +47,7 @@ describe('Search', () => {
 
     cy.contains('monorepo').should('be.visible').click();
 
-    cy.url().should('match', /catalog\/default\/component\/embark-monorepo/);
+    cy.url().should('match', /catalog\/default\/component\/lighthouse-developer-portal-monorepo/);
   });
 
   it('should redirect to the search page', () => {

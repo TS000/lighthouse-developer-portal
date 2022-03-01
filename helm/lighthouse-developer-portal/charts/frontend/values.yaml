@@ -1,17 +1,31 @@
-# Default values for lighthouse-embark.
+# Default values for lighthouse-developer-portal.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-replicaCount: 1
-revisionHistoryLimit: 3
+
+DEPLOY_ENV: "placeholder"
+
+affinity: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
 
 image:
-  repository: ghcr.io/department-of-veterans-affairs/lighthouse-embark
+  repository: ghcr.io/department-of-veterans-affairs/lighthouse-developer-portal
   pullPolicy: 'IfNotPresent'
   # Overrides the image tag whose default is the chart appVersion.
   # For deployment repo this will be hardcoded and updated with Argo, i.e:
   # tag: "sha-6dcd760d389e826b58586cde61f5ead1ca464943"
   # For now we can just pass in a variable with the helm upgrade command:
   tag: "placeholder"
+
+imagePullSecrets: []
+frontend:
+  name: 'frontend'
+nameOverride: ''
+fullnameOverride: ''
 
 name: http
 port: 3000
@@ -22,17 +36,10 @@ readinessProbe:
   initialDelaySeconds: 5
   path: /healthcheck
 
-imagePullSecrets: []
-frontend:
-  name: 'frontend'
-nameOverride: ''
-fullnameOverride: ''
+nodeSelector: {}
 
-DEPLOY_ENV: "placeholder"
-
-service:
-  type: ClusterIP
-  port: 8000
+replicaCount: 1
+revisionHistoryLimit: 3
 
 resources:
   requests:
@@ -42,14 +49,8 @@ resources:
     cpu: '0.4'
     memory: '200Mi'
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-
-nodeSelector: {}
+service:
+  type: ClusterIP
+  port: 8000
 
 tolerations: []
-
-affinity: {}

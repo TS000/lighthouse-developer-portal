@@ -1,14 +1,11 @@
 name: Publish Packages
-
 on:
   release:
     types: [published]
   workflow_dispatch:
-
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: lighthouse-embark
-
+  IMAGE_NAME: lighthouse-developer-portal
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -18,7 +15,6 @@ jobs:
     strategy:
       matrix:
         type: [backend, frontend]
-
     steps:
       - uses: actions/checkout@v2
       # Incase we need multi-architecture support
@@ -97,7 +93,6 @@ jobs:
           name: ${{ matrix.type }}-image.tar
           path: /tmp/${{ matrix.type }}-image.tar
           retention-days: 5
-
   # Scans built images for vulnerabilities
   # @see https://docs.snyk.io/products/snyk-container/snyk-cli-for-container-security
   scan-images:
@@ -106,31 +101,24 @@ jobs:
     strategy:
       matrix:
         type: [backend, frontend]
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: 14
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-
       - name: Download image artifact
         uses: actions/download-artifact@v2
         with:
           name: ${{ matrix.type }}-image.tar
           path: /tmp
-
       - name: Load image
         run: docker load --input /tmp/${{ matrix.type }}-image.tar
-
       - name: Install Dependencies
         run: yarn install
-
       - name: Authenticate Snyk
         run: yarn snyk config set api=${{ secrets.SNYK_TOKEN }}
-
         # Scans the image for known vulnerabilities
         #
         # The task will return an error if it finds any vulnerabilities. We continue so that we can upload the built snyk.sarif file
@@ -144,7 +132,6 @@ jobs:
       - name: Scan image
         continue-on-error: true
         run: yarn snyk container test --severity-threshold=high --sarif --sarif-file-output=snyk.sarif --exclude-base-image-vulns --file=Dockerfile.${{ matrix.type }} ghcr.io/${{ steps.meta.outputs.tags[0] }}
-
         # Uploads vulnerability file to github code scanning for review.
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v1

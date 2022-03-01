@@ -1,18 +1,16 @@
 name: CI/CD Workflow
-
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
-
 jobs:
   unit-tests:
-    uses: department-of-veterans-affairs/lighthouse-embark/.github/workflows/unit-tests.yml@main
+    uses: department-of-veterans-affairs/lighthouse-developer-portal/.github/workflows/unit-tests.yml@main
   pre-build-validation:
     needs: [unit-tests]
-    uses: department-of-veterans-affairs/lighthouse-embark/.github/workflows/pre-build-validation.yml@main
+    uses: department-of-veterans-affairs/lighthouse-developer-portal/.github/workflows/pre-build-validation.yml@main
     with:
       UNIT_TEST_STATUS: ${{ needs.unit-tests.result }}
     secrets:
@@ -21,11 +19,10 @@ jobs:
       SLACK_UID_003: ${{ secrets.SLACK_UID_LUCKEY }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
-
   build-push-images:
     runs-on: ubuntu-latest
     needs: [pre-build-validation]
-    if: | 
+    if: |
       github.ref == 'refs/heads/main' ||
       github.event_name == 'workflow_dispatch'
     permissions:
@@ -45,11 +42,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           owner: ${{ github.repository_owner }}
           DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
-
   deploy-app-dev:
     runs-on: ubuntu-latest
     needs: [build-push-images]
-    if: | 
+    if: |
       github.ref == 'refs/heads/main' ||
       github.event_name == 'workflow_dispatch'
     environment:
@@ -77,11 +73,10 @@ jobs:
           APP_CREDS_YAML: ${{ secrets.APP_CREDS_YAML }}
           MEMCACHED_USER: ${{ secrets.MEMCACHED_USER }}
           MEMCACHED_PASSWORD: ${{ secrets.MEMCACHED_PASSWORD }}
-
   notify-deployment-repo:
     runs-on: ubuntu-latest
     needs: [deploy-app-dev]
-    # Notify embark-deployment via webhook https://github.com/department-of-veterans-affairs/embark-deployment
+    # Notify lighthouse-developer-portal-deployment via webhook https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment
     steps:
       - uses: actions/checkout@v2
       - name: Send deployment event via webhook

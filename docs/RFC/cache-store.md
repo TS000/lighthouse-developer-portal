@@ -22,8 +22,8 @@ First I updated the `app-config.production.yaml` to include a cache-store and bu
 - All pods in the deployment with all containers ready and `running` status:
 ```
 NAME                                           READY   STATUS    RESTARTS   AGE
-pod/lighthouse-dev-portal-sandbox-backend-68fd45fb89-svkk7    2/2     Running   2          41s
-pod/lighthouse-dev-portal-sandbox-frontend-7d7895b8f4-6mqvr   2/2     Running   0          41s
+pod/lighthouse-developer-portal-sandbox-backend-68fd45fb89-svkk7    2/2     Running   2          41s
+pod/lighthouse-developer-portal-sandbox-frontend-7d7895b8f4-6mqvr   2/2     Running   0          41s
 pod/sandbox-memcached-7fbb698654-sv8hj         2/2     Running   0          41s
 pod/sandbox-postgres-766dfd978b-7p8dw          2/2     Running   0          41s
 ```

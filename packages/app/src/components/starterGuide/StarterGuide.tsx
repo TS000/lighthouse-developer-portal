@@ -17,7 +17,7 @@ import { Typography, Grid } from '@material-ui/core';
 export const StarterGuide = () => {
   const { value, loading, error } = useAsync(async (): Promise<string> => {
     const response = await fetch(
-      'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/starter-guide.md',
+      'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-developer-portal/main/docs/starter-guide.md',
     );
     const body = await response.text();
     return body;

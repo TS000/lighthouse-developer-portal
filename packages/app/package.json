@@ -1,10 +1,15 @@
 {
-  "name": "@department-of-veterans-affairs/app",
-  "version": "0.1.0",
-  "private": true,
-  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-embark.git",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
   },
   "bundled": true,
   "dependencies": {
@@ -72,37 +77,32 @@
     "@types/react-dom": "*",
     "@types/zen-observable": "^0.8.0",
     "cross-env": "^7.0.0",
-    "cypress": "^9.1.1",
-    "msw": "^0.35.0",
     "cross-fetch": "^3.0.6",
+    "cypress": "^9.1.1",
     "eslint-plugin-cypress": "^2.10.3",
+    "msw": "^0.35.0",
     "start-server-and-test": "^1.10.11"
-  },
-  "scripts": {
-    "start": "backstage-cli app:serve",
-    "build": "backstage-cli app:build",
-    "test": "backstage-cli test",
-    "lint": "backstage-cli lint",
-    "clean": "backstage-cli clean",
-    "test:e2e": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:dev",
-    "test:e2e:ci": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:run",
-    "cy:docker": "docker-compose -f docker-compose-cypress.yml up --exit-code-from cypress",
-    "cy:dev": "cypress open",
-    "cy:run": "cypress run"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "files": [
     "dist"
-  ]
+  ],
+  "name": "@department-of-veterans-affairs/app",
+  "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-developer-portal.git",
+  "scripts": {
+    "build": "backstage-cli app:build",
+    "clean": "backstage-cli clean",
+    "cy:dev": "cypress open",
+    "cy:docker": "docker-compose -f docker-compose-cypress.yml up --exit-code-from cypress",
+    "cy:run": "cypress run",
+    "lint": "backstage-cli lint",
+    "start": "backstage-cli app:serve",
+    "test": "backstage-cli test",
+    "test:e2e": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:dev",
+    "test:e2e:ci": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:run"
+  },
+  "version": "0.1.0"
 }

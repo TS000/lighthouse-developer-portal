@@ -2,4 +2,4 @@
 
 ## Documentation
 
-Docs can be found [here.](https://department-of-veterans-affairs.github.io/lighthouse-embark/)
+Docs can be found [here.](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/)

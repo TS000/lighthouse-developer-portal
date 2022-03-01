@@ -1,8 +1,29 @@
-# Default values for lighthouse-embark.
+# Default values for lighthouse-developer-portal.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+
+affinity: {}
+
+global:
+  DEPLOY_ENV: ${DEPLOY_ENV}
+  image:
+    tag: ${COMMIT_SHA}
+  SERVICE_ACCOUNT: ${SERVICE_ACCOUNT}
+  MEMCACHED_USER: ${MEMCACHED_USER}
+  MEMCACHED_PASSWORD: ${MEMCACHED_PASSWORD}
+
+nodeSelector: {}
+
 replicaCount: 1
 revisionHistoryLimit: 3
+
+resources:
+  requests:
+    cpu: '0.5'
+    memory: '512Mi'
+  limits:
+    cpu: '1'
+    memory: '1024Mi'
 
 secrets:
   DOCKERCONFIGJSON: ${DOCKERCONFIGJSON}
@@ -18,16 +39,10 @@ secrets:
   AWS_BUCKET_NAME: ${AWS_BUCKET_NAME}
   DOCSERVER_BASE_URL: ${DOCSERVER_BASE_URL}
 
-global:
-  DEPLOY_ENV: ${DEPLOY_ENV}
-  image:
-    tag: ${COMMIT_SHA}
-  SERVICE_ACCOUNT: ${SERVICE_ACCOUNT}
-  MEMCACHED_USER: ${MEMCACHED_USER}
-  MEMCACHED_PASSWORD: ${MEMCACHED_PASSWORD} 
-
 service:
   type: ClusterIP
+
+tolerations: []
 
 virtualService:
   destination:
@@ -35,17 +50,3 @@ virtualService:
       port: 8000
     backend:
       port: 7007
-
-resources:
-  requests:
-    cpu: '0.5'
-    memory: '512Mi'
-  limits:
-    cpu: '1'
-    memory: '1024Mi'
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}

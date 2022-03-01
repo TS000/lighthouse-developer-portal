@@ -1,26 +1,4 @@
 {
-  "name": "@internal/plugin-feature-flags",
-  "version": "0.1.0",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
-  "license": "Apache-2.0",
-  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-embark.git",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "public",
-    "main": "dist/index.esm.js",
-    "types": "dist/index.d.ts"
-  },
-  "scripts": {
-    "build": "backstage-cli plugin:build",
-    "start": "backstage-cli plugin:serve",
-    "lint": "backstage-cli lint",
-    "test": "backstage-cli test",
-    "diff": "backstage-cli plugin:diff",
-    "prepack": "backstage-cli prepack",
-    "postpack": "backstage-cli postpack",
-    "clean": "backstage-cli clean"
-  },
   "dependencies": {
     "@backstage/core-components": "^0.8.5",
     "@backstage/core-plugin-api": "^0.6.0",
@@ -29,9 +7,6 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "4.0.0-alpha.45",
     "react-use": "^17.2.4"
-  },
-  "peerDependencies": {
-    "react": "^16.13.1 || ^17.0.0"
   },
   "devDependencies": {
     "@backstage/cli": "^0.13.1",
@@ -43,10 +18,35 @@
     "@testing-library/user-event": "^13.1.8",
     "@types/jest": "*",
     "@types/node": "*",
-    "msw": "^0.35.0",
-    "cross-fetch": "^3.0.6"
+    "cross-fetch": "^3.0.6",
+    "msw": "^0.35.0"
   },
   "files": [
     "dist"
-  ]
+  ],
+  "license": "Apache-2.0",
+  "main": "src/index.ts",
+  "name": "@internal/plugin-feature-flags",
+  "peerDependencies": {
+    "react": "^16.13.1 || ^17.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.esm.js",
+    "registry": "https://npm.pkg.github.com",
+    "types": "dist/index.d.ts"
+  },
+  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-developer-portal.git",
+  "scripts": {
+    "build": "backstage-cli plugin:build",
+    "clean": "backstage-cli clean",
+    "diff": "backstage-cli plugin:diff",
+    "lint": "backstage-cli lint",
+    "postpack": "backstage-cli postpack",
+    "prepack": "backstage-cli prepack",
+    "start": "backstage-cli plugin:serve",
+    "test": "backstage-cli test"
+  },
+  "types": "src/index.ts",
+  "version": "0.1.0"
 }

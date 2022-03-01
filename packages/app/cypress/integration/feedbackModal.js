@@ -1,5 +1,5 @@
 const GITHUB_ISSUE_URL =
-  '/repos/department-of-veterans-affairs/lighthouse-embark/issues';
+  '/repos/department-of-veterans-affairs/lighthouse-developer-portal/issues';
 
 describe('FeedbackModal', () => {
   // Set current user as guest, visit the homepage, and open the feedback modal

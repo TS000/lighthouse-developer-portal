@@ -1,7 +1,5 @@
 name: Measure build time
-
 on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -9,7 +7,6 @@ jobs:
       elapsed: ${{ steps.build.outputs.elapsed }}
     env:
       SHOULD_DEPLOY: ${{ github.ref == 'refs/heads/main' }}
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -25,7 +22,6 @@ jobs:
           START_TIME=$(date +%s%3N)
           yarn build
           echo ::set-output name=elapsed::$(($(expr $(date +%s%3N) - $START_TIME) / 1000))
-
       - name: Send build time to datadog
         uses: masci/datadog@v1
         with:
@@ -38,19 +34,3 @@ jobs:
               tags:
                 - "project:${{ github.repository }}"
                 - "branch:${{ github.head_ref }}"
-
-      # - name: Login to Heroku Container registry
-      #   if: ${{ env.SHOULD_DEPLOY == 'true' }}
-      #   env:
-      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      #   run: heroku container:login
-      # - name: Build and push to Heroku
-      #   if: ${{ env.SHOULD_DEPLOY == 'true' }}
-      #   env:
-      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      #   run: heroku container:push web -a lighthouse-embark
-      # - name: Release to Heroku
-      #   if: ${{ env.SHOULD_DEPLOY == 'true' }}
-      #   env:
-      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      #   run: heroku container:release web -a lighthouse-embark

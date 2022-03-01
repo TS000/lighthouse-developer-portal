@@ -1,22 +1,4 @@
 {
-  "name": "@department-of-veterans-affairs/backend",
-  "version": "0.1.0",
-  "main": "dist/index.cjs.js",
-  "types": "src/index.ts",
-  "private": true,
-  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-embark.git",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
-  "scripts": {
-    "build": "backstage-cli backend:bundle",
-    "build-image": "docker build ../.. -f Dockerfile --tag backstage",
-    "start": "backstage-cli backend:dev",
-    "lint": "backstage-cli lint",
-    "test": "backstage-cli test",
-    "clean": "backstage-cli clean",
-    "migrate:create": "knex migrate:make -x ts"
-  },
   "dependencies": {
     "@backstage/backend-common": "^0.10.6",
     "@backstage/backend-tasks": "^0.1.5",
@@ -58,5 +40,23 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "main": "dist/index.cjs.js",
+  "name": "@department-of-veterans-affairs/backend",
+  "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": "git://github.com/department-of-veterans-affairs/lighthouse-developer-portal.git",
+  "scripts": {
+    "build": "backstage-cli backend:bundle",
+    "build-image": "docker build ../.. -f Dockerfile --tag backstage",
+    "clean": "backstage-cli clean",
+    "lint": "backstage-cli lint",
+    "migrate:create": "knex migrate:make -x ts",
+    "start": "backstage-cli backend:dev",
+    "test": "backstage-cli test"
+  },
+  "types": "src/index.ts",
+  "version": "0.1.0"
 }

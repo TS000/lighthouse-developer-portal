@@ -69,9 +69,9 @@ const FEEDBACK_SUCCESS_ID = 'feedback_success';
 const FEEDBACK_ERROR_ID = 'feedback_error';
 
 /**
- * Modal containing a form to submit feedback for embark
+ * Modal containing a form to submit feedback for the Lighthouse developer portal
  *
- * Submitted feedback will create a new issue on the lighthouse-embark repo
+ * Submitted feedback will create a new issue on the lighthouse-developer-portal repo
  */
 export const Modal = ({
   open = false,
@@ -112,7 +112,7 @@ export const Modal = ({
   };
 
   /**
-   * Attempts to submit the feedback from the textarea to the lighthouse-embark repo as an issue.
+   * Attempts to submit the feedback from the textarea to the lighthouse-developer-portal repo as an issue.
    */
   const handleFeedbackSubmit = async () => {
     // Remove success banner message if already dismissed
@@ -126,7 +126,7 @@ export const Modal = ({
     }
 
     try {
-      await createNewIssue('lighthouse-embark feedback', feedbackText);
+      await createNewIssue('lighthouse-developer-portal feedback', feedbackText);
       setHasSubmittedFeedback(true);
       setFeedbackText('');
     } catch (error) {
@@ -144,7 +144,7 @@ export const Modal = ({
             <Typography>
               Feedback submitted!{' '}
               <Link
-                to="https://github.com/department-of-veterans-affairs/lighthouse-embark/issues"
+                to="https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues"
                 style={{ color: 'white', textDecoration: 'underline' }}
               >
                 View it on GitHub
@@ -221,7 +221,7 @@ export const Modal = ({
           <br />
           <Typography>
             Have more to say? You can provide more detail{' '}
-            <Link to="https://github.com/department-of-veterans-affairs/lighthouse-embark/issues">
+            <Link to="https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues">
               here
             </Link>
             .

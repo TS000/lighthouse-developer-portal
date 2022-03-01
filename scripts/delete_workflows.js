@@ -60,4 +60,4 @@ async function deleteWorkflows(owner, repo) {
     await new Promise(resolve => setTimeout(resolve, 1000));
   }
 }
-deleteWorkflows('department-of-veterans-affairs', 'lighthouse-embark');
+deleteWorkflows('department-of-veterans-affairs', 'lighthouse-developer-portal');

@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "embark.name" -}}
+{{- define "lighthouse-developer-portal.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "embark.fullname" -}}
+{{- define "lighthouse-developer-portal.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "embark.chart" -}}
+{{- define "lighthouse-developer-portal.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "embark.labels" -}}
-helm.sh/chart: {{ include "embark.chart" . }}
-{{ include "embark.selectorLabels" . }}
+{{- define "lighthouse-developer-portal.labels" -}}
+helm.sh/chart: {{ include "lighthouse-developer-portal.chart" . }}
+{{ include "lighthouse-developer-portal.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "embark.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "embark.name" . }}
+{{- define "lighthouse-developer-portal.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "lighthouse-developer-portal.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "embark.serviceAccountName" -}}
+{{- define "lighthouse-developer-portal.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "embark.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "lighthouse-developer-portal.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

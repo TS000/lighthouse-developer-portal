@@ -8,7 +8,7 @@ function getLoggerConfig(): LogsInitConfiguration {
         site: 'datadoghq.com',
         env: process.env.NODE_ENV,
         forwardErrorsToLogs: true,
-        service: 'lighthouse-embark-browser-logger',
+        service: 'lighthouse-developer-portal-browser-logger',
         sampleRate: 100,
         beforeSend: (log): false | void => {
             // Example of filtering email from browser logs
@@ -21,7 +21,7 @@ function getLoggerConfig(): LogsInitConfiguration {
             // http.url	        String	    The HTTP URL.
             log.view.url = log.view.url.replace(/email=[^&]*/, "email=REDACTED")
 
-            // discard logs from local instances of Embark
+            // discard logs from local instances of lighthouse-developer-portal
             if (log.view.url.startsWith("127.0.0.1", 7) || log.view.url.startsWith("localhost", 7)) {
                 return false;
               }

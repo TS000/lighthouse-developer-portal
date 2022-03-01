@@ -54,11 +54,11 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor > /usr/sha
     && apt-get -y install --no-install-recommends yarn python3-pip \
     && pip3 install pre-commit
 
-RUN bash /tmp/scripts/go-debian.sh "latest" "${GOROOT}" "${GOPATH}" "${USERNAME}" \
+RUN bash /tmp/scripts/go-debian.sh "1.16.12" "${GOROOT}" "${GOPATH}" "${USERNAME}" \
     && apt-get clean -y && rm -rf /tmp/scripts
 RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash \
     && mv kustomize /usr/bin
-RUN cp /usr/local/go/bin/go /usr/bin 
+RUN cp /usr/local/go/bin/go /usr/bin
 
 # Mount for docker-in-docker
 VOLUME [ "/var/lib/docker" ]

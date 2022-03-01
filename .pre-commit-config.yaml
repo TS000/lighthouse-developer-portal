@@ -4,6 +4,7 @@ repos:
     hooks:
       - id: pretty-format-json
         args: ['--autofix']
+        exclude: ^(.devcontainer/|package.json)
         stages: [commit]
       - id: sort-simple-yaml
         files: ^(?!\.pre-commit-config).*\.y(a)?ml

@@ -1,53 +1,56 @@
 [
   {
-    "metadata": {
-      "annotations": {
-        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main/packages/backend/catalog-info.yaml",
-        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark/blob/main/packages/backend/catalog-info.yaml",
-        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main/packages/backend/catalog-info.yaml",
-        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-embark/edit/main/packages/backend/catalog-info.yaml",
-        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/main/packages/backend/",
-        "backstage.io/techdocs-ref": "url:https://github.com/department-of-veterans-affairs/lighthouse-embark",
-        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-embark/packages/backend",
-        "backstage.io/definition-at-location": "https://github.com/department-of-veterans-affairs/lighthouse-embark/tree/add-api-spec/packages/backend"
-      },
-      "name": "backend",
-      "namespace": "lighthouse-embark",
-      "description": "The backend server for lighthouse-embark.",
-      "tags": ["javascript", "node"],
-      "links": [
-        {
-          "url": "https://github.com/department-of-veterans-affairs/lighthouse-embark/issues",
-          "title": "Issues",
-          "icon": "alert"
-        },
-        {
-          "url": "https://department-of-veterans-affairs.github.io/lighthouse-embark/",
-          "title": "Docs",
-          "icon": "help"
-        }
-      ],
-      "uid": "cf1357a3-2cc0-4719-a7dc-2c5552e6ad1c",
-      "generation": 1,
-      "etag": "c18a51ca07b7d17923034987379874d5c7906766"
-    },
     "apiVersion": "backstage.io/v1alpha1",
     "kind": "API",
-    "spec": {
-      "type": "openapi",
-      "owner": "lighthouse-bandicoot",
-      "lifecycle": "experimental",
-      "definition": "openapi: 3.0.0\ninfo:\n  version: 1.0.0\n  title: Catalog Entry\npaths:\n  /api/catalog/locations:\n    get:\n      description: Gets an origin Location by Entity\n      responses:\n        \"200\":\n          description: A Location response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/location/types.ts\n    post:\n      description: Adds a location\n      responses:\n        \"201\":\n          description: A Location response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/location/types.ts\n  /api/catalog/locations/:id:\n    get:\n      description: Gets a Location by Id.\n      responses:\n        \"200\":\n          description: A Location response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/location/types.ts\n    delete:\n      description: Removes a location as identified by Id\n      responses:\n        \"204\":\n          description: An empty response\n    parameters:\n      - name: id\n        in: path\n        required: true\n        description: Location Id\n        schema:\n          type: string\n  /api/catalog/entities:\n    get:\n      description: Gets a set of Entities\n      responses:\n        \"200\":\n          description: A list of entities response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/entity/Entity.ts#L30\n  /api/catalog/entities/by-name/:kind/:namespace/:name:\n    get:\n      description: Gets a given Entity based on a provided name.\n      responses:\n        \"200\":\n          description: A CatalogEntityAncestorsResponse, https://github.com/backstage/backstage/blob/master/packages/catalog-client/src/types/api.ts#L53\n    parameters:\n      - name: kind\n        in: path\n        required: true\n        description: Kind of Entity (component, api, system, etc.)\n        schema:\n          type: string\n      - name: namespace\n        in: path\n        required: true\n        description: Namespace if present in Entity, otherwise use default\n        schema:\n          type: string\n      - name: name\n        in: path\n        required: true\n        description: The name of the Entity\n        schema:\n          type: string\n  /api/catalog/by-uid/:uid:\n    delete:\n      description: Removes an Entity as identified by Uid\n      responses:\n        \"204\":\n          description: Empty Response\n    parameters:\n      - name: uid\n        in: path\n        required: true\n        description: A string containing the uid\n        schema:\n          type: string\n  /api/catalog/:namespace/:kind/:name:\n    get:\n      description: lists a single entity matching the namespace, kind, and name\n      responses:\n        \"200\":\n          description: Entity response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/entity/Entity.ts#L30\n      parameters:\n        - name: kind\n          in: path\n          required: true\n          description: Kind of Entity (component, api, system, etc.)\n          schema:\n            type: string\n        - name: namespace\n          in: path\n          required: true\n          description: Namespace if present in Entity, otherwise use default\n          schema:\n            type: string\n        - name: name\n          in: path\n          required: true\n          description: The name of the Entity\n          schema:\n            type: string\n  /api/catalog/refresh:\n    post:\n      description: Refreshes an Entity\n      responses:\n        \"200\":\n          description: Empty response\n    parameters:\n      - name: entityRef\n        in: query\n        description: A string containing the entityRef\n        required: true\n        content:\n          text/plain:\n            schema:\n              type: object\n              items:\n                type: string\n"
+    "metadata": {
+      "annotations": {
+        "backstage.io/definition-at-location": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/add-api-spec/packages/backend",
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/edit/main/packages/backend/catalog-info.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/backend/catalog-info.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/packages/backend/catalog-info.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/backend/",
+        "backstage.io/techdocs-ref": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/backend/catalog-info.yaml",
+        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-developer-portal/packages/backend"
+      },
+      "description": "The backend server for lighthouse-developer-portal.",
+      "etag": "c18a51ca07b7d17923034987379874d5c7906766",
+      "generation": 1,
+      "links": [
+        {
+          "icon": "alert",
+          "title": "Issues",
+          "url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues"
+        },
+        {
+          "icon": "help",
+          "title": "Docs",
+          "url": "https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/"
+        }
+      ],
+      "name": "backend",
+      "namespace": "lighthouse-developer-portal",
+      "tags": [
+        "javascript",
+        "node"
+      ],
+      "uid": "cf1357a3-2cc0-4719-a7dc-2c5552e6ad1c"
     },
     "relations": [
       {
-        "type": "ownedBy",
         "target": {
           "kind": "group",
-          "namespace": "lighthouse-embark",
-          "name": "lighthouse-bandicoot"
-        }
+          "name": "lighthouse-bandicoot",
+          "namespace": "lighthouse-developer-portal"
+        },
+        "type": "ownedBy"
       }
-    ]
+    ],
+    "spec": {
+      "definition": "openapi: 3.0.0\ninfo:\n  version: 1.0.0\n  title: Catalog Entry\npaths:\n  /api/catalog/locations:\n    get:\n      description: Gets an origin Location by Entity\n      responses:\n        \"200\":\n          description: A Location response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/location/types.ts\n    post:\n      description: Adds a location\n      responses:\n        \"201\":\n          description: A Location response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/location/types.ts\n  /api/catalog/locations/:id:\n    get:\n      description: Gets a Location by Id.\n      responses:\n        \"200\":\n          description: A Location response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/location/types.ts\n    delete:\n      description: Removes a location as identified by Id\n      responses:\n        \"204\":\n          description: An empty response\n    parameters:\n      - name: id\n        in: path\n        required: true\n        description: Location Id\n        schema:\n          type: string\n  /api/catalog/entities:\n    get:\n      description: Gets a set of Entities\n      responses:\n        \"200\":\n          description: A list of entities response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/entity/Entity.ts#L30\n  /api/catalog/entities/by-name/:kind/:namespace/:name:\n    get:\n      description: Gets a given Entity based on a provided name.\n      responses:\n        \"200\":\n          description: A CatalogEntityAncestorsResponse, https://github.com/backstage/backstage/blob/master/packages/catalog-client/src/types/api.ts#L53\n    parameters:\n      - name: kind\n        in: path\n        required: true\n        description: Kind of Entity (component, api, system, etc.)\n        schema:\n          type: string\n      - name: namespace\n        in: path\n        required: true\n        description: Namespace if present in Entity, otherwise use default\n        schema:\n          type: string\n      - name: name\n        in: path\n        required: true\n        description: The name of the Entity\n        schema:\n          type: string\n  /api/catalog/by-uid/:uid:\n    delete:\n      description: Removes an Entity as identified by Uid\n      responses:\n        \"204\":\n          description: Empty Response\n    parameters:\n      - name: uid\n        in: path\n        required: true\n        description: A string containing the uid\n        schema:\n          type: string\n  /api/catalog/:namespace/:kind/:name:\n    get:\n      description: lists a single entity matching the namespace, kind, and name\n      responses:\n        \"200\":\n          description: Entity response, https://github.com/backstage/backstage/blob/master/packages/catalog-model/src/entity/Entity.ts#L30\n      parameters:\n        - name: kind\n          in: path\n          required: true\n          description: Kind of Entity (component, api, system, etc.)\n          schema:\n            type: string\n        - name: namespace\n          in: path\n          required: true\n          description: Namespace if present in Entity, otherwise use default\n          schema:\n            type: string\n        - name: name\n          in: path\n          required: true\n          description: The name of the Entity\n          schema:\n            type: string\n  /api/catalog/refresh:\n    post:\n      description: Refreshes an Entity\n      responses:\n        \"200\":\n          description: Empty response\n    parameters:\n      - name: entityRef\n        in: query\n        description: A string containing the entityRef\n        required: true\n        content:\n          text/plain:\n            schema:\n              type: object\n              items:\n                type: string\n",
+      "lifecycle": "experimental",
+      "owner": "lighthouse-bandicoot",
+      "type": "openapi"
+    }
   }
 ]

@@ -14,7 +14,7 @@ describe('ContributingGuideComponent', () => {
   beforeEach(() => {
     server.use(
       rest.get(
-        'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/contributing-guide.md',
+        'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-developer-portal/main/docs/contributing-guide.md',
         (_, res, ctx) => res(ctx.status(200), ctx.delay(2000), ctx.json({})),
       ),
     );

@@ -1,7 +1,19 @@
+#scaffolder:
+
+#catalog:
+
 app:
   # Should be the same as backend.baseUrl when using the `app-backend` plugin
-  title: Embark Developer Portal
+  title: Lighthouse Developer Portal
   baseUrl: ${BASE_URL}
+
+auth:
+  # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
+  providers:
+    github:
+      production:
+        clientId: ${GH_CLIENT_ID}
+        clientSecret: ${GH_CLIENT_SECRET}
 
 backend:
   baseUrl: ${BASE_URL}
@@ -43,18 +55,6 @@ proxy:
     changeOrigin: true
     pathRewrite:
       '^/api/proxy/docserver/': '/docserver/'
-
-auth:
-  # see https://backstage.io/docs/tutorials/quickstart-app-auth to know more about enabling auth providers
-  providers:
-    github:
-      production:
-        clientId: ${GH_CLIENT_ID}
-        clientSecret: ${GH_CLIENT_SECRET}
-
-#scaffolder:
-
-#catalog:
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs

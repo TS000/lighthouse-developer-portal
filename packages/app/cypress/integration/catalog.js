@@ -33,6 +33,6 @@ describe('Catalog Page', () => {
     cy.visit('/catalog');
     cy.get('div').contains('Components').should('be.visible').click();
     cy.get('li[data-value="api"]').should('be.visible').click();
-    cy.contains('lighthouse-embark/backend').should('be.visible');
+    cy.contains('lighthouse-developer-portal/backend').should('be.visible');
   });
 });

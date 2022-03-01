@@ -11,7 +11,7 @@
         "location": "/catalog/default/component/backend",
         "namespace": "default",
         "owner": "lighthouse-bandicoot",
-        "text": "The backend server for lighthouse-embark.",
+        "text": "The backend server for lighthouse-developer-portal.",
         "title": "backend"
       },
       "type": "software-catalog"
@@ -19,16 +19,16 @@
     {
       "document": {
         "authorization": {
-          "resourceRef": "component:default/embark-monorepo"
+          "resourceRef": "component:default/lighthouse-developer-portal-monorepo"
         },
         "componentType": "website",
         "kind": "Component",
         "lifecycle": "experimental",
-        "location": "/catalog/default/component/embark-monorepo",
+        "location": "/catalog/default/component/lighthouse-developer-portal-monorepo",
         "namespace": "default",
         "owner": "lighthouse-bandicoot",
-        "text": "Keeps track off all packages and plugins related to Embark",
-        "title": "embark-monorepo"
+        "text": "Keeps track off all packages and plugins related to lighthouse-developer-portal",
+        "title": "lighthouse-developer-portal-monorepo"
       },
       "type": "software-catalog"
     },
@@ -43,7 +43,7 @@
         "location": "/catalog/default/component/frontend",
         "namespace": "default",
         "owner": "lighthouse-bandicoot",
-        "text": "The frontend application for Embark",
+        "text": "The frontend application for lighthouse-developer-portal",
         "title": "frontend"
       },
       "type": "software-catalog"

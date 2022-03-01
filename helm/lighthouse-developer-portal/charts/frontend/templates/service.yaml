@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "frontend.labels" . | nindent 4 }}
 spec:
-  selector: 
+  selector:
     {{- include "frontend.selectorLabels" . | nindent 4 }}
   ports:
     - name: {{ .Values.name }}

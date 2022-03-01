@@ -30,7 +30,7 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgres
-      imagePullSecrets: 
+      imagePullSecrets:
         - name: dockerconfigjson-pg
       volumes:
         - name: postgres
@@ -42,7 +42,7 @@ kind: Service
 metadata:
   name: {{ .Values.global.DEPLOY_ENV }}-postgres
   labels:
-    {{- include "embark.labels" . | nindent 4 }}
+    {{- include "lighthouse-developer-portal.labels" . | nindent 4 }}
 spec:
   type: NodePort
   selector:
@@ -54,7 +54,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: "{{ .Values.global.DEPLOY_ENV }}-postgres-secrets"
-  labels: {{- include "embark.selectorLabels" . | nindent 8 }}
+  labels: {{- include "lighthouse-developer-portal.selectorLabels" . | nindent 8 }}
 type: Opaque
 data:
   POSTGRES_USER: {{ .Values.POSTGRES_USER | b64enc }}

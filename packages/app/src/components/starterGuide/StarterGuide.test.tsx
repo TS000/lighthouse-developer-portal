@@ -14,7 +14,7 @@ describe('StarterGuideComponent', () => {
   beforeEach(() => {
     server.use(
       rest.get(
-        'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-embark/main/docs/starter-guide.md',
+        'https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-developer-portal/main/docs/starter-guide.md',
         (_, res, ctx) => res(ctx.status(200), ctx.delay(2000), ctx.json({})),
       ),
     );
