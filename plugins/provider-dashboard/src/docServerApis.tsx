@@ -18,7 +18,7 @@ export const docServerApiRef = createApiRef<DocServerApi>({
 
 import { DiscoveryApi } from '@backstage/core-plugin-api';
 
-export class docServerApiClient implements DocServerApi {
+export class DocServerApiClient implements DocServerApi {
   discoveryApi: DiscoveryApi;
 
   constructor({ discoveryApi }: { discoveryApi: DiscoveryApi }) {

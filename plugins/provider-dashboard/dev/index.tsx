@@ -3,7 +3,7 @@ import { createDevApp } from '@backstage/dev-utils';
 import {
   providerDashboardPlugin,
   ProviderDashboardPage,
-  docServerApiFactoryConfig,
+  // docServerApiFactoryConfig,
 } from '../src/plugin';
 
 createDevApp()
@@ -13,5 +13,5 @@ createDevApp()
     title: 'Provider Dashboard',
     path: '/provider-dashboard',
   })
-  .registerApi(docServerApiFactoryConfig)
+  // .registerApi(docServerApiFactoryConfig)
   .render();

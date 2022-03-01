@@ -1,13 +1,11 @@
 import React from 'react';
 import { Table, TableColumn, Progress } from '@backstage/core-components';
-// import { useApi, configApiRef } from '@backstage/core-plugin-api';
 import { useApi } from '@backstage/core-plugin-api';
 import Alert from '@material-ui/lab/Alert';
 import { useAsync } from 'react-use';
 import OpenInNew from '@material-ui/icons/OpenInNew';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { docServerApiRef } from '../../docServerApis';
-
 
 type API = {
   name: string;
@@ -20,9 +18,9 @@ type DenseTableProps = {
   apis: API[];
 };
 
-function viewAPIPage (api: API){
+function viewAPIPage(api: API) {
   // TODO Full effort for this function to be completed by component navigation ticket
-  window.location.href =`/provider-dashboard/${api.name}`;
+  window.location.href = `/provider-dashboard/${api.name}`;
 }
 
 const actions = (api: API) => {
@@ -36,7 +34,6 @@ const actions = (api: API) => {
 };
 
 export const DenseTable = ({ apis }: DenseTableProps) => {
-
   const rowData = apis.map(api => {
     return {
       name: `${api.name}`,
@@ -62,12 +59,10 @@ export const DenseTable = ({ apis }: DenseTableProps) => {
     const renderedRows = currentTable?.state.data.length;
     let titleText = `Total available ${apis.length}`;
 
-    if(renderedRows < apis.length)
-    titleText = `Found ${renderedRows} results`;
+    if (renderedRows < apis.length) titleText = `Found ${renderedRows} results`;
 
     const titleDiv = document.getElementById('apiTitle');
-    if(titleDiv)
-      titleDiv.innerHTML = titleText;
+    if (titleDiv) titleDiv.innerHTML = titleText;
   };
 
   return (
@@ -83,15 +78,9 @@ export const DenseTable = ({ apis }: DenseTableProps) => {
 };
 
 export const APIFetchComponent = () => {
-  // const config = useApi(configApiRef);
   const apiClient = useApi(docServerApiRef);
 
   const { value, loading, error } = useAsync(async (): Promise<API[]> => {
-    // const backendUrl = config.getString('backend.baseUrl');
-    // const proxyPath = '/api/proxy';
-    // const basePath = `${backendUrl}${proxyPath}`;
-    // const data = await response.json();
-    // return data;
     const docServerData = apiClient.listApis();
     return docServerData;
   }, []);
