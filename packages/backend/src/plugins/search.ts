@@ -9,6 +9,15 @@ import { DefaultCatalogCollator } from '@backstage/plugin-catalog-backend';
 import { DefaultTechDocsCollator } from '@backstage/plugin-techdocs-backend';
 import { DefaultAPICollator } from '../collators';
 
+const ALLOWED_COMPONENT_KINDS = [
+  'Component',
+  'API',
+  'Group',
+  'User',
+  'System',
+  'Domain',
+];
+
 export default async function createPlugin({
   logger,
   permissions,
@@ -28,7 +37,7 @@ export default async function createPlugin({
       discovery,
       tokenManager,
       filter: {
-        kind: ['Component', 'API', 'Group', 'User', 'System', 'Domain'],
+        kind: ALLOWED_COMPONENT_KINDS,
       },
     }),
   });
@@ -40,7 +49,7 @@ export default async function createPlugin({
       discovery,
       tokenManager,
       filter: {
-        kind: ['API'],
+        kind: ALLOWED_COMPONENT_KINDS,
       },
     }),
   });

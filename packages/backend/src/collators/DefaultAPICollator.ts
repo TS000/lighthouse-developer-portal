@@ -105,7 +105,7 @@ export class DefaultAPICollator implements DocumentCollator {
       { token },
     );
 
-    // Filter out responses that don't contain a definition
+    // Filter by responses that contain a definition
     const responseWithDefinition = response.items.filter(
       entity => entity.spec?.definition,
     );
