@@ -16,6 +16,9 @@ inputs:
   GH_CLIENT_SECRET:
     description: 'OAuth client secret'
     required: true
+  GH_TOKEN:
+    description: 'Github Token'
+    required: true
   ENV:
     description: 'Flag used to set environment variable overrides'
     required: true
@@ -94,6 +97,7 @@ runs:
       --set GATEWAY=${{ steps.overrides.outputs.GATEWAY }}
       --set GH_CLIENT_ID=${{ inputs.GH_CLIENT_ID }}
       --set GH_CLIENT_SECRET=${{ inputs.GH_CLIENT_SECRET }}
+      --set GH_TOKEN=${{ inputs.GH_TOKEN }}
       --set nonprod=${{ steps.overrides.outputs.nonprod }}
       --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }}
       --set global.DEPLOY_ENV=${{ inputs.ENV }}
@@ -110,9 +114,10 @@ runs:
       --cleanup-on-fail
       --history-max 5
     shell: bash
-  - name: Add App credential secret
-    run: |
-      if [[ steps.upgrade.conclusion == 'success' ]]; then
-        echo -e "$APP_CREDS_YAML" | kubectl apply -f -
-      fi
-    shell: bash
+  # Will need this if we switch back to Github App
+  # - name: Add App credential secret
+  #   run: |
+  #     if [[ steps.upgrade.conclusion == 'success' ]]; then
+  #       echo -e "$APP_CREDS_YAML" | kubectl apply -f -
+  #     fi
+  #   shell: bash

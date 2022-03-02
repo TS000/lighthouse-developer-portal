@@ -1,1 +1,0 @@
-export { TechDocsIndexPage } from './TechDocsIndexPage';

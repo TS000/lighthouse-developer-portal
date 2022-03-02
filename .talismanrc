@@ -1,3 +1,7 @@
+allowed_patterns:
+  - 'GH_CLIENT_SECRET: \$\{\{ secrets.GH_OAUTH_CLIENT_SECRET \}\}'
+  - 'GH_CLIENT_SECRET: \$\{\{ secrets.GH_OAUTH_CLIENT_SECRET \}\}'
+
 fileignoreconfig:
-- filename: .github/workflows/meaure-build-time.yml
-  checksum: 0d3894fe6cb4bedf1b61936dddc137c0b7b59e7ef110f0248fea825636c115d8
+- filename: .github/workflows/deploy-qa.yml
+  checksum: c9203a04d4c35b249d5bc85a77d6c09e1511d98abed33f9cbf867031a6af5365

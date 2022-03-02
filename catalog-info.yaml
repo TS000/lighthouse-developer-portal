@@ -2,6 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: lighthouse-developer-portal-monorepo
+  namespace: lighthouse-bandicoot
   description: Keeps track off all packages and plugins related to the Lighthouse Developer Portal
   tags:
     - monorepo

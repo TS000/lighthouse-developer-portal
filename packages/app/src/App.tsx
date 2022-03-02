@@ -11,6 +11,8 @@ import { SearchPage, SearchContextProvider } from '@backstage/plugin-search';
 import { TechRadarPage } from '@backstage/plugin-tech-radar';
 import {
   TechDocsReaderPage,
+  TechDocsIndexPage,
+  DefaultTechDocsHome,
   techdocsPlugin,
 } from '@backstage/plugin-techdocs';
 import { UserSettingsPage } from '@backstage/plugin-user-settings';
@@ -48,7 +50,6 @@ import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { viewExplorePagePermission } from './utils/';
 import { Banner } from './components/banner';
 import SlackIcon from './icons/Slack';
-import { TechDocsIndexPage, TechDocsHome } from './components/techDocsHome';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -127,8 +128,8 @@ const routes = (
     >
       {entityPage}
     </Route>
-    <Route path="/docs" element={<TechDocsIndexPage />}>
-      <TechDocsHome />
+    <Route path="/docs" element={<TechDocsIndexPage />} >
+      <DefaultTechDocsHome />
     </Route>
     <Route path="/datadog" element={<DatadogDashboardPage />} />
     <Route

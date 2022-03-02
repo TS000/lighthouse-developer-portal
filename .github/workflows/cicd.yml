@@ -62,8 +62,9 @@ jobs:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
           DOCKERCONFIGJSON: ${{ secrets.DOCKERCONFIGJSON }}
           BACKEND_SECRET: ${{ secrets.BACKEND_SECRET }}
-          GH_CLIENT_ID: ${{ secrets.GHA_CLIENT_ID }}
-          GH_CLIENT_SECRET: ${{ secrets.GHA_CLIENT_SECRET }}
+          GH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
+          GH_CLIENT_SECRET: ${{ secrets.GH_OAUTH_CLIENT_SECRET }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ENV: "dev"
           POSTGRES_USER: ${{ secrets.PG_USER }}
           POSTGRES_PASSWORD: ${{ secrets.PG_PASSWORD }}

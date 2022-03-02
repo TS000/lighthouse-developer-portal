@@ -1,10 +1,8 @@
 name: Deploy to QA Environment
-
 on:
   push:
     tags:
     - '[0-9]+[0-9]+\.[0-9]+[0-9]+\.[0-9]+[0-9]+'
-    
 jobs:
   validate-dev-deployment:
     runs-on: ubuntu-latest
@@ -19,7 +17,7 @@ jobs:
         run: |
           echo "::set-output name=COMMIT_SHA::$(git log -n 1 --format='%H' main)"
       - id: deployment-check
-        uses: AminFazlMondo/check-deployed-environment@24db63e1c181c658586ca3ae0461b10e9f3d2d94 # v1.0.13 
+        uses: AminFazlMondo/check-deployed-environment@24db63e1c181c658586ca3ae0461b10e9f3d2d94 # v1.0.13
         with:
           environment: 'Development'
           commit_sha: ${{ steps.main.outputs.COMMIT_SHA }}
@@ -33,7 +31,6 @@ jobs:
             echo "No Development Deployment with this commit sha"
             exit 1
           fi
-
   browser-tests-windows-edge:
     runs-on: windows-latest
     steps:
@@ -55,11 +52,10 @@ jobs:
           name: edge
           path: packages/app/cypress/screenshots
           retention-days: 5
-
   deploy-app-qa:
     runs-on: ubuntu-latest
     needs: [validate-dev-deployment, browser-test-windows-edge]
-    environment: 
+    environment:
       name: QA
     steps:
       - uses: actions/checkout@v3
@@ -72,8 +68,9 @@ jobs:
           DOCKERCONFIGJSON: ${{ secrets.DOCKERCONFIGJSON }}
           BACKEND_SECRET: ${{ secrets.BACKEND_SECRET }}
           COMMIT_SHA: ${{ needs.validate-dev-deployment.outputs.COMMIT_SHA }}
-          GH_CLIENT_ID: ${{ secrets.GHA_CLIENT_ID }}
-          GH_CLIENT_SECRET: ${{ secrets.GHA_CLIENT_SECRET }}
+          GH_CLIENT_ID: ${{ secrets.GH_OAUTH_CLIENT_ID }}
+          GH_CLIENT_SECRET: ${{ secrets.GH_OAUTH_CLIENT_SECRET }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ENV: "qa"
           POSTGRES_USER: ${{ secrets.PG_USER }}
           POSTGRES_PASSWORD: ${{ secrets.PG_PASSWORD }}

@@ -1,1 +1,0 @@
-export { TechDocsHome } from './TechDocsHome';
