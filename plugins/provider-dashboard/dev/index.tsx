@@ -8,30 +8,28 @@ createDevApp()
   .registerPlugin(providerDashboardPlugin)
   .addPage({
     element: <ProviderDashboardPage />,
-    path: '/provider-dashboard'
+    path: '/provider-dashboard',
   })
-  .addThemes(
-    [
-      {
-        id: 'light-theme',
-        title: 'Light Theme',
-        variant: 'light',
-        Provider: ({ children }) => (
-          <ThemeProvider theme={lightThemeVA}>
-            <CssBaseline>{children}</CssBaseline>
-          </ThemeProvider>
-        ),
-      },
-      {
-        id: 'dark-theme',
-        title: 'Dark Theme',
-        variant: 'dark',
-        Provider: ({ children }) => (
-          <ThemeProvider theme={darkThemeVA}>
-            <CssBaseline>{children}</CssBaseline>
-          </ThemeProvider>
-        ),
-      },
-    ]
-  )
+  .addThemes([
+    {
+      id: 'light-theme',
+      title: 'Light Theme',
+      variant: 'light',
+      Provider: ({ children }) => (
+        <ThemeProvider theme={lightThemeVA}>
+          <CssBaseline>{children}</CssBaseline>
+        </ThemeProvider>
+      ),
+    },
+    {
+      id: 'dark-theme',
+      title: 'Dark Theme',
+      variant: 'dark',
+      Provider: ({ children }) => (
+        <ThemeProvider theme={darkThemeVA}>
+          <CssBaseline>{children}</CssBaseline>
+        </ThemeProvider>
+      ),
+    },
+  ])
   .render();
