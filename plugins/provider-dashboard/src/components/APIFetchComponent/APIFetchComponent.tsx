@@ -82,6 +82,7 @@ export const APIFetchComponent = () => {
 
   const { value, loading, error } = useAsync(async (): Promise<API[]> => {
     const docServerData = apiClient.listApis();
+    // @ts-ignore
     return docServerData;
   }, []);
 
