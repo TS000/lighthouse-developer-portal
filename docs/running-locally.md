@@ -74,8 +74,33 @@ It's possible to run the application locally without docker, however there is a 
 - Use [nvm](https://github.com/nvm-sh/nvm) to install node
 - Install git
 - Install postgresql and create a database called `backstage_plugin_catalog`
+    - `docker pull postgres`
+    - `docker run -it --rm --name embark -p 5432:5432  -e POSTGRES_PASSWORD=postgres -d postgre`
+    - `docker ps`
+    - Copy the container id
+    - `docker exec -it <container id> bash`
+    - Connect to postgres database
+    - `psql -U postgres`
+    - Create database called `backstage_plugin_catalog`
+    - `create database backstage_plugin_catalog`
+    - View databases
+    - `\l`
+    - You should see the `backstage_plugin_catalog` database
+    - Exit database
+    - `\q` then `exit`
 
 - You will need to update the Backstage [configuration](https://backstage.io/docs/conf/#docsNav) for running locally. Update these instructions if you try this out.
+- You will need to make local env variables that are used in the app-config.yaml file
+    - `BACKEND_SECRET`
+    - `GH_CLIENT_SECRET`
+    - `DOCSERVER_BASE_URL` - Needs to be a string
+    - `GH_CLIENT_ID`
+    - `POSTGRES_HOST` - Needs to be string
+    - `GH_TOKEN`
+- To get the values for the env variables, open the backstage app in a codespace and type `env` or `export`. You will see a list of env variables and their values. Copy the values to your local environment and create the env variables with the export command:
+    - `export VAR=abc` use quotes for string values
+
+Now start backstage with `yarn dev` and you should be able to run the application as well as have access techdocs locally
 
 ### Running the app
 

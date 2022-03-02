@@ -9,7 +9,9 @@ import {
   List,
   Paper,
   useTheme,
+  IconButton
 } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import LaunchIcon from '@material-ui/icons/Launch';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -33,10 +35,17 @@ export interface SearchModalProps {
 }
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    top: '8px',
+    color: '#9e9e9e',
+    right: '8px',
+    position: 'absolute',
+  },
   container: {
     borderRadius: 30,
     display: 'flex',
     height: '2.4em',
+    marginTop: '1em',
   },
   input: {
     flex: 1,
@@ -98,8 +107,16 @@ export const Modal = ({ open = true, toggleModal }: SearchModalProps) => {
       fullWidth
       maxWidth="lg"
     >
+      <IconButton
+        aria-label="close"
+        onClick={() => toggleModal()}
+        className={classes.root}
+      >
+        <CloseIcon />
+      </IconButton>
       <DialogTitle>
-        <Paper className={classes.container}>
+        Search
+        <Paper className={classes.container} id="search-bar-search-modal">
           <SearchBar
             debounceTime={300}
             className={classes.input}

@@ -1,3 +1,19 @@
 span[class^='BackstageLifecycle'] {
     display: none;
 }
+
+/* remove x icon from the search modal input field */
+#search-bar-search-modal > div > div.MuiInputAdornment-root.MuiInputAdornment-positionEnd > button > span {
+    display: none;
+}
+
+/* add backspace icon to the search modal input field */
+#search-bar-search-modal > div > div.MuiInputAdornment-root.MuiInputAdornment-positionEnd > button {
+    background-image: url('./svg/backspace_48px.svg');
+    background-repeat: no-repeat;
+    right: 12px;
+    background-size: 73%;
+    background-position: 40% 50%;
+    width: 40px;
+    height: 40px;
+}
