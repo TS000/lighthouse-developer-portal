@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Table, TableColumn, Progress } from '@backstage/core-components';
 import { useApi } from '@backstage/core-plugin-api';
 import Alert from '@material-ui/lab/Alert';
@@ -18,22 +19,21 @@ type DenseTableProps = {
   apis: API[];
 };
 
-function viewAPIPage(api: API) {
-  // TODO Full effort for this function to be completed by component navigation ticket
-  window.location.href = `/provider-dashboard/${api.name}`;
-}
-
 const actions = (api: API) => {
+  const viewURL = `/provider-dashboard/apis/${api.name}`;
   return (
-    <Tooltip title="View">
-      <IconButton onClick={() => viewAPIPage(api)}>
-        <OpenInNew aria-label="View" fontSize="small" />
-      </IconButton>
-    </Tooltip>
+    <Link to={viewURL}>
+      <Tooltip title="View">
+        <IconButton>
+          <OpenInNew aria-label="View" fontSize="small" />
+        </IconButton>
+      </Tooltip>
+    </Link>
   );
 };
 
 export const DenseTable = ({ apis }: DenseTableProps) => {
+
   const rowData = apis.map(api => {
     return {
       name: `${api.name}`,
@@ -59,10 +59,12 @@ export const DenseTable = ({ apis }: DenseTableProps) => {
     const renderedRows = currentTable?.state.data.length;
     let titleText = `Total available ${apis.length}`;
 
-    if (renderedRows < apis.length) titleText = `Found ${renderedRows} results`;
+    if(renderedRows < apis.length)
+    titleText = `Found ${renderedRows} results`;
 
     const titleDiv = document.getElementById('apiTitle');
-    if (titleDiv) titleDiv.innerHTML = titleText;
+    if(titleDiv)
+      titleDiv.innerHTML = titleText;
   };
 
   return (
