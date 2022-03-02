@@ -12,14 +12,14 @@ Any questions that aren't covered here should either be asked in the [lighthouse
 
 Need to run the Lighthouse developer portal, or just getting familiar with the codebase?
 
-- [Getting Started](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/starter-guide/)
-- [Running Locally](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/running-locally/)
-- [Codespaces](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/codespace/)
-- [Repo Setup](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/repo-setup/)
+- [Getting Started](starter-guide.md)
+- [Running Locally](running-locally.md)
+- [Codespaces](codespace.md)
+- [Repo Setup](repo-setup.md)
 
 ## Catalog entries and plugins
 
 Ready to add your repo to the Lighthouse developer portal, or want to build a new plugin?
 
-- [catalog-entry](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/catalog-entry/)
+- [catalog-entry](catalog-entry.md)
 - [Adding Plugins](https://backstage.io/docs/plugins/)

@@ -74,7 +74,7 @@ We plan to use [Kubernetes](https://kubernetes.io/) to deploy our application. T
 
 - [x] Meets Criteria
 
-- The build process is well defined within the [docs](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/deployment/), and within the GitHub Action.
+- The build process is well defined within the [docs](../deployment.md), and within the GitHub Action.
 - We use a `Dockerfile` and `docker-compose.yml` files to define the entrypoint for the frontend and backend.
 - Uses tags to determine releases.
 
@@ -168,7 +168,7 @@ The application will use the 12-factor application checklist to determine if it 
 - [Kubernetes](https://kubernetes.io/)
 - [App](https://github.com/department-of-veterans-affairs/lighthouse-developer-portalper-portalper-portal/tree/twelve-factor-app-adr/packages/app)
 - [Backend](https://github.com/department-of-veterans-affairs/lighthouse-developer-portalper-portal/tree/twelve-factor-app-adr/packages/backend)
-- [Deployment](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/deployment/)
+- [Deployment](../deployment.md)
 - [Health Check](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/k8s/backstage.yaml#L26)
 - [Frontend Dockerfile](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/Dockerfile.frontend#L10)
 - [Logging to stdout](https://backstage.io/docs/plugins/observability#logging)

@@ -27,7 +27,7 @@
 
 ## Get Started
 
-Follow along the [Running Locally](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/running-locally/) doc to start working on lighthouse-developer-portal. You can use GitHub Codespaces (preferred) or run the app locally using Docker.
+Follow along the [Running Locally](running-locally.md) doc to start working on lighthouse-developer-portal. You can use GitHub Codespaces (preferred) or run the app locally using Docker.
 
 _lighthouse-developer-portal was built from [Backstage](https://backstage.io/docs/overview/what-is-backstage) by using `npx @backstage/create-app`. The @department-of-veterans-affairs/lighthouse-bandicoot team upgrades Backstage regularly to maintain access to the latest features._
 
@@ -52,7 +52,7 @@ This project adheres to the [Spotify FOSS Code of Conduct](https://github.com/de
 
 All code is formatted with `prettier` using hte configuration in the repo. If possible we recommend configuring your editor to format automatically, but you can also use the `yarn prettier --write <file>` command to format files.
 
-Be sure to skim through our [Decision Records](https://department-of-veterans-affairs.github.io/lighthouse-developer-portal) to see if they cover what you're working on.
+Be sure to skim through our [Decision Records](index.md) to see if they cover what you're working on.
 
 All new documentation files should be added to the `docs` folder, that includes guides, troubleshooting, ADRs, RFCs, etc. You must also add the filename to the `mkdocs.yml` file or else it won't show up on the documentation website.
 

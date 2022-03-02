@@ -1,14 +1,14 @@
 # Overview
 
-the Lighthouse developer portal is an implementation of [Backstage](https://backstage.io/).
+The Lighthouse developer portal is an implementation of [Backstage](https://backstage.io/).
 
-The the Lighthouse developer portal Software Catalog is a centralized system that keeps track of ownership and metadata for all the software in your ecosystem (services, websites, libraries, data pipelines, etc). The catalog is built around the concept of metadata YAML files stored together with the code, which are then harvested and visualized in the Lighthouse developer portal.
+The Lighthouse developer portal Software Catalog is a centralized system that keeps track of ownership and metadata for all the software in your ecosystem (services, websites, libraries, data pipelines, etc). The catalog is built around the concept of metadata YAML files stored together with the code, which are then harvested and visualized in the Lighthouse developer portal.
 
 More Information about the Lighthouse developer portal's [Software Catalog](https://backstage.io/docs/features/software-catalog/software-catalog-overview)
 
 # Adding a Catalog Entity
 
-the Lighthouse developer portal identifies catalog entities by scanning every repository in an organization and looking for a `catalog-info.yaml` file in the root of the repository. The `catalog-info.yaml` file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other the Lighthouse developer portal users who may wish to use your application.
+The Lighthouse developer portal identifies catalog entities by scanning every repository in an organization and looking for a `catalog-info.yaml` file in the root of the repository. The `catalog-info.yaml` file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other the Lighthouse developer portal users who may wish to use your application.
 
 ## Creating an Entity Descriptor File
 
@@ -20,7 +20,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: frontend
-  namespace: the Lighthouse developer portal
+  namespace: lighthouse-bandicoot # your team-name here
   description: The frontend application for the Lighthouse developer portal
   tags:
     - javascript

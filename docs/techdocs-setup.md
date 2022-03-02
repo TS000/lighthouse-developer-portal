@@ -1,71 +1,74 @@
-# Techdocs setup
+# Techdocs
+- [Techdocs Overview](#Techdocs-Overview)
+- [Techdocs Github Action](#Techdocs-Github-Action)
+- [Techdocs GHA Overview](#Techdocs-GHA-Overview)
+- [Techdocs GHA Prerequisites](#Techdocs-GHA-Prerequisites)
+- [Techdocs GHA Usage](#Techdocs-GHA-Usage)
+- [Example Workflow](#Example-Workflow)
 
-## Intro
+## Techdocs Overview
+[Techdocs](https://backstage.io/docs/features/techdocs/techdocs-overview) transforms documentation from markdown files in your repository into a bundle of static files(HTML, CSS, JSON, etc.) that can be rendered inside the Internal Developer Portal.
 
-Techdocs is how documentation is created in backstage. It uses yaml files to generate easy to use html pages.
+## Techdocs Github Action
+The [Lighthouse Github Action](https://github.com/department-of-veterans-affairs/lighthouse-github-actions#techdocs-action) repository contains a Techdocs Action that can be referenced in your own workflows to create and publish your team's Techdocs. The Techdocs Action works by creating a Kubernetes Job that will pull a git repository then run the `techdocs-cli` to generate and publish your Techdocs to the Lighthouse S3 bucket.
 
+You can add the action to an existing CI/CD workflow or add it as a standalone workflow triggered only when the `docs` directory is updated.
 
-## Teams
+This action creates a [Kubernetes Job](https://github.com/department-of-veterans-affairs/lighthouse-github-actions/blob/main/example-techdocs-job.yaml) that will generate and publish your Techdocs for the Lighthouse Internal Developer Portal.
 
-The the Lighthouse developer portal team has decided it's best for each team to maintain their own documentation. Below are examples of a github action and a kubernetes configuration file that can be used and or modified based on each teams needs.
+## Techdocs GHA Overview
+The Kubernetes Job consists of two containers:  a [git-sync](https://github.com/kubernetes/git-sync) container and a `Techdocs` [container](https://github.com/department-of-veterans-affairs/lighthouse-github-actions/pkgs/container/lighthouse-github-actions%2Ftechdocs). The `git-sync` container is an initContainer that pulls a git repository to a shared volume so the Techdocs container has a copy of the repository. The `Techdocs` container then uses the [Techdocs-cli](https://backstage.io/docs/features/techdocs/cli) to generate and publish your documentation to the Lighthouse S3 bucket.
 
-[publish-and-build-documentation.yaml](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/.github/workflows/build-and-publish-documentation.yaml)
+## Techdocs GHA Prerequisites
+The root directory of your repository contains:
+- [x] a [`catalog-info.yaml`](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/catalog-info.yaml) with a [backstage.io/techdocs-ref](https://backstage.io/docs/features/software-catalog/well-known-annotations#backstageiotechdocs-ref) annotation
+- [x] a [`mkdocs.yaml`](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/mkdocs.yml) configuration file
+- [x] a [`docs`](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/docs) directory where all your documentation lives
 
+More info about [Entity Descriptor files](https://backstage.io/docs/features/software-catalog/descriptor-format#overall-shape-of-an-entity)
+
+## Techdocs GHA Usage
+
+```yaml
+- name: Create Techdocs Job
+  uses: department-of-veterans-affairs/lighthouse-github-actions/.github/actions/techdocs@main
+  with:
+    # Owner and repository where the documentation lives (e.g. department-of-veterans-affairs/lighthouse-developer-portal)
+    # Default: ${{ github.repository }}
+    repository: ''
+
+    # Name of Entity descriptor file; used to create Entity path (i.e. namespace/kind/name)
+    # Default: 'catalog-info.yaml'
+    descriptor-file: ''
+
+    # Team name; used to create path to entity's documentation
+    # Default: Value of the 'metadata.namespace' field from Entity descriptor file
+    # Required IF the Entity descriptor file does not define the 'metadata.namespace'
+    team-name: ''
+
+    # Personal Access Token used for Techdocs Webhook
+    # Scopes: Repo
+    token: ''
 ```
-name: Build and publish backstage documentation
+## Example Workflow
 
+```yaml
+# Example workflow
+name: Publish Documentation
 on:
   push:
-    branches:
-     - main
-  workflow_dispatch:
-
+    branches: [main]
+    paths: ['docs/*']
 jobs:
-  build-and-publish:
+  create-techdocs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set K8s context
-        uses: azure/k8s-set-context@v1
+      - name: Techdocs webhook
+        uses: department-of-veterans-affairs/lighthouse-github-actions/.github/actions/techdocs-webhook@main
         with:
-          method: kubeconfig
-          kubeconfig: ${{ secrets.KUBE_CONFIG }}
-      - name: Set namespace
-        run: kubectl config set-context --current --namespace=lighthouse-bandicoot-dev
-      - name: Build and publish - the Lighthouse developer portal
-        run: kubectl apply -f techdocs/lighthouse-developer-portal-techdocs.yaml
-      - name: Build and publish - lighthouse-developer-portal-deployment
-        run: kubectl apply -f techdocs/lighthouse-developer-portal-deployment-techdocs.yaml
+          repository: ${{ github.repository }}
+          descriptor-file: 'catalog-info.yaml'
+          team-name: 'lighthouse-bandicoot'
+          token: ${{ secrets.PAT }}
 ```
-In this example the github action is using kubectl to run the kubernetes [lighthouse-developer-portal-deployment-techdocs.yaml](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/techdocs/lighthouse-developer-portal-techdocs.yaml) configuration file.
-
-Each user will need to update the args section in the kubernetes file to reflect their own repo information:
-
-```
-args:
-    - "--repo=https://github.com/department-of-veterans-affairs/lighthouse-developer-portal"
-    - "--branch=main"
-    - "--depth=1"
-    - "--one-time"
-```
-
-## Private/Internal repos
-
-If using a private or internal repo, the user will need to add a `imagePullSecrets` property as shown below:
-
-[lighthouse-developer-portal-deployment-techdocs.yaml](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/techdocs/lighthouse-developer-portal-deployment-techdocs.yaml#L62)
-
-```
-imagePullSecrets:
-- name: dockerconfigjson-ghcr
-```
-
-## --entity value
-
-After generating a TechDocs site using techdocs-cli generate, use the publish command to upload the static generated files on a cloud storage (AWS/GCS) bucket or (Azure) container which your Backstage app can read from.
-
-The value for --entity must be the Backstage entity which the generated TechDocs site belongs to. You can find the values in your Entity's catalog-info.yaml file. If namespace is missing in the catalog-info.yaml, use default. The directory structure used in the storage bucket is namespace/kind/name/<files>.
-
-Note that the values are case-sensitive. An example for --entity is default/Component/<entityName>.
-
-[check here](https://backstage.io/docs/features/techdocs/cli#publish-generated-techdocs-sites) for more information
