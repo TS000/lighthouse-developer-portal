@@ -107,21 +107,6 @@ catalog:
     - allow: [Component, API, Resource, Group, User, Template, System, Domain, Location]
   locations:
     #################### Lighthouse Developer Portal #########################
-    # app component
+    # Local Catalog Entities
     - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/packages/app/catalog-info.yaml
-    # backend component
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/packages/backend/catalog-info.yaml
-    # catalog repo
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/catalog-all.yaml
-    # deployment repo
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/blob/main/catalog-info.yaml
-    # lighthouse developer portal monorepo
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/catalog-info.yaml
-    # feature-flags component
-    - type: url
-      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/plugins/feature-flag-ui/catalog-info.yaml
+      target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml

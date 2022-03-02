@@ -12,4 +12,74 @@ data:
   APP_CONFIG_backend_listen_port: "7007"
   AWS_BUCKET_NAME: {{ .Values.AWS_BUCKET_NAME }}
   DOCSERVER_BASE_URL: {{ .Values.DOCSERVER_BASE_URL }}
+  APP_CONFIG_auth_environment: {{ .Values.global.DEPLOY_ENV }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.global.DEPLOY_ENV }}-app-config
+  labels:
+    {{- include "lighthouse-developer-portal.labels" . | nindent 4 }}
+data:
+  app-config.{{ .Values.global.DEPLOY_ENV }}.yaml: |
+    app:
+      title: Lighthouse Developer Portal
+      baseUrl: {{ .Values.BASE_URL }}
+    backend:
+      baseUrl: {{ .Values.BASE_URL }}
+      listen:
+        port: 7007
+      csp:
+        connect-src: ["'self'", 'http:', 'https:']
+      cors:
+        origin: {{ .Values.BASE_URL }}
+        methods: [GET, POST, PUT, DELETE]
+        credentials: true
+      cache:
+        store: memcache
+        connection: ${MEMCACHED_USER}:${MEMCACHED_PASSWORD}@${MEMCACHED_DNS}:11211
+      database:
+        client: pg
+        connection:
+          host: ${POSTGRES_SERVICE_HOST}
+          port: ${POSTGRES_SERVICE_PORT}
+          user: ${POSTGRES_USER}
+          password: ${POSTGRES_PASSWORD}
+    auth:
+    environment: {{ .Values.global.DEPLOY_ENV }}
+    providers:
+      github:
+        development:
+          clientId: ${GH_CLIENT_ID}
+          clientSecret: ${GH_CLIENT_SECRET}
+    proxy:
+      '/test':
+        target: 'https://example.com'
+        changeOrigin: true
+      '/docserver':
+        target: ${DOCSERVER_BASE_URL}
+        changeOrigin: true
+        pathRewrite:
+          '^/api/proxy/docserver/': '/docserver/'
+    techdocs:
+      builder: 'external'
+      publisher:
+        type: 'awsS3'
+        awsS3:
+          bucketName: {{ .Values.AWS_BUCKET_NAME }}
+      cache:
+        ttl: 3600000
+        readTimeout: 500
+    catalog:
+      processors:
+        githubOrg:
+          providers:
+            - target: https://github.com
+              apiBaseUrl: https://api.github.com
+        visibility: public
+      rules:
+        - allow: [Component, API, Resource, Group, User, Template, System, Domain, Location]
+      locations:
+        - type: url
+          target: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-{{ .Values.global.DEPLOY_ENV }}.yaml
 {{ end }}

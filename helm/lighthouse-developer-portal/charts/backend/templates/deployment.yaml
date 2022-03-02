@@ -45,7 +45,7 @@ spec:
             httpGet:
               path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.port }}
-          args: ["packages/backend", "--config", "app-config.yaml", "--config", "app-config.production.yaml"]
+          args: ["packages/backend", "--config", "app-config.yaml", "--config", "app-config.{{ .Values.global.DEPLOY_ENV }}.yaml"]
           env:
           - name: POSTGRES_SERVICE_HOST
             value: "$({{ .Values.global.DEPLOY_ENV | upper }}_POSTGRES_SERVICE_HOST)"
@@ -63,12 +63,13 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-          - mountPath: /etc/app-config/
-            name: gh-app-config
+          - name: app-config
+            mountPath: /app/app-config.{{ .Values.global.DEPLOY_ENV }}.yaml
+            subPath: app-config.{{ .Values.global.DEPLOY_ENV }}.yaml
       volumes:
-      - name: gh-app-config
-        secret:
-          secretName: gh-app-secrets
+      - name: app-config
+        configMap:
+          name: "{{ .Values.global.DEPLOY_ENV }}-app-config"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

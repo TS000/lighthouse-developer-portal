@@ -1,7 +1,9 @@
 allowed_patterns:
   - 'GH_CLIENT_SECRET: \$\{\{ secrets.GH_OAUTH_CLIENT_SECRET \}\}'
   - 'GH_CLIENT_SECRET: \$\{\{ secrets.GH_OAUTH_CLIENT_SECRET \}\}'
-
+  - 'AUTH_GITHUB_CLIENT_SECRET: \{\{ .Values.GH_CLIENT_SECRET \| b64enc \}\}'
+  - 'password: \$\{POSTGRES_PASSWORD\}'
+  - 'clientSecret: \$\{GH_CLIENT_SECRET\}'
 fileignoreconfig:
 - filename: docs/RFC/env-promotion.md
   checksum: 6a8d65a78b68e4c60ca2f6159b146418502d52c724e11adc99963a8a4aa2fc80

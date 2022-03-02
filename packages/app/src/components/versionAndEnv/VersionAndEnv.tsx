@@ -19,8 +19,7 @@ export const VersionAndEnv: FC = (): any => {
   const { version } = versionNumber;
   const apiConfig: ConfigVersion = useApi(configApiRef);
 
-  const environment =
-    process?.env?.NODE_ENV || apiConfig?.data?.auth?.environment;
+  const environment = apiConfig?.data?.auth?.environment;
 
   return (
     <div
