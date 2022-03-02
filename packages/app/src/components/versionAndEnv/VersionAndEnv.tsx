@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { Config } from '@backstage/config';
-import versionNumber from '../../../package.json';
+import versionNumber from '../../version.json';
 
 interface Environment {
   environment: string;
