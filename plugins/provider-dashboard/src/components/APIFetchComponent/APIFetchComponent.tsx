@@ -6,14 +6,7 @@ import Alert from '@material-ui/lab/Alert';
 import { useAsync } from 'react-use';
 import OpenInNew from '@material-ui/icons/OpenInNew';
 import { IconButton, Tooltip } from '@material-ui/core';
-import { docServerApiRef } from '../../docServerApis';
-
-type API = {
-  name: string;
-  description: string;
-  owner: string;
-  health: string;
-};
+import { docServerApiRef, API } from '../../docServerApis';
 
 type DenseTableProps = {
   apis: API[];
@@ -80,8 +73,7 @@ export const APIFetchComponent = () => {
   const apiClient = useApi(docServerApiRef);
 
   const { value, loading, error } = useAsync(async (): Promise<API[]> => {
-    const docServerData = apiClient.listApis();
-    // @ts-ignore
+    const docServerData = apiClient.getApis();
     return docServerData;
   }, []);
 

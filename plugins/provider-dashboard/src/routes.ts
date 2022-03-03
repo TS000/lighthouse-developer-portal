@@ -9,3 +9,9 @@ export const apiRoutesRef = createSubRouteRef({
   parent: rootRouteRef,
   path: '/apis/:apiName',
 });
+
+export const apiVersionRoutesRef = createSubRouteRef({
+  id: 'provider-dashboard-route-version-params',
+  parent: rootRouteRef,
+  path: '/apis/:apiName/:tab/:apiVersion',
+});

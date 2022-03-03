@@ -1,4 +1,5 @@
 import React, {ReactElement} from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { 
   Grid,
 } from '@material-ui/core';
@@ -8,6 +9,8 @@ import {
   RoutedTabs,
 } from '@backstage/core-components';
 import { TitleComponent } from '../TitleComponent';
+import { APIVersionComponent } from '../APIVersionComponent';
+import { OASComponent } from '../OASComponent';
 
 const OverviewPanel = (): ReactElement => {
   return(
@@ -24,12 +27,6 @@ const ConfigPanel = (): ReactElement => {
 const RoutingPanel = (): ReactElement => {
   return(
     <div>Auth/Routing: Work in progress...</div>
-  );
-};
-
-const ManagePanel = (): ReactElement => {
-  return(
-    <div>Manage OAS: Work in progress...</div>
   );
 };
 
@@ -50,7 +47,7 @@ export const APIComponent = () => {
   const panelRoutes: SubRoute[] = [
     { 
       title: "Overview", 
-      path: "",
+      path: "/overview",
       children: <OverviewPanel />
     },
     { 
@@ -63,8 +60,14 @@ export const APIComponent = () => {
       children: <RoutingPanel />
     },
     { title: "Manage OAS",
-      path: "/manage-oas",
-      children: <ManagePanel />
+      path: "/versions",
+      children: (
+        <Routes>
+          <Route path='' element={<APIVersionComponent />} />
+          <Route path='/:apiVersion/oas' element={<OASComponent />} />
+          <Route path='/:apiVersion/oas/*' element={<OASComponent />} />
+        </Routes>
+      )
     },
     { title: "Endpoint Status",
       path: "/endpoint-status",

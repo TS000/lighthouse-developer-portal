@@ -1,0 +1,1 @@
+export { OASComponent } from './OASComponent';
