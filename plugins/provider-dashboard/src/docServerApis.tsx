@@ -15,9 +15,16 @@ export interface APIVersion {
     activity?: string;
 };
 
+export interface OAS {
+  iteration: string;
+  status: string;
+  updatedAt?: string;
+};
+
 export interface DocServerApi {
     getApis: () => Promise<API[]>;
     getApiVersions: (apiName: string) => Promise<APIVersion[]>;
+    getOASIterations: (apiName: string, apiVersion: string) => Promise<OAS[]>;
 };
 
 export const docServerApiRef = createApiRef<DocServerApi>({
@@ -48,5 +55,10 @@ export class DocServerApiClient implements DocServerApi {
   async getApiVersions(apiName: string): Promise<any> {
     const path = `/apis/${apiName}/versions`;
     return await this.fetch<APIVersion[]>(path);
+  }
+
+  async getOASIterations(apiName: string, apiVersion: string): Promise<any> {
+    const path = `/apis/${apiName}/versions/${apiVersion}/oas`;
+    return await this.fetch<OAS[]>(path);
   }
 };
