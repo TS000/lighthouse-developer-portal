@@ -19,6 +19,10 @@
 - Suggest a Plugin
 - Submit Feedback
 
+Have a suggestion or request for a new feature?
+
+Create an RFC `.md` file and place it within `./docs/RFC`, then update `mkdocs` so that it can be viewed within our documentation. You can also add the `RFC` tag to the issue as well.
+
 [Create a PR](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/pulls) to:
 
 - Fix a Bug
@@ -41,6 +45,7 @@ This project adheres to the [Spotify FOSS Code of Conduct](https://github.com/de
 - Work must be in small batches (no large PRs)
 - Tests must cover +90% of new code (if applicable)
 - PRs must be able to pass all required workflows
+- All changes must be [508 compliant](https://github.com/department-of-veterans-affairs/va.gov-team/blob/master/platform/accessibility/508-accessibility-best-practices.md)
 
 ## Coding guidelines
 
