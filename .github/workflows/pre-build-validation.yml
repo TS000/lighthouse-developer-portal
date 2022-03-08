@@ -46,15 +46,15 @@ jobs:
       uses: ./.github/actions/install-dependencies
     - name: Run linting
       uses: ./.github/actions/validate-linting
-  validate-codeowners:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: GitHub CODEOWNERS Validator
-        uses: mszostok/codeowners-validator@2f478ec3b2c8a321d46fca773f6285a447234f6a # v0.7.1
-        # input parameters
-        with:
-          github_access_token: "${{ secrets.WEBHOOK_DEPLOY_PAT }}"
+  # validate-codeowners:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: GitHub CODEOWNERS Validator
+  #       uses: mszostok/codeowners-validator@2f478ec3b2c8a321d46fca773f6285a447234f6a # v0.7.1
+  #       # input parameters
+  #       with:
+  #         github_access_token: "${{ secrets.WEBHOOK_DEPLOY_PAT }}"
   assess-code-quality:
     runs-on: ubuntu-latest
     steps:
