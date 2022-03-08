@@ -12,4 +12,5 @@
 # This should make it easy to add new rules without breaking existing ones.
 
 # Global rule:
-*   @department-of-veterans-affairs/lighthouse-bandicoot
+*                               @department-of-veterans-affairs/lighthouse-bandicoot
+/plugins/provider-dashboard/    @department-of-veterans-affairs/lighthouse-quokka

@@ -10,6 +10,8 @@
 - [Creating Changesets](#creating-changesets)
 - [Updating build and deploy](#updating-build-and-deploy)
 - [Merging to Main](#merging-to-main)
+- [Creating plugins](#creating-plugins)
+- [Contributing your plugins](#contributing-your-plugins)
 
 ## Ways to contribute
 
@@ -94,3 +96,22 @@ The core team is in charge of updating builds and deploys.
 ## Merging to Main
 
 For those contributors who have earned write access to the repository, when a pull request is approved, in general we prefer the author of the PR to perform the merge themselves. This allows them to own accountability for the change and they likely know best how or when to address pending fixes or additional follow-ups. In this way, we all help contribute to the project's successful outcomes.
+
+## Creating plugins
+
+- Open a Codespace from the Lighthouse Developer Portal repository
+- Run `yarn create-plugin`
+- When prompted, enter the name of your plugin
+- Run the plugin with `yarn workspace @internal/<name-of-plugin> start`
+> More information about Backstage's [plugin development](https://backstage.io/docs/plugins/create-a-plugin)
+
+## Contributing your plugins
+We want each team to have ownership of their plugins and to be able to make changes to their plugin without approval from another team.
+
+- Create an issue using the ['Contribute a plugin' template](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/.github/ISSUE_TEMPLATE/contribute-a-plugin.yml)
+- Fill out the form with your team and plugin information
+- Wait for final review and approval
+
+Once the `lighthouse-bandicoot` team reviews and approves your request, your team will be able to create and review your own pull requests for changes to your plugin.
+
+> Note: Pull requests that include integrating the plugin into the Lighthouse Developer Portal (i.e. modifications of `packages/frontend` or `packages/backend`) can be created but will still require final approval by the `lighthouse-bandicoot` team to be merged.

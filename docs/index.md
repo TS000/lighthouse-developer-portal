@@ -22,4 +22,4 @@ Need to run the Lighthouse developer portal, or just getting familiar with the c
 Ready to add your repo to the Lighthouse developer portal, or want to build a new plugin?
 
 - [catalog-entry](catalog-entry.md)
-- [Adding Plugins](https://backstage.io/docs/plugins/)
+- [Adding Plugins](contribution-guide.md/#adding-plugins))

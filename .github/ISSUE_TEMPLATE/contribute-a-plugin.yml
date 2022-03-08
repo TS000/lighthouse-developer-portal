@@ -1,0 +1,44 @@
+name: Contribute a plugin
+description: Request for repository write access for a DoVA team and for the team to be added to the CODEOWNERS file
+title: "Add plugin: [plugin-name]"
+labels: [ add-plugin-to-repo, new-plugin, team-name ]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please read before continuing**: This issue form is to request team level `write` access to the Lighthouse Developer Portal repository, and to add the team as codeowners of their plugin.
+
+        **All of the fields in this form are required.** You must provide the following information:
+        - Team name (must be in '@\<organization\>/\<team-name\>' format)
+        - Plugin name (must match the `name` field of the package.json in your plugin root directory)
+        - Plugin directory (must be a subdirectory of the `plugin` directory i.e. 'plugin/\<plugin-name\>/')
+
+        Completing this form will initiate a GitHub action that will update the team permissions for the repository and create a pull request with the updated CODEOWNERS file.
+
+        Once the `lighthouse-bandicoot` team reviews and approves your request, your team will be able to create and review your own pull requests for changes to your plugin.
+
+        Pull requests that include integrating the plugin into the Lighthouse Developer Portal (i.e. modifications of `packages/frontend` or `packages/backend`) can be created but will still require final approval by the `lighthouse-bandicoot` team to be merged.
+  - type: input
+    id: team-name
+    attributes:
+      label: Team Name
+      description: Team name in `@org/team-name` format
+      placeholder: '@department-of-veterans-affairs/lighthouse-bandicoot'
+    validations:
+      required: true
+  - type: input
+    id: plugin-name
+    attributes:
+      label: Plugin Name
+      description: Plugin name that can be found in package.json
+      placeholder: '@internal/plugin-feature-flags'
+    validations:
+      required: true
+  - type: input
+    id: plugin-directory
+    attributes:
+      label: Plugin directory
+      description: Plugin directory located in `plugins/`
+      placeholder: 'plugins/feature-flag-ui/'
+    validations:
+      required: true

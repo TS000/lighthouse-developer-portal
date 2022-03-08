@@ -63,12 +63,12 @@ Once you find the new entry to the Catalog, you can select it to view more detai
 Visit Backstage's [documentation](https://backstage.io/docs/features/software-catalog/descriptor-format) for more information about how to format catalog entity descriptor files.
 
 ## Techdocs
-- [Techdocs Overview](#Techdocs-Overview)
-- [Techdocs Github Action](#Techdocs-Github-Action)
-- [Techdocs GHA Overview](#Techdocs-GHA-Overview)
-- [Techdocs GHA Prerequisites](#Techdocs-GHA-Prerequisites)
-- [Techdocs GHA Usage](#Techdocs-GHA-Usage)
-- [Example Workflow](#Example-Workflow)
+- [Techdocs Overview](#techdocs-overview)
+- [Techdocs Github Action](#techdocs-github-action)
+- [Techdocs GHA Overview](#techdocs-gha-overview)
+- [Techdocs GHA Prerequisites](#techdocs-gha-prerequisites)
+- [Techdocs GHA Usage](#techdocs-gha-usage)
+- [Example Workflow](#example-workflow)
 
 ## Techdocs Overview
 [Techdocs](https://backstage.io/docs/features/techdocs/techdocs-overview) transforms documentation from markdown files in your repository into a bundle of static files(HTML, CSS, JSON, etc.) that can be rendered inside the Internal Developer Portal.
