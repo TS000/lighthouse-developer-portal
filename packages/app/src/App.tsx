@@ -3,9 +3,7 @@ import { hot } from 'react-hot-loader/root';
 import { Route } from 'react-router';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import { CatalogEntityPage, catalogPlugin } from '@backstage/plugin-catalog';
-import {
-  catalogImportPlugin,
-} from '@backstage/plugin-catalog-import';
+import { catalogImportPlugin } from '@backstage/plugin-catalog-import';
 import { ScaffolderPage, scaffolderPlugin } from '@backstage/plugin-scaffolder';
 import { SearchPage, SearchContextProvider } from '@backstage/plugin-search';
 import { TechRadarPage } from '@backstage/plugin-tech-radar';
@@ -15,6 +13,7 @@ import {
   DefaultTechDocsHome,
   techdocsPlugin,
 } from '@backstage/plugin-techdocs';
+import { techDocsPage } from './components/techdocs';
 import { UserSettingsPage } from '@backstage/plugin-user-settings';
 import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
@@ -128,14 +127,16 @@ const routes = (
     >
       {entityPage}
     </Route>
-    <Route path="/docs" element={<TechDocsIndexPage />} >
+    <Route path="/docs" element={<TechDocsIndexPage />}>
       <DefaultTechDocsHome />
     </Route>
     <Route path="/datadog" element={<DatadogDashboardPage />} />
     <Route
       path="/docs/:namespace/:kind/:name/*"
       element={<TechDocsReaderPage />}
-    />
+    >
+      {techDocsPage}
+    </Route>
     <Route path="/create" element={<ScaffolderPage />} />
     <Route path="/api-docs" element={<ApiExplorerPage />} />
     <Route
