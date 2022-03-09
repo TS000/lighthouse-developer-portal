@@ -10,6 +10,8 @@ More Information about the Lighthouse developer portal's [Software Catalog](http
 
 The Lighthouse developer portal identifies catalog entities by scanning every repository in an organization and looking for a `catalog-info.yaml` file in the root of the repository. The `catalog-info.yaml` file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other the Lighthouse developer portal users who may wish to use your application.
 
+Note: It will take up to 10 minutes for a newly registered catalog to appear in search.
+
 ## Creating an Entity Descriptor File
 
 In the root directory of your application, create a `catalog-info.yaml` file:
@@ -63,6 +65,7 @@ Once you find the new entry to the Catalog, you can select it to view more detai
 Visit Backstage's [documentation](https://backstage.io/docs/features/software-catalog/descriptor-format) for more information about how to format catalog entity descriptor files.
 
 ## Techdocs
+
 - [Techdocs Overview](#techdocs-overview)
 - [Techdocs Github Action](#techdocs-github-action)
 - [Techdocs GHA Overview](#techdocs-gha-overview)
@@ -71,9 +74,11 @@ Visit Backstage's [documentation](https://backstage.io/docs/features/software-ca
 - [Example Workflow](#example-workflow)
 
 ## Techdocs Overview
+
 [Techdocs](https://backstage.io/docs/features/techdocs/techdocs-overview) transforms documentation from markdown files in your repository into a bundle of static files(HTML, CSS, JSON, etc.) that can be rendered inside the Internal Developer Portal.
 
 ## Techdocs Github Action
+
 The [Lighthouse Github Action](https://github.com/department-of-veterans-affairs/lighthouse-github-actions#techdocs-action) repository contains a Techdocs Action that can be referenced in your own workflows to create and publish your team's Techdocs. The Techdocs Action works by creating a Kubernetes Job that will pull a git repository then run the `techdocs-cli` to generate and publish your Techdocs to the Lighthouse S3 bucket.
 
 You can add the action to an existing CI/CD workflow or add it as a standalone workflow triggered only when the `docs` directory is updated.
@@ -81,10 +86,13 @@ You can add the action to an existing CI/CD workflow or add it as a standalone w
 This action creates a [Kubernetes Job](https://github.com/department-of-veterans-affairs/lighthouse-github-actions/blob/main/example-techdocs-job.yaml) that will generate and publish your Techdocs for the Lighthouse Internal Developer Portal.
 
 ## Techdocs GHA Overview
-The Kubernetes Job consists of two containers:  a [git-sync](https://github.com/kubernetes/git-sync) container and a `Techdocs` [container](https://github.com/department-of-veterans-affairs/lighthouse-github-actions/pkgs/container/lighthouse-github-actions%2Ftechdocs). The `git-sync` container is an initContainer that pulls a git repository to a shared volume so the Techdocs container has a copy of the repository. The `Techdocs` container then uses the [Techdocs-cli](https://backstage.io/docs/features/techdocs/cli) to generate and publish your documentation to the Lighthouse S3 bucket.
+
+The Kubernetes Job consists of two containers: a [git-sync](https://github.com/kubernetes/git-sync) container and a `Techdocs` [container](https://github.com/department-of-veterans-affairs/lighthouse-github-actions/pkgs/container/lighthouse-github-actions%2Ftechdocs). The `git-sync` container is an initContainer that pulls a git repository to a shared volume so the Techdocs container has a copy of the repository. The `Techdocs` container then uses the [Techdocs-cli](https://backstage.io/docs/features/techdocs/cli) to generate and publish your documentation to the Lighthouse S3 bucket.
 
 ## Techdocs GHA Prerequisites
+
 The root directory of your repository contains:
+
 - [x] a [`catalog-info.yaml`](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/catalog-info.yaml) with a [backstage.io/techdocs-ref](https://backstage.io/docs/features/software-catalog/well-known-annotations#backstageiotechdocs-ref) annotation
 - [x] a [`mkdocs.yaml`](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/mkdocs.yml) configuration file
 - [x] a [`docs`](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/docs) directory where all your documentation lives
@@ -117,6 +125,7 @@ More info about [Entity Descriptor files](https://backstage.io/docs/features/sof
     # Scopes: Repo
     token: ''
 ```
+
 ## Example Workflow
 
 ```yaml
@@ -139,3 +148,19 @@ jobs:
           namespace: 'lighthouse-bandicoot'
           token: ${{ secrets.PAT }}
 ```
+
+## Lifecycle of an entity
+
+Full docs can be found [here](https://backstage.io/docs/features/software-catalog/life-of-an-entity), the primary points will be covered bellow.
+
+The main extension points where developers can customize the catalog are:
+
+- _Entity providers_, that feed initial raw entity data into the catalog.
+- _Policies_, that establish baseline rules about the shape of entities.
+- _Processors_, that validate, analyze, and mutate the raw entity data into its final form.
+
+The high level processes involved are:
+
+- _Ingestion_, where entity providers fetch raw entity data from external sources and seed it into the database.
+- _Processing_, where the policies and processors continually treat the ingested data and may emit both other raw entities (that are also subject to processing), errors, relations to tother entities, etc.
+- _Stitching_, where all of the data emitted by various processors are assembled together into the final output entity.
