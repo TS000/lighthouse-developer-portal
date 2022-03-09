@@ -1,0 +1,81 @@
+name: 'Register plugin'
+description: 'Creates PR to add CODEOWNERS entry for DoVA team and updates repository access for the team'
+inputs:
+  ISSUE_ID:
+    description: 'Issue number that triggered workflow'
+    required: true
+  TOKEN:
+    description: 'Github token'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Issue form parser
+      id: parse
+      uses: peter-murray/issue-forms-body-parser@v2.0.0
+      with:
+        issue_id: ${{ inputs.ISSUE_ID }}
+        separator: '###'
+        label_marker_start: '>>'
+        label_marker_end: '<<'
+    - name: Parse JSON for values
+      id: values
+      env:
+        DATA: ${{ steps.parse.outputs.payload }}
+      run: |
+        TEAM_NAME=$(echo $DATA | jq '."Team Name"')
+        PLUGIN_NAME=$(echo $DATA | jq '."Plugin Name"')
+        PLUGIN_DIR=$(echo $DATA | jq '."Plugin Directory"')
+        echo "::set-output name=TEAM_NAME::$TEAM_NAME"
+        echo "::set-output name=PLUGIN_NAME::$PLUGIN_NAME"
+        echo "::set-output name=PLUGIN_DIR::$PLUGIN_DIR"
+      shell: bash
+    - name: Update CODEOWNERS
+      run: >
+        /bin/bash ${{ github.workspace }}/scripts/update_codeowners.sh
+        ${{ steps.values.outputs.TEAM_NAME }}
+        ${{ steps.values.outputs.PLUGIN_DIR }}
+      shell: bash
+    - name: Debug update_codeowners.sh
+      run: cat CODEOWNERS
+      shell: bash
+    - name: Update repository access for team
+      run: |
+        curl \
+        -X PUT \
+        -H "Accept: application/vnd.github.v3+json" \
+        -H "Authorization: token ${{ inputs.TOKEN }}" \
+        https://api.github.com/orgs/department-of-veterans-affairs/teams/${{ fromJSON(steps.values.outputs.TEAM_NAME) }}/repos/department-of-veterans-affairs/lighthouse-developer-portal \
+        -d '{"permission":"push"}'
+      shell: bash
+    - name: Create PR
+      uses: peter-evans/create-pull-request@18f7dc018cc2cd597073088f7c7591b9d1c02672 # v3.14.0
+      with:
+        token: ${{ inputs.TOKEN }}
+        commit-message: Request to update codeowners
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        base: main
+        branch: codeowners-${{ fromJSON(steps.values.outputs.TEAM_NAME) }}
+        delete-branch: true
+        title: '[ISSUE-${{ inputs.ISSUE_ID }}] Update CODEOWNERS for ${{ fromJSON(steps.values.outputs.TEAM_NAME) }}'
+        body: |
+          ## Update CODEOWNERS file for team ${{ fromJSON(steps.values.outputs.TEAM_NAME) }}
+          - Team Name: ${{ fromJSON(steps.values.outputs.TEAM_NAME) }}
+          - Plugin Name: ${{ fromJSON(steps.values.outputs.PLUGIN_NAME) }}
+          - Plugin Directory: ${{ fromJSON(steps.values.outputs.PLUGIN_DIR) }}
+
+          ## Reviewer Checklist
+
+          - [ ] Is the team name valid?
+          - [ ] Is the plugin name valid ?
+          - [ ] Is the plugin directory valid?
+          - [ ] Is the CODEOWNERS file correctly formatted?
+
+          Resolves #${{ inputs.ISSUE_ID }}
+        labels: |
+          add-plugin-to-repo
+          new-plugin
+          codeowners
+          automated pr
+        team-reviewers: lighthouse-bandicoot

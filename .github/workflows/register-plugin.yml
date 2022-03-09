@@ -2,21 +2,16 @@ name: Register plugin
 on:
   issues:
     types: [labeled]
+  workflow_dispatch:
 jobs:
   update-team-access:
-    if: contains(github.event.issue.labels.*.name, 'add-plugin-to-repo') && !contains(github.event.issue.labels.*.name, 'processed')
+    if: (contains(github.event.issue.labels.*.name, 'add-plugin-to-repo') && !contains(github.event.issue.labels.*.name, 'processed')) ||
+      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Issue context
-        run: echo ${{ github.event.issue.body }}
-      # - name: Update CODEOWNERS
-      #   run: >
-      #     /bin/bash ${{ github.workspace }}/scripts/update-codeowners
-      #     ${{ github.event.issue.body }}
-      # - uses: actions/github-script@v3
-      #   with:
-      #     github-token: ${{ secrets.GH_TOKEN }}
-      #     script: |
-      #       const script = require('./script/update-team-access.js')
-      #       await script({github, context, core})
+      - name: Register new plugin
+        uses: ./.github/actions/register-plugin
+        with:
+          ISSUE_ID: ${{ github.event.issue.number }}
+          TOKEN: ${{ secrets.GHA_TOKEN }}

@@ -13,4 +13,3 @@
 
 # Global rule:
 *                               @department-of-veterans-affairs/lighthouse-bandicoot
-/plugins/provider-dashboard/    @department-of-veterans-affairs/lighthouse-quokka

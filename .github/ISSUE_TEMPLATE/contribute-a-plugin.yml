@@ -1,7 +1,7 @@
 name: Contribute a plugin
 description: Request for repository write access for a DoVA team and for the team to be added to the CODEOWNERS file
 title: "Add plugin: [plugin-name]"
-labels: [ add-plugin-to-repo, new-plugin, team-name ]
+labels: ["add-plugin-to-repo", "new-plugin", "team-name"]
 body:
   - type: markdown
     attributes:
@@ -21,15 +21,15 @@ body:
   - type: input
     id: team-name
     attributes:
-      label: Team Name
-      description: Team name in `@org/team-name` format
-      placeholder: '@department-of-veterans-affairs/lighthouse-bandicoot'
+      label: \>\>Team Name\<\<
+      description: Department of Veterans Affairs team name
+      placeholder: 'lighthouse-bandicoot'
     validations:
       required: true
   - type: input
     id: plugin-name
     attributes:
-      label: Plugin Name
+      label: \>\>Plugin Name\<\<
       description: Plugin name that can be found in package.json
       placeholder: '@internal/plugin-feature-flags'
     validations:
@@ -37,8 +37,8 @@ body:
   - type: input
     id: plugin-directory
     attributes:
-      label: Plugin directory
+      label: \>\>Plugin Directory\<\<
       description: Plugin directory located in `plugins/`
-      placeholder: 'plugins/feature-flag-ui/'
+      placeholder: 'feature-flag-ui'
     validations:
       required: true

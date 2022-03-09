@@ -5,7 +5,5 @@ allowed_patterns:
   - 'password: \$\{POSTGRES_PASSWORD\}'
   - 'clientSecret: \$\{GH_CLIENT_SECRET\}'
 fileignoreconfig:
-  - filename: .github/workflows/pre-build-validation.yml
-    checksum: 78826e97fa5732aab83249cc5ae72876c6cb140218b59b1c17d73f50e08ab3ad
-  - filename: yarn.lock
-    checksum: 187e10024dea872149faf0c674265fa1a4451620fe8978c6fbf7a54ce9b8aad0
+- filename: .github/actions/register-plugin/action.yml
+  checksum: f200648127ff29f2622473cf4353a16c436589b709ca07211226fcf20b72eef4

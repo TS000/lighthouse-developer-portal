@@ -29,7 +29,7 @@ ENV PATH="${NVM_DIR}/current/bin:${NPM_GLOBAL}/bin:${PATH}:${NODE_ROOT}/current/
 COPY library-scripts/* /tmp/scripts/
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && bash /tmp/scripts/common-debian.sh "true" "${USERNAME}" "${USER_UID}" "${USER_GID}" "true" "true" "true" \
-    && apt-get -y install cmake
+    && apt-get -y install bats cmake
 RUN bash /tmp/scripts/setup-user.sh "${USERNAME}" "${PATH}" \
     && chsh -s /bin/bash ${USERNAME} \
     && bash /tmp/scripts/sshd-debian.sh
