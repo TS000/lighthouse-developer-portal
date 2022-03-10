@@ -108,10 +108,10 @@ For those contributors who have earned write access to the repository, when a pu
 ## Contributing your plugins
 We want each team to have ownership of their plugins and to be able to make changes to their plugin without approval from another team.
 
-- Create an issue using the ['Contribute a plugin' template](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/.github/ISSUE_TEMPLATE/contribute-a-plugin.yml)
-- Fill out the form with your team and plugin information
+- Create an issue using the ['Contribute a plugin' template](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues/new/choose)
+- Fill out the form with your team name and plugin information
 - Wait for final review and approval
 
-Once the `lighthouse-bandicoot` team reviews and approves your request, your team will be able to create and review your own pull requests for changes to your plugin.
+Creating the issue will create a pull request to add your team as Codeowners of your plugin. Once the `lighthouse-bandicoot` team reviews and approves the request, your team will be able to create and review your own pull requests for changes to your plugin.
 
 > Note: Pull requests that include integrating the plugin into the Lighthouse Developer Portal (i.e. modifications of `packages/frontend` or `packages/backend`) can be created but will still require final approval by the `lighthouse-bandicoot` team to be merged.
