@@ -2,7 +2,7 @@ name: 'Register plugin'
 description: 'Creates PR to add CODEOWNERS entry for DoVA team and updates repository access for the team'
 inputs:
   ISSUE_ID:
-    description: 'Issue number that triggered workflow'
+    description: 'Issue number that triggered the workflow'
     required: true
   TOKEN:
     description: 'Github token'
@@ -18,14 +18,17 @@ runs:
         separator: '###'
         label_marker_start: '>>'
         label_marker_end: '<<'
+        github_token: ${{ inputs.TOKEN }}
+    - name: Debug
+      run: echo ${{ steps.parse.outputs.payload }}
+      shell: bash
     - name: Parse JSON for values
       id: values
-      env:
-        DATA: ${{ steps.parse.outputs.payload }}
       run: |
-        TEAM_NAME=$(echo $DATA | jq '."Team Name"')
-        PLUGIN_NAME=$(echo $DATA | jq '."Plugin Name"')
-        PLUGIN_DIR=$(echo $DATA | jq '."Plugin Directory"')
+        data=${{ toJSON(steps.parse.outputs.payload) }}
+        TEAM_NAME=$(echo "${data}" | jq '."Team Name"')
+        PLUGIN_NAME=$(echo "${data}" | jq '."Plugin Name"')
+        PLUGIN_DIR=$(echo "${data}" | jq '."Plugin Directory"')
         echo "::set-output name=TEAM_NAME::$TEAM_NAME"
         echo "::set-output name=PLUGIN_NAME::$PLUGIN_NAME"
         echo "::set-output name=PLUGIN_DIR::$PLUGIN_DIR"

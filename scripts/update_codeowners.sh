@@ -33,7 +33,7 @@ check_required_environment() {
     local required_env="PLUGIN_DIR TEAM_NAME"
 
     for reqvar in $required_env; do
-        if [ -z "${!reqvar}" ]; then
+        if [ -z "${!reqvar}" ] || [ "${!reqvar}" == "null" ]; then
         raise "missing ENVIRONMENT VARIABLE ${reqvar}"
         return 1
         fi
