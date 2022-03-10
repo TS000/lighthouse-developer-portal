@@ -3,20 +3,15 @@ on:
   push:
     branches: [main]
     paths: ['docs/*']
-  pull_request:
-    branches: [main]
-    paths: ['docs/*']
   workflow_dispatch:
 jobs:
   create-techdocs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # Disable while Techdocs repo is internal
-      # - name: Techdocs webhook
-      #   uses: department-of-veterans-affairs/lighthouse-github-actions/.github/actions/techdocs-webhook@main
-      #   with:
-      #     repository: ${{ github.repository }}
-      #     descriptor-file: 'catalog-info.yaml'
-      #     namespace: 'lighthouse-bandicoot'
-      #     token: ${{ secrets.WEBHOOK_DEPLOY_PAT }}
+      - name: Techdocs webhook
+        uses: department-of-veterans-affairs/lighthouse-github-actions/.github/actions/techdocs-webhook@22.03.0
+        with:
+          repository: ${{ github.repository }}
+          namespace: 'lighthouse-bandicoot'
+          token: ${{ secrets.GHA_TOKEN }}
