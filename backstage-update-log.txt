@@ -27,6 +27,8 @@ Checking for updates of @backstage/plugin-search
 Checking for updates of @backstage/plugin-scaffolder
 Checking for updates of @backstage/plugin-org
 Checking for updates of @backstage/plugin-github-actions
+Checking for updates of @backstage/plugin-explore-react
+Checking for updates of @backstage/plugin-explore
 Checking for updates of @backstage/plugin-catalog-react
 Checking for updates of @backstage/plugin-catalog-import
 Checking for updates of @backstage/plugin-catalog
@@ -63,4 +65,4 @@ Running yarn install to install new versions
 
 Version bump complete!
 
-Done in 14.96s.
+Done in 12.10s.
