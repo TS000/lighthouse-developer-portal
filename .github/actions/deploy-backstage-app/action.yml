@@ -43,6 +43,9 @@ inputs:
   COMMIT_SHA:
     description: 'Commit SHA used to tag images - required for QA workflow'
     required: false
+  VERSION:
+    description: 'Current version of lighthouse developer portal'
+    required: false
   MEMCACHED_USER:
     description: 'Memcached username'
     required: true
@@ -101,6 +104,7 @@ runs:
       --set nonprod=${{ steps.overrides.outputs.nonprod }}
       --set BASE_URL=${{ steps.overrides.outputs.BASE_URL }}
       --set global.DEPLOY_ENV=${{ inputs.ENV }}
+      --set global.VERSION=${{ inputs.VERSION }}
       --set global.image.tag=${{ steps.tag.outputs.sha }}
       --set POSTGRES_USER=${{ inputs.POSTGRES_USER }}
       --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }}

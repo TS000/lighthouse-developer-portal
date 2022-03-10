@@ -1,6 +1,7 @@
 app:
   title: Lighthouse Developer Portal
   baseUrl: http://127.0.0.1:3000
+  version: '0.0.0'
   # Support
   support:
     url: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues # Used by common ErrorPage

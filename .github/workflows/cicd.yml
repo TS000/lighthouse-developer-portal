@@ -44,6 +44,8 @@ jobs:
           DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
   deploy-app-dev:
     runs-on: ubuntu-latest
+    outputs:
+          VERSION: ${{ steps.outputs.VERSION }}
     needs: [build-push-images]
     if: |
       github.ref == 'refs/heads/main' ||
@@ -56,6 +58,12 @@ jobs:
     # Need to periodically update K8s context
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get latest tag
+        id: main
+        run: |
+          echo "::set-output name=VERSION::$(git tag -l --sort=-version:refname | head -1)"
       - name: Deploy app
         uses: ./.github/actions/deploy-backstage-app
         with:
@@ -66,6 +74,7 @@ jobs:
           GH_CLIENT_SECRET: ${{ secrets.GH_OAUTH_CLIENT_SECRET }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ENV: "dev"
+          VERSION: ${{ steps.main.outputs.VERSION }}
           POSTGRES_USER: ${{ secrets.PG_USER }}
           POSTGRES_PASSWORD: ${{ secrets.PG_PASSWORD }}
           AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
@@ -74,6 +83,9 @@ jobs:
           APP_CREDS_YAML: ${{ secrets.APP_CREDS_YAML }}
           MEMCACHED_USER: ${{ secrets.MEMCACHED_USER }}
           MEMCACHED_PASSWORD: ${{ secrets.MEMCACHED_PASSWORD }}
+      - name: View Tag
+        run: |
+          echo "${{ steps.main.outputs.VERSION }}"
   notify-deployment-repo:
     runs-on: ubuntu-latest
     needs: [deploy-app-dev]

@@ -13,6 +13,7 @@ data:
   AWS_BUCKET_NAME: {{ .Values.AWS_BUCKET_NAME }}
   DOCSERVER_BASE_URL: {{ .Values.DOCSERVER_BASE_URL }}
   APP_CONFIG_auth_environment: {{ .Values.global.DEPLOY_ENV }}
+  APP_CONFIG_app_version: {{ .Values.global.VERSION | quote }}
 ---
 apiVersion: v1
 kind: ConfigMap

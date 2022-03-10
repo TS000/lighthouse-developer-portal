@@ -6,6 +6,7 @@ affinity: {}
 
 global:
   DEPLOY_ENV: ${DEPLOY_ENV}
+  VERSION: ${VERSION}
   image:
     tag: ${COMMIT_SHA}
   SERVICE_ACCOUNT: ${SERVICE_ACCOUNT}

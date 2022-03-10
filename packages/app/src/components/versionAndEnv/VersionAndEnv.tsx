@@ -1,14 +1,18 @@
 import React, { FC } from 'react';
 import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { Config } from '@backstage/config';
-import versionNumber from '../../version.json';
 
 interface Environment {
   environment: string;
 }
 
+interface Version {
+  version: string;
+}
+
 interface AppData {
   auth: Environment;
+  app: Version
 }
 
 interface ConfigVersion extends Config {
@@ -16,11 +20,9 @@ interface ConfigVersion extends Config {
 }
 
 export const VersionAndEnv: FC = (): any => {
-  const { version } = versionNumber;
   const apiConfig: ConfigVersion = useApi(configApiRef);
-
   const environment = apiConfig?.data?.auth?.environment;
-
+  const version = apiConfig?.data?.app?.version;
   return (
     <div
       style={{

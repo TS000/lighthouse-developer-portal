@@ -35,7 +35,7 @@
     ]
   },
   "devDependencies": {
-    "@backstage/cli": "^0.12.0",
+    "@backstage/cli": "^0.15.1",
     "@datadog/datadog-ci": "^0.17.12",
     "@spotify/prettier-config": "^12.0.0",
     "concurrently": "^7.0.0",
@@ -80,5 +80,21 @@
   },
   "resolutions": {
     "esbuild": "^0.14.0"
+  },
+  "configSchema": {
+    "$schema": "https://backstage.io/schema/config-v1",
+    "type": "object",
+    "properties": {
+      "app": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "version of app",
+            "visibility": "frontend"
+          }
+        }
+      }
+    }
   }
 }
