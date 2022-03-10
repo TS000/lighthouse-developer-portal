@@ -66,7 +66,11 @@ Names have two requirements:
 - Strings of length at least 1, and at most 63
 - Must consist of sequences of `[a-z0-9A-Z]` possibly separated by one of `[-_.]`
 
-Namespaces can also be used, see [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#namespace-optional) for more information.
+### namespace [optional]
+
+Namespaces are optional but highly recommended, especially if you will be generating TechDocs. The namespace field must match the team-name field passed to the techdocs-webhook GitHub action.
+
+See [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#namespace-optional) for more information.
 
 ### title [optional]
 
