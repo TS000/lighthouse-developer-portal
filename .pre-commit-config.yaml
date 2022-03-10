@@ -7,7 +7,7 @@ repos:
         exclude: ^(.devcontainer/|package.json)
         stages: [commit]
       - id: sort-simple-yaml
-        exclude: ^(.github/ISSUE_TEMPLATE/contribute-a-plugin.yml|.github/actions/register-plugin/)
+        exclude: ^(.github/ISSUE_TEMPLATE/contribute-a-plugin.yml|.github/actions/|.github/workflows)
         files: ^(?!\.pre-commit-config).*\.y(a)?ml
         stages: [commit]
       - id: trailing-whitespace

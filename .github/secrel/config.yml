@@ -1,0 +1,14 @@
+---
+specs:
+  repo-name: lighthouse-developer-portal
+  default-branch: main
+  onboarding-date: 20220310
+  issue-number: 355
+  pipeline-version: main
+images:
+  - name: department-of-veterans-affairs/lighthouse-developer-portal/fronted
+    path: './Dockerfile.frontend'
+    args: []
+  - name: department-of-veterans-affairs/lighthouse-developer-portal/backend
+    path: './Dockerfile.backend'
+    args: []
