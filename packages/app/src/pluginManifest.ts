@@ -20,18 +20,11 @@ export const pluginManifest: pluginManifestTypes[] = [
   },
   {
     title: 'Feature-Flags',
-    description: 'Allows users to toggle client-side features on the Lighthouse developer portal',
+    description:
+      'Allows users to toggle client-side features on the Lighthouse developer portal',
     url: '/feature-flags',
     image: '',
     tags: ['feature-flag'],
-  },
-  {
-    title: 'Datadog Dashboard',
-    description:
-      'Provides build-time overviews, errors, and other information for the Lighthouse developer portal',
-    url: '/datadog',
-    image: '',
-    tags: ['datadog', 'logs', 'errors', 'dashboard'],
   },
   {
     title: 'Provider Dashboard',

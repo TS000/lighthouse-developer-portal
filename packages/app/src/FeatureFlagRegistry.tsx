@@ -23,7 +23,6 @@ export const FeatureFlagRegistry = () => {
   // Decides whether to show extra info on the home page
   registerFeatureFlag('starter-guide', 'starter-guide-id');
   registerFeatureFlag('radar-dashboard', 'radar-dashboard-id');
-  registerFeatureFlag('datadog-dashboard', 'datadog-dashboard-id');
-  
+
   return null;
 };

@@ -25,7 +25,6 @@ import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
 import { FeatureFlagRegistry } from './FeatureFlagRegistry';
 import { StarterGuide } from './components/starterGuide';
 import { ContributingGuide } from './components/contributing';
-import { DatadogDashboardPage } from '@internal/plugin-datadog-dashboard';
 import { EntityListProvider } from '@backstage/plugin-catalog-react';
 import { ExplorePage, explorePlugin } from '@backstage/plugin-explore';
 import { ExplorePage as CustomExplorePage } from './components/explore';
@@ -130,7 +129,6 @@ const routes = (
     <Route path="/docs" element={<TechDocsIndexPage />}>
       <DefaultTechDocsHome />
     </Route>
-    <Route path="/datadog" element={<DatadogDashboardPage />} />
     <Route
       path="/docs/:namespace/:kind/:name/*"
       element={<TechDocsReaderPage />}
@@ -162,7 +160,7 @@ const routes = (
 
 const App = () => {
   const [flagState, setFlagState] = useState({});
-  const currentFlags = ['datadog-dashboard', 'radar-dashboard'];
+  const currentFlags = ['radar-dashboard'];
   useEffect(() => {
     const loadLocalStorage = async () => {
       const activeFlags = (await localStorage.getItem('featureFlags')) || '';

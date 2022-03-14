@@ -18,7 +18,6 @@ import React, { useContext, PropsWithChildren } from 'react';
 import { Link, makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
-import BarChartIcon from '@material-ui/icons/BarChart';
 import MapIcon from '@material-ui/icons/MyLocation';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
@@ -102,12 +101,6 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           </SidebarSubmenu>
         </SidebarItemWithSubmenu>
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
-        <HideableSidebarItem
-          flagName="datadog-dashboard"
-          to="datadog"
-          text="Datadog"
-          icon={BarChartIcon}
-        />
         <SidebarItem
           icon={CreateComponentIcon}
           to="catalog-import"

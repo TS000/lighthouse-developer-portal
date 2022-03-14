@@ -1,1 +1,0 @@
-export { DatadogDashboard } from './DatadogDashboard';
