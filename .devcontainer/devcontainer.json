@@ -31,6 +31,7 @@
         "path": "pwsh"
       }
     },
+    "git.enableCommitSigning": true,
     "go.toolsManagement.checkForUpdates": "local",
     "go.useLanguageServer": true,
     "go.gopath": "/user/local/go/bin",

@@ -6,20 +6,5 @@ allowed_patterns:
   - 'clientSecret: \$\{GH_CLIENT_SECRET\}'
   - 'REPO_SECRETS: \$\{\{ toJson\(secrets\) \}\}'
 fileignoreconfig:
-  - filename: .github/actions/register-plugin/action.yml
-    checksum: f200648127ff29f2622473cf4353a16c436589b709ca07211226fcf20b72eef4
-  - filename: .github/workflows/pre-build-validation.yml
-    checksum: 22b278a4b2b7c1786b4c1ac5f1f51beeb1ef7863ee9e0436bf3ef8dae7f133c5
-  - filename: .github/workflows/deploy-qa.yml
-    checksum: 215323b72fd586b386777ec5e4b046955dd265fc0e79509d20b99ee7d63c9694
-  - filename: scripts/tests/libs/bats
-    checksum: 715bf3765c2550a5f4d3d682d3c513739f6240abd2c01e2f664953455424976d
-  - filename: scripts/tests/libs/bats-assert
-    checksum: 5198ba836f4159175d308b036fa51003ef76aaf7c97ce13cb2cf60eeb0b10a3b
-  - filename: scripts/tests/libs/bats-support
-    checksum: 0ed432a4c8fd0c63b5788037b9b6424c8da0f79af3b224b54fe8eb0d0d0115ae
-  - filename: .github/actions/register-plugin/action.yml
-    checksum: 052b0c3c366ef8c9e24a3a59b1ee4f2fb2d60b6c16c84e28e277acb5b3087632
-  - filename: yarn.lock
-    checksum: 8e663a5067fefefb3dcc2f2241af525ed373e40df6e8356e4289ab36e908939b
-version: ""
+- filename: scripts/prune_db.sql
+  checksum: f482f2bc7f0bfd88aa74cfdf2cb029bc917cec508aa5c4c58909380ad3eafd63

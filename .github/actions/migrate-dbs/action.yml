@@ -1,0 +1,32 @@
+name: 'Migrate DBs'
+description: 'Migrate DBs from higher to lower environments'
+inputs:
+  KUBE_CONFIG:
+    description: 'Kubernetes context for cluster access'
+    required: true
+  PG_USER:
+    description: 'Postgres username'
+    default: 'postgres'
+    required: false
+  SRC:
+    description: 'Environment with the source DB to copy from'
+    required: true
+  DEST:
+    description: 'Environment with the destination DB to copy to'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Set K8s context
+      uses: azure/k8s-set-context@v1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ inputs.KUBE_CONFIG }}
+    - name: Migrate DB
+      run: >
+        /bin/bash ${{ github.workspace }}/scripts/migrate_db.sh
+        "${{ inputs.PG_USER }}"
+        "${{ inputs.SRC }}"
+        "${{ inputs.DEST }}"
+        "${{ github.workspace }}"
+      shell: bash
