@@ -25,11 +25,11 @@ jobs:
         browser: [electron, chrome, edge]
         include:
           - browser: electron
-            image: 'cypress/browsers:node16.5.0-chrome94-ff93'
+            image: 'cypress/browsers:node16.14.0-slim-chrome99-ff97'
           - browser: chrome
-            image: 'cypress/browsers:node16.5.0-chrome94-ff93'
+            image: 'cypress/browsers:node16.14.0-slim-chrome99-ff97'
           - browser: edge
-            image: 'cypress/browsers:node14.10.1-edge88'
+            image: 'cypress/browsers:node16.14.0-slim-chrome99-ff97'
     container: ${{ matrix.image }}
     steps:
       - uses: actions/checkout@v3
