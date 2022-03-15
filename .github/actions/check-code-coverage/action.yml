@@ -1,0 +1,25 @@
+name: 'Check test coverage'
+description: 'Checks test coverage of unit tests'
+inputs:
+  artifact_name:
+    description: 'Name of artifact containing unit test results'
+    required: true
+  dir:
+    description: 'Directory containing results of unit tests'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+  - uses: actions/setup-node@v3
+    with:
+      node-version: 16
+  - uses: actions/download-artifact@v2
+    with:
+      name: ${{ inputs.artifact_name }}
+      path: ./${{ inputs.artifact_name }}
+  - name: Check coverage for ${{ inputs.dir }}
+    uses: VeryGoodOpenSource/very_good_coverage@feed99cc060453828a8f12e74b404baace8e4502 # pin@v1.2.0
+    with:
+      path: ./${{ inputs.artifact_name }}/${{ inputs.dir }}/coverage/lcov.info
+      min_coverage: 70
+      exclude: '**/node_modules **/*.tsx **/*.jsx'

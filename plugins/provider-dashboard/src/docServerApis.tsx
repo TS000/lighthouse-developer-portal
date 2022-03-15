@@ -7,12 +7,28 @@ export interface API {
     health?: string;
 };
 
+export interface APIGatewayConfig {
+  exposedRoute: string | null;
+  removePath: string | null;
+  routeId: string | null;
+  serviceId: string | null;
+}
+
 export interface APIVersion {
-    majorVersion: string;
-    status: string;
-    internalOnly: string;
-    updatedAt?: string;
     activity?: string;
+    gatewayConfig: APIGatewayConfig;
+    internalOnly: string;
+    majorVersion: string;
+    oasUrl: string;
+    securityType: string;
+    status: string;
+    updatedAt?: string;
+};
+
+export interface OAS {
+  iteration: string;
+  status: string;
+  updatedAt?: string;
 };
 
 export interface OAS {

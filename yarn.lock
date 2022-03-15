@@ -4081,6 +4081,7 @@
     "@hapi/hoek" "^9.0.0"
 
 "@hot-loader/react-dom-v16@npm:@hot-loader/react-dom@^16.0.2", "@hot-loader/react-dom@^16.13.0":
+  name "@hot-loader/react-dom-v16"
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/@hot-loader/react-dom/-/react-dom-16.14.0.tgz#3cfc64e40bb78fa623e59b582b8f09dcdaad648a"
   integrity sha512-EN9czvcLsMYmSDo5yRKZOAq3ZGRlDpad1gPtX0NdMMomJXcPE3yFSeFzE94X/NjOaiSVimB7LuqPYpkWVaIi4Q==
