@@ -8,5 +8,5 @@ allowed_patterns:
   - 'key: cypress\-cache\-v2\-\${{ runner.os }}\-'
   - 'key: \${{ runner.os }}-'
 fileignoreconfig:
-- filename: .github/workflows/browser-tests.yml
-  checksum: da8eccabb5ee35fa48870e82adc4d0ffb20b38aaf7507ab627805ac934ab8039
+- filename: yarn.lock
+  checksum: 1f341fa2cdadc4e149960a763c8db26bddb1d662a1f28875f0fc9b8e148f4a66

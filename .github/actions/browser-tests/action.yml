@@ -37,11 +37,11 @@ runs:
     id: test
     uses: cypress-io/github-action@v3
     with:
+      browser: "${{ inputs.browser-name }}"
       install: false
-      browser: ${{ inputs.browser-name }}
       project: ./packages/app
       command: yarn run test:e2e:ci
-      working-directory: packages/app
+      working-directory: ./packages/app
   - name: Upload Screenshots of failed tests
     uses: actions/upload-artifact@v2
     with:
