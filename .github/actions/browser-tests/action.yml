@@ -1,0 +1,35 @@
+name: 'Browser tests'
+description: 'Runs browser test using Cypress'
+inputs:
+  browser-name:
+    description: 'Name of browser to run tests'
+    required: true
+  build-artifact:
+    description: 'Name of file containing build artifacts'
+    default: 'build'
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+  - name: Download the build folders
+    uses: actions/download-artifact@v2
+    with:
+      name: ${{ inputs.build-artifact }}
+      path: ${{ github.workspace }}/${{ inputs.build-artifact }}
+  - run: ls -R ${{ github.workspace }}/${{ inputs.build-artifact }}
+    shell: bash
+  - name: Cypress run
+    id: test
+    uses: cypress-io/github-action@v3
+    with:
+      install: false
+      project: ./packages/app
+      command: yarn run test:e2e:ci
+      working-directory: packages/app
+  - name: Upload Screenshots of failed tests
+    uses: actions/upload-artifact@v2
+    with:
+      name: ${{ inputs.browser-name }}
+      path: packages/app/cypress/screenshots
+      retention-days: 5
