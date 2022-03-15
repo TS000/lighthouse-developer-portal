@@ -8,6 +8,9 @@ inputs:
     description: 'Name of file containing build artifacts'
     default: 'build'
     required: false
+  image:
+    description: 'Docker image to use for Cypress tests'
+    required: true
 
 runs:
   using: "composite"
