@@ -9,70 +9,29 @@ on:
   workflow_call:
 
 jobs:
-  run-all-tests:
+  unit-tests:
     runs-on: ubuntu-latest
     continue-on-error: true
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
-      - name: Test
-        run: yarn test:all
-      # Consolidate coverage results to single path
-      - name: Consolidate coverage results
-        run: |
-          cp -r plugins/* packages
-      - uses: actions/upload-artifact@v2
-        with:
-          name: logs
-          path: |
-            packages/*/coverage/lcov.info
-
-  setup-matrix:
-    runs-on: ubuntu-latest
-    needs: run-all-tests
     outputs:
-      matrix: ${{ steps.matrix_string.outputs.matrix_string }}
+      artifact_name: ${{ steps.unit-tests.outputs.artifact_name }}
+      matrix: ${{ steps.unit-tests.outputs.matrix_string }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - uses: actions/download-artifact@v2
-        with:
-          name: logs
-          path: ./logs
-      - name: Set up Matrix JSON object
-        id: matrix_string
-        run: |
-          matrix_string="["
-          matrix_string+=$(find ./logs -maxdepth 1 -mindepth 1 -type d -printf '"%P", ')
-          matrix_string=${matrix_string::-2}
-          matrix_string+="]"
-          echo ::set-output name=matrix_string::$matrix_string
+      - name: Unit tests
+        id: unit-tests
+        uses: ./.github/actions/unit-tests
 
   check-test-coverage:
     runs-on: ubuntu-latest
-    needs: setup-matrix
+    needs: [unit-tests]
     strategy:
       matrix:
-        packages: ${{ fromJson(needs.setup-matrix.outputs.matrix) }}
+        packages: ${{ fromJson(needs.unit-tests.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - uses: actions/download-artifact@v2
-        with:
-          name: logs
-          path: ./logs
       - name: Check coverage for ${{ matrix.packages }}
         if: matrix.packages != 'backend'
-        uses: VeryGoodOpenSource/very_good_coverage@feed99cc060453828a8f12e74b404baace8e4502 # pin@v1.2.0
+        uses: ./.github/actions/check-code-coverage
         with:
-          path: ./logs/${{ matrix.packages }}/coverage/lcov.info
-          min_coverage: 30
-          exclude: '**/node_modules'
+          artifact_name: ${{ needs.unit-tests.outputs.artifact_name }}
+          dir: ${{ matrix.packages }}

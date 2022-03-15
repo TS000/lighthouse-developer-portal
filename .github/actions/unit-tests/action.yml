@@ -1,0 +1,49 @@
+name: 'Unit tests'
+description: 'Runs unit tests for all packages/plugins'
+inputs:
+  artifact_name:
+    description: 'Name of artifact containing unit test results'
+    default: 'logs'
+    required: false
+outputs:
+  artifact_name:
+    description: 'Name of artifact containing unit test results'
+    value: ${{ steps.vars.outputs.artifact_name }}
+  matrix_string:
+    description: 'Matrix string containing names for plugins/packages'
+    value: ${{ steps.vars.outputs.matrix_string }}
+runs:
+  using: 'composite'
+  steps:
+  - uses: actions/setup-node@v3
+    with:
+      node-version: 16
+  - name: Install dependencies
+    uses: ./.github/actions/install-dependencies
+  - name: Test
+    run: yarn test:all
+    shell: bash
+  # Consolidate coverage results to single path
+  - name: Consolidate coverage results
+    run: |
+      cp -r plugins/* packages
+    shell: bash
+  - uses: actions/upload-artifact@v2
+    with:
+      name: ${{ inputs.artifact_name }}
+      path: |
+        packages/*/coverage/lcov.info
+  - uses: actions/download-artifact@v2
+    with:
+      name: ${{ inputs.artifact_name }}
+      path: ./${{ inputs.artifact_name }}
+  - name: Set up outputs
+    id: vars
+    run: |
+      matrix_string="["
+      matrix_string+=$(find ./${{ inputs.artifact_name }} -maxdepth 1 -mindepth 1 -type d -printf '"%P", ')
+      matrix_string=${matrix_string::-2}
+      matrix_string+="]"
+      echo ::set-output name=matrix_string::$matrix_string
+      echo ::set-output name=artifact_name::${{ inputs.artifact_name }}
+    shell: bash

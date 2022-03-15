@@ -6,5 +6,5 @@ allowed_patterns:
   - 'clientSecret: \$\{GH_CLIENT_SECRET\}'
   - 'REPO_SECRETS: \$\{\{ toJson\(secrets\) \}\}'
 fileignoreconfig:
-- filename: yarn.lock
-  checksum: 764add69b9b645c23540734a42c4459e9ec9bcaded5603047a1a101981364904
+- filename: .github/actions/check-test-coverage/action.yml
+  checksum: 3185dac1b63b3646ea6acd6bb3097f041cc2529961c984ce61424b278e2e7c76
