@@ -25,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install dependencies
-        uses: yarn install
+        run: yarn install
       #  uses: ./.github/actions/install-dependencies
       - name: compile typescript
         run : yarn tsc
