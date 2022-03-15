@@ -16,7 +16,7 @@ runs:
     uses: actions/cache@v2.1.7
     with:
       path: ~/.cache/Cypress
-      key: ${{ runner.os }}-cache-cypress-${{ hashFiles('**/package.json') }}
+      key: ${{ runner.os }}-cache-cypress--${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
   - name: find location of global yarn cache
     id: yarn-cache
     run: echo "::set-output name=dir::$(yarn cache dir)"
