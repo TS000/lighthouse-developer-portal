@@ -36,7 +36,7 @@ jobs:
       # see https://github.com/actions/cache
       - name: Cache Cypress
         id: cache-cypress
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.7
         with:
           path: ~/.cache/Cypress
           key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}

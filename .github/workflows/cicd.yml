@@ -7,7 +7,30 @@ on:
   workflow_dispatch:
 jobs:
   unit-tests:
-    uses: department-of-veterans-affairs/lighthouse-developer-portal/.github/workflows/unit-tests.yml@main
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    outputs:
+      artifact_name: ${{ steps.unit-tests.outputs.artifact_name }}
+      matrix: ${{ steps.unit-tests.outputs.matrix_string }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Unit tests
+        id: unit-tests
+        uses: ./.github/actions/unit-tests
+  check-test-coverage:
+    runs-on: ubuntu-latest
+    needs: [unit-tests]
+    strategy:
+      matrix:
+        packages: ${{ fromJson(needs.unit-tests.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check coverage for ${{ matrix.packages }}
+        if: matrix.packages != 'backend'
+        uses: ./.github/actions/check-code-coverage
+        with:
+          artifact_name: ${{ needs.unit-tests.outputs.artifact_name }}
+          dir: ${{ matrix.packages }}
   pre-build-validation:
     needs: [unit-tests]
     uses: department-of-veterans-affairs/lighthouse-developer-portal/.github/workflows/pre-build-validation.yml@main
@@ -60,11 +83,9 @@ jobs:
       uses: ./.github/actions/browser-tests
       with:
         browser-name: ${{ matrix.browser }}
-        build-artifacts: ${{ needs.build-push-image.outputs.build-artifacts }}
+        build-artifacts: ${{ needs.build-push-images.outputs.build-artifacts }}
   deploy-app-dev:
     runs-on: ubuntu-latest
-    outputs:
-          VERSION: ${{ steps.outputs.VERSION }}
     needs: [integration-tests]
     if: |
       github.ref == 'refs/heads/main'
@@ -101,9 +122,6 @@ jobs:
           APP_CREDS_YAML: ${{ secrets.APP_CREDS_YAML }}
           MEMCACHED_USER: ${{ secrets.MEMCACHED_USER }}
           MEMCACHED_PASSWORD: ${{ secrets.MEMCACHED_PASSWORD }}
-      - name: View Tag
-        run: |
-          echo "${{ steps.main.outputs.VERSION }}"
   notify-deployment-repo:
     runs-on: ubuntu-latest
     needs: [deploy-app-dev]

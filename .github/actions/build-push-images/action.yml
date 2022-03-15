@@ -15,14 +15,14 @@ inputs:
   DATADOG_API_KEY:
     description: 'Datadog API key'
     required: true
-  build-artifact:
-    description: 'File name of build artifact'
+  build-artifacts:
+    description: 'File name of build artifacts'
     default: 'build'
     required: false
 outputs:
-  build-artifact:
-    description: 'File name of build artifact'
-    value: ${{ steps.artifacts.outputs.build-artifact }}
+  build-artifacts:
+    description: 'File name of build artifacts'
+    value: ${{ steps.artifacts.outputs.build-artifacts }}
 
 runs:
   using: 'composite'
@@ -39,7 +39,7 @@ runs:
             mirrors = ["mirror.gcr.io"]
     - name: Cache frontend static files
       id: cache-static
-      uses: actions/cache@v2
+      uses: actions/cache@v2.1.7
       with:
         path: |
           **/packages/app/dist
@@ -48,11 +48,11 @@ runs:
     - name: Set artifacts output
       id: artifacts
       run: |
-        echo ::set-output name=build-artifact::${{ inputs.build-artifact }}
+        echo ::set-output name=build-artifacts::${{ inputs.build-artifacts }}
       shell: bash
     - uses: actions/upload-artifact@v2
       with:
-        name: ${{ steps.artifacts.outputs.build-artifact }}
+        name: ${{ steps.artifacts.outputs.build-artifacts }}
         path: |
           **/packages/app/dist
     - name: Create build assets
