@@ -29,24 +29,6 @@ jobs:
         run : yarn tsc
       - name: Create build assets
         run: yarn run build
-      - run: npx cypress info
-      - run: npx cypress cache path
-      # should return empty list of installed versions
-      - run: npx cypress cache list
-      # restore / cache the binary ourselves on Linux
-      # see https://github.com/actions/cache
-      - name: Cache Cypress
-        id: cache-cypress
-        uses: actions/cache@v1
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
-      # now let's install Cypress binary
-      - run: npx cypress install
-      - run: npx cypress cache list
-      # and run Cypress tests
-      - run: npx cypress run
-      # Cypress binary will be cached after successful workflow finish
       - uses: actions/upload-artifact@v2
         with:
           name: build
