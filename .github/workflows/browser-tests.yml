@@ -38,19 +38,17 @@ jobs:
           node-version: 16
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
+      - name: compile typescript
+        run : yarn tsc
+      - name: Create build assets
+        run: yarn run build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: |
+            packages/app/dist
       - uses: ./.github/actions/browser-tests
 
-      # - name: Install dependencies
-      #   uses: ./.github/actions/install-dependencies
-      # - name: compile typescript
-      #   run : yarn tsc
-      # - name: Create build assets
-      #   run: yarn run build
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: build
-      #     path: |
-      #       packages/app/dist
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       # - name: Cypress run
