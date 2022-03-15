@@ -43,8 +43,6 @@ jobs:
       # now let's install Cypress binary
       - run: npx cypress install
       - run: npx cypress cache list
-      # and run Cypress tests
-      - run: npx cypress run
       # Cypress binary will be cached after successful workflow finish
       - uses: actions/upload-artifact@v2
         with:
