@@ -48,6 +48,8 @@ jobs:
           path: |
             packages/app/dist
       - uses: ./.github/actions/browser-tests
+        with:
+          browser-name: ${{ matrix.browser }}
 
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
