@@ -8,5 +8,5 @@ allowed_patterns:
   - 'key: cypress\-cache\-v2\-\${{ runner.os }}\-'
   - 'key: \${{ runner.os }}-'
 fileignoreconfig:
-- filename: yarn.lock
-  checksum: 1f341fa2cdadc4e149960a763c8db26bddb1d662a1f28875f0fc9b8e148f4a66
+- filename: .github/workflows/cicd.yml
+  checksum: 5e9e061b3acebc7195d1879007f7be25fe5913d5fb7deeffc5f9e89edd2ae365
