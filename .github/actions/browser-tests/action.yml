@@ -15,7 +15,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - run: sudo apt-get update && sudo apt-get -y install procps
+  - run: apt-get update && apt-get -y install procps
     shell: bash
   - name: Download the build folders
     uses: actions/download-artifact@v2
