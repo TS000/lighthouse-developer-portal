@@ -54,7 +54,7 @@ runs:
       with:
         name: ${{ steps.artifacts.outputs.build-artifacts }}
         path: |
-          **/packages/app/dist
+          packages/app/dist
     - name: Create build assets
       run: |
         yarn tsc
