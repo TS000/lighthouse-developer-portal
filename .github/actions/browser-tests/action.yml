@@ -17,6 +17,16 @@ runs:
     with:
       name: ${{ inputs.build-artifacts }}
       path: ${{ github.workspace }}/${{ inputs.build-artifacts }}
+  - name: Cache Cypress
+    id: cache-cypress
+    uses: actions/cache@v2.1.7
+    with:
+      path: ~/.cache/Cypress
+      key: ${{ runner.os }}-cache-cypress--${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
+  - run: |
+      npx cypress install
+      npx cypress cache list
+    shell: bash
   - name: Cypress run
     id: test
     uses: cypress-io/github-action@v3
