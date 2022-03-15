@@ -72,6 +72,7 @@ runs:
         name: ${{ steps.artifacts.outputs.build-artifacts }}
         path: |
           ${{ github.workspace }}/packages/app/dist
+        if-no-files-found: ignore
     - name: Upload sourcemaps
       run: |
         if [[ "${{ inputs.type }}" == "frontend" ]]; then

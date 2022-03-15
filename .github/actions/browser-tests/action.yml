@@ -33,6 +33,7 @@ runs:
     uses: cypress-io/github-action@v3
     with:
       install: false
+      browser: ${{ inputs.browser-name }}
       project: ./packages/app
       command: yarn run test:e2e:ci
       working-directory: packages/app
@@ -42,3 +43,4 @@ runs:
       name: ${{ inputs.browser-name }}
       path: packages/app/cypress/screenshots
       retention-days: 5
+      if-no-files-found: ignore
