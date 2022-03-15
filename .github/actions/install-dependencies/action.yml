@@ -10,7 +10,7 @@ runs:
     with:
       path: |
         **/node_modules
-      key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
+      key: ${{ runner.os }}-v2-node_modules-${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
   - name: Cache Cypress
     id: cache-cypress
     uses: actions/cache@v2.1.7
@@ -25,7 +25,7 @@ runs:
     uses: actions/cache@v2.1.7
     with:
       path: ${{ steps.yarn-cache.outputs.dir }}
-      key: ${{ runner.os }}-v1-yarn-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
+      key: ${{ runner.os }}-v2-yarn-${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
   - name: Install Dependencies
     run: |
       if echo ${{ steps.cache-modules.outputs.cache-hit }} | grep -c "true"
