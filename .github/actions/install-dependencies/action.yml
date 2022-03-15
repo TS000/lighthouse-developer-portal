@@ -35,6 +35,5 @@ runs:
         echo "Cache hit - skipping dependency installation"
       else
         yarn install --frozen-lockfile
-        npx cypress install
       fi
     shell: bash
