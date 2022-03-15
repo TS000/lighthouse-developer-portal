@@ -17,8 +17,6 @@ runs:
     with:
       name: ${{ inputs.build-artifact }}
       path: ${{ github.workspace }}/${{ inputs.build-artifact }}
-  - run: ls -R ${{ github.workspace }}/${{ inputs.build-artifact }}
-    shell: bash
   - name: Cypress run
     id: test
     uses: cypress-io/github-action@v3

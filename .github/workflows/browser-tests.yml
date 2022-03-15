@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
-        run: yarn install
+        uses: ./.github/actions/install-dependencies
       - name: compile typescript
         run : yarn tsc
       - name: Create build assets

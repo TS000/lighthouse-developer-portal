@@ -10,6 +10,7 @@ runs:
     with:
       path: |
         **/node_modules
+        ~/.cache/Cypress
       key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
   - name: find location of global yarn cache
     id: yarn-cache
