@@ -24,6 +24,7 @@ runs:
       path: ~/.cache/Cypress
       key: ${{ runner.os }}-cache-cypress--${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
   - run: |
+      yarn install
       npx cypress install
       npx cypress cache list
     shell: bash
