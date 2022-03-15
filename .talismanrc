@@ -6,5 +6,5 @@ allowed_patterns:
   - 'clientSecret: \$\{GH_CLIENT_SECRET\}'
   - 'REPO_SECRETS: \$\{\{ toJson\(secrets\) \}\}'
 fileignoreconfig:
-- filename: scripts/prune_db.sql
-  checksum: f482f2bc7f0bfd88aa74cfdf2cb029bc917cec508aa5c4c58909380ad3eafd63
+- filename: .github/workflows/browser-tests.yml
+  checksum: ebf121ffc1a631989397afda7a289ac74c12648823786dbbff066cd3f832f8a7
