@@ -10,17 +10,12 @@ import {
 } from '@backstage/core-components';
 import { TitleComponent } from '../TitleComponent';
 import { APIVersionComponent } from '../APIVersionComponent';
+import { APIConfigComponent } from '../APIConfigComponent';
 import { OASComponent } from '../OASComponent';
 
 const OverviewPanel = (): ReactElement => {
   return(
     <div>Overview: Work in progress...</div>
-  );
-};
-
-const ConfigPanel = (): ReactElement => {
-  return(
-    <div>Configuration: Work in progress...</div>
   );
 };
 
@@ -53,7 +48,7 @@ export const APIComponent = () => {
     { 
       title: "Configuration", 
       path: "/configuration", 
-      children: <ConfigPanel />
+      children: <APIConfigComponent />
     },
     { title: "Authorization/Routing", 
       path: "/routing", 
