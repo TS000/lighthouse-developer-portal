@@ -45,16 +45,6 @@ runs:
           **/packages/app/dist
         key: |
           ${{ runner.os }}-app-v4-static-${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
-    - name: Set artifacts output
-      id: artifacts
-      run: |
-        echo ::set-output name=build-artifacts::${{ inputs.build-artifacts }}
-      shell: bash
-    - uses: actions/upload-artifact@v2
-      with:
-        name: ${{ steps.artifacts.outputs.build-artifacts }}
-        path: |
-          packages/app/dist
     - name: Create build assets
       run: |
         yarn tsc
@@ -70,6 +60,16 @@ runs:
           yarn run "build backend"
         fi
       shell: bash
+    - name: Set artifacts output
+      id: artifacts
+      run: |
+        echo ::set-output name=build-artifacts::${{ inputs.build-artifacts }}
+      shell: bash
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ${{ steps.artifacts.outputs.build-artifacts }}
+        path: |
+          packages/app/dist
     - name: Upload sourcemaps
       run: |
         if [[ "${{ inputs.type }}" == "frontend" ]]; then
