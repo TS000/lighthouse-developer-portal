@@ -30,10 +30,12 @@ runs:
   - name: Install Dependencies
     run: |
       if [[ "${{ steps.cache-modules.outputs.cache-hit }}" == "true" ]] && \
-      [[ "${{ steps.cache-cypress.outputs.cache-hit }}" == "true" ]] && \
       [[ "${{ steps.cache-global-yarn.outputs.cache-hit }}" == "true" ]]; then
         echo "Cache hit - skipping dependency installation"
       else
         yarn install --frozen-lockfile
+      fi
+      if [[ "${{ steps.cache-cypress.outputs.cache-hit }}" != "true" ]]; then
+        npx cypress install
       fi
     shell: bash
