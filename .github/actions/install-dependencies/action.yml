@@ -10,8 +10,13 @@ runs:
     with:
       path: |
         **/node_modules
-        ~/.cache/Cypress
       key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
+  - name: Cache Cypress
+    id: cache-cypress
+    uses: actions/cache@v1
+    with:
+      path: ~/.cache/Cypress
+      key: cypress-cache-v2-${{ runner.os }}-${{ hashFiles('**/package.json') }}
   - name: find location of global yarn cache
     id: yarn-cache
     run: echo "::set-output name=dir::$(yarn cache dir)"

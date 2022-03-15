@@ -15,6 +15,14 @@ inputs:
   DATADOG_API_KEY:
     description: 'Datadog API key'
     required: true
+  build-artifact:
+    description: 'File name of build artifact'
+    default: 'build'
+    required: false
+outputs:
+  build-artifact:
+    description: 'File name of build artifact'
+    value: ${{ steps.artifacts.outputs.build-artifact }}
 
 runs:
   using: 'composite'
@@ -37,6 +45,16 @@ runs:
           **/packages/app/dist
         key: |
           ${{ runner.os }}-app-v3-static-${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
+    - name: Set artifacts output
+      id: artifacts
+      run: |
+        echo ::set-output name=build-artifact::${{ inputs.build-artifact }}
+      shell: bash
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ${{ steps.artifacts.outputs.build-artifact }}
+        path: |
+          **/packages/app/dist
     - name: Create build assets
       run: |
         yarn tsc

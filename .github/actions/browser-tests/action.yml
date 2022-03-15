@@ -4,7 +4,7 @@ inputs:
   browser-name:
     description: 'Name of browser to run tests'
     required: true
-  build-artifact:
+  build-artifacts:
     description: 'Name of file containing build artifacts'
     default: 'build'
     required: false
@@ -15,8 +15,8 @@ runs:
   - name: Download the build folders
     uses: actions/download-artifact@v2
     with:
-      name: ${{ inputs.build-artifact }}
-      path: ${{ github.workspace }}/${{ inputs.build-artifact }}
+      name: ${{ inputs.build-artifacts }}
+      path: ${{ github.workspace }}/${{ inputs.build-artifacts }}
   - name: Cypress run
     id: test
     uses: cypress-io/github-action@v3

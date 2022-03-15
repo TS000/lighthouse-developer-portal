@@ -5,6 +5,7 @@ allowed_patterns:
   - 'password: \$\{POSTGRES_PASSWORD\}'
   - 'clientSecret: \$\{GH_CLIENT_SECRET\}'
   - 'REPO_SECRETS: \$\{\{ toJson\(secrets\) \}\}'
+  - 'key: cypress\-cache\-v2\-\$\{\{ runner.os \}\}\-'
 fileignoreconfig:
 - filename: .github/workflows/browser-tests.yml
   checksum: ebf121ffc1a631989397afda7a289ac74c12648823786dbbff066cd3f832f8a7
