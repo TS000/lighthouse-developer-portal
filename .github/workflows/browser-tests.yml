@@ -34,7 +34,6 @@ jobs:
           name: build
           path: |
             packages/app/dist
-            ~/.cache/Cypress
       - uses: ./.github/actions/browser-tests
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
