@@ -5,10 +5,7 @@ name: Build Containers
 # Both jobs use their own dockerfile to build the docker container
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-frontend-container:

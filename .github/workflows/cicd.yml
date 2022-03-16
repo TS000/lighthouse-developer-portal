@@ -7,7 +7,30 @@ on:
   workflow_dispatch:
 jobs:
   unit-tests:
-    uses: department-of-veterans-affairs/lighthouse-developer-portal/.github/workflows/unit-tests.yml@main
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    outputs:
+      artifact_name: ${{ steps.unit-tests.outputs.artifact_name }}
+      matrix: ${{ steps.unit-tests.outputs.matrix_string }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Unit tests
+        id: unit-tests
+        uses: ./.github/actions/unit-tests
+  check-test-coverage:
+    runs-on: ubuntu-latest
+    needs: [unit-tests]
+    strategy:
+      matrix:
+        packages: ${{ fromJson(needs.unit-tests.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check coverage for ${{ matrix.packages }}
+        if: matrix.packages != 'backend'
+        uses: ./.github/actions/check-code-coverage
+        with:
+          artifact_name: ${{ needs.unit-tests.outputs.artifact_name }}
+          dir: ${{ matrix.packages }}
   pre-build-validation:
     needs: [unit-tests]
     uses: department-of-veterans-affairs/lighthouse-developer-portal/.github/workflows/pre-build-validation.yml@main
@@ -19,6 +42,17 @@ jobs:
       SLACK_UID_003: ${{ secrets.SLACK_UID_LUCKEY }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+  browser-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser-name: [electron, chrome, edge]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Cypress browser tests
+      uses: ./.github/actions/browser-tests
+      with:
+        browser-name: ${{ matrix.browser-name }}
   build-push-images:
     runs-on: ubuntu-latest
     needs: [pre-build-validation]
@@ -36,6 +70,7 @@ jobs:
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
       - name: Build and push image
+        id: build
         uses: ./.github/actions/build-push-images
         with:
           type: ${{ matrix.type }}
@@ -44,12 +79,9 @@ jobs:
           DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
   deploy-app-dev:
     runs-on: ubuntu-latest
-    outputs:
-          VERSION: ${{ steps.outputs.VERSION }}
     needs: [build-push-images]
     if: |
-      github.ref == 'refs/heads/main' ||
-      github.event_name == 'workflow_dispatch'
+      github.ref == 'refs/heads/main'
     environment:
       name: Development
     permissions:
@@ -83,9 +115,6 @@ jobs:
           APP_CREDS_YAML: ${{ secrets.APP_CREDS_YAML }}
           MEMCACHED_USER: ${{ secrets.MEMCACHED_USER }}
           MEMCACHED_PASSWORD: ${{ secrets.MEMCACHED_PASSWORD }}
-      - name: View Tag
-        run: |
-          echo "${{ steps.main.outputs.VERSION }}"
   notify-deployment-repo:
     runs-on: ubuntu-latest
     needs: [deploy-app-dev]

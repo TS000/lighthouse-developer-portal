@@ -54,7 +54,7 @@ This action provides the following functionality for GitHub Actions runners:
 
 [Cache](https://github.com/marketplace/actions/cache)
 
-`uses: actions/cache@v2`
+`uses: actions/cache@v2.1.7`
 
 This action allows caching dependencies and build outputs to improve workflow execution time.
 

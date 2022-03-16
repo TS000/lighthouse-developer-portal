@@ -78,9 +78,6 @@
       "text-summary"
     ]
   },
-  "resolutions": {
-    "esbuild": "^0.14.0"
-  },
   "configSchema": {
     "$schema": "https://backstage.io/schema/config-v1",
     "type": "object",

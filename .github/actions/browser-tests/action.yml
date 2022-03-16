@@ -1,0 +1,39 @@
+name: 'Browser tests'
+description: 'Runs browser test using Cypress'
+inputs:
+  browser-name:
+    description: 'Name of browser to run tests'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+  - name: Install edge browser
+    run: |
+      if [[ "${{ inputs.browser-name }}" == "edge" ]] \
+      && [[ "${{ runner.os }}" != "Windows" ]]; then
+        sudo apt-get update && export DEBIAN_FRONTEND=noninteractive
+        sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+        sudo rm microsoft.gpg
+        sudo apt-get update && sudo apt-get install microsoft-edge-stable
+      fi
+    shell: bash
+  - uses: cypress-io/github-action@v3
+    with:
+      install-command: yarn --frozen-lockfile --network-timeout 1000000000
+      browser: ${{ inputs.browser-name }}
+      project: ./packages/app
+      build: yarn run build
+      command: yarn run test:e2e:ci:${{ inputs.browser-name }}
+      working-directory: packages/app
+      cache-key: ${{ runner.os }}-${{ inputs.browser-name }}-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
+  - name: Upload Screenshots of failed tests
+    uses: actions/upload-artifact@v2
+    if: failure()
+    with:
+      name: ${{ inputs.browser-name }}
+      path: packages/app/cypress/screenshots
+      retention-days: 5

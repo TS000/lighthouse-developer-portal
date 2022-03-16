@@ -35,23 +35,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: cypress-io/github-action@v3
+      - uses: ./.github/actions/browser-tests
         with:
-          browser: edge
-          # Increase install time to prevent timeout
-          install-command: yarn --frozen-lockfile --network-timeout 1000000000
-          project: ./packages/app
-          build: yarn run build
-          command: yarn run test:e2e:ci
-          working-directory: packages/app
-        # Upload screenshots as "edge" if tests fail
-      - name: Upload Screenshots of failed tests
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: edge
-          path: packages/app/cypress/screenshots
-          retention-days: 5
+          browser-name: 'edge'
   deploy-app-qa:
     runs-on: ubuntu-latest
     needs: [validate-dev-deployment, browser-tests-windows-edge]

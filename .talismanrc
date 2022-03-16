@@ -1,10 +1,12 @@
 allowed_patterns:
-  - 'GH_CLIENT_SECRET: \$\{\{ secrets.GH_OAUTH_CLIENT_SECRET \}\}'
-  - 'GH_CLIENT_SECRET: \$\{\{ secrets.GH_OAUTH_CLIENT_SECRET \}\}'
-  - 'AUTH_GITHUB_CLIENT_SECRET: \{\{ .Values.GH_CLIENT_SECRET \| b64enc \}\}'
-  - 'password: \$\{POSTGRES_PASSWORD\}'
-  - 'clientSecret: \$\{GH_CLIENT_SECRET\}'
-  - 'REPO_SECRETS: \$\{\{ toJson\(secrets\) \}\}'
+  - 'GH_CLIENT_SECRET: \${{ secrets.GH_OAUTH_CLIENT_SECRET }}'
+  - 'GH_CLIENT_SECRET: \${{ secrets.GH_OAUTH_CLIENT_SECRET }}'
+  - 'AUTH_GITHUB_CLIENT_SECRET: {{ .Values.GH_CLIENT_SECRET \| b64enc }}'
+  - 'password: \${POSTGRES_PASSWORD}'
+  - 'clientSecret: \${GH_CLIENT_SECRET}'
+  - 'REPO_SECRETS: \${{ toJson\(secrets\) }}'
+  - 'key: cypress\-cache\-v2\-\${{ runner.os }}\-'
+  - 'key: \${{ runner.os }}-'
 fileignoreconfig:
-- filename: .github/actions/check-test-coverage/action.yml
-  checksum: 3185dac1b63b3646ea6acd6bb3097f041cc2529961c984ce61424b278e2e7c76
+- filename: .github/workflows/cicd.yml
+  checksum: 357a01dd6e6b5b9b047872ed1332745476152ef38658add6f99c4d4dd44c717f
