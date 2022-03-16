@@ -60,19 +60,19 @@ runs:
           yarn run "build backend"
         fi
       shell: bash
-    - name: Set artifacts output
-      id: artifacts
-      run: |
-        echo ::set-output name=build-artifacts::${{ inputs.build-artifacts }}
-      shell: bash
-    - run: ls packages/app
-      shell: bash
-    - uses: actions/upload-artifact@v2
-      with:
-        name: ${{ steps.artifacts.outputs.build-artifacts }}
-        path: |
-          ${{ github.workspace }}/packages/app/dist
-        if-no-files-found: ignore
+    # - name: Set artifacts output
+    #   id: artifacts
+    #   run: |
+    #     echo ::set-output name=build-artifacts::${{ inputs.build-artifacts }}
+    #   shell: bash
+    # - run: ls packages/app
+    #   shell: bash
+    # - uses: actions/upload-artifact@v2
+    #   with:
+    #     name: ${{ steps.artifacts.outputs.build-artifacts }}
+    #     path: |
+    #       ${{ github.workspace }}/packages/app/dist
+    #     if-no-files-found: ignore
     - name: Upload sourcemaps
       run: |
         if [[ "${{ inputs.type }}" == "frontend" ]]; then
