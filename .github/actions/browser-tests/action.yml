@@ -8,9 +8,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - name: check os info
-    run: echo ${{ runner.os }}
-    shell: bash
   - name: Install edge browser
     run: |
       if [[ "${{ inputs.browser-name }}" == "edge" ]] \

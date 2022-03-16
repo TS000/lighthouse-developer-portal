@@ -23,8 +23,8 @@ runs:
       key: ${{ runner.os }}-cache-yarn-${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
   - name: Install Dependencies
     run: |
-      if [[ "${{ steps.cache-modules.outputs.cache-hit }}" == "true" ]] && \
-      [[ "${{ steps.cache-global-yarn.outputs.cache-hit }}" == "true" ]]; then
+      if [[ "${{ steps.cache-modules.outputs.cache-hit }}" == "true" ]] \
+      && [[ "${{ steps.cache-global-yarn.outputs.cache-hit }}" == "true" ]]; then
         echo "Cache hit - skipping dependency installation"
       else
         yarn install --frozen-lockfile
