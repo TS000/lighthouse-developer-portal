@@ -27,7 +27,6 @@ RUN yarn tsc
 RUN yarn --cwd packages/backend backstage-cli backend:bundle --build-dependencies
 
 # LABEL maintainer=lighthouse
-
 # # Static Labels
 # LABEL org.opencontainers.image.authors="leeroy-jenkles@va.gov" \
 #       org.opencontainers.image.url="https://github.com/department-of-veterans-affairs/lighthouse-developer-portal" \
