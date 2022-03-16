@@ -12,32 +12,25 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - run: apt-get update && apt-get -y install procps
-    shell: bash
-  - name: Download the build folders
-    uses: actions/download-artifact@v2
-    with:
-      name: ${{ inputs.build-artifacts }}
-      path: ${{ github.workspace }}/${{ inputs.build-artifacts }}
-  - name: Cache Cypress
-    id: cache-cypress
-    uses: actions/cache@v2.1.7
-    with:
-      path: ~/.cache/Cypress
-      key: ${{ runner.os }}-cache-cypress--${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
   - run: |
-      yarn install
-      npx cypress install
-      npx cypress cache list
+      if [[ ${{ inputs.browser-name == 'edge' }} ]]; then
+        sudo apt-get update && export DEBIAN_FRONTEND=noninteractive
+        sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+        sudo rm microsoft.gpg
+        sudo apt-get update && sudo apt-get install microsoft-edge-stable
+      fi
     shell: bash
   - name: Cypress run
     id: test
     uses: cypress-io/github-action@v3
     with:
-      browser: "${{ inputs.browser-name }}"
+      browser: ${{ inputs.browser-name }}
       install: false
       project: ./packages/app
-      command: yarn run test:e2e:ci
+      command: yarn run test:e2e:ci:${{ inputs.browser-name }}
       working-directory: ./packages/app
   - name: Upload Screenshots of failed tests
     uses: actions/upload-artifact@v2

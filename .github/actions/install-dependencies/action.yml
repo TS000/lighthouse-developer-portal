@@ -19,7 +19,7 @@ runs:
     id: cache-global-yarn
     uses: actions/cache@v2.1.7
     with:
-      path: ${{ steps.yarn-cache.outputs.dir }}
+      path: ~/.cache/yarn/*
       key: ${{ runner.os }}-cache-yarn-${{ hashfiles('**/package.json') }}-${{ hashFiles('**/packages/app/**') }}-${{ hashFiles('**/app-config.*.yaml') }}
   - name: Install Dependencies
     run: |
