@@ -18,38 +18,108 @@ on:
   pull_request:
     branches: [main]
 jobs:
-   browser-tests:
+  browser-tests:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        browser: [electron, chrome, edge]
     steps:
-    - uses: actions/checkout@v3
-    - name: Install Edge
-      if: ${{ matrix.browser == 'edge' }}
-      run: |
-        sudo apt-get update && export DEBIAN_FRONTEND=noninteractive
-        sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
-        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
-        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
-        sudo rm microsoft.gpg
-        sudo apt-get update && sudo apt-get install microsoft-edge-stable
-    - uses: cypress-io/github-action@v3
-      with:
-        browser: ${{ matrix.browser }}
-        project: ./packages/app
-        build: yarn run build
-        command: yarn run test:e2e:ci
-        working-directory: packages/app
-        cache-key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
-    - name: Upload Screenshots of failed tests
-      uses: actions/upload-artifact@v2
-      if: failure()
-      with:
-        name: ${{ matrix.browser }}
-        path: packages/app/cypress/screenshots
-        retention-days: 5
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v3
+        with:
+          project: ./packages/app
+          build: yarn run build
+          command: yarn run test:e2e:ci
+          working-directory: packages/app
+        # Upload screenshots as "electron" if tests fail
+      - name: Upload Screenshots of failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: electron
+          path: packages/app/cypress/screenshots
+          retention-days: 5
+  browser-tests-chrome:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-action@v3
+        with:
+          browser: chrome
+          project: ./packages/app
+          build: yarn run build
+          command: yarn run test:e2e:ci
+          working-directory: packages/app
+        # Upload screenshots as "chrome" if tests fail
+      - name: Upload Screenshots of failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: chrome
+          path: packages/app/cypress/screenshots
+          retention-days: 5
+  browser-tests-edge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && export DEBIAN_FRONTEND=noninteractive
+          sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      - name: Install edge
+        run: |
+          curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+          sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+          sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+          sudo rm microsoft.gpg
+          sudo apt-get update && sudo apt-get install microsoft-edge-stable
+      - uses: cypress-io/github-action@v3
+        with:
+          browser: edge
+          project: ./packages/app
+          build: yarn run build
+          command: yarn run test:e2e:ci
+          working-directory: packages/app
+          cache-key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
+        # Upload screenshots as "edge" if tests fail
+      - name: Upload Screenshots of failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: edge
+          path: packages/app/cypress/screenshots
+          retention-days: 5
+    # strategy:
+    #   matrix:
+    #     browser: [electron, chrome, edge]
+    # steps:
+    # - uses: actions/checkout@v3
+    # - name: Install Edge
+    #   if: ${{ matrix.browser == 'edge' }}
+    #   run: |
+    #     sudo apt-get update && export DEBIAN_FRONTEND=noninteractive
+    #     sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+    #     curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+    #     sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+    #     sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+    #     sudo rm microsoft.gpg
+    #     sudo apt-get update && sudo apt-get install microsoft-edge-stable
+    # - uses: cypress-io/github-action@v3
+    #   with:
+    #     browser: ${{ matrix.browser }}
+    #     project: ./packages/app
+    #     build: yarn run build
+    #     command: yarn run test:e2e:ci
+    #     working-directory: packages/app
+    #     cache-key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
+    # - name: Upload Screenshots of failed tests
+    #   uses: actions/upload-artifact@v2
+    #   if: failure()
+    #   with:
+    #     name: ${{ matrix.browser }}
+    #     path: packages/app/cypress/screenshots
+    #     retention-days: 5
 
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests

@@ -9,4 +9,4 @@ allowed_patterns:
   - 'key: \${{ runner.os }}-'
 fileignoreconfig:
 - filename: .github/workflows/browser-tests.yml
-  checksum: e087a614e3a77813ae232c3376932aeecf86a3c81bced53b93cdedcf03be290e
+  checksum: ea6c2e956df33a1fe4fe5f8ec21a4cc61503630155337b946dbc1650f5b8b384
