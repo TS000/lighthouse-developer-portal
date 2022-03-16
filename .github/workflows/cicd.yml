@@ -31,6 +31,17 @@ jobs:
         with:
           artifact_name: ${{ needs.unit-tests.outputs.artifact_name }}
           dir: ${{ matrix.packages }}
+  pre-build-validation:
+    needs: [unit-tests]
+    uses: department-of-veterans-affairs/lighthouse-developer-portal/.github/workflows/pre-build-validation.yml@main
+    with:
+      UNIT_TEST_STATUS: ${{ needs.unit-tests.result }}
+    secrets:
+      SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
+      SLACK_UID_002: ${{ secrets.SLACK_UID_LOVENDAHL }}
+      SLACK_UID_003: ${{ secrets.SLACK_UID_LUCKEY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
   browser-tests:
     runs-on: ubuntu-latest
     needs: [unit-tests]
@@ -64,17 +75,6 @@ jobs:
         name: ${{ matrix.browser }}
         path: packages/app/cypress/screenshots
         retention-days: 5
-  pre-build-validation:
-    needs: [unit-tests]
-    uses: department-of-veterans-affairs/lighthouse-developer-portal/.github/workflows/pre-build-validation.yml@main
-    with:
-      UNIT_TEST_STATUS: ${{ needs.unit-tests.result }}
-    secrets:
-      SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
-      SLACK_UID_002: ${{ secrets.SLACK_UID_LOVENDAHL }}
-      SLACK_UID_003: ${{ secrets.SLACK_UID_LUCKEY }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
   build-push-images:
     runs-on: ubuntu-latest
     needs: [pre-build-validation]
