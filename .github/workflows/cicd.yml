@@ -31,17 +31,6 @@ jobs:
         with:
           artifact_name: ${{ needs.unit-tests.outputs.artifact_name }}
           dir: ${{ matrix.packages }}
-  pre-build-validation:
-    needs: [unit-tests]
-    uses: department-of-veterans-affairs/lighthouse-developer-portal/.github/workflows/pre-build-validation.yml@main
-    with:
-      UNIT_TEST_STATUS: ${{ needs.unit-tests.result }}
-    secrets:
-      SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
-      SLACK_UID_002: ${{ secrets.SLACK_UID_LOVENDAHL }}
-      SLACK_UID_003: ${{ secrets.SLACK_UID_LUCKEY }}
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
   browser-tests:
     runs-on: ubuntu-latest
     strategy:
@@ -53,9 +42,39 @@ jobs:
       uses: ./.github/actions/browser-tests
       with:
         browser-name: ${{ matrix.browser-name }}
+  pre-build-validation-lint-check:
+    runs-on: ubuntu-latest
+    needs: [unit-tests]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dependencies
+      uses: ./.github/actions/install-dependencies
+    - name: Run linting
+      uses: ./.github/actions/validate-linting
+  pre-build-validation-unit-tests:
+    runs-on: ubuntu-latest
+    needs: [unit-tests]
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./.github/actions/validate-unit-tests
+      with:
+        UNIT_TEST_STATUS: ${{ needs.unit-tests.result  }}
+        SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
+        SLACK_UID_002: ${{ secrets.SLACK_UID_LOVENDAHL }}
+        SLACK_UID_003: ${{ secrets.SLACK_UID_LUCKEY }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  pre-build-validation-code-quality:
+    runs-on: ubuntu-latest
+    needs: [unit-tests]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Generate cognitive complexity results
+      uses: ./.github/actions/assess-code-quality
+      with:
+        api-key: ${{ secrets.DATADOG_API_KEY }}
   build-push-images:
     runs-on: ubuntu-latest
-    needs: [pre-build-validation]
+    needs: [pre-build-validation-lint-check,pre-build-validation-unit-tests, pre-build-validation-code-quality]
     if: |
       github.ref == 'refs/heads/main' ||
       github.event_name == 'workflow_dispatch'

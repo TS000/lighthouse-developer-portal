@@ -1,9 +1,9 @@
 name: 'Code Quality'
 description: 'Generates score for cognitive complexity and pushes result to Datadog'
-outputs:
-  score:
-    description: "Average Cognitive Complexity Score"
-    value: ${{ steps.overall.outputs.average }}
+inputs:
+  api-key:
+    description: 'Datadog API Key'
+    required: true
 
 runs:
   using: "composite"
@@ -31,4 +31,16 @@ runs:
       name: cognitive-complexity-results
       path: |
         overall-results.json
+  - name: Send cognitive complexity score to datadog
+    uses: masci/datadog@v1
+    with:
+      api-key: ${{ inputs.api-key }}
+      metrics: |
+        - type: "count"
+          name: "cognitive.complexity.score"
+          value: ${{ steps.overall.outputs.average }}
+          host: ${{ github.repository_owner }}
+          tags:
+            - "project:${{ github.repository }}"
+            - "branch:${{ github.head_ref }}"
 
