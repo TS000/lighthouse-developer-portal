@@ -4,10 +4,6 @@ inputs:
   browser-name:
     description: 'Name of browser to run tests'
     required: true
-  build-artifacts:
-    description: 'Name of file containing build artifacts'
-    default: 'build'
-    required: false
 
 runs:
   using: "composite"
@@ -24,19 +20,18 @@ runs:
         sudo apt-get update && sudo apt-get install microsoft-edge-stable
       fi
     shell: bash
-  - name: Cypress run
-    id: test
-    uses: cypress-io/github-action@v3
+  - uses: cypress-io/github-action@v3
     with:
       browser: ${{ inputs.browser-name }}
-      install: false
       project: ./packages/app
+      build: yarn run build
       command: yarn run test:e2e:ci:${{ inputs.browser-name }}
-      working-directory: ./packages/app
+      working-directory: packages/app
+      cache-key: ${{ runner.os }}-${{ inputs.browser-name }}-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
   - name: Upload Screenshots of failed tests
     uses: actions/upload-artifact@v2
+    if: failure()
     with:
       name: ${{ inputs.browser-name }}
       path: packages/app/cypress/screenshots
       retention-days: 5
-      if-no-files-found: ignore
