@@ -1,9 +1,5 @@
 name: Update Backstage
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
   schedule:
     - cron: '0 07 * * *'
   workflow_dispatch:
