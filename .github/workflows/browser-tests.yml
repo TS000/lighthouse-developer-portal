@@ -49,7 +49,7 @@ jobs:
           browser: chrome
           project: ./packages/app
           build: yarn run build
-          command: yarn run test:e2e:ci
+          command: yarn run test:e2e:ci:chrome
           working-directory: packages/app
         # Upload screenshots as "chrome" if tests fail
       - name: Upload Screenshots of failed tests
@@ -79,7 +79,7 @@ jobs:
           browser: edge
           project: ./packages/app
           build: yarn run build
-          command: yarn run test:e2e:ci
+          command: yarn run test:e2e:ci:edge
           working-directory: packages/app
           cache-key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
         # Upload screenshots as "edge" if tests fail

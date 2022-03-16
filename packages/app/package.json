@@ -99,11 +99,15 @@
     "cy:dev": "cypress open",
     "cy:docker": "docker-compose -f docker-compose-cypress.yml up --exit-code-from cypress",
     "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:run:edge": "cypress run --browser edge",
     "lint": "backstage-cli lint",
     "start": "backstage-cli app:serve",
     "test": "backstage-cli test",
     "test:e2e": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:dev",
-    "test:e2e:ci": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:run"
+    "test:e2e:ci": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:run",
+    "test:e2e:ci:chrome": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:run:chrome",
+    "test:e2e:ci:edge": "cross-env PORT=3000 start-server-and-test start http://localhost:3000 cy:run:edge"
   },
   "version": "0.1.0"
 }
