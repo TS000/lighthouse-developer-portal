@@ -18,38 +18,41 @@ on:
   pull_request:
     branches: [main]
 jobs:
-  browser-tests:
-    runs-on: ubuntu-20.04
+   browser-tests:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: ["electron", "chrome", "edge"]
-        include:
-          - browser: electron
-            image: 'cypress/browsers:node16.14.0-slim-chrome99-ff97'
-          - browser: chrome
-            image: 'cypress/browsers:node16.14.0-slim-chrome99-ff97'
-          - browser: edge
-            image: 'cypress/browsers:node16.14.0-slim-chrome99-ff97'
-    container: ${{ matrix.image }}
+        browser: [electron, chrome, edge]
+    if: |
+      github.ref == 'refs/heads/main' ||
+      github.event_name == 'workflow_dispatch'
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install dependencies
-        uses: ./.github/actions/install-dependencies
-      - name: compile typescript
-        run : yarn tsc
-      - name: Create build assets
-        run: yarn run build
-      - uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: |
-            packages/app/dist
-      - uses: ./.github/actions/browser-tests
-        with:
-          browser-name: ${{ matrix.browser }}
+    - uses: actions/checkout@v3
+    - name: Install Edge
+      if: ${{ matrix.name == 'edge' }}
+      run: |
+        sudo apt-get update && export DEBIAN_FRONTEND=noninteractive
+        sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+        curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+        sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+        sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+        sudo rm microsoft.gpg
+        sudo apt-get update && sudo apt-get install microsoft-edge-stable
+    - uses: cypress-io/github-action@v3
+      with:
+        browser: ${{ matrix.name }}
+        project: ./packages/app
+        build: yarn run build
+        command: yarn run test:e2e:ci
+        working-directory: packages/app
+        cache-key: ${{ runner.os }}-v1-node_modules-${{ hashFiles('yarn.lock') }}-${{ hashFiles('packages/*') }}-${{ hashFiles('plugins/*') }}
+    - name: Upload Screenshots of failed tests
+      uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: ${{ matrix.name }}
+        path: packages/app/cypress/screenshots
+        retention-days: 5
 
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
