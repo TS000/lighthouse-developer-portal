@@ -23,6 +23,7 @@ runs:
     shell: bash
   - uses: cypress-io/github-action@v3
     with:
+      install-command: yarn --frozen-lockfile --network-timeout 1000000000
       browser: ${{ inputs.browser-name }}
       project: ./packages/app
       build: yarn run build
