@@ -59,9 +59,6 @@ jobs:
     - uses: ./.github/actions/validate-unit-tests
       with:
         UNIT_TEST_STATUS: ${{ needs.unit-tests.result  }}
-        SLACK_UID_001: ${{ secrets.SLACK_UID_ABDUSAMAD }}
-        SLACK_UID_002: ${{ secrets.SLACK_UID_LOVENDAHL }}
-        SLACK_UID_003: ${{ secrets.SLACK_UID_LUCKEY }}
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   pre-build-validation-code-quality:
     runs-on: ubuntu-latest

@@ -4,18 +4,6 @@ inputs:
   UNIT_TEST_STATUS:
     description: 'Result of unit-test run'
     required: true
-  SLACK_UID_001:
-    description: 'slack user id'
-    required: true
-  SLACK_UID_002:
-    description: 'slack user id'
-    required: true
-  SLACK_UID_003:
-    description: 'slack user id'
-    required: true
-  SLACK_UID_004:
-    description: 'slack user id'
-    required: false
   SLACK_WEBHOOK_URL:
     description: 'webhook url for slack bot'
     required: true
@@ -52,7 +40,7 @@ runs:
     - name: Failure
       run: |
         if [[ "${{ inputs.UNIT_TEST_STATUS }}" == "failure" ]]; then
-          curl -X POST --data-urlencode "payload={\"channel\": \"#team-bandicoot\", \"username\": \"webhookbot\", \"text\": \"Merged Failing Pull Request to Main Branch!\n<https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/commit/${{ github.sha }}|View Pull Request>\n<${{ steps.workflow.outputs.url }}|View Unit Test Results>\n<@${{inputs.SLACK_UID_001}}> <@${{inputs.SLACK_UID_002}}> <@${{inputs.SLACK_UID_003}}> <@${{inputs.SLACK_UID_004}}> \n\", \"icon_emoji\": \":robot_face:\"}" ${{ inputs.SLACK_WEBHOOK_URL }}
+          curl -X POST --data-urlencode "payload={\"channel\": \"#team-bandicoot\", \"username\": \"webhookbot\", \"text\": \"Merged Failing Pull Request to Main Branch!\n<https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/commit/${{ github.sha }}|View Pull Request>\n<${{ steps.workflow.outputs.url }}|View Unit Test Results>\n @teambandicoot\", \"icon_emoji\": \":robot_face:\", \"link_names\":\"1\"}" ${{ inputs.SLACK_WEBHOOK_URL }}
         fi
         exit 0
       shell: bash
