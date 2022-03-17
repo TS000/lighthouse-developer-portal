@@ -1,0 +1,21 @@
+name: Delete workflows
+description: Runs script to delete older workflows
+inputs:
+  token:
+    description: 'Github Token'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
+    - name: Install dependencies
+      run: npm install @octokit/core
+      shell: bash
+    - name: Run delete script
+      env:
+        WORKFLOW_TOKEN: ${{ inputs.token }}
+      run: node scripts/delete_workflows.js
+      shell: bash

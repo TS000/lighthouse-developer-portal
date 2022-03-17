@@ -2,7 +2,7 @@ allowed_patterns:
   - 'GH_CLIENT_SECRET: \${{ secrets.GH_OAUTH_CLIENT_SECRET }}'
   - 'GH_CLIENT_SECRET: \${{ secrets.GH_OAUTH_CLIENT_SECRET }}'
   - 'AUTH_GITHUB_CLIENT_SECRET: {{ .Values.GH_CLIENT_SECRET \| b64enc }}'
-  - 'password: \${POSTGRES_PASSWORD}'
+  - 'password: \${'
   - 'clientSecret: \${GH_CLIENT_SECRET}'
   - 'REPO_SECRETS: \${{ toJson\(secrets\) }}'
   - 'key: cypress\-cache\-v2\-\${{ runner.os }}\-'
