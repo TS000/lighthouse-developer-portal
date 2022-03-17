@@ -1,11 +1,6 @@
 name: Run scheduled jobs
 
 on:
-<<<<<<< HEAD
-=======
-  push:
-    branches: [API-14526-scheduled-workflows]
->>>>>>> 8b0e1cdc ([API-14526] Updates to scheduled workflows)
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
