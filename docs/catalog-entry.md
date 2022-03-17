@@ -94,6 +94,8 @@ An object with arbitrary non-identifying metadata attached to the entity, identi
 
 You can also review [Backstage's list of well-known annotations](https://backstage.io/docs/features/software-catalog/well-known-annotations).
 
+It's possible to add a Datadog Graph and/or Dashboard to entities by following the guide at the end of [this document](#datadog). This plugin will only apply to specific kinds. Component, API, System, and Domain.
+
 ### tags [optional]
 
 A list of single-valued strings, for example, to classify catalog entities in various ways. This is different from the labels in metadata, as labels are key-value pairs.
@@ -267,3 +269,70 @@ A single target as a string. Can be either an absolute path/URL (depending on th
 ### spec.targets [optional]
 
 A list of targets as strings. They can all be either absolute paths/URLs (depending on the type), or relative paths such as `./details/catalog-info.yaml` which are resolved relative to the location of this Location entity itself.
+
+# Plugins
+## Datadog
+
+This plugin allows catalog entities to include a datadog dashboard, and/or graph within the entity view.
+
+First, specify the datadog domain. This can be done by adding a new annotation to the `catalog-info.yaml` file. By default the datadog domain is set to `datadoghq.eu`.
+
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-component
+  description: 'The coolest example that also has a datadog dashboard'
+  annotations:
+    datadoghq.com/site: datadoghq.com
+```
+
+### Dashboard
+
+A complete datadog dashboard can be included within a catalog entity view. This will show up as a tab that can be clicked similar to "overview" and "docs". In order to include a dashboard you must get the dashboard share URL.
+
+Steps to get the dashboard URL and add it to the `catalog-info.yaml` file.
+
+- Login to your Datadog account.
+- Navigate to the desired dashboard and click into it.
+- Click the `settings` cog on the screen's upper right-hand side.
+- Copy the URL from the sharing section.
+- Add the URL to the `datadoghq.com/dashboard-url` annotation within the `catalog-info.yaml` file.
+
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-component
+  description: 'The coolest example that also has a datadog dashboard'
+  annotations:
+    datadoghq.com/site: datadoghq.com
+    datadoghq.com/dashboard-url: << DASHBOARD_URL >>
+```
+
+### Graph
+
+A single graph from a dashboard can be included within the catalog entity overview page. The graph will be shown next to the general info card where the list of links is usually listed.
+
+Steps to get the graph token and add it to the `catalog-info.yaml` file.
+
+- Login to your Datadog account.
+- Navigate to the dashboard that contains the graph and click into it.
+- Click on the pencil icon shown in the upper-right section of the graph, it should open up a modal.
+- Locate the `Share` tab and click it.
+- Choose an option for `time frame`, `graph size`, and`include the legend`. (Note: Graph sizes won't be applied unless a `graph-size` annotation is added, otherwise the default is medium.)
+- Click `Generate Embed Code`, and copy the listed token.
+- Add the token to the `datadoghq.com/graph-token` annotation within the `catalog-info.yaml` file.
+
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-component
+  description: 'The coolest example that also has a datadog dashboard'
+  annotations:
+    datadoghq.com/site: datadoghq.com
+    datadoghq.com/graph-token: << GRAPH_TOKEN >>
+    # Add if you want a graph size other than medium. Excepted options: "small", "medium", "large", and "x-large"
+    datadoghq.com/graph-size: medium
+```

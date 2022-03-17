@@ -24,6 +24,11 @@ import {
   EntityProvidingComponentsCard,
 } from '@backstage/plugin-api-docs';
 import {
+  EntityDatadogContent,
+  EntityDatadogGraphCard,
+  isDatadogGraphAvailable,
+} from '@roadiehq/backstage-plugin-datadog';
+import {
   EntityAboutCard,
   EntityDependsOnComponentsCard,
   EntityDependsOnResourcesCard,
@@ -108,6 +113,18 @@ const overviewContent = (
     <Grid item md={6}>
       <EntityAboutCard variant="gridItem" />
     </Grid>
+
+    <EntitySwitch>
+      <EntitySwitch.Case
+        // @ts-ignore
+        if={isDatadogGraphAvailable}
+      >
+        <Grid item md={6}>
+          <EntityDatadogGraphCard />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
+
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
     </Grid>
@@ -138,6 +155,10 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
+    <EntityLayout.Route path="/datadog" title="Datadog">
+      <EntityDatadogContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/dependencies" title="Dependencies">
       <Grid container spacing={3} alignItems="stretch">
         <Grid item md={6}>
@@ -163,6 +184,10 @@ const websiteEntityPage = (
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/datadog" title="Datadog">
+      <EntityDatadogContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/dependencies" title="Dependencies">
@@ -198,6 +223,10 @@ const defaultEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       <EntityTechdocsContent />
     </EntityLayout.Route>
+
+    <EntityLayout.Route path="/datadog" title="Datadog">
+      <EntityDatadogContent />
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
@@ -226,6 +255,16 @@ const apiPage = (
         <Grid item md={4} xs={12}>
           <EntityLinksCard />
         </Grid>
+        <EntitySwitch>
+          <EntitySwitch.Case
+            // @ts-ignore
+            if={isDatadogGraphAvailable}
+          >
+            <Grid item md={6}>
+              <EntityDatadogGraphCard />
+            </Grid>
+          </EntitySwitch.Case>
+        </EntitySwitch>
         <Grid container item md={12}>
           <Grid item md={6}>
             <EntityProvidingComponentsCard />
@@ -235,6 +274,10 @@ const apiPage = (
           </Grid>
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/datadog" title="Datadog">
+      <EntityDatadogContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/definition" title="Definition">
@@ -290,6 +333,16 @@ const systemPage = (
         <Grid item md={6}>
           <EntityAboutCard variant="gridItem" />
         </Grid>
+        <EntitySwitch>
+          <EntitySwitch.Case
+            // @ts-ignore
+            if={isDatadogGraphAvailable}
+          >
+            <Grid item md={6}>
+              <EntityDatadogGraphCard />
+            </Grid>
+          </EntitySwitch.Case>
+        </EntitySwitch>
         <Grid item md={6}>
           <EntityHasComponentsCard variant="gridItem" />
         </Grid>
@@ -301,6 +354,11 @@ const systemPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
+
+    <EntityLayout.Route path="/datadog" title="Datadog">
+      <EntityDatadogContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/diagram" title="Diagram">
       <EntitySystemDiagramCard />
     </EntityLayout.Route>
@@ -315,10 +373,24 @@ const domainPage = (
         <Grid item md={6}>
           <EntityAboutCard variant="gridItem" />
         </Grid>
+        <EntitySwitch>
+          <EntitySwitch.Case
+            // @ts-ignore
+            if={isDatadogGraphAvailable}
+          >
+            <Grid item md={6}>
+              <EntityDatadogGraphCard />
+            </Grid>
+          </EntitySwitch.Case>
+        </EntitySwitch>
         <Grid item md={6}>
           <EntityHasSystemsCard variant="gridItem" />
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/datadog" title="Datadog">
+      <EntityDatadogContent />
     </EntityLayout.Route>
   </EntityLayout>
 );

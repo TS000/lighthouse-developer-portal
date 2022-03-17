@@ -22,6 +22,9 @@ metadata:
       icon: slack
   annotations:
     github.com/project-slug: department-of-veterans-affairs/lighthouse-developer-portal
+    datadoghq.com/site: datadoghq.com
+    datadoghq.com/dashboard-url: https://p.datadoghq.com/sb/dq828b4kr813cbhm-127a5292a5c6656e73d7ab859c3b46a3
+    datadoghq.com/graph-token: f08beb2039525ff568f3de84a9f15e1c3e90f764cd472f280b678513772b3151
 spec:
   type: website
   owner: lighthouse-bandicoot
