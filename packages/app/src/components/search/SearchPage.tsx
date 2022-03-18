@@ -108,7 +108,7 @@ const SearchPage = () => {
                           <CatalogResultListItem
                             key={document.location}
                             result={document}
-                            type="Catalog entitty"
+                            type="Catalog entity"
                           />
                         );
                       case 'api-catalog':
