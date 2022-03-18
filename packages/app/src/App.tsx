@@ -18,7 +18,6 @@ import { UserSettingsPage } from '@backstage/plugin-user-settings';
 import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
 import { Root } from './components/Root';
-import { HomePage } from './components/homepage';
 import { initDatadogLogs } from './components/datadog';
 import { searchPage } from './components/search/SearchPage';
 import { FeatureFlagsPage, FlagContext } from '@internal/plugin-feature-flags';
@@ -48,6 +47,7 @@ import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { viewExplorePagePermission } from './utils/';
 import { Banner } from './components/banner';
 import SlackIcon from './icons/Slack';
+import { HomePage } from './components/homepage/HomePage';
 
 const githubProvider: SignInProviderConfig = {
   id: 'github-auth-provider',
@@ -115,6 +115,7 @@ const AppRouter = app.getRouter();
 
 const routes = (
   <FlatRoutes>
+
     <Route path="/" element={<HomePage />} />
     <Route path="/search" element={<SearchPage />}>
       {searchPage}

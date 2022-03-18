@@ -6,9 +6,15 @@ import { configApiRef, useApi } from '@backstage/core-plugin-api';
 import { SearchModal } from './SearchModal';
 
 const useStyles = makeStyles((theme: Theme) => ({
-  bar: {
-    padding: theme.spacing(1, 0),
-  },
+  searchBar: {
+    display: 'flex',
+    maxWidth: '60vw',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[1],
+    padding: '8px 0',
+    borderRadius: '50px',
+    margin: 'auto',
+},
   button: {
     width: '100%',
     justifyContent: 'start',
@@ -32,7 +38,7 @@ export const Search = () => {
   return (
     <>
       <SearchModal open={isOpen} toggleModal={toggleModal} />
-      <Paper className={classes.bar}>
+      <Paper className={classes.searchBar}>
         <Button
           className={classes.button}
           startIcon={<SearchIcon />}

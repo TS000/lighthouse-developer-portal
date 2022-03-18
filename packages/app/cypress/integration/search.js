@@ -17,7 +17,7 @@ describe('Search', () => {
     );
     cy.visit('/');
 
-    cy.get('h1').contains('Home').should('be.visible');
+    cy.contains('Starter Guide').should('be.visible');
   });
 
   it('should show the search button', () => {
