@@ -14,6 +14,7 @@ data:
   DOCSERVER_BASE_URL: {{ .Values.DOCSERVER_BASE_URL }}
   APP_CONFIG_auth_environment: {{ .Values.global.DEPLOY_ENV }}
   APP_CONFIG_app_version: {{ .Values.global.VERSION | quote }}
+  APP_CONFIG_app_sha: {{ .Values.global.image.tag | quote }}
 ---
 apiVersion: v1
 kind: ConfigMap

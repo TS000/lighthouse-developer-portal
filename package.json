@@ -89,6 +89,11 @@
             "type": "string",
             "description": "version of app",
             "visibility": "frontend"
+          },
+          "sha": {
+            "type": "string",
+            "description": "truncated commit sha",
+            "visibility": "frontend"
           }
         }
       }

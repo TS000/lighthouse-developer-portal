@@ -6,13 +6,14 @@ interface Environment {
   environment: string;
 }
 
-interface Version {
+interface App {
   version: string;
+  sha: string;
 }
 
 interface AppData {
   auth: Environment;
-  app: Version
+  app: App,
 }
 
 interface ConfigVersion extends Config {
@@ -23,6 +24,8 @@ export const VersionAndEnv: FC = (): any => {
   const apiConfig: ConfigVersion = useApi(configApiRef);
   const environment = apiConfig?.data?.auth?.environment;
   const version = apiConfig?.data?.app?.version;
+  const sha = apiConfig?.data?.app?.sha ? apiConfig?.data?.app?.sha.split('-')[1].substring(0, 8) : 'sha-00000';
+
   return (
     <div
       style={{
@@ -35,7 +38,7 @@ export const VersionAndEnv: FC = (): any => {
         width: '100%',
       }}
     >
-      <p>{`v${version}`}</p>
+      <p>{`v${version || sha}`}</p>
       {environment ? (
         <>
           <p>-</p>
