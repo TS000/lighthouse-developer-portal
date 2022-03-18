@@ -21,7 +21,6 @@ export const FeatureFlagRegistry = () => {
   const { registerFeatureFlag } = useFeatureFlags();
 
   // Decides whether to show extra info on the home page
-  registerFeatureFlag('starter-guide', 'starter-guide-id');
   registerFeatureFlag('radar-dashboard', 'radar-dashboard-id');
 
   return null;
