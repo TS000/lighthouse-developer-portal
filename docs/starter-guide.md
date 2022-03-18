@@ -1,71 +1,10 @@
 # Overview
 
-The Lighthouse developer portal is an implementation of [Backstage](https://backstage.io/).
+The Lighthouse developer portal is an implementation of [Backstage](https://backstage.io/). Adding entities to Lighthouse catalog allows you to manage and maintain all the software your team owns and make it discoverable to other VA teams. The Lighthouse catalog works by storing metadata YAML files with the code and visualizing them in the Lighthouse developer portal. 
 
-The Lighthouse developer portal Software Catalog is a centralized system that keeps track of ownership and metadata for all the software in your ecosystem (services, websites, libraries, data pipelines, etc). The catalog is built around the concept of metadata YAML files stored together with the code, which are then harvested and visualized in the Lighthouse developer portal.
+Learn more about the [software catalog](https://backstage.io/docs/features/software-catalog/software-catalog-overview) in the Backstage documentation or add to the catalogue. LINK TO PAGE HERE. 
 
-More Information about the Lighthouse developer portal's [Software Catalog](https://backstage.io/docs/features/software-catalog/software-catalog-overview)
-
-# Adding a Catalog Entity
-
-The Lighthouse developer portal identifies catalog entities by scanning every repository in an organization and looking for a `catalog-info.yaml` file in the root of the repository. The `catalog-info.yaml` file is a Catalog Entity Descriptor file is not only used to identify which repositories contain Catalog Entities, but it is also used to provide helpful information for other the Lighthouse developer portal users who may wish to use your application.
-
-Note: It will take up to 10 minutes for a newly registered catalog to appear in search.
-
-## Creating an Entity Descriptor File
-
-In the root directory of your application, create a `catalog-info.yaml` file:
-
-```yaml
-# Example catalog-info.yaml
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: frontend
-  namespace: lighthouse-bandicoot
-  description: The frontend application for the Lighthouse developer portal
-  tags:
-    - javascript
-    - typescript
-    - react
-  links:
-    - url: https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues
-      title: Issues
-      icon: alert
-    - url: https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/
-      title: Docs
-      icon: help
-  annotations:
-    backstage.io/techdocs-ref: url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal
-    github.com/project-slug: department-of-veterans-affairs/lighthouse-developer-portal
-spec:
-  type: website
-  owner: lighthouse-bandicoot
-  lifecycle: experimental
-  system: lighthouse-developer-portal
-```
-
-## Navigate to Catalog on Developer Portal
-
-TODO: Instructions on how to access developer portal
-![Catalog View](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-developer-portal/main/docs/images/catalog_view.png)
-
-## Search Catalog
-
-Search the Catalog to verify your application has been added to the Catalog.
-![Catalog Filtered View](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-developer-portal/main/docs/images/catalog_filtered_view.png)
-
-## View Catalog Entity
-
-Once you find the new entry to the Catalog, you can select it to view more detailed information about the application.
-![Catalog Entity](https://raw.githubusercontent.com/department-of-veterans-affairs/lighthouse-developer-portal/main/docs/images/catalog_entity.png)
-
-## Additional Configuration Information
-
-Visit Backstage's [documentation](https://backstage.io/docs/features/software-catalog/descriptor-format) for more information about how to format catalog entity descriptor files.
-
-## Techdocs
-
+INSERT TABLE OF CONTENTS--MODIFY THIS
 - [Techdocs Overview](#techdocs-overview)
 - [Techdocs Github Action](#techdocs-github-action)
 - [Techdocs GHA Overview](#techdocs-gha-overview)
@@ -73,85 +12,42 @@ Visit Backstage's [documentation](https://backstage.io/docs/features/software-ca
 - [Techdocs GHA Usage](#techdocs-gha-usage)
 - [Example Workflow](#example-workflow)
 
-## Techdocs Overview
+# Adding a catalog entity
+In the Lighthouse developer portal, you can add entity files LINK, repositories LINK, and TechDocs LINK manually on the Add to catalogue page. LINK TO PAGE HERE. To do this, you'll need to create a catalog entity descriptor file LINK or add an existing one LINK. 
 
-[Techdocs](https://backstage.io/docs/features/techdocs/techdocs-overview) transforms documentation from markdown files in your repository into a bundle of static files(HTML, CSS, JSON, etc.) that can be rendered inside the Internal Developer Portal.
+The portal identifies catalog entities by scanning every repository in an organization and looking for a `catalog-info.yaml` file in the root of the repository. The `catalog-info.yaml` file is a catalog entity descriptor file that identifies which repositories contain catalog entities and provides helpful information for others who may wish to use your application. 
 
-## Techdocs Github Action
+## Creating a catalog entity descriptor file
 
-The [Lighthouse Github Action](https://github.com/department-of-veterans-affairs/lighthouse-github-actions#techdocs-action) repository contains a Techdocs Action that can be referenced in your own workflows to create and publish your team's Techdocs. The Techdocs Action works by creating a Kubernetes Job that will pull a git repository then run the `techdocs-cli` to generate and publish your Techdocs to the Lighthouse S3 bucket.
+In the root directory of your application, create a `catalog-info.yaml` file. 
 
-You can add the action to an existing CI/CD workflow or add it as a standalone workflow triggered only when the `docs` directory is updated.
+- Learn about the [format for catalogue entity descriptor files](https://backstage.io/docs/features/software-catalog/descriptor-format)
+- Reference [examples of catalog entity descriptor files](https://github.com/backstage/backstage/tree/master/packages/catalog-model/examples)  
 
-This action creates a [Kubernetes Job](https://github.com/department-of-veterans-affairs/lighthouse-github-actions/blob/main/example-techdocs-job.yaml) that will generate and publish your Techdocs for the Lighthouse Internal Developer Portal.
+## Adding the catalog entity description file
 
-## Techdocs GHA Overview
+To add an entity, you'll need to link to the code source. You can link to an existing file, repository, or TechDoc. The Add to catalog wizard will confirm if the entity was added correctly or if there was an error. 
 
-The Kubernetes Job consists of two containers: a [git-sync](https://github.com/kubernetes/git-sync) container and a `Techdocs` [container](https://github.com/department-of-veterans-affairs/lighthouse-github-actions/pkgs/container/lighthouse-github-actions%2Ftechdocs). The `git-sync` container is an initContainer that pulls a git repository to a shared volume so the Techdocs container has a copy of the repository. The `Techdocs` container then uses the [Techdocs-cli](https://backstage.io/docs/features/techdocs/cli) to generate and publish your documentation to the Lighthouse S3 bucket.
+It may take up to 10 minutes for a newly registered catalog to appear in search. You can verify the entity was added by searching the catalog. LINK TO CATALOG 
 
-## Techdocs GHA Prerequisites
+From here, you can: 
+- Add an entity to the catalog LINK TO PORTAL PAGE
+- Learn about adding TechDocs LINK TO PAGE IN DOC
+- Search the Lighthouse catalog LINK TO PAGE or [learn how to search the catalog](https://backstage.io/docs/features/software-catalog/software-catalog-overview#finding-software-in-the-catalog) 
 
-The root directory of your repository contains:
+# Adding TechDocs
+The TechDocs solution transforms documentation from markdown files in your repository into a bundle of static files (HTML, CSS, JSON, etc.) that can be rendered inside the Lighthouse developer portal. 
 
-- [x] a [`catalog-info.yaml`](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/catalog-info.yaml) with a [backstage.io/techdocs-ref](https://backstage.io/docs/features/software-catalog/well-known-annotations#backstageiotechdocs-ref) annotation
-- [x] a [`mkdocs.yaml`](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/mkdocs.yml) configuration file
-- [x] a [`docs`](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/docs) directory where all your documentation lives
+Publish your team's TechDocs by referencing a [Techdocs action](https://github.com/department-of-veterans-affairs/lighthouse-github-actions#lighthouse-github-actions) in your workflow. This action works by creating a [Kubernetes job](https://github.com/department-of-veterans-affairs/lighthouse-github-actions/blob/main/example-techdocs-job.yaml) that will first pull a git repository, then run the 'techdocs-cli' to generate and publish your TechDocs to the Lighthouse S3 bucket. You can add the action to an existing CI/CD workflow or add it as a standalone workflow triggered only when the `docs` directory is updated.
 
-More info about [Entity Descriptor files](https://backstage.io/docs/features/software-catalog/descriptor-format#overall-shape-of-an-entity)
+Add your TechDocs from the Add to catalogue page LINK in the portal or learn more about the [Backstage TechDocs solution](https://backstage.io/docs/features/techdocs/techdocs-overview). 
 
-## Techdocs GHA Usage
+- [Lighthouse TechDocs action] LINK TO DOC
+- [Techdocs GHA Prerequisites](#techdocs-gha-prerequisites) LINMK TO DOC
+- [Techdocs GHA Usage](#techdocs-gha-usage) LINK TO USAGE
+- [Example Workflow](#example-workflow) LINK TO DOC
 
-```yaml
-- name: Create Techdocs Job
-  uses: department-of-veterans-affairs/lighthouse-github-actions/.github/actions/techdocs@main
-  with:
-    # Owner and repository where the documentation lives (e.g. department-of-veterans-affairs/lighthouse-developer-portal)
-    # Default: ${{ github.repository }}
-    repository: ''
-
-    # Name of Entity descriptor file; used to create Entity path (i.e. namespace/kind/name)
-    # Default: 'catalog-info.yaml'
-    descriptor-file: ''
-
-    # Namespace of the Catalog Entity in the Lighthouse Developer Portal
-    # Default: 'default'
-    # Note: This value should match the 'metadata.namespace' field in the Entity descriptor file.
-    # The 'metadata.namespace' field is arbitrary and does not correspond to an actual Kubernetes namespace.
-    # It is recommended to use your team name for the 'metadata.namespace' field to prevent collisions with
-    # Catalog Entities from other teams.
-    namespace: ''
-
-    # Personal Access Token used for Techdocs Webhook
-    # Scopes: Repo
-    token: ''
-```
-
-## Example Workflow
-
-```yaml
-# Example workflow
-name: Publish Documentation
-on:
-  push:
-    branches: [main]
-    paths: ['docs/*']
-jobs:
-  create-techdocs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Techdocs webhook
-        uses: department-of-veterans-affairs/lighthouse-github-actions/.github/actions/techdocs-webhook@main
-        with:
-          repository: ${{ github.repository }}
-          descriptor-file: 'catalog-info.yaml'
-          namespace: 'lighthouse-bandicoot'
-          token: ${{ secrets.PAT }}
-```
-
-## Lifecycle of an entity
-
-Full docs can be found [here](https://backstage.io/docs/features/software-catalog/life-of-an-entity), the primary points will be covered bellow.
+# Lifecycle of an entity
 
 The main extension points where developers can customize the catalog are:
 
@@ -164,3 +60,5 @@ The high level processes involved are:
 - _Ingestion_, where entity providers fetch raw entity data from external sources and seed it into the database.
 - _Processing_, where the policies and processors continually treat the ingested data and may emit both other raw entities (that are also subject to processing), errors, relations to tother entities, etc.
 - _Stitching_, where all of the data emitted by various processors are assembled together into the final output entity.
+
+Learn more about the [lifecycle of an entity](https://backstage.io/docs/features/software-catalog/life-of-an-entity) in the Backstage docs.
