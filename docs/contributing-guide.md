@@ -1,4 +1,4 @@
-# Contributing to lighthouse-developer-portal
+# Contributing to the Lighthouse Developer Portal
 
 ## Table of contents
 
