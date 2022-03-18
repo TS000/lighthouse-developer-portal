@@ -2,6 +2,13 @@ version: '3'
 
 services:
   frontend:
+    depends_on:
+      - backend
+    # Waits for the backend to have started and listen on port 7007 before starting
+    command: |
+      ./code/docker/wait-for-it.sh backend:7007 --
+      ./docker-entrypoint.sh
+      nginx -g "daemon off;"
     build:
       context: ../
       dockerfile: ./Dockerfile.dockerbuild
@@ -15,6 +22,8 @@ services:
   backend:
     stdin_open: true
     tty: true
+    depends_on:
+      - db
     environment:
       AWS_REGION: '${AWS_REGION}'
       AWS_ACCESS_KEY_ID: '${AWS_ACCESS_KEY_ID}'
