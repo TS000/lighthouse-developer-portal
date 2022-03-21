@@ -8,5 +8,11 @@ allowed_patterns:
   - 'key: cypress\-cache\-v2\-\${{ runner.os }}\-'
   - 'key: \${{ runner.os }}-'
 fileignoreconfig:
+- filename: .github/actions/build-devcontainer-image/action.yml
+  checksum: 9c9dae9b456bc2ac0986f657f90e634a6d043d33ce8c2328ef7e74e88a1fdcdc
+- filename: .github/workflows/deploy-qa.yml
+  checksum: c9af6cce63fb140cc6a4eb27161eed19883dacc3bea50ad16367a4ccd198db31
 - filename: yarn.lock
   checksum: e33a28a693222a9164a0b66063000fe0f94c8a806f6bea61d4ecd0951a1a6646
+version: ""
+
