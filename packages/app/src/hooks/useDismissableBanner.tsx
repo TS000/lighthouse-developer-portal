@@ -9,7 +9,7 @@ export const useDismissableBanner = () => {
   const storageApi = useApi(storageApiRef);
   const notificationsStore = storageApi.forBucket('notifications');
   const rawDismissedBanners =
-    notificationsStore.get<string[]>('dismissedBanners') ?? [];
+    notificationsStore.snapshot<string[]>('dismissedBanners').value ?? [];
 
   // Lists dismissed banners without duplicates
   const [dismissedBanners, setDismissedBanners] = useState(
@@ -22,20 +22,23 @@ export const useDismissableBanner = () => {
 
   // Updates the list of dismissed banners to remove duplicates
   useEffect(() => {
-    if (observedItems?.newValue) {
-      const currentValue = observedItems?.newValue ?? [];
+    if (observedItems?.value) {
+      const currentValue = observedItems?.value ?? [];
       setDismissedBanners(new Set(currentValue));
     }
-  }, [observedItems?.newValue]);
+  }, [observedItems?.value]);
 
   // Adds a new dismissed banner to the dismissedBanners list
   const addBanner = (id: string): void => {
-    notificationsStore.set('dismissedBanners', [...dismissedBanners, id]);
+    const dismissedBannersArr = Array.from(dismissedBanners);
+
+    notificationsStore.set('dismissedBanners', [...dismissedBannersArr, id]);
   };
 
   // Removes a dismissed banner from the dismissedBanners list
   const removeBanner = (id: string): void => {
-    const updatedBanners = [...dismissedBanners].filter(
+    const updatedBannersArr = Array.from(dismissedBanners);
+    const updatedBanners = [...updatedBannersArr].filter(
       bannerId => id !== bannerId,
     );
 

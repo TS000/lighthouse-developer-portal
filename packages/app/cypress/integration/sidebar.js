@@ -64,7 +64,7 @@ describe('sidebar', () => {
       cy.get('div').contains('Components').should('be.visible').click();
       cy.get('li[data-value="api"]').should('be.visible').click();
       cy.url().should('match', /\?filters.*kind.*=api/);
-      cy.contains('/backend').should('be.visible');
+      cy.contains('hello-world').should('be.visible');
     });
   });
 

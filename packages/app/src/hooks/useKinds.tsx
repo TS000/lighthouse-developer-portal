@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useEntityKinds } from '@backstage/plugin-catalog-react';
+import { useEntityKinds } from './';
 
 /**
  * Obtains all current "kinds" within the catalog entry.

@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import { BackstageIdentityResponse, IdentityClient } from '@backstage/plugin-auth-backend';
+import {
+  IdentityClient,
+  BackstageIdentityResponse,
+} from '@backstage/plugin-auth-node';
 import { createRouter } from '@backstage/plugin-permission-backend';
 import { AuthorizeResult } from '@backstage/plugin-permission-common';
 import {
@@ -25,8 +28,6 @@ import {
 import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 
-
-
 class CustomPermissionPolicy implements PermissionPolicy {
   async handle(
     request: PolicyAuthorizeQuery,
@@ -36,7 +37,7 @@ class CustomPermissionPolicy implements PermissionPolicy {
       if (!user || user.identity.userEntityRef === 'user:default/guest') {
         return {
           result: AuthorizeResult.DENY,
-        }
+        };
       }
     }
     return {
@@ -48,12 +49,14 @@ class CustomPermissionPolicy implements PermissionPolicy {
 export default async function createPlugin(
   env: PluginEnvironment,
 ): Promise<Router> {
-  const { logger, discovery } = env;
+  const { logger, discovery, config } = env;
   return await createRouter({
+    config,
     logger,
     discovery,
     policy: new CustomPermissionPolicy(),
-    identity: new IdentityClient({
+    // @ts-ignore
+    identity: IdentityClient.create({
       discovery,
       issuer: await discovery.getExternalBaseUrl('auth'),
     }),

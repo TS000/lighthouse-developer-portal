@@ -22,7 +22,7 @@ import {
   SearchResultPager,
   searchPlugin,
 } from '@backstage/plugin-search';
-import { IndexableDocument } from '@backstage/search-common';
+import { IndexableDocument } from '@backstage/plugin-search-common';
 import { useRouteRef } from '@backstage/core-plugin-api';
 import { Link, useContent } from '@backstage/core-components';
 import { useNavigate } from 'react-router-dom';

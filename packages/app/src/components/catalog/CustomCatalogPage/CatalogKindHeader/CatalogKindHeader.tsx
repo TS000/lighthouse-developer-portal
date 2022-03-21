@@ -10,9 +10,9 @@ import {
 } from '@material-ui/core';
 import {
   EntityKindFilter,
-  useEntityKinds,
-  useEntityListProvider,
+  useEntityList,
 } from '@backstage/plugin-catalog-react';
+import { useEntityKinds } from '../../../../hooks';
 import { parseParams } from '../../../../utils';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,7 +32,7 @@ export const CatalogKindHeader = ({
 }: CatalogKindHeaderProps) => {
   const classes = useStyles();
   const { kinds: allKinds = [] } = useEntityKinds();
-  const { updateFilters, queryParameters } = useEntityListProvider();
+  const { updateFilters, queryParameters } = useEntityList();
   const [selectedKind, setSelectedKind] = useState(
     ([queryParameters.kind].flat()[0] ?? initialFilter).toLocaleLowerCase(
       'en-US',
@@ -46,12 +46,12 @@ export const CatalogKindHeader = ({
     });
   }, [selectedKind, updateFilters]);
 
-  // Updates when selecting via sidebar submenu 
+  // Updates when selecting via sidebar submenu
   useEffect(() => {
     if (filterQuery) {
       setSelectedKind(filterQuery);
     }
-  }, [setSelectedKind, filterQuery])
+  }, [setSelectedKind, filterQuery]);
 
   // Before allKinds is loaded, or when a kind is entered manually in the URL, selectedKind may not
   // be present in allKinds. It should still be shown in the dropdown, but may not have the nice

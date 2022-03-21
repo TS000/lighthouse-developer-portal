@@ -3,14 +3,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import { SidebarItem } from '@backstage/core-components';
 import { IconComponent } from '@backstage/core-plugin-api';
 import { SearchModal } from './SearchModal';
-import { useSearch } from '@backstage/plugin-search';
 
 export type SidebarSearchModalProps = {
   icon?: IconComponent;
 };
 
 export const SidebarSearchModal = (props: SidebarSearchModalProps) => {
-  const { open, toggleModal } = useSearch();
+  const [open, setOpen] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const Icon = props.icon ? props.icon : SearchIcon;
 
@@ -20,7 +19,7 @@ export const SidebarSearchModal = (props: SidebarSearchModalProps) => {
     if (type === 'submit') {
       setHasSubmitted(true);
     }
-    toggleModal();
+    setOpen(!open);
   };
 
   return (
@@ -34,7 +33,7 @@ export const SidebarSearchModal = (props: SidebarSearchModalProps) => {
           if (hasSubmitted) {
             setHasSubmitted(false);
           } else {
-            toggleModal();
+            setOpen(!open);
           }
         }}
       />

@@ -5,9 +5,9 @@ import {
   LunrSearchEngine,
 } from '@backstage/plugin-search-backend-node';
 import { PluginEnvironment } from '../types';
-import { DefaultCatalogCollator } from '@backstage/plugin-catalog-backend';
-import { DefaultTechDocsCollator } from '@backstage/plugin-techdocs-backend';
-import { DefaultAPICollator } from '../collators';
+import { DefaultCatalogCollatorFactory } from '@backstage/plugin-catalog-backend';
+import { DefaultTechDocsCollatorFactory } from '@backstage/plugin-techdocs-backend';
+import { DefaultAPICollatorFactory } from '../collators';
 
 const ALLOWED_COMPONENT_KINDS = [
   'Component',
@@ -33,7 +33,7 @@ export default async function createPlugin({
   // particular collator gathers entities from the software catalog.
   indexBuilder.addCollator({
     defaultRefreshIntervalSeconds: 600,
-    collator: DefaultCatalogCollator.fromConfig(config, {
+    factory: DefaultCatalogCollatorFactory.fromConfig(config, {
       discovery,
       tokenManager,
       filter: {
@@ -45,7 +45,7 @@ export default async function createPlugin({
   // Adds spec definition to searchable content.
   indexBuilder.addCollator({
     defaultRefreshIntervalSeconds: 600,
-    collator: DefaultAPICollator.fromConfig(config, {
+    factory: DefaultAPICollatorFactory.fromConfig(config, {
       discovery,
       tokenManager,
       filter: {
@@ -57,7 +57,7 @@ export default async function createPlugin({
   // Indexes TechDocs documents
   indexBuilder.addCollator({
     defaultRefreshIntervalSeconds: 600,
-    collator: DefaultTechDocsCollator.fromConfig(config, {
+    factory: DefaultTechDocsCollatorFactory.fromConfig(config, {
       discovery,
       logger,
       tokenManager,

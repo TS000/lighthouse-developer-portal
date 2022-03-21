@@ -189,14 +189,14 @@ const App = () => {
         <FeatureFlagRegistry />
         <AlertDisplay />
         <OAuthRequestDialog />
-        <EntityListProvider>
-          <Banner />
-          <AppRouter>
-            <SearchContextProvider>
+        <Banner />
+        <AppRouter>
+          <SearchContextProvider>
+            <EntityListProvider>
               <Root>{routes}</Root>
-            </SearchContextProvider>
-          </AppRouter>
-        </EntityListProvider>
+            </EntityListProvider>
+          </SearchContextProvider>
+        </AppRouter>
       </FlagContext.Provider>
     </AppProvider>
   );

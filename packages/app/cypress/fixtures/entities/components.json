@@ -4,58 +4,708 @@
     "kind": "Component",
     "metadata": {
       "annotations": {
-        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/edit/main/plugins/feature-flag-ui/catalog-info.yaml",
-        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/plugins/feature-flag-ui/catalog-info.yaml",
-        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/plugins/feature-flag-ui/catalog-info.yaml",
-        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/plugins/feature-flag-ui/",
-        "backstage.io/techdocs-ref": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal",
-        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/plugins/feature-flag-ui/catalog-info.yaml",
-        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-developer-portal"
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/queue-proxy-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/queue-proxy-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/queue-proxy-component.yaml"
       },
-      "description": "A plugin to include feature-flags to a frontend.",
-      "etag": "e3d56f30fe9aff14b36a60444666640d59ee99d0",
+      "description": "Queue Proxy",
+      "etag": "91ee18f1459ba8291737855dbaa5379302c8e4bd",
       "generation": 1,
-      "links": [
-        {
-          "icon": "alert",
-          "title": "Issues",
-          "url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues"
-        },
-        {
-          "icon": "help",
-          "title": "Docs",
-          "url": "https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/"
-        }
-      ],
-      "name": "plugin-feature-flags",
-      "namespace": "lighthouse-developer-portal",
+      "name": "queue-proxy",
+      "namespace": "default",
       "tags": [
-        "javascript",
-        "react",
-        "typescript",
-        "plugin"
+        "lighthouse-developer-portal-test-set",
+        "go",
+        "website"
       ],
-      "uid": "70d232fe-a7ab-4dbb-8427-8741129641f6"
+      "uid": "10a260c3-7f0a-40d4-b935-f076b2c9740f"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "group",
+          "name": "team-b",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/team-b",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "system",
+          "name": "podcast",
+          "namespace": "default"
+        },
+        "targetRef": "system:default/podcast",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "lifecycle": "production",
+      "owner": "team-b",
+      "system": "podcast",
+      "type": "website"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/edit/main/catalog-info.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/tree/main/catalog-info.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/tree/main/",
+        "backstage.io/techdocs-ref": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-deployment/tree/main/catalog-info.yaml",
+        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-developer-portal-deployment"
+      },
+      "description": "Deployment repository for lighthouse-developer-portal",
+      "etag": "c6504e5afcf90c4a770510892673fc5e39af1ff9",
+      "generation": 1,
+      "name": "lighthouse-developer-portal-deployment-repo",
+      "namespace": "lighthouse-bandicoot",
+      "uid": "1f888111-e50b-4645-860c-3804be647d50"
     },
     "relations": [
       {
         "target": {
           "kind": "group",
           "name": "lighthouse-bandicoot",
-          "namespace": "lighthouse-developer-portal"
+          "namespace": "lighthouse-bandicoot"
         },
+        "targetRef": "group:lighthouse-bandicoot/lighthouse-bandicoot",
         "type": "ownedBy"
       },
       {
         "target": {
           "kind": "system",
           "name": "lighthouse-developer-portal",
-          "namespace": "lighthouse-developer-portal"
+          "namespace": "lighthouse-bandicoot"
         },
+        "targetRef": "system:lighthouse-bandicoot/lighthouse-developer-portal",
         "type": "partOf"
       }
     ],
     "spec": {
+      "lifecycle": "experimental",
+      "owner": "lighthouse-bandicoot",
+      "system": "lighthouse-developer-portal",
+      "type": "repository"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/edit/main/plugins/feature-flag-ui/catalog-info.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/plugins/feature-flag-ui/catalog-info.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/plugins/feature-flag-ui/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/plugins/feature-flag-ui/catalog-info.yaml",
+        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-developer-portal"
+      },
+      "description": "A plugin to include feature-flags to a frontend.",
+      "etag": "59a707ce22a0ec7503fe1ad480da2bb7284cc0c8",
+      "generation": 1,
+      "links": [
+        {
+          "icon": "help",
+          "title": "Issues",
+          "url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues"
+        },
+        {
+          "icon": "dashboard",
+          "title": "Docs",
+          "url": "https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/"
+        },
+        {
+          "icon": "web",
+          "title": "Backstage.io",
+          "url": "https://backstage.io/"
+        },
+        {
+          "icon": "slack",
+          "title": "lighthouse-bandicoot slack",
+          "url": "https://lighthouseva.slack.com/archives/C020ZR4UL8H"
+        }
+      ],
+      "name": "plugin-feature-flags",
+      "namespace": "default",
+      "tags": [
+        "javascript",
+        "react",
+        "typescript",
+        "plugin"
+      ],
+      "uid": "2e3b8b62-7571-47a3-adea-0972bf02800e"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "group",
+          "name": "lighthouse-bandicoot",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/lighthouse-bandicoot",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "component",
+          "name": "lighthouse-developer-portal-monorepo",
+          "namespace": "default"
+        },
+        "targetRef": "component:default/lighthouse-developer-portal-monorepo",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "lifecycle": "experimental",
+      "owner": "lighthouse-bandicoot",
+      "subcomponentOf": "component:default/lighthouse-developer-portal-monorepo",
+      "type": "website"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/podcast-api-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/podcast-api-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/podcast-api-component.yaml"
+      },
+      "description": "Podcast API",
+      "etag": "e8a29cd459f64ef9638ec9777f7c3e911b93f2df",
+      "generation": 1,
+      "name": "podcast-api",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set",
+        "java"
+      ],
+      "uid": "34cd56b3-2b2a-43dc-854b-8d82fb044bcc"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "group",
+          "name": "team-b",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/team-b",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "system",
+          "name": "podcast",
+          "namespace": "default"
+        },
+        "targetRef": "system:default/podcast",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "lifecycle": "experimental",
+      "owner": "team-b",
+      "system": "podcast",
+      "type": "service"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/shuffle-api-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/shuffle-api-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/shuffle-api-component.yaml"
+      },
+      "description": "Shuffle API",
+      "etag": "beeb382a68c544b286c610ac3413d61f196d3ed3",
+      "generation": 1,
+      "name": "shuffle-api",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set",
+        "go"
+      ],
+      "uid": "4fd34250-4c02-4e13-8a24-d43b580c466f"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "user",
+          "name": "guest",
+          "namespace": "default"
+        },
+        "targetRef": "user:default/guest",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "system",
+          "name": "audio-playback",
+          "namespace": "default"
+        },
+        "targetRef": "system:default/audio-playback",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "lifecycle": "production",
+      "owner": "user:guest",
+      "system": "audio-playback",
+      "type": "service"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/edit/main/packages/app/catalog-info.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/app/catalog-info.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/app/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/app/catalog-info.yaml",
+        "datadoghq.com/dashboard-url": "https://p.datadoghq.com/sb/dq828b4kr813cbhm-127a5292a5c6656e73d7ab859c3b46a3",
+        "datadoghq.com/graph-token": "f08beb2039525ff568f3de84a9f15e1c3e90f764cd472f280b678513772b3151",
+        "datadoghq.com/site": "datadoghq.com",
+        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-developer-portal"
+      },
+      "description": "The frontend application for the Lighthouse Developer Portal",
+      "etag": "274f42a51ba3a22bd9cd92a99c5a6e6d3cefaa79",
+      "generation": 1,
+      "links": [
+        {
+          "icon": "help",
+          "title": "Issues",
+          "url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues"
+        },
+        {
+          "icon": "dashboard",
+          "title": "Docs",
+          "url": "https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/"
+        },
+        {
+          "icon": "web",
+          "title": "Backstage.io",
+          "url": "https://backstage.io/"
+        },
+        {
+          "icon": "slack",
+          "title": "lighthouse-bandicoot slack",
+          "url": "https://lighthouseva.slack.com/archives/C020ZR4UL8H"
+        }
+      ],
+      "name": "frontend",
+      "namespace": "default",
+      "tags": [
+        "javascript",
+        "typescript",
+        "react"
+      ],
+      "uid": "5326baea-804f-44f7-bef7-2eda2bfc11ab"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "group",
+          "name": "lighthouse-bandicoot",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/lighthouse-bandicoot",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "component",
+          "name": "lighthouse-developer-portal-monorepo",
+          "namespace": "default"
+        },
+        "targetRef": "component:default/lighthouse-developer-portal-monorepo",
+        "type": "partOf"
+      },
+      {
+        "target": {
+          "kind": "system",
+          "name": "lighthouse-developer-portal",
+          "namespace": "default"
+        },
+        "targetRef": "system:default/lighthouse-developer-portal",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "lifecycle": "experimental",
+      "owner": "lighthouse-bandicoot",
+      "subcomponentOf": "lighthouse-developer-portal-monorepo",
+      "system": "lighthouse-developer-portal",
+      "type": "website"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/wayback-archive-storage-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/wayback-archive-storage-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/wayback-archive-storage-component.yaml"
+      },
+      "description": "Storage subsystem of the Wayback Archive",
+      "etag": "a389c42cd664281cccffb4fa13db89405f8fd25e",
+      "generation": 1,
+      "name": "wayback-archive-storage",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set"
+      ],
+      "uid": "58a66764-6a58-4dbf-ba8a-440e73c294f9"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "group",
+          "name": "team-a",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/team-a",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "component",
+          "name": "wayback-archive",
+          "namespace": "default"
+        },
+        "targetRef": "component:default/wayback-archive",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "lifecycle": "production",
+      "owner": "team-a",
+      "subcomponentOf": "wayback-archive",
+      "type": "service"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/www-artist-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/www-artist-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/www-artist-component.yaml"
+      },
+      "description": "Artist main website",
+      "etag": "0e38fedbb0864748e66c587d5f6f8e9227bcc3f6",
+      "generation": 1,
+      "name": "www-artist",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set"
+      ],
+      "uid": "7138da42-f064-4d44-93ff-645aeaf4a4ca"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "group",
+          "name": "team-a",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/team-a",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "system",
+          "name": "artist-engagement-portal",
+          "namespace": "default"
+        },
+        "targetRef": "system:default/artist-engagement-portal",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "lifecycle": "production",
+      "owner": "team-a",
+      "system": "artist-engagement-portal",
+      "type": "website"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/wayback-archive-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/wayback-archive-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/wayback-archive-component.yaml"
+      },
+      "description": "Archive of the wayback machine",
+      "etag": "57c916e2153c6e0b6e73779d6ed494a49eef185d",
+      "generation": 1,
+      "name": "wayback-archive",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set"
+      ],
+      "uid": "8ccb98dd-401e-4c81-8937-0c9e7ae27717"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "component",
+          "name": "wayback-archive-ingestion",
+          "namespace": "default"
+        },
+        "targetRef": "component:default/wayback-archive-ingestion",
+        "type": "hasPart"
+      },
+      {
+        "target": {
+          "kind": "component",
+          "name": "wayback-archive-storage",
+          "namespace": "default"
+        },
+        "targetRef": "component:default/wayback-archive-storage",
+        "type": "hasPart"
+      },
+      {
+        "target": {
+          "kind": "group",
+          "name": "team-a",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/team-a",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "api",
+          "name": "wayback-archive",
+          "namespace": "default"
+        },
+        "targetRef": "api:default/wayback-archive",
+        "type": "providesApi"
+      }
+    ],
+    "spec": {
+      "lifecycle": "production",
+      "owner": "team-a",
+      "providesApis": [
+        "wayback-archive"
+      ],
+      "type": "service"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/playback-order-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/playback-order-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/playback-order-component.yaml"
+      },
+      "description": "Playback Order",
+      "etag": "65f55437d4221d4b8b9768375a0fb2e80f7f932e",
+      "generation": 1,
+      "name": "playback-order",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set",
+        "java",
+        "playback"
+      ],
+      "uid": "9014f088-06c7-40bf-ba5d-2bf2f896b34a"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "user",
+          "name": "guest",
+          "namespace": "default"
+        },
+        "targetRef": "user:default/guest",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "system",
+          "name": "audio-playback",
+          "namespace": "default"
+        },
+        "targetRef": "system:default/audio-playback",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "lifecycle": "production",
+      "owner": "user:guest",
+      "system": "audio-playback",
+      "type": "service"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/petstore-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/petstore-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/petstore-component.yaml"
+      },
+      "description": "The Petstore is an example API used to show features of the OpenAPI spec.",
+      "etag": "869c2a5d40a4fa6b3496d786eddee76139c10356",
+      "generation": 1,
+      "links": [
+        {
+          "icon": "github",
+          "title": "GitHub Repo",
+          "url": "https://github.com/swagger-api/swagger-petstore"
+        }
+      ],
+      "name": "petstore",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set"
+      ],
+      "uid": "921eff7f-00de-4c9c-86a1-6843181386c4"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "group",
+          "name": "team-c",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/team-c",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "api",
+          "name": "hello-world",
+          "namespace": "default"
+        },
+        "targetRef": "api:default/hello-world",
+        "type": "providesApi"
+      },
+      {
+        "target": {
+          "kind": "api",
+          "name": "petstore",
+          "namespace": "default"
+        },
+        "targetRef": "api:default/petstore",
+        "type": "providesApi"
+      },
+      {
+        "target": {
+          "kind": "api",
+          "name": "streetlights",
+          "namespace": "default"
+        },
+        "targetRef": "api:default/streetlights",
+        "type": "providesApi"
+      }
+    ],
+    "spec": {
+      "lifecycle": "experimental",
+      "owner": "team-c",
+      "providesApis": [
+        "petstore",
+        "streetlights",
+        "hello-world"
+      ],
+      "type": "service"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/edit/main/catalog-info.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/catalog-info.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/",
+        "backstage.io/techdocs-ref": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/catalog-info.yaml"
+      },
+      "description": "Keeps track off all packages and plugins related to the Lighthouse Developer Portal",
+      "etag": "6f47d0360ad8b611a76866d777e432e0c1ea293f",
+      "generation": 1,
+      "links": [
+        {
+          "icon": "web",
+          "title": "Lighthouse Developer Portal Monorepo",
+          "url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal"
+        },
+        {
+          "icon": "help",
+          "title": "Issues",
+          "url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues"
+        },
+        {
+          "icon": "slack",
+          "title": "lighthouse-bandicoot slack",
+          "url": "https://lighthouseva.slack.com/archives/C020ZR4UL8H"
+        }
+      ],
+      "name": "lighthouse-developer-portal-monorepo",
+      "namespace": "lighthouse-bandicoot",
+      "tags": [
+        "monorepo"
+      ],
+      "uid": "c2aa4854-b4c0-40b7-b1c7-cd69db101743"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "group",
+          "name": "lighthouse-bandicoot",
+          "namespace": "lighthouse-bandicoot"
+        },
+        "targetRef": "group:lighthouse-bandicoot/lighthouse-bandicoot",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "system",
+          "name": "lighthouse-developer-portal",
+          "namespace": "lighthouse-bandicoot"
+        },
+        "targetRef": "system:lighthouse-bandicoot/lighthouse-developer-portal",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "domain": "lighthouse",
       "lifecycle": "experimental",
       "owner": "lighthouse-bandicoot",
       "system": "lighthouse-developer-portal",
@@ -67,61 +717,392 @@
     "kind": "Component",
     "metadata": {
       "annotations": {
-        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/edit/main/packages/app/catalog-info.yaml",
-        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/app/catalog-info.yaml",
-        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/packages/app/catalog-info.yaml",
-        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/app/",
-        "backstage.io/techdocs-ref": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal",
-        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/app/catalog-info.yaml",
-        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-developer-portal"
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/wayback-archive-ingestion-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/wayback-archive-ingestion-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/wayback-archive-ingestion-component.yaml"
       },
-      "description": "The frontend application for lighthouse-developer-portal",
-      "etag": "0ef1113b8debc87f9abcbd464d9a614c9b9ba30b",
+      "description": "Ingestion subsystem of the Wayback Archive",
+      "etag": "8187e1898f7d7a6968c5042b7b1ba04aa7c2e69c",
       "generation": 1,
-      "links": [
-        {
-          "icon": "alert",
-          "title": "Issues",
-          "url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues"
-        },
-        {
-          "icon": "help",
-          "title": "Docs",
-          "url": "https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/"
-        }
-      ],
-      "name": "frontend",
-      "namespace": "lighthouse-developer-portal",
+      "name": "wayback-archive-ingestion",
+      "namespace": "default",
       "tags": [
-        "javascript",
-        "typescript",
-        "react"
+        "lighthouse-developer-portal-test-set"
       ],
-      "uid": "803c54fd-eb9d-46fa-b006-6808b6ec0fe9"
+      "uid": "c366978c-66de-407b-b49f-02367c595d09"
     },
     "relations": [
       {
         "target": {
           "kind": "group",
-          "name": "lighthouse-bandicoot",
-          "namespace": "lighthouse-developer-portal"
+          "name": "team-d",
+          "namespace": "default"
         },
+        "targetRef": "group:default/team-d",
         "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "component",
+          "name": "wayback-archive",
+          "namespace": "default"
+        },
+        "targetRef": "component:default/wayback-archive",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "lifecycle": "production",
+      "owner": "team-d",
+      "subcomponentOf": "wayback-archive",
+      "type": "service"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/wayback-search-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/wayback-search-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/wayback-search-component.yaml"
+      },
+      "description": "Search of the wayback machine",
+      "etag": "0a79fbb2d8103df507010cebe2178c8027228b9d",
+      "generation": 1,
+      "name": "wayback-search",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set"
+      ],
+      "uid": "c7d703b9-79cc-496e-8adf-1a2c0c3b9a0b"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "api",
+          "name": "wayback-archive",
+          "namespace": "default"
+        },
+        "targetRef": "api:default/wayback-archive",
+        "type": "consumesApi"
+      },
+      {
+        "target": {
+          "kind": "group",
+          "name": "team-a",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/team-a",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "api",
+          "name": "wayback-search",
+          "namespace": "default"
+        },
+        "targetRef": "api:default/wayback-search",
+        "type": "providesApi"
+      }
+    ],
+    "spec": {
+      "consumesApis": [
+        "wayback-archive"
+      ],
+      "lifecycle": "production",
+      "owner": "team-a",
+      "providesApis": [
+        "wayback-search"
+      ],
+      "type": "service"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/edit/main/packages/backend/catalog-info.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/backend/catalog-info.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/backend/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/tree/main/packages/backend/catalog-info.yaml",
+        "github.com/project-slug": "department-of-veterans-affairs/lighthouse-developer-portal/packages/backend"
+      },
+      "description": "The backend server for the Lighthouse Developer Portal",
+      "etag": "f88a782724b500184ac38be0a4d928eb494465f2",
+      "generation": 1,
+      "links": [
+        {
+          "icon": "help",
+          "title": "Issues",
+          "url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues"
+        },
+        {
+          "icon": "dashboard",
+          "title": "Docs",
+          "url": "https://department-of-veterans-affairs.github.io/lighthouse-developer-portal/"
+        },
+        {
+          "icon": "web",
+          "title": "Backstage.io",
+          "url": "https://backstage.io/"
+        },
+        {
+          "icon": "slack",
+          "title": "lighthouse-bandicoot slack",
+          "url": "https://lighthouseva.slack.com/archives/C020ZR4UL8H"
+        }
+      ],
+      "name": "backend",
+      "namespace": "default",
+      "tags": [
+        "javascript",
+        "node"
+      ],
+      "uid": "ea79d325-06e9-4065-82da-52d2c52ff397"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "resource",
+          "name": "lighthouse-developer-portal-db",
+          "namespace": "default"
+        },
+        "targetRef": "resource:default/lighthouse-developer-portal-db",
+        "type": "dependsOn"
+      },
+      {
+        "target": {
+          "kind": "group",
+          "name": "lighthouse-bandicoot",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/lighthouse-bandicoot",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "component",
+          "name": "lighthouse-developer-portal-monorepo",
+          "namespace": "default"
+        },
+        "targetRef": "component:default/lighthouse-developer-portal-monorepo",
+        "type": "partOf"
       },
       {
         "target": {
           "kind": "system",
           "name": "lighthouse-developer-portal",
-          "namespace": "lighthouse-developer-portal"
+          "namespace": "default"
         },
+        "targetRef": "system:default/lighthouse-developer-portal",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "consumesApi": [
+        "api:default/lighthouse-developer-portal-catalog-api"
+      ],
+      "dependsOn": [
+        "resource:default/lighthouse-developer-portal-db"
+      ],
+      "lifecycle": "experimental",
+      "owner": "lighthouse-bandicoot",
+      "subcomponentOf": "lighthouse-developer-portal-monorepo",
+      "system": "lighthouse-developer-portal",
+      "type": "website"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/playback-lib-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/playback-lib-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/playback-lib-component.yaml"
+      },
+      "description": "Audio and video playback SDK",
+      "etag": "02ce1210ffcee763701da9bd12c7fbf9feabb2df",
+      "generation": 1,
+      "name": "playback-sdk",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set"
+      ],
+      "uid": "ee46b6d7-7c32-4d9e-86ee-b37efc108790"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "group",
+          "name": "team-c",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/team-c",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "system",
+          "name": "audio-playback",
+          "namespace": "default"
+        },
+        "targetRef": "system:default/audio-playback",
         "type": "partOf"
       }
     ],
     "spec": {
       "lifecycle": "experimental",
-      "owner": "lighthouse-bandicoot",
-      "system": "lighthouse-developer-portal",
-      "type": "website"
+      "owner": "team-c",
+      "system": "audio-playback",
+      "type": "library"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/searcher-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/searcher-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/searcher-component.yaml"
+      },
+      "description": "Searcher",
+      "etag": "2509be59fd4b88c83d3020f4e6bfd0fe974c5f93",
+      "generation": 1,
+      "name": "searcher",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set",
+        "go"
+      ],
+      "uid": "f497acb0-47cf-4d35-98f3-657ee325eff1"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "user",
+          "name": "guest",
+          "namespace": "default"
+        },
+        "targetRef": "user:default/guest",
+        "type": "ownedBy"
+      }
+    ],
+    "spec": {
+      "lifecycle": "production",
+      "owner": "user:guest",
+      "type": "service"
+    }
+  },
+  {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "annotations": {
+        "backstage.io/edit-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/edit/main/catalog-tests/components/artist-lookup-component.yaml",
+        "backstage.io/managed-by-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/artist-lookup-component.yaml",
+        "backstage.io/managed-by-origin-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/blob/main/env/catalog-local.yaml",
+        "backstage.io/source-location": "url:https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/",
+        "backstage.io/view-url": "https://github.com/department-of-veterans-affairs/lighthouse-developer-portal-catalog-entries/tree/main/catalog-tests/components/artist-lookup-component.yaml"
+      },
+      "description": "Artist Lookup",
+      "etag": "371b32935886652229e869cb08b018fee402aea6",
+      "generation": 1,
+      "links": [
+        {
+          "icon": "user",
+          "title": "Examples Users",
+          "url": "https://example.com/user"
+        },
+        {
+          "icon": "group",
+          "title": "Example Group",
+          "url": "https://example.com/group"
+        },
+        {
+          "icon": "cloud",
+          "title": "Link with Cloud Icon",
+          "url": "https://example.com/cloud"
+        },
+        {
+          "icon": "dashboard",
+          "title": "Dashboard",
+          "url": "https://example.com/dashboard"
+        },
+        {
+          "icon": "help",
+          "title": "Support",
+          "url": "https://example.com/help"
+        },
+        {
+          "icon": "web",
+          "title": "Website",
+          "url": "https://example.com/web"
+        },
+        {
+          "icon": "alert",
+          "title": "Alerts",
+          "url": "https://example.com/alert"
+        }
+      ],
+      "name": "artist-lookup",
+      "namespace": "default",
+      "tags": [
+        "lighthouse-developer-portal-test-set",
+        "java",
+        "data"
+      ],
+      "uid": "f5540951-f6ac-4409-b3af-6b27fe0831c4"
+    },
+    "relations": [
+      {
+        "target": {
+          "kind": "resource",
+          "name": "artists-db",
+          "namespace": "default"
+        },
+        "targetRef": "resource:default/artists-db",
+        "type": "dependsOn"
+      },
+      {
+        "target": {
+          "kind": "group",
+          "name": "team-a",
+          "namespace": "default"
+        },
+        "targetRef": "group:default/team-a",
+        "type": "ownedBy"
+      },
+      {
+        "target": {
+          "kind": "system",
+          "name": "artist-engagement-portal",
+          "namespace": "default"
+        },
+        "targetRef": "system:default/artist-engagement-portal",
+        "type": "partOf"
+      }
+    ],
+    "spec": {
+      "dependsOn": [
+        "resource:artists-db"
+      ],
+      "lifecycle": "experimental",
+      "owner": "team-a",
+      "system": "artist-engagement-portal",
+      "type": "service"
     }
   }
 ]

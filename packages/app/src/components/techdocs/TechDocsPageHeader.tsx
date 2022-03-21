@@ -18,8 +18,8 @@ import {
   EntityName,
   RELATION_OWNED_BY,
   Entity,
-  LocationSpec,
 } from '@backstage/catalog-model';
+import { LocationSpec } from '@backstage/plugin-catalog-backend';
 import { HeaderLabel } from '@backstage/core-components';
 import { Header } from '../core';
 import { useRouteRef } from '@backstage/core-plugin-api';

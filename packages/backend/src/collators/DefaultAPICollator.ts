@@ -7,67 +7,74 @@ import {
   stringifyEntityRef,
   UserEntity,
 } from '@backstage/catalog-model';
-import { IndexableDocument, DocumentCollator } from '@backstage/search-common';
+import { DocumentCollatorFactory } from '@backstage/plugin-search-common';
 import { Config } from '@backstage/config';
 import {
   CatalogApi,
   CatalogClient,
-  CatalogEntitiesRequest,
+  GetEntitiesRequest,
 } from '@backstage/catalog-client';
-import { catalogEntityReadPermission } from '@backstage/plugin-catalog-common';
-import YAML from 'yaml';
+import { CatalogEntityDocument } from '@backstage/plugin-catalog-common';
+import { catalogEntityReadPermission } from '@backstage/plugin-catalog-common/alpha';
+import { Permission } from '@backstage/plugin-permission-common'
+import { Readable } from 'stream';
 
-interface CatalogEntityDocument extends IndexableDocument {
-  componentType: string;
-  namespace: string;
-  kind: string;
-  lifecycle: string;
-  owner: string;
-  definition: string;
+interface CatalogApiEntityDocument extends CatalogEntityDocument {
+  definition?: string;
 }
 
-export class DefaultAPICollator implements DocumentCollator {
-  protected discovery: PluginEndpointDiscovery;
-  protected locationTemplate: string;
-  protected filter?: CatalogEntitiesRequest['filter'];
-  protected readonly catalogClient: CatalogApi;
+/** @public */
+export type DefaultCatalogCollatorFactoryOptions = {
+  discovery: PluginEndpointDiscovery;
+  tokenManager: TokenManager;
+  locationTemplate?: string;
+  filter?: GetEntitiesRequest['filter'];
+  batchSize?: number;
+  catalogClient?: CatalogApi;
+};
+
+/** @public */
+export class DefaultAPICollatorFactory implements DocumentCollatorFactory {
   public readonly type: string = 'api-catalog';
-  public readonly visibilityPermission = catalogEntityReadPermission;
-  protected tokenManager: TokenManager;
+  public readonly visibilityPermission: Permission = catalogEntityReadPermission;
+
+  private locationTemplate: string;
+  private filter?: GetEntitiesRequest['filter'];
+  private batchSize: number;
+  private readonly catalogClient: CatalogApi;
+  private tokenManager: TokenManager;
 
   static fromConfig(
     _config: Config,
-    options: {
-      discovery: PluginEndpointDiscovery;
-      tokenManager: TokenManager;
-      filter?: CatalogEntitiesRequest['filter'];
-    },
+    options: DefaultCatalogCollatorFactoryOptions,
   ) {
-    return new DefaultAPICollator({
-      ...options,
-    });
+    return new DefaultAPICollatorFactory(options);
   }
 
-  constructor(options: {
-    discovery: PluginEndpointDiscovery;
-    tokenManager: TokenManager;
-    locationTemplate?: string;
-    filter?: CatalogEntitiesRequest['filter'];
-    catalogClient?: CatalogApi;
-  }) {
-    const { discovery, locationTemplate, filter, catalogClient, tokenManager } =
-      options;
+  private constructor(options: DefaultCatalogCollatorFactoryOptions) {
+    const {
+      batchSize,
+      discovery,
+      locationTemplate,
+      filter,
+      catalogClient,
+      tokenManager,
+    } = options;
 
-    this.discovery = discovery;
     this.locationTemplate =
       locationTemplate || '/catalog/:namespace/:kind/:name';
     this.filter = filter;
+    this.batchSize = batchSize || 500;
     this.catalogClient =
       catalogClient || new CatalogClient({ discoveryApi: discovery });
     this.tokenManager = tokenManager;
   }
 
-  protected applyArgsToFormat(
+  async getCollator(): Promise<Readable> {
+    return Readable.from(this.execute());
+  }
+
+  private applyArgsToFormat(
     format: string,
     args: Record<string, string>,
   ): string {
@@ -96,23 +103,37 @@ export class DefaultAPICollator implements DocumentCollator {
     return documentText;
   }
 
-  async execute() {
+  private async *execute(): AsyncGenerator<CatalogApiEntityDocument> {
     const { token } = await this.tokenManager.getToken();
-    const response = await this.catalogClient.getEntities(
-      {
-        filter: this.filter,
-      },
-      { token },
-    );
+    let entitiesRetrieved = 0;
+    let moreEntitiesToGet = true;
 
-    // Filter by responses that contain a definition
-    const responseWithDefinition = response.items.filter(
-      entity => entity.spec?.definition,
-    );
+    // Offset/limit pagination is used on the Catalog Client in order to
+    // limit (and allow some control over) memory used by the search backend
+    // at index-time.
+    while (moreEntitiesToGet) {
+      const entities = (
+        await this.catalogClient.getEntities(
+          {
+            filter: this.filter,
+            limit: this.batchSize,
+            offset: entitiesRetrieved,
+          },
+          { token },
+        )
+      ).items;
 
-    return responseWithDefinition.map(
-      (entity: Entity): CatalogEntityDocument => {
-        return {
+      // Control looping through entity batches.
+      moreEntitiesToGet = entities.length === this.batchSize;
+      entitiesRetrieved += entities.length;
+
+      // Filter by responses that contain a definition
+      const entityWithDefinition = entities.filter(
+        entity => entity.spec?.definition,
+      );
+
+      for (const entity of entityWithDefinition) {
+        yield {
           title: entity.metadata.title ?? entity.metadata.name,
           location: this.applyArgsToFormat(this.locationTemplate, {
             namespace: entity.metadata.namespace || 'default',
@@ -121,6 +142,7 @@ export class DefaultAPICollator implements DocumentCollator {
           }),
           text: this.getDocumentText(entity),
           componentType: entity.spec?.type?.toString() || 'other',
+          type: entity.spec?.type?.toString() || 'other',
           namespace: entity.metadata.namespace || 'default',
           kind: entity.kind,
           lifecycle: (entity.spec?.lifecycle as string) || '',
@@ -128,11 +150,9 @@ export class DefaultAPICollator implements DocumentCollator {
           authorization: {
             resourceRef: stringifyEntityRef(entity),
           },
-          definition: JSON.stringify(
-            YAML.parse((entity.spec?.definition as string) || ''),
-          ),
+          definition: JSON.stringify(entity.spec?.definition),
         };
-      },
-    );
+      }
+    }
   }
 }

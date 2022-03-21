@@ -8,7 +8,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 import { SidebarSubmenuItem } from '@backstage/core-components';
 import {
   EntityKindFilter,
-  useEntityListProvider,
+  useEntityList,
 } from '@backstage/plugin-catalog-react';
 import { IconComponent } from '@backstage/core-plugin-api';
 import { SidebarItemWithSubmenuContext } from './config';
@@ -30,7 +30,7 @@ export const SidebarKinds = () => {
   const { isClickedOn, setIsClickedOn } = useContext(
     SidebarItemWithSubmenuContext,
   );
-  const { updateFilters } = useEntityListProvider();
+  const { updateFilters } = useEntityList();
   const handleFilterChange = (selectedKind: string): void => {
     updateFilters({
       kind: selectedKind ? new EntityKindFilter(selectedKind) : undefined,
