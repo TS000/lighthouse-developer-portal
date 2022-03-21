@@ -8,8 +8,5 @@ allowed_patterns:
   - 'key: cypress\-cache\-v2\-\${{ runner.os }}\-'
   - 'key: \${{ runner.os }}-'
 fileignoreconfig:
-  - filename: packages/app/cypress/fixtures/entities/components.json
-    checksum: 023c606f31ad1ebc3340fd202d31d4848992533543f43d67935bcda28e86abd9
-  - filename: packages/app/cypress/fixtures/entities/apis.json
-    checksum: 0fc923f940d622554346d321d45959d815d4eb36a8217783870ae3a218f83597
-version: ""
+- filename: mkdocs.yml
+  checksum: 8a54c619c13ff4036e397d5e3ac51414611dd1e400dd9373a5ab234d6f0e42fc

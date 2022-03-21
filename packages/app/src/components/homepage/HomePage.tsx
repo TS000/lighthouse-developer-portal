@@ -1,16 +1,13 @@
-import {
-    HomePageCompanyLogo,
-} from '@backstage/plugin-home';
 import { Content, InfoCard, Page } from '@backstage/core-components';
 import { Link } from 'react-router-dom';
-import { Box, Button, CardActions, CardContent, CardMedia, Divider, Grid, makeStyles, Typography,  } from '@material-ui/core';
+import { Button, CardActions, CardContent, Divider, Grid, makeStyles, Typography,  } from '@material-ui/core';
 import React from 'react';
-import { TemplateBackstageLogo } from './HomeLogo';
 import { blue } from '../../themes/colorTypes';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
 import FormatListBulletedSharp from '@material-ui/icons/FormatListBulletedSharp';
 import { Search } from '../search';
+import { HomePageLogo, StatementCard } from '../homepage';
 
 const useStyles = makeStyles(theme => ({
     searchBar: {
@@ -109,18 +106,25 @@ const cardInfo = [
     }
 ];
 
+const statementCardInfo = {
+    title: 'Digital transfirmation is a key to modernizing the VA',
+    bodyMainText: 'The Office of Information and Technology is committed to digitally transforming the VA.',
+    bodySubText: `To do this, we\'re giving developers a space to catalog all VA services,
+        making them easily searchable and accessible. We hope this portal will increase
+        collaboration among teams and will give teams everything they need to manage their
+        service, leveraging best practices, tools, and resources that help teams deliver code faster.`,
+}
+
 export const HomePage = () => {
     const classes = useStyles();
-    const { container, svg, path } = useLogoStyles();
+    const logoStyles = useLogoStyles();
+    const cardProps = { cardStyles: classes.VACard, ...statementCardInfo }
     return (
         <Page themeId="home">
             <Content>
             <Grid container >
                 <Grid container justifyContent="center">
-                    <HomePageCompanyLogo
-                        className={container}
-                        logo={<TemplateBackstageLogo classes={{ svg, path }} />}
-                    />
+                    <HomePageLogo {...logoStyles}/>
                 </Grid>
                 <Grid container item xs={12} alignItems="center" direction="row">
                     <Grid item xs={12}>
@@ -156,7 +160,7 @@ export const HomePage = () => {
                 ))}
                 </Grid>
                 <Grid item xs={12} md={12}>
-                    <InfoCard icon={MenuBookIcon} className={classes.betaBanner}>
+                    <InfoCard className={classes.betaBanner}>
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             We are in early beta!
@@ -169,33 +173,7 @@ export const HomePage = () => {
                     </InfoCard>
                 </Grid>
                 <Grid item xs={12} md={12}>
-                    <InfoCard
-                        title="Digital transformation is a key to modernizing the VA."
-                        className={classes.VACard}
-                    >
-                        <CardContent>
-                            <Box sx={{ display: 'flex', alignItems: 'center'}}>
-                                {/* This should probably be an SVG instead of an image*/}
-                                <CardMedia
-                                component="img"
-                                height="140"
-                                image="/static/images/some/path/to/image.jpg"
-                                alt="Department of Veterans Affairs"
-                                />
-                            <Box>
-                                <Typography gutterBottom variant="h6" component="div">
-                                    The Office of Information and Technology is committed to digitally transforming the VA.
-                                </Typography>
-                                <Typography variant="body2" >
-                                    To do this, we're giving developers a space to catalog all VA services, making them easily
-                                    searchable and accessible. We hope this portal will increase collaboration among teams and
-                                    will give teams everything they need to manage their service, leveraging best practices, tools,
-                                    and resources that help teams deliver code faster.
-                                </Typography>
-                            </Box>
-                            </Box>
-                        </CardContent>
-                    </InfoCard>
+                    <StatementCard {...cardProps} />
                 </Grid>
             </Grid>
             </Content>

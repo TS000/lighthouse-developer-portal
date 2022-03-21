@@ -41,7 +41,7 @@ import {
 import {
   SidebarItem as SidebarItemWithSubmenu,
   SidebarSubmenu,
-  SidebarKinds,
+  SidebarKinds
 } from '../sidebar';
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';

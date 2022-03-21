@@ -49,6 +49,7 @@ nav:
     - Image Signing: ADR/image-signing.md
     - Unit Test Coverage: ADR/code-coverage.md
     - Remove Google Analytics: ADR/google-analytics.md
+    - Login Bypass: ADR/login-bypass.md
     - SecRel Pipeline Integration: ADR/secrel-pipeline.md
 
 plugins:

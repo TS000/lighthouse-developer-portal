@@ -33,7 +33,6 @@ import {
   AlertDisplay,
   OAuthRequestDialog,
   SignInProviderConfig,
-  SignInPage,
 } from '@backstage/core-components';
 import { orgPlugin } from '@backstage/plugin-org';
 import { FlatRoutes } from '@backstage/core-app-api';
@@ -47,6 +46,7 @@ import { PermissionedRoute } from '@backstage/plugin-permission-react';
 import { viewExplorePagePermission } from './utils/';
 import { Banner } from './components/banner';
 import SlackIcon from './icons/Slack';
+import { CustomSignInPage } from './components/signinPage'
 import { HomePage } from './components/homepage/HomePage';
 
 const githubProvider: SignInProviderConfig = {
@@ -62,7 +62,7 @@ const app = createApp({
   apis,
   components: {
     SignInPage: props => (
-      <SignInPage {...props} auto providers={['guest', githubProvider]} />
+     <CustomSignInPage {...props} providers={['guest', githubProvider]} />
     ),
   },
   bindRoutes({ bind }) {
