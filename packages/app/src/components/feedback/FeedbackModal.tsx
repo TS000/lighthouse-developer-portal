@@ -68,6 +68,16 @@ export interface SearchModalProps {
 const FEEDBACK_SUCCESS_ID = 'feedback_success';
 const FEEDBACK_ERROR_ID = 'feedback_error';
 
+const FEEDBACK_FORM_PLACEHOLDER = `# Plugin Idea
+
+1. Example one
+2. Example two
+
+## Possible Alternatives
+
+- Example three
+- Example four`;
+
 /**
  * Modal containing a form to submit feedback for the Lighthouse developer portal
  *
@@ -227,26 +237,27 @@ export const Modal = ({
           </Box>
           <br />
           <Typography>
-            Have more to say? You can provide more detail{' '}
+            This form supports{' '}
+            <Link to="https://www.markdownguide.org/cheat-sheet/">
+              Markdown
+            </Link>
+            , or create an issue directly on{' '}
             <Link to="https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues">
-              here
+              GitHub
             </Link>
             .
           </Typography>
           <br />
           <TextField
-            label="Feedback content"
             variant="outlined"
             multiline
             fullWidth
             onChange={handleFormChange}
             value={feedbackText}
             minRows={5}
+            placeholder={FEEDBACK_FORM_PLACEHOLDER}
+            helperText="Expect a reply within 2 business days."
           />
-          <br />
-          <Typography color="textSecondary">
-            *Expect a reply within 2 business days.
-          </Typography>
         </DialogContent>
         <DialogActions>
           <Button
