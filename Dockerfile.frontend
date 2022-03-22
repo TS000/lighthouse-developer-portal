@@ -1,6 +1,10 @@
 FROM nginx:mainline
 
-RUN apt-get update && apt-get -y install jq && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    jq=1.6-2.1 \
+    wait-for-it=0.0~git20180723-1 \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY packages/app/dist /usr/share/nginx/html
 

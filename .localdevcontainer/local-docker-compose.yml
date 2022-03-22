@@ -5,10 +5,7 @@ services:
     depends_on:
       - backend
     # Waits for the backend to have started and listen on port 7007 before starting
-    command: |
-      ./code/docker/wait-for-it.sh backend:7007 --
-      ./docker-entrypoint.sh
-      nginx -g "daemon off;"
+    command: wait-for-it backend:7007 -- ./docker-entrypoint.sh nginx -g "daemon off;"
     build:
       context: ../
       dockerfile: ./Dockerfile.dockerbuild
