@@ -52,7 +52,7 @@ export const CustomCatalogPage = ({
         <Content>
           <ContentHeader titleComponent={<CatalogKindHeader />}>
             <CreateButton
-              title="Register Component"
+              title="Add to catalog"
               to={registerComponentLink && registerComponentLink()}
             />
             <SupportButton>All your software catalog entities</SupportButton>

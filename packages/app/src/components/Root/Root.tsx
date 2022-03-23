@@ -104,7 +104,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarItem
           icon={CreateComponentIcon}
           to="catalog-import"
-          text="Register New"
+          text="Add to Catalog"
         />
         <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
         {/* End global nav */}
