@@ -6,9 +6,9 @@ We want to be able to record and view browser logging events so that we can gain
 
 ## Background
 
-Typically when the front end of a web based application has some kind of event to log, it is displayed in the browser's console. Having access to the console logs is helpful for the purposes of identifying and debugging errors or other problems with the application during run time. Since console logs are reported in the browser, developers do not have access to or any way of knowing if users are experiencing client errors while using an application. 
+Typically when the front end of a web based application has some kind of event to log, it is displayed in the browser's console. Having access to the console logs is helpful for the purposes of identifying and debugging errors or other problems with the application during run time. Since console logs are reported in the browser, developers do not have access to or any way of knowing if users are experiencing client errors while using an application.
 
-Datadog Browser Logs provide a way where we as developers can have access to console logs. Any kind of info, warning, or error messages that would be displayed in the browser's console can be sent to Datadog and recorded as log events. 
+Datadog Browser Logs provide a way where we as developers can have access to console logs. Any kind of info, warning, or error messages that would be displayed in the browser's console can be sent to Datadog and recorded as log events.
 
 ## Goal
 
@@ -58,7 +58,7 @@ Options that must have a matching configuration when using the RUM SDK:
 
 ### Custom Logs
 
-After the datadogLogs is initialized a default logger is created and will automatically send all console logs to Datadog. 
+After the datadogLogs is initialized a default logger is created and will automatically send all console logs to Datadog.
 
 You can create custom logs using the following API:
 
@@ -76,7 +76,7 @@ datadogLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
 
 ### Multiple Loggers
 
-Datadog Logs automatically creates a default logger, but additional loggers can be created and defined by their `level`, `handler`, and `context`. 
+Datadog Logs automatically creates a default logger, but additional loggers can be created and defined by their `level`, `handler`, and `context`.
 
 ```
 createLogger (name: string, conf?: {

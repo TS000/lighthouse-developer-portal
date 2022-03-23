@@ -2,7 +2,7 @@ name: Publish Documentation
 on:
   push:
     branches: [main]
-    paths: ['docs/*']
+    paths: ['**/docs/*', '**/mkdocs.yaml']
   workflow_dispatch:
 jobs:
   create-techdocs:

@@ -1,6 +1,6 @@
 # Automated Backstage Update
 
-[Backstage Update Workflow file](../.github/workflows/backstage-update.yml)
+[Backstage Update Workflow file](https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/blob/main/.github/workflows/backstage-update.yml)
 
 # Update Backstage Workflow Jobs
 

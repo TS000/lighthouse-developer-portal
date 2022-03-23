@@ -1,0 +1,6 @@
+site_name: Lighthouse Developer Portal Frontend
+nav:
+  - Home: index.md
+  - Cypress Troubleshooting: cypress-troubleshooting.md
+  - Browser Logs: RFC/browser-logs.md
+  - Vite: ADR/vite.md
