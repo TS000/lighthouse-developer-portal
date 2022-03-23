@@ -28,6 +28,7 @@ import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
 import { Settings as SidebarSettings } from '@backstage/plugin-user-settings';
+import { Shortcuts } from '@backstage/plugin-shortcuts'
 import { SidebarSearchModal } from '../search';
 import {
   Sidebar,
@@ -121,6 +122,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           text="Starter Guide"
         />
         <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
+        <Shortcuts />
         <SidebarSpace />
         <SidebarSettings />
         <FeedbackModal />

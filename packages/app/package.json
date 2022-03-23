@@ -40,6 +40,7 @@
     "@backstage/plugin-scaffolder": "^0.15.0",
     "@backstage/plugin-search": "^0.7.3",
     "@backstage/plugin-search-common": "^0.3.2",
+    "@backstage/plugin-shortcuts": "^0.2.4",
     "@backstage/plugin-tech-radar": "^0.5.1",
     "@backstage/plugin-techdocs": "^0.15.1",
     "@backstage/plugin-user-settings": "^0.4.1",
