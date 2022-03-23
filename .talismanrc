@@ -8,5 +8,6 @@ allowed_patterns:
   - 'key: cypress\-cache\-v2\-\${{ runner.os }}\-'
   - 'key: \${{ runner.os }}-'
 fileignoreconfig:
-- filename: mkdocs.yml
-  checksum: 8a54c619c13ff4036e397d5e3ac51414611dd1e400dd9373a5ab234d6f0e42fc
+- filename: yarn.lock
+  checksum: 06a0a5738c71f0bae0a93dd8e56a7455c58024bf9b83e6acf384654f9f2772b9
+version: ""
