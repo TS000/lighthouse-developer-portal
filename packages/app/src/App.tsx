@@ -43,6 +43,7 @@ import { ProviderDashboardPage } from '@internal/plugin-provider-dashboard';
 import { CustomCatalogImportPage } from './components/catalogImportPage';
 import { CustomCatalogIndexPage } from './components/catalog';
 import { PermissionedRoute } from '@backstage/plugin-permission-react';
+import { GraphiQLPage } from '@backstage/plugin-graphiql'
 import { viewExplorePagePermission } from './utils/';
 import { Banner } from './components/banner';
 import SlackIcon from './icons/Slack';
@@ -142,6 +143,7 @@ const routes = (
       path="/tech-radar"
       element={<TechRadarPage width={1500} height={800} />}
     />
+    <Route path="/graphiql" element={<GraphiQLPage />} />
     <Route path="/catalog-import" element={<CustomCatalogImportPage />} />
     <Route path="/search" element={<SearchPage />} />
     <Route path="/settings" element={<UserSettingsPage />} />

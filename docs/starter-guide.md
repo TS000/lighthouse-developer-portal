@@ -164,3 +164,44 @@ The high level processes involved are:
 - _Ingestion_, where entity providers fetch raw entity data from external sources and seed it into the database.
 - _Processing_, where the policies and processors continually treat the ingested data and may emit both other raw entities (that are also subject to processing), errors, relations to tother entities, etc.
 - _Stitching_, where all of the data emitted by various processors are assembled together into the final output entity.
+
+## Plugins
+
+### GraphiQL
+
+[@backstage/plugin-graphiql](https://github.com/backstage/backstage/tree/master/plugins/graphiql)
+
+The lighthouse-developer-portal includes a GraphiQL tool to browse GraphiQL endpoints. The purpose of the plugin is to provide a convenient way for developers to try out GraphQL queries in their own environment.
+
+You'll need to supply GraphQL with endpoints through the GraphQLBrowse API. This is done by implementing the `graphQlBrowseApiRef` exported by the plugin. Here's an example of how you could expose two GraphQL endpoints in your App:
+
+```js
+// Within my-plugin/src/plugin.ts
+import { graphQlBrowseApiRef, GraphQLEndpoints } from '@backstage/plugin-graphiql'
+
+// use createApiFactory
+export const graphiQlBrowseApiRefConfig = createApiFactory({
+  api: graphQlBrowseApiRef,
+  deps: { errorApi: errorApiRef, githubAuthApi: githubAuthApiRef },
+  factory: ({ errorApi, githubAuthApi }) =>
+  GraphQLEndpoints.from([
+    // Use the .create function if all you need is a static URL and headers.
+    GraphQLEndpoints.create({
+      id: 'gitlab',
+      title: 'GitLab',
+      url: 'https://gitlab.com/api/graphql',
+      // Optional extra headers
+      headers: { Extra: 'Header' },
+    }),
+  ]),
+});
+
+// Add the API config to the list of APIs within createPlugin
+export const examplePlugin = createPlugin({
+  id: 'example-plugin',
+  routes: {
+    root: rootRouteRef,
+  },
+  apis: [graphiQlBrowseApiRefConfig],
+});
+```

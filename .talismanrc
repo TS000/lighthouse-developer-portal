@@ -13,5 +13,5 @@ allowed_patterns:
   - '-k    key-value pair, i.e. foo=bar'
 
 fileignoreconfig:
-- filename: packages/app/docs/cypress-troubleshooting.md
-  checksum: 7b38a5c38029b1fc112918a9cac11148bb256c2f6947e0582485b2a230ab4cdd
+  - filename: yarn.lock
+    checksum: d074a22bc00b818a9ff80c3f5c4460983cf63e07b7e75e1ac8e98b2cc0f4a2c1
