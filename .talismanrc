@@ -7,6 +7,11 @@ allowed_patterns:
   - 'REPO_SECRETS: \${{ toJson\(secrets\) }}'
   - 'key: cypress\-cache\-v2\-\${{ runner.os }}\-'
   - 'key: \${{ runner.os }}-'
+  - 'secret_name=\$OPTARG'
+  - 'pwd=\$OPTARG'
+  - 'key_value_literals="\$\{key_value_literals\} --from-literal=\$\{OPTARG\}"'
+  - '-k    key-value pair, i.e. foo=bar'
+
 fileignoreconfig:
 - filename: packages/app/docs/cypress-troubleshooting.md
   checksum: 7b38a5c38029b1fc112918a9cac11148bb256c2f6947e0582485b2a230ab4cdd

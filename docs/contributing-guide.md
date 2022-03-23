@@ -12,6 +12,7 @@
 - [Merging to Main](#merging-to-main)
 - [Creating plugins](#creating-plugins)
 - [Contributing your plugins](#contributing-your-plugins)
+- [Secrets Management](#secrets-management)
 
 ## Ways to contribute
 
@@ -115,3 +116,7 @@ We want each team to have ownership of their plugins and to be able to make chan
 Creating the issue will create a pull request to add your team as Codeowners of your plugin. Once the `lighthouse-bandicoot` team reviews and approves the request, your team will be able to create and review your own pull requests for changes to your plugin.
 
 > Note: Pull requests that include integrating the plugin into the Lighthouse Developer Portal (i.e. modifications of `packages/frontend` or `packages/backend`) can be created but will still require final approval by the `lighthouse-bandicoot` team to be merged.
+
+## Secrets Management
+
+Secrets that can be easily re-generated, such as Github Access Tokens, should just be stored directly in Github Actions Secrets. Secrets that need to be backed up in some storage medium should be created as Kubernetes secrets for the given environment using the `update_auth_secret.sh` and `update_generic_secret.sh` scripts in this repo, depending on the type of secret. Run either script, e.g. `./scripts/update_auth_secret.sh` or `./scripts/update_auth_secret.sh -h` to see usage. These scripts assume that the `~/.kube/config` credentials required to access the given environment are already present.
