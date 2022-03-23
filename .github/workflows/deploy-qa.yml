@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "::set-output name=COMMIT_SHA::$(git log -n 1 --format='%H' main)"
       - id: deployment-check
-        uses: AminFazlMondo/check-deployed-environment@32ca8704d945d2dde02acf1d7e540c072c21d2c7 # v1.0.13
+        uses: AminFazlMondo/check-deployed-environment@d81e72d963192276baad035938c30815a1de756f # v1.0.13
         with:
           environment: 'Development'
           commit_sha: ${{ steps.main.outputs.COMMIT_SHA }}
