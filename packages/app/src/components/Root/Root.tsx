@@ -16,6 +16,7 @@
 
 import React, { useContext, PropsWithChildren } from 'react';
 import { Link, makeStyles } from '@material-ui/core';
+import Icon from '@material-ui/core/Icon';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 import MapIcon from '@material-ui/icons/MyLocation';
@@ -27,6 +28,7 @@ import LayersIcon from '@material-ui/icons/Layers';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
+import { IconComponent } from '@backstage/core-plugin-api';
 import { Settings as SidebarSettings } from '@backstage/plugin-user-settings';
 import { SidebarSearchModal } from '../search';
 import {
@@ -46,6 +48,9 @@ import {
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';
 import { FeedbackModal } from '../feedback';
+import * as potrace from 'potrace';
+// eslint-disable-next-line no-restricted-imports
+import * as fs from 'fs';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -86,6 +91,19 @@ const SidebarLogo = () => {
   );
 };
 
+potrace.trace('../../icons/lighthouse-logo.png', (err: any, svg: string | NodeJS.ArrayBufferView) => {
+  if (err) throw err;
+  fs.writeFileSync('../../icons/lighthouse-logo.svg', svg);
+});
+
+const lighthouseIcon = () => {
+  return (
+    <Icon>
+      <img alt="Lighthouse Logo" src="../../icons/lighthouse-logo.svg"/>
+    </Icon>
+  );
+}
+
 export const Root = ({ children }: PropsWithChildren<{}>) => {
   return (
     <SidebarPage>
@@ -122,7 +140,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         />
         <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarSpace />
-        <SidebarSettings />
+        <SidebarSettings icon={lighthouseIcon as IconComponent} />
         <FeedbackModal />
         <SidebarDivider />
         <VersionAndEnv />
