@@ -237,13 +237,13 @@ export const Modal = ({
           </Box>
           <br />
           <Typography>
-            This form supports{' '}
+            You can write in{' '}
             <Link to="https://www.markdownguide.org/cheat-sheet/">
               Markdown
-            </Link>
-            , or create an issue directly on{' '}
+            </Link>{' '}
+            or create an issue directly on{' '}
             <Link to="https://github.com/department-of-veterans-affairs/lighthouse-developer-portal/issues">
-              GitHub
+              Lighthouse's GitHub
             </Link>
             .
           </Typography>
