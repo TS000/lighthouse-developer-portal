@@ -8,6 +8,7 @@ import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded'
 import FormatListBulletedSharp from '@material-ui/icons/FormatListBulletedSharp';
 import { Search } from '../search';
 import { HomePageLogo, StatementCard } from '../homepage';
+import { useApi, githubAuthApiRef } from '@backstage/core-plugin-api';
 
 const useStyles = makeStyles(theme => ({
     searchBar: {
@@ -119,6 +120,40 @@ export const HomePage = () => {
     const classes = useStyles();
     const logoStyles = useLogoStyles();
     const cardProps = { cardStyles: classes.VACard, ...statementCardInfo }
+
+    const githubApi = useApi(githubAuthApiRef);
+    const getUserIdentity = async () => {
+        try {
+            const user = await githubApi.getBackstageIdentity();
+            return user;
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
+    const getUserProfile = async () => {
+        try {
+            const user = await githubApi.getProfile();
+            return user;
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
+
+    const userIdentity = getUserIdentity();
+    userIdentity.then(e => console.log('userIdentity: ', e));
+
+    const sessionState = githubApi.sessionState$();
+    sessionState.subscribe( e => {
+        console.log('Session state 2: ', e)
+    })
+
+    const userProfile = getUserProfile();
+    userProfile.then(e => console.log('userProfile:', e));
+    
     return (
         <Page themeId="home">
             <Content>
