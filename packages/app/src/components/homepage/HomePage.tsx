@@ -20,11 +20,12 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: '16px',
     },
     contentText: {
-        padding: '16px',
-        paddingBottom: '8px',
+        // padding: '16px',
+        // paddingBottom: '8px',
     },
     infoCardContainer: {
-        paddingTop: '24px',
+        // paddingTop: '24px',
+        marginTop: '8px',
     },
     infoCardHeader: {
         justifyContent: 'flex-start',
@@ -39,8 +40,11 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'flex-end',
         padding: '11px'
     },
+    betaBannerGridItem: {
+        marginBottom: '8px',
+    },
     betaBanner: {
-        backgroundColor: blue[200]
+        backgroundColor: blue[200],
         },
     VACard: {
         backgroundColor: theme.palette.grey[300]
@@ -171,10 +175,10 @@ export const HomePage = () => {
                     ))}
                     </Grid>
                 </Grid>
-                <Grid item xs={12} md={12}>
+                <Grid item xs={12} className={classes.betaBannerGridItem}>
                     <BetaBannerCard {...bannerProps}/>
                 </Grid>
-                <Grid item xs={12} md={12}>
+                <Grid item xs={12}>
                     <StatementCard {...cardProps} />
                 </Grid>
 
