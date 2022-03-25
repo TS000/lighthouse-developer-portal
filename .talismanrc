@@ -14,4 +14,5 @@ allowed_patterns:
 
 fileignoreconfig:
   - filename: yarn.lock
-    checksum: d074a22bc00b818a9ff80c3f5c4460983cf63e07b7e75e1ac8e98b2cc0f4a2c1
+    checksum: 52e71e9fbc78adb582f74a606c4dd436620ef968dff4ae0c8d617346459bbd9f
+
