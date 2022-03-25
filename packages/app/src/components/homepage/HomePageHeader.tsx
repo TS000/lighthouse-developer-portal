@@ -7,7 +7,11 @@ export const useHeaderStyles = makeStyles(theme => ({
     container: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: theme.palette.info.main
+        height: 'auto',
+        backgroundColor: theme.palette.info.main,
+        margin: '-24px',
+        marginBottom: '0px',
+        width: 'auto'
     },
     gridText: {
         justifyContent: 'center',
@@ -15,6 +19,8 @@ export const useHeaderStyles = makeStyles(theme => ({
         marginBottom: theme.spacing(10),
     },
     mainText: {
+        height: 'auto',
+        weight: 'auto',
         margin: theme.spacing(5,5),
         color: theme.palette.background.default,
     },
@@ -25,11 +31,12 @@ export const useHeaderStyles = makeStyles(theme => ({
         width: theme.spacing(70)
     },
     gridImage: {
-        margin: theme.spacing(0,5)
+        margin: theme.spacing(0,5),
+        marginTop: '-8px',
     },
     svg: {
         width: 'auto',
-        height: 100,
+        height: 'auto',
     },
     g: {
         clipPath: 'url(#clip0_675_1726)',

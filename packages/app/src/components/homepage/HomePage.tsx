@@ -1,4 +1,4 @@
-import { Content, InfoCard, Page } from '@backstage/core-components';
+import { Content, InfoCard, Link, Page } from '@backstage/core-components';
 import { Button, CardActions, CardContent, Divider, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { blue } from '../../themes/colorTypes';
@@ -14,9 +14,17 @@ const useStyles = makeStyles(theme => ({
         maxWidth: '60vw',
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[1],
-        padding: '8px 0',
+        padding: '8px',
         borderRadius: '50px',
         margin: 'auto',
+        paddingBottom: '16px',
+    },
+    contentText: {
+        padding: '16px',
+        paddingBottom: '8px',
+    },
+    infoCardContainer: {
+        paddingTop: '24px',
     },
     infoCardHeader: {
         justifyContent: 'flex-start',
@@ -25,8 +33,6 @@ const useStyles = makeStyles(theme => ({
     infoCardIcon : {
         justifyContent: 'flex-start',
         padding: '0px',
-        marginLeft: '-2px'
-
     },
     infoCardFooter: {
         flexDirection: 'column',
@@ -84,21 +90,21 @@ const cardInfo = [
         title: "Starter Guide",
         contentBody: "Read the starter guide to learn more about the VA Lighthouse dev portal and how to use it.",
         buttonText: "READ THE STARTER GUIDE",
-        linkUrl: ""
+        linkUrl: "/starter-guide"
     },
     {
         action: addCircleOutlineRounded,
         title: "Add to the Catalog",
         contentBody: "Add, manage and search for VA software, including APIs, backend services, data pipelines, and other components.",
         buttonText: "REGISTER A COMPONENT",
-        linkUrl: ""
+        linkUrl: "catalog-import"
     },
     {
         action: formatListBulletedSharp,
         title: "Explore the Catalog",
         contentBody: "Manage all your services and software components, all in one place.",
         buttonText: "EXPLORE CATALOG",
-        linkUrl: ""
+        linkUrl: "catalog"
     }
 ];
 
@@ -123,11 +129,14 @@ export const HomePage = () => {
     return (
         <Page themeId="home">
             <Content>
-            <Grid container >
-                <HomePageDVAHeader />
-                <Grid container item xs={12} alignItems="center" direction="row">
-                    <Grid item xs={12}>
-                    <Typography variant="h5">
+                <Grid container>
+                <Grid item xs={12}>
+                    <HomePageDVAHeader />
+                </Grid>
+                
+                <Grid container alignItems="center" direction="row">
+                    <Grid item xs={12} className={classes.contentText}>
+                    <Typography variant="h5" className={classes.contentText}>
                         Things you can do to get started
                     </Typography>
                     </Grid>
@@ -135,28 +144,32 @@ export const HomePage = () => {
                         <Search />
                     </Grid>
                 </Grid>
-                <Grid container item xs={12}>
-                {cardInfo.map( e => (
-                    <Grid item xs={12} md={4}>
-                    <InfoCard
-                        variant="gridItem"
-                        >
-                        <CardActions className={classes.infoCardHeader}>
-                            {e.action(e.title, classes)}
-                        </CardActions>
-                        <Divider />
-                        <CardContent>
-                        <Typography>
-                            {e.contentBody}
-                        </Typography>
-                        </CardContent>
-                        <Divider />
-                        <CardContent className={classes.infoCardFooter}>
-                            <Button size="small" >{e.buttonText}</Button>
-                        </CardContent>
-                    </InfoCard>
+                <Grid item xs={12}>
+                    <Grid container className={classes.infoCardContainer}>
+                    {cardInfo.map( e => (
+                        <Grid item xs={12} md={4}>
+                        <InfoCard
+                            variant="gridItem"
+                            >
+                            <CardActions className={classes.infoCardHeader}>
+                                {e.action(e.title, classes)}
+                            </CardActions>
+                            <Divider />
+                            <CardContent>
+                            <Typography>
+                                {e.contentBody}
+                            </Typography>
+                            </CardContent>
+                            <Divider />
+                            <CardContent className={classes.infoCardFooter}>
+                                <Link to={e.linkUrl}>
+                                    <Button size="small">{e.buttonText}</Button>
+                                </Link>
+                            </CardContent>
+                        </InfoCard>
+                        </Grid>
+                    ))}
                     </Grid>
-                ))}
                 </Grid>
                 <Grid item xs={12} md={12}>
                     <BetaBannerCard {...bannerProps}/>
@@ -164,6 +177,7 @@ export const HomePage = () => {
                 <Grid item xs={12} md={12}>
                     <StatementCard {...cardProps} />
                 </Grid>
+
             </Grid>
             </Content>
         </Page>
