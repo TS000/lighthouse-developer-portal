@@ -38,11 +38,6 @@ import {
   SidebarDivider,
   SidebarSpace,
 } from '@backstage/core-components';
-import {
-  SidebarItem as SidebarItemWithSubmenu,
-  SidebarSubmenu,
-  SidebarKinds
-} from '../sidebar';
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';
 import { FeedbackModal } from '../feedback';
@@ -95,11 +90,11 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarDivider />
         {/* Global nav, not org-specific */}
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
-        <SidebarItemWithSubmenu icon={ListIcon} text="Catalog">
-          <SidebarSubmenu title="Catalog">
-            <SidebarKinds />
-          </SidebarSubmenu>
-        </SidebarItemWithSubmenu>
+        <SidebarItem
+          icon={ListIcon}
+          to="catalog"
+          text="Catalog"
+        />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
         {/* End global nav */}

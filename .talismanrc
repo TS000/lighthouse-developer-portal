@@ -13,6 +13,5 @@ allowed_patterns:
   - '-k    key-value pair, i.e. foo=bar'
 
 fileignoreconfig:
-  - filename: yarn.lock
-    checksum: 52e71e9fbc78adb582f74a606c4dd436620ef968dff4ae0c8d617346459bbd9f
-
+- filename: packages/app/src/components/catalog/CustomCatalogPage/CatalogKindHeader/CatalogKindHeader.tsx
+  checksum: 1dee6f89a681989b5188692b892a47157b9a41c70a022f75cb4f9c2a6ae5a6be
