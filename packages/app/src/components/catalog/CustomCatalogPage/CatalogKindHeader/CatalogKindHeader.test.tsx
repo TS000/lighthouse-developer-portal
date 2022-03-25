@@ -49,23 +49,22 @@ const apis = TestApiRegistry.from([
   },
 ]);
 
+const mockProps = {
+  updateKindHeader: Function,
+  isLoading: Function
+}
 describe('<CatalogKindHeader />', () => {
   it('renders available kinds', async () => {
     const rendered = await renderWithEffects(
       <ApiProvider apis={apis}>
         <MockEntityListContextProvider>
-          <CatalogKindHeader />
+          <CatalogKindHeader {...mockProps}/>
         </MockEntityListContextProvider>
       </ApiProvider>,
     );
-
-    const input = rendered.getByText('Components');
-    act(() => {
-        fireEvent.mouseDown(input);
-    });
     entities.map(entity => {
       expect(
-        rendered.getByRole('option', { name: `${entity.kind}s` }),
+        rendered.getByRole('tab', { name: `${entity.kind}s` }),
       ).toBeInTheDocument();
     });
   });
@@ -76,7 +75,7 @@ describe('<CatalogKindHeader />', () => {
         <MockEntityListContextProvider
           value={{ queryParameters: { kind: 'frob' } }}
         >
-          <CatalogKindHeader />
+          <CatalogKindHeader {...mockProps}/>
         </MockEntityListContextProvider>
       </ApiProvider>,
     );
@@ -89,23 +88,19 @@ describe('<CatalogKindHeader />', () => {
     const rendered = await renderWithEffects(
       <ApiProvider apis={apis}>
         <MockEntityListContextProvider value={{ updateFilters }}>
-          <CatalogKindHeader />
+          <CatalogKindHeader {...mockProps}/>
         </MockEntityListContextProvider>
       </ApiProvider>,
     );
 
-    const input = rendered.getByText('Components');
-    act(() => {
-        fireEvent.mouseDown(input);
-    });
 
-    const option = rendered.getByRole('option', { name: 'Templates' });
+    const option = rendered.getByRole('tab', { name: 'Components' });
     act(() => {
         fireEvent.click(option);
     });
 
     expect(updateFilters).toHaveBeenCalledWith({
-      kind: new EntityKindFilter('template'),
+      kind: new EntityKindFilter('component'),
     });
   });
 });
