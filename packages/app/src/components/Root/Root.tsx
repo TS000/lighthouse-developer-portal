@@ -101,11 +101,6 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           </SidebarSubmenu>
         </SidebarItemWithSubmenu>
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
-        <SidebarItem
-          icon={CreateComponentIcon}
-          to="catalog-import"
-          text="Add to Catalog"
-        />
         <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
         {/* End global nav */}
         <SidebarDivider />
@@ -119,6 +114,11 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           icon={MenuBookIcon}
           to="/starter-guide"
           text="Starter Guide"
+        />
+        <SidebarItem
+          icon={CreateComponentIcon}
+          to="catalog-import"
+          text="Add to Catalog"
         />
         <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarSpace />
