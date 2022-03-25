@@ -148,7 +148,7 @@ export const HomePage = () => {
 
     const sessionState = githubApi.sessionState$();
     sessionState.subscribe( e => {
-        console.log('Session state 2: ', e)
+        console.log('Session state user: ', e)
     })
 
     const userProfile = getUserProfile();
