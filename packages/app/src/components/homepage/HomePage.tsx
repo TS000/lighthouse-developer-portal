@@ -1,13 +1,12 @@
 import { Content, InfoCard, Page } from '@backstage/core-components';
-import { Link } from 'react-router-dom';
-import { Button, CardActions, CardContent, Divider, Grid, makeStyles, Typography,  } from '@material-ui/core';
+import { Button, CardActions, CardContent, Divider, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { blue } from '../../themes/colorTypes';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
 import FormatListBulletedSharp from '@material-ui/icons/FormatListBulletedSharp';
 import { Search } from '../search';
-import { HomePageLogo, StatementCard } from '../homepage';
+import { HomePageDVAHeader, StatementCard, BetaBannerCard } from '../homepage';
 
 const useStyles = makeStyles(theme => ({
     searchBar: {
@@ -40,18 +39,13 @@ const useStyles = makeStyles(theme => ({
     VACard: {
         backgroundColor: theme.palette.grey[300]
     }
-  }));
+}));
 
-const useLogoStyles = makeStyles(theme => ({
+export const useHeaderStyles = makeStyles(theme => ({
     container: {
-        margin: theme.spacing(5, 0),
-    },
-    svg: {
-        width: 'auto',
-        height: 100,
-    },
-    path: {
-        fill: '#7df3e1',
+        margin: theme.spacing(0, 0),
+        justifyContent: 'center',
+        width: 100
     },
 }));
 
@@ -64,6 +58,7 @@ const menuBookIcon = (title: string, classes: any) => (
     </div>
 
 );
+
 const addCircleOutlineRounded = (title: string, classes: any) => (
     <div>
         <AddCircleOutlineRounded className={classes.infoCardIcon} />
@@ -73,6 +68,7 @@ const addCircleOutlineRounded = (title: string, classes: any) => (
     </div>
 
 );
+
 const formatListBulletedSharp = (title: string, classes: any) => (
    <div>
         <FormatListBulletedSharp className={classes.infoCardIcon} />
@@ -106,6 +102,11 @@ const cardInfo = [
     }
 ];
 
+const bannerCardInfo = {
+    bodyMainText: 'We are in early beta!',
+    bodySubText: `Are you as over the moon with excitement as we are about this developer portal!?
+        We would like to hear from you, sign in to GitHub to send us feedback.`,
+}
 const statementCardInfo = {
     title: 'Digital transfirmation is a key to modernizing the VA',
     bodyMainText: 'The Office of Information and Technology is committed to digitally transforming the VA.',
@@ -117,15 +118,13 @@ const statementCardInfo = {
 
 export const HomePage = () => {
     const classes = useStyles();
-    const logoStyles = useLogoStyles();
-    const cardProps = { cardStyles: classes.VACard, ...statementCardInfo }
+    const cardProps = { cardStyles: classes.VACard, ...statementCardInfo };
+    const bannerProps = { bannerStyles: classes.betaBanner, ...bannerCardInfo };
     return (
         <Page themeId="home">
             <Content>
             <Grid container >
-                <Grid container justifyContent="center">
-                    <HomePageLogo {...logoStyles}/>
-                </Grid>
+                <HomePageDVAHeader />
                 <Grid container item xs={12} alignItems="center" direction="row">
                     <Grid item xs={12}>
                     <Typography variant="h5">
@@ -160,17 +159,7 @@ export const HomePage = () => {
                 ))}
                 </Grid>
                 <Grid item xs={12} md={12}>
-                    <InfoCard className={classes.betaBanner}>
-                        <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            We are in early beta!
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                            Are you as over the moon with excitement as we are about this developer portal!?
-                            We would like to hear from you,&nbsp;<Link to="/">sign in to GitHub to send us feedback.</Link>
-                        </Typography>
-                        </CardContent>
-                    </InfoCard>
+                    <BetaBannerCard {...bannerProps}/>
                 </Grid>
                 <Grid item xs={12} md={12}>
                     <StatementCard {...cardProps} />
