@@ -20,11 +20,8 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: '16px',
     },
     contentText: {
-        // padding: '16px',
-        // paddingBottom: '8px',
     },
     infoCardContainer: {
-        // paddingTop: '24px',
         marginTop: '8px',
     },
     infoCardHeader: {
