@@ -15,7 +15,7 @@
  */
 
 import React, { useContext, PropsWithChildren } from 'react';
-import { Link, makeStyles } from '@material-ui/core';
+import { Link, makeStyles, Avatar } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
@@ -98,9 +98,10 @@ potrace.trace('../../icons/lighthouse-logo.png', (err: any, svg: string | NodeJS
 
 const lighthouseIcon = () => {
   return (
-    <Icon>
-      <img alt="Lighthouse Logo" src="../../icons/lighthouse-logo.svg"/>
-    </Icon>
+    <Avatar src="/workspaces/lighthouse-developer-portal/packages/app/src/icons/lighthouse-logo.png" />
+    // <Icon>
+    //   <img alt="Lighthouse Logo" src="/workspaces/lighthouse-developer-portal/packages/app/src/icons/lighthouse-logo.png"/>
+    // </Icon>
   );
 }
 
@@ -140,6 +141,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         />
         <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarSpace />
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="profile"/>
         <SidebarSettings icon={lighthouseIcon as IconComponent} />
         <FeedbackModal />
         <SidebarDivider />
