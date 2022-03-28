@@ -65,10 +65,15 @@ runs:
     id: overrides
     run: |
       echo "::set-output name=nonprod::true"
+      if [[ "${{ inputs.ENV }}" == "sandbox" ]]; then
+        echo "::set-output name=BASE_URL::http://internal-a553b74e4e49b45cc899c47d90fee0c4-2084915407.us-gov-west-1.elb.amazonaws.com"
+        echo "::set-output name=HOST::internal-a553b74e4e49b45cc899c47d90fee0c4-2084915407.us-gov-west-1.elb.amazonaws.com"
+        echo "::set-output name=GATEWAY::istio-system/ldx-nonprod-bandicoot-sandbox-backstage-gateway"
+      fi
       if [[ "${{ inputs.ENV }}" == "dev" ]]; then
-        echo "::set-output name=BASE_URL::http://internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
-        echo "::set-output name=HOST::internal-a4d95ec490108442a940e05e10d9e3d7-665278146.us-gov-west-1.elb.amazonaws.com"
-        echo "::set-output name=GATEWAY::istio-system/ldx-nonprod-dev-gateway"
+        echo "::set-output name=BASE_URL::http://internal-adf279c17510a463bb78ac88ffe2f7dd-667251419.us-gov-west-1.elb.amazonaws.com"
+        echo "::set-output name=HOST::internal-adf279c17510a463bb78ac88ffe2f7dd-667251419.us-gov-west-1.elb.amazonaws.com"
+        echo "::set-output name=GATEWAY::istio-system/ldx-nonprod-bandicoot-dev-backstage-gateway"
       fi
       if [[ "${{ inputs.ENV }}" == "qa" ]]; then
         echo "::set-output name=BASE_URL::http://internal-ac82ef17b50b144ff98d45d6fc6af502-971600415.us-gov-west-1.elb.amazonaws.com"
