@@ -2,6 +2,7 @@ import { HomePageCompanyLogo } from '@backstage/plugin-home';
 import React from 'react';
 import { DVAHeader } from './DVAHeader';
 import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { useMatchMedia } from '../../utils';
 
 export const useHeaderStyles = makeStyles(theme => ({
     container: {
@@ -44,7 +45,7 @@ export const useHeaderStyles = makeStyles(theme => ({
     pathMain: {
         fillRule: 'evenodd',
         clipRule: 'evenodd',
-        fill: theme.palette.background.paper
+        fill: theme.palette.background.default
     },
     pathGrey: {
         fill: "#C4C4C4"
@@ -58,6 +59,7 @@ const headerSubtitle = 'The place to contribute, manage, maintain, and discover 
 
 export const HomePageDVAHeader = () => {
     const { container, gridText, mainText, subText, gridImage, svg, g, pathMain, pathGrey, pathBackground } = useHeaderStyles();
+    const showHeaderImage = useMatchMedia('(min-width:1361px)', true)
     return (
         <Grid container className={container}>
         <Grid item className={gridText}>
@@ -68,11 +70,11 @@ export const HomePageDVAHeader = () => {
                 {headerSubtitle}
             </Typography>
         </Grid>
-        <Grid item className={gridImage}>
+        {showHeaderImage && <Grid item className={gridImage}>
             <HomePageCompanyLogo
             logo={<DVAHeader classes={{ svg, g, pathMain, pathGrey, pathBackground }} />}
             />
-        </Grid>
+        </Grid>}
         </Grid>
     );
 }
