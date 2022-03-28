@@ -13,5 +13,10 @@ allowed_patterns:
   - '-k    key-value pair, i.e. foo=bar'
 
 fileignoreconfig:
-- filename: packages/app/src/components/catalog/CustomCatalogPage/CatalogKindHeader/CatalogKindHeader.tsx
-  checksum: 1dee6f89a681989b5188692b892a47157b9a41c70a022f75cb4f9c2a6ae5a6be
+- filename: .github/actions/deploy-backstage-app/action.yml
+  checksum: b3893fd7122a99bf0e925df1e7dbc4220fb47f9068b04e7328bbbf5b5c16b994
+- filename: docs/dev-deploy.md
+  checksum: 7fc0bfad017df1027b28884c2d5110922072a275ca36ab47cdf897d4c2f3cc09
+- filename: .github/workflows/cicd.yml
+  checksum: 961c4da42086fc17572491ff68092eebb6da0f225934f632250854fcaecc6786
+version: ""

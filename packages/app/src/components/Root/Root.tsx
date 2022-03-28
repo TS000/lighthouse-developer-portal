@@ -96,6 +96,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           text="Catalog"
         />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
+        <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
         {/* End global nav */}
         <SidebarDivider />
@@ -115,7 +116,6 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           to="catalog-import"
           text="Add to Catalog"
         />
-        <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarSpace />
         <FeedbackModal />
         <SidebarSettings />
