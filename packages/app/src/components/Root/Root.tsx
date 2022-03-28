@@ -117,8 +117,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         />
         <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarSpace />
-        <SidebarSettings />
         <FeedbackModal />
+        <SidebarSettings />
         <SidebarDivider />
         <VersionAndEnv />
       </Sidebar>
