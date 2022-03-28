@@ -12,18 +12,6 @@ import { HeroSignInPageProps } from '../CustomSignInPage';
 import { BetaBannerCard, HomePageDVAHeader, DVAFooter } from '../../homepage';
 import { blue } from '../../../themes/colorTypes';
 
-const useFooterStyles = makeStyles((theme: Theme) => ({
-    container: {
-        margin: theme.spacing(5,0),
-        padding: 0
-    },
-    item: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-}));
-
 const useBannerStyles = makeStyles((theme: Theme) =>({
     container: {
         margin: theme.spacing(5,0)
@@ -39,7 +27,6 @@ const bannerCardInfo = {
     bodySubText: `Are you as over the moon with excitement as we are about this developer portal!?
         We would like to hear from you, sign in to GitHub to send us feedback.`,
 }
-
 
 export const HeroSignInPage = ({
     onSignInSuccess,
