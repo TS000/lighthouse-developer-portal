@@ -3,49 +3,59 @@ import {
     Content,
     Progress,
     Page,
-    Header
 } from '@backstage/core-components';
 import React from 'react';
 import { getSignInProviders, useSignInProviders } from '../signinComponents/providers';
-import { Grid, makeStyles  } from '@material-ui/core';
+import { Grid, makeStyles, Theme, Typography } from '@material-ui/core';
 import { useStyles } from '../signinComponents/styles';
 import { HeroSignInPageProps } from '../CustomSignInPage';
-import { HomePageLogo, StatementCard } from '../../homepage';
-import { configApiRef, useApi } from '@backstage/core-plugin-api';
+import { BetaBannerCard, HomePageDVAHeader, HomePageDVALogo } from '../../homepage';
+import { blue } from '../../../themes/colorTypes';
 
-const useHeroStyles = makeStyles(theme => ({
+const useFooterStyles = makeStyles((theme: Theme) => ({
     container: {
-        margin: theme.spacing(5, 0),
+        margin: theme.spacing(5,0),
+        padding: 0
     },
-    svg: {
-        width: 'auto',
-        height: 100,
-    },
-    path: {
-        fill: '#7df3e1',
-    },
-}));
-
-const useCardStyles = makeStyles(theme => ({
-    VACard: {
-        backgroundColor: theme.palette.grey[300]
+    item: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 }));
 
-const statementCardInfo = {
-    title: 'Digital transfirmation is a key to modernizing the VA',
-    bodyMainText: 'The Office of Information and Technology is committed to digitally transforming the VA.',
-    bodySubText: `To do this, we\'re giving developers a space to catalog all VA services,
-        making them easily searchable and accessible. We hope this portal will increase
-        collaboration among teams and will give teams everything they need to manage their
-        service, leveraging best practices, tools, and resources that help teams deliver code faster.`,
+const useBannerStyles = makeStyles((theme: Theme) =>({
+    container: {
+        margin: theme.spacing(5,0)
+    },
+    betaBanner: {
+        backgroundColor: blue[200],
+        },
+    })
+);
+
+const bannerCardInfo = {
+    bodyMainText: 'We are in early beta!',
+    bodySubText: `Are you as over the moon with excitement as we are about this developer portal!?
+        We would like to hear from you, sign in to GitHub to send us feedback.`,
 }
+
+const SignInFooter = () => {
+    const { item } = useFooterStyles();
+    return (
+        <Grid item className={item} xs={12}>
+            <Typography>
+                The Office of Information and Technology is committed to digitally transforming the VA.
+            </Typography>
+            <HomePageDVALogo />
+        </Grid>
+    );
+};
 
 export const HeroSignInPage = ({
     onSignInSuccess,
     providers = [],
   }: HeroSignInPageProps) => {
-    const configApi = useApi(configApiRef);
     const classes = useStyles();
 
     const signInProviders = getSignInProviders(providers);
@@ -53,34 +63,42 @@ export const HeroSignInPage = ({
       signInProviders,
       onSignInSuccess,
     );
-    const heroStyles = useHeroStyles();
-    const cardStyles = useCardStyles();
-    const cardProps = { ...cardStyles, ...statementCardInfo }
+
+    const footerStyle = useFooterStyles();
+    const bannerStyles = useBannerStyles();
+    const bannerProps = { bannerStyles: bannerStyles.betaBanner, ...bannerCardInfo };
+
     if (loading) {
       return <Progress />;
     }
 
     return (
       <Page themeId="home">
-        <Header title={configApi.getString('app.title')} />
         <Content>
-            <Grid container justifyContent="center">
+            <HomePageDVAHeader />
+            <Grid container direction="column">
                 <Grid item>
-                    <HomePageLogo {...heroStyles} />
+                    <Grid
+                        container
+                        justifyContent="center"
+                        spacing={4}
+                        component="ul"
+                        classes={classes}
+                    >
+                        {providerElements}
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid
-                container
-                justifyContent="center"
-                spacing={4}
-                component="ul"
-                classes={classes}
-            >
-                {providerElements}
-            </Grid>
-            <Grid container justifyContent="center">
                 <Grid item>
-                    <StatementCard {...cardProps} />
+                    <Grid container className={bannerStyles.container}>
+                        <Grid item xs={12}>
+                            <BetaBannerCard {...bannerProps} />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item>
+                    <Grid container className={footerStyle.container}>
+                        <SignInFooter />
+                    </Grid>
                 </Grid>
             </Grid>
         </Content>

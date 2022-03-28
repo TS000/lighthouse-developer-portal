@@ -29,10 +29,16 @@ describe('Catalog Page', () => {
     window.localStorage.setItem('@backstage/core:SignInPage:provider', 'guest');
   });
 
-  it('changes the dropdown when clicked', () => {
+  it('selects APIs tab by default', () => {
+    cy.visit('/catalog');
+    cy.contains("Browse the collection of APIs").should('be.visible');
+
+  });
+
+  it('changes the tab when clicked', () => {
     cy.visit('/catalog');
     cy.get('div').contains('Components').should('be.visible').click();
-    cy.get('li[data-value="api"]').should('be.visible').click();
-    cy.contains('hello-world').should('be.visible');
+    cy.contains("Browse the collection of Components").should('be.visible');
+
   });
 });

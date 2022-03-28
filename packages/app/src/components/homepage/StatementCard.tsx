@@ -1,6 +1,7 @@
 import { InfoCard } from '@backstage/core-components';
-import { Box, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Box, CardContent, Typography } from '@material-ui/core';
 import React from 'react';
+import { HomePageDVALogo } from './';
 
 export const StatementCard = (props: any) => {
     const { cardStyles, title, bodyMainText, bodySubText } = props;
@@ -11,13 +12,7 @@ export const StatementCard = (props: any) => {
         >
             <CardContent>
                 <Box sx={{ display: 'flex', alignItems: 'center'}}>
-                    {/* This should probably be an SVG instead of an image*/}
-                    <CardMedia
-                    component="img"
-                    height="140"
-                    image="/static/images/some/path/to/image.jpg"
-                    alt="Department of Veterans Affairs"
-                    />
+                    <HomePageDVALogo />
                 <Box>
                     <Typography gutterBottom variant="h6" component="div">
                         {bodyMainText}

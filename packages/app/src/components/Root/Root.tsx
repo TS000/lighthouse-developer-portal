@@ -40,11 +40,6 @@ import {
   SidebarDivider,
   SidebarSpace,
 } from '@backstage/core-components';
-import {
-  SidebarItem as SidebarItemWithSubmenu,
-  SidebarSubmenu,
-  SidebarKinds
-} from '../sidebar';
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';
 import { FeedbackModal } from '../feedback';
@@ -114,17 +109,12 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         <SidebarDivider />
         {/* Global nav, not org-specific */}
         <SidebarItem icon={HomeIcon} to="/" text="Home" />
-        <SidebarItemWithSubmenu icon={ListIcon} text="Catalog">
-          <SidebarSubmenu title="Catalog">
-            <SidebarKinds />
-          </SidebarSubmenu>
-        </SidebarItemWithSubmenu>
-        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem
-          icon={CreateComponentIcon}
-          to="catalog-import"
-          text="Add to Catalog"
+          icon={ListIcon}
+          to="catalog"
+          text="Catalog"
         />
+        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={Flag} to="/feature-flags" text="Feature Flags" />
         {/* End global nav */}
         <SidebarDivider />
@@ -139,11 +129,17 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
           to="/starter-guide"
           text="Starter Guide"
         />
+        <SidebarItem
+          icon={CreateComponentIcon}
+          to="catalog-import"
+          text="Add to Catalog"
+        />
         <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarSpace />
         <img src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg" alt="profile"/>
         <SidebarSettings icon={lighthouseIcon as IconComponent} />
         <FeedbackModal />
+        <SidebarSettings />
         <SidebarDivider />
         <VersionAndEnv />
       </Sidebar>

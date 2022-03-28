@@ -13,5 +13,14 @@ allowed_patterns:
   - '-k    key-value pair, i.e. foo=bar'
 
 fileignoreconfig:
-  - filename: yarn.lock
-    checksum: d074a22bc00b818a9ff80c3f5c4460983cf63e07b7e75e1ac8e98b2cc0f4a2c1
+- filename: .github/actions/deploy-backstage-app/action.yml
+  checksum: b3893fd7122a99bf0e925df1e7dbc4220fb47f9068b04e7328bbbf5b5c16b994
+- filename: docs/dev-deploy.md
+  checksum: 7fc0bfad017df1027b28884c2d5110922072a275ca36ab47cdf897d4c2f3cc09
+- filename: yarn.lock
+  checksum: 69f24325d9d5dea058b4082c8fd1f1c5ab492c8f59cef18c00e2a4d71a5770e7
+- filename: packages/app/src/components/catalog/CustomCatalogPage/CatalogKindHeader/CatalogKindHeader.tsx
+  checksum: 9aade2126ffcac22460c751f1329f47712a304d4d2b198621b09344940a2b95e
+- filename: .github/workflows/cicd.yml
+  checksum: 961c4da42086fc17572491ff68092eebb6da0f225934f632250854fcaecc6786
+version: ""

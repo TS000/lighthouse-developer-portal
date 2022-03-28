@@ -7,8 +7,9 @@ export type SignInPageClassKey = 'container' | 'item';
 export const useStyles = makeStyles(
   {
     container: {
-      padding: 0,
+      marginTop: '8px',
       listStyle: 'none',
+      marginBottom: '-32px'
     },
     item: {
       display: 'flex',

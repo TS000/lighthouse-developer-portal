@@ -12,7 +12,7 @@ runs:
       with:
         node-version: 14
     - name: Install dependencies
-      run: npm install @octokit/core
+      run: npm install @octokit/core @actions/core
       shell: bash
     - name: Run delete script
       env:

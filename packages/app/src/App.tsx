@@ -13,7 +13,6 @@ import {
   DefaultTechDocsHome,
   techdocsPlugin,
 } from '@backstage/plugin-techdocs';
-import { techDocsPage } from './components/techdocs';
 import { UserSettingsPage } from '@backstage/plugin-user-settings';
 import { apis } from './apis';
 import { entityPage } from './components/catalog/EntityPage';
@@ -43,11 +42,11 @@ import { ProviderDashboardPage } from '@internal/plugin-provider-dashboard';
 import { CustomCatalogImportPage } from './components/catalogImportPage';
 import { CustomCatalogIndexPage } from './components/catalog';
 import { PermissionedRoute } from '@backstage/plugin-permission-react';
-import { GraphiQLPage } from '@backstage/plugin-graphiql'
+import { GraphiQLPage } from '@backstage/plugin-graphiql';
 import { viewExplorePagePermission } from './utils/';
 import { Banner } from './components/banner';
 import SlackIcon from './icons/Slack';
-import { CustomSignInPage } from './components/signinPage'
+import { CustomSignInPage } from './components/signinPage';
 import { HomePage } from './components/homepage/HomePage';
 
 const githubProvider: SignInProviderConfig = {
@@ -63,7 +62,7 @@ const app = createApp({
   apis,
   components: {
     SignInPage: props => (
-     <CustomSignInPage {...props} providers={['guest', githubProvider]} />
+      <CustomSignInPage {...props} providers={['guest', githubProvider]} />
     ),
   },
   bindRoutes({ bind }) {
@@ -116,7 +115,6 @@ const AppRouter = app.getRouter();
 
 const routes = (
   <FlatRoutes>
-
     <Route path="/" element={<HomePage />} />
     <Route path="/search" element={<SearchPage />}>
       {searchPage}
@@ -134,9 +132,7 @@ const routes = (
     <Route
       path="/docs/:namespace/:kind/:name/*"
       element={<TechDocsReaderPage />}
-    >
-      {techDocsPage}
-    </Route>
+    />
     <Route path="/create" element={<ScaffolderPage />} />
     <Route path="/api-docs" element={<ApiExplorerPage />} />
     <Route
