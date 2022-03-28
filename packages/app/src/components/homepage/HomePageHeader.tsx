@@ -11,7 +11,7 @@ export const useHeaderStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.info.main,
         margin: '-24px',
         marginBottom: '0px',
-        width: 'auto'
+        width: 'auto',
     },
     gridText: {
         justifyContent: 'center',
@@ -26,13 +26,13 @@ export const useHeaderStyles = makeStyles(theme => ({
     },
     subText: {
         margin: theme.spacing(0,5),
-
         color: theme.palette.background.default,
         width: theme.spacing(70)
     },
     gridImage: {
-        margin: theme.spacing(0,5),
-        marginTop: '-8px',
+        margin: theme.spacing(-1,5),
+        marginBottom: '-16px',
+        padding: '0px',
     },
     svg: {
         width: 'auto',
