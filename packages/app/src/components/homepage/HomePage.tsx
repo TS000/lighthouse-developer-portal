@@ -6,7 +6,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
 import FormatListBulletedSharp from '@material-ui/icons/FormatListBulletedSharp';
 import { Search } from '../search';
-import { HomePageDVAHeader, StatementCard, BetaBannerCard } from '../homepage';
+import { HomePageDVAHeader, BetaBannerCard, DVAFooter } from '../homepage';
 
 const useStyles = makeStyles(theme => ({
     searchBar: {
@@ -43,9 +43,9 @@ const useStyles = makeStyles(theme => ({
     betaBanner: {
         backgroundColor: blue[200],
         },
-    VACard: {
-        backgroundColor: theme.palette.grey[300]
-    }
+    footerContainerOpen: {
+        left: '120px'
+    },
 }));
 
 export const useHeaderStyles = makeStyles(theme => ({
@@ -114,19 +114,12 @@ const bannerCardInfo = {
     bodySubText: `Are you as over the moon with excitement as we are about this developer portal!?
         We would like to hear from you, sign in to GitHub to send us feedback.`,
 }
-const statementCardInfo = {
-    title: 'Digital transfirmation is a key to modernizing the VA',
-    bodyMainText: 'The Office of Information and Technology is committed to digitally transforming the VA.',
-    bodySubText: `To do this, we\'re giving developers a space to catalog all VA services,
-        making them easily searchable and accessible. We hope this portal will increase
-        collaboration among teams and will give teams everything they need to manage their
-        service, leveraging best practices, tools, and resources that help teams deliver code faster.`,
-}
 
 export const HomePage = () => {
     const classes = useStyles();
-    const cardProps = { cardStyles: classes.VACard, ...statementCardInfo };
     const bannerProps = { bannerStyles: classes.betaBanner, ...bannerCardInfo };
+    const openFooterProps = { containerProps: classes.footerContainerOpen };
+
     return (
         <Page themeId="home">
             <Content>
@@ -175,12 +168,10 @@ export const HomePage = () => {
                 <Grid item xs={12} className={classes.betaBannerGridItem}>
                     <BetaBannerCard {...bannerProps}/>
                 </Grid>
-                <Grid item xs={12}>
-                    <StatementCard {...cardProps} />
-                </Grid>
-
+                
             </Grid>
             </Content>
+            <DVAFooter {...openFooterProps} />
         </Page>
     );
 }

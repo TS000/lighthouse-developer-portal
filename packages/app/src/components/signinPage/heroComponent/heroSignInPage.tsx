@@ -6,10 +6,10 @@ import {
 } from '@backstage/core-components';
 import React from 'react';
 import { getSignInProviders, useSignInProviders } from '../signinComponents/providers';
-import { Grid, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Grid, makeStyles, Theme } from '@material-ui/core';
 import { useStyles } from '../signinComponents/styles';
 import { HeroSignInPageProps } from '../CustomSignInPage';
-import { BetaBannerCard, HomePageDVAHeader, HomePageDVALogo } from '../../homepage';
+import { BetaBannerCard, HomePageDVAHeader, DVAFooter } from '../../homepage';
 import { blue } from '../../../themes/colorTypes';
 
 const useFooterStyles = makeStyles((theme: Theme) => ({
@@ -40,17 +40,6 @@ const bannerCardInfo = {
         We would like to hear from you, sign in to GitHub to send us feedback.`,
 }
 
-const SignInFooter = () => {
-    const { item } = useFooterStyles();
-    return (
-        <Grid item className={item} xs={12}>
-            <Typography>
-                The Office of Information and Technology is committed to digitally transforming the VA.
-            </Typography>
-            <HomePageDVALogo />
-        </Grid>
-    );
-};
 
 export const HeroSignInPage = ({
     onSignInSuccess,
@@ -63,8 +52,6 @@ export const HeroSignInPage = ({
       signInProviders,
       onSignInSuccess,
     );
-
-    const footerStyle = useFooterStyles();
     const bannerStyles = useBannerStyles();
     const bannerProps = { bannerStyles: bannerStyles.betaBanner, ...bannerCardInfo };
 
@@ -95,13 +82,9 @@ export const HeroSignInPage = ({
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item>
-                    <Grid container className={footerStyle.container}>
-                        <SignInFooter />
-                    </Grid>
-                </Grid>
             </Grid>
         </Content>
+        <DVAFooter />
       </Page>
     );
   };

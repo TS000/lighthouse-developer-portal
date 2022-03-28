@@ -10,8 +10,8 @@ const lightTheme: SimpleThemeOptions = {
   palette: {
     type: 'light',
     background: {
-      default: common.white,
-      paper: gray.A100
+      default: gray.A100,
+      paper: common.white,
     },
     status: {
       ok: green.A400,
