@@ -118,47 +118,8 @@ const statementCardInfo = {
 
 export const HomePage = () => {
     const classes = useStyles();
-<<<<<<< HEAD
-    const logoStyles = useLogoStyles();
-    const cardProps = { cardStyles: classes.VACard, ...statementCardInfo }
-
-    const githubApi = useApi(githubAuthApiRef);
-    const getUserIdentity = async () => {
-        try {
-            const user = await githubApi.getBackstageIdentity();
-            return user;
-        } catch (err) {
-            console.log(err)
-        }
-
-    }
-
-    const getUserProfile = async () => {
-        try {
-            const user = await githubApi.getProfile();
-            return user;
-        } catch (err) {
-            console.log(err)
-        }
-
-    }
-
-
-    const userIdentity = getUserIdentity();
-    userIdentity.then(e => console.log('userIdentity: ', e));
-
-    const sessionState = githubApi.sessionState$();
-    sessionState.subscribe( e => {
-        console.log('Session state user: ', e)
-    })
-
-    const userProfile = getUserProfile();
-    userProfile.then(e => console.log('userProfile:', e));
-
-=======
     const cardProps = { cardStyles: classes.VACard, ...statementCardInfo };
     const bannerProps = { bannerStyles: classes.betaBanner, ...bannerCardInfo };
->>>>>>> main
     return (
         <Page themeId="home">
             <Content>
