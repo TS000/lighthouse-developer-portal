@@ -27,7 +27,6 @@ import LayersIcon from '@material-ui/icons/Layers';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import { NavLink } from 'react-router-dom';
-import { IconComponent } from '@backstage/core-plugin-api';
 import { Settings as SidebarSettings } from '@backstage/plugin-user-settings';
 import { SidebarSearchModal } from '../search';
 import {
@@ -43,9 +42,6 @@ import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem'
 import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';
 import { FeedbackModal } from '../feedback';
 import { useUserProfile } from '../../hooks/useUserProfileInfo'
-// import * as potrace from 'potrace';
-// // eslint-disable-next-line no-restricted-imports
-// import * as fs from 'fs';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -86,17 +82,9 @@ const SidebarLogo = () => {
   );
 };
 
-// potrace.trace('../../icons/lighthouse-logo.png', (err: any, svg: string | NodeJS.ArrayBufferView) => {
-//   if (err) throw err;
-//   fs.writeFileSync('../../icons/lighthouse-logo.svg', svg);
-// });
-
-const LighthouseIcon = () => {
-  const { profile, displayName } = useUserProfile();
-  console.log({profile, displayName})
-  return (
-    <Avatar src={profile.picture} alt={displayName} style={{marginRight: '5px'}}/>
-  );
+const ProfileIcon = () => {
+  const { profile: { picture }, displayName } = useUserProfile();
+  return <Avatar src={picture} alt={displayName} style={{marginRight: '5px'}}/>
 }
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
@@ -135,9 +123,8 @@ export const Root = ({ children }: PropsWithChildren<{}>) => {
         />
         <SidebarItem icon={LayersIcon} to="plugins" text="Plugins" />
         <SidebarSpace />
-        <SidebarSettings icon={LighthouseIcon} />
         <FeedbackModal />
-        <SidebarSettings />
+        <SidebarSettings icon={ProfileIcon} />
         <SidebarDivider />
         <VersionAndEnv />
       </Sidebar>
