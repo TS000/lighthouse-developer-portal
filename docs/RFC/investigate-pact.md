@@ -1,8 +1,12 @@
-# [RFC] Investigate Pact
+# [RFC] Investigate Pact (Updated)
 
 ## Summary
 
-Contract testing is a tool used for testing HTTP and message integrations. It could help us catch CORS issues that can occur when the fronted communicates with the backend app.
+When used in the context of an integration, contract testing ensures that a pair of applications will work correctly together by checking each application in isolation to ensure the messages it sends or receives conform to a shared understanding that is documented in a "contract".
+
+When used in the context of a single application, contract testing ensures that an application's behaviour conforms to its documented contract (for example, an Open API specification) without reference to any particular consumer.
+
+> Contract testing is a technique for testing software application interfaces and integrations.
 
 ## Background
 
@@ -10,7 +14,7 @@ Pact is a code-first tool for testing HTTP and message integrations using contra
 
 ## Goal
 
-Decide whether using Pact would allow us to catch CORS issues.
+Decide whether using Pact would be a good solution for performing integration testing between the Frontend and the Backend.
 
 ## Findings
 
@@ -31,9 +35,9 @@ Basic steps to using Pact:
 
 ### Consumer Side Testing
 
-Pact has a package specifically for working with Jest, [jest-pact](https://github.com/pact-foundation/jest-pact). This can make writing tests much more effortless.
+Pact has a package specifically for working with Jest called [jest-pact](https://github.com/pact-foundation/jest-pact). This can make writing tests much more effortless.
 
-Instead of setting up a `new Pact({...})` we can use `pactWith`. `pactWith(JestPactOptions, (providerMock) => { /* tests go here */ })` is a wrapper that sets up a pact mock provider, applies sensible default options, and applies the setup and verification hooks so you don't have to.
+Instead of setting up a a new Pact objet, we can use `pactWith`. PactWith is a wrapper that sets up a pact mock provider, applies sensible default options, and applies the setup and verification hooks so you don't have to.
 
 ```js
 import { pactWith } from 'jest-pact';
@@ -92,7 +96,7 @@ pactWith({ consumer: 'MyConsumer', provider: 'MyProvider' }, provider => {
 
 ### Pact Broker
 
-It enables you to share your pacts and verification results between projects and make them useful for people too. It is the recommended way forward for serious Pact development.
+The Pact Broker enables you to share your pacts and verification results between projects and make them useful for people too. It is the recommended way forward for serious Pact development.
 
 You can run an example `pact-broker` using Ruby and Rails. https://github.com/pact-foundation/pact_broker#usage
 
@@ -110,7 +114,7 @@ It's also possible to create a script that can further control publishing pacts 
 
 ### Provider tests
 
-Provider tests are a lot simpler than consumer tests. We need to pull the contract from the Pact Broker and verify that the contract is correct.
+Provider tests are a lot less complicated than consumer tests. We need to pull the contract from the Pact Broker and verify that the contract is correct.
 
 [Provider API Testing](https://github.com/pact-foundation/pact-js#provider-api-testing)
 
@@ -138,12 +142,11 @@ describe('Pact Verification', () => {
 
 ## Recommendation
 
-Pact was pretty confusing to set up and get running. Everything eventually fell into place once I was able to get the full loop working.
-Pact testing would be a great idea to test any endpoints that we hit when communicating with the backend. Because of this, Pact would be a great fit for preventing CORS issues when merging branches into main or testing before we make a deployment.
+Pact required a lot of reading and took a bit to setup, but everything eventually fell into place once I was able to get the full loop working.
 
-I also think it'd be worth our time to get the pact broker running on Docker. However, using a host like Heroku would work as well.
+I believe that contract based testing using Pact would be a viable way to integrate testing between the Frontend and the Backend. Especially considering our work with the backend is very limited.
 
-Unfortunately, I couldn't get Pact working with Cypress, but I was able to get it working by using Jest. It wasn't easy at first, but some great documentation and some articles can walk through the setup. They are listed under the Reference section.
+I was able to get it working by using Jest. It wasn't easy at first, but some great documentation and some articles can walk through the setup. They are listed under the Reference section.
 
 To make setup extra easy, I'll include the files I used to create the tests below.
 
@@ -230,7 +233,7 @@ pactWith(
 
 ### Pact Broker
 
-The pact broker was made using Ruby and Rails, then published to Heroku. Information can be found within the findings section.
+The pact broker was made using Ruby and Rails, then published to Heroku. Additional information can be found within the findings section.
 
 ### Provider Tests
 
