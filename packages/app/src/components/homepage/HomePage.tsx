@@ -3,9 +3,9 @@ import { Button, CardActions, CardContent, Divider, Grid, makeStyles, Typography
 import React from 'react';
 import { blue } from '../../themes/colorTypes';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
+import AddCircle from '@material-ui/icons/AddCircle';
+import ArrowForward from '@material-ui/icons/ArrowForward';
 import FormatListBulletedSharp from '@material-ui/icons/FormatListBulletedSharp';
-import { Search } from '../search';
 import { HomePageDVAHeader, BetaBannerCard, DVAFooter } from '../homepage';
 
 const useStyles = makeStyles(theme => ({
@@ -20,27 +20,43 @@ const useStyles = makeStyles(theme => ({
         paddingBottom: '16px',
     },
     contentText: {
+        padding: '8px',
+        paddingTop: '24px',
     },
     infoCardContainer: {
         marginTop: '8px',
     },
     infoCardHeader: {
         justifyContent: 'flex-start',
-        padding: '5px 16px'
+        padding: '5px 8px'
     },
     infoCardIcon : {
-        justifyContent: 'flex-start',
         padding: '0px',
     },
+    infoCardContent: {
+        padding: '0px 8px',
+        marginBottom: '16px'
+    },
     infoCardFooter: {
+        display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        padding: '11px'
+        padding: '0px 8px',
     },
-    betaBannerGridItem: {
-        marginBottom: '8px',
+    infoCardLink: {
+        "&:hover": {
+            textDecoration: 'none'
+          },
+    },
+    infoCardButton: {
+        padding: '0px',
+        color: theme.palette.info.main,
+    },
+    infoCardFooterIcon: {
+        margin: '0px 8px',
     },
     betaBanner: {
+        padding: '0px',
         backgroundColor: blue[200],
         },
     footerContainerOpen: {
@@ -66,9 +82,9 @@ const menuBookIcon = (title: string, classes: any) => (
 
 );
 
-const addCircleOutlineRounded = (title: string, classes: any) => (
+const addCircle = (title: string, classes: any) => (
     <div>
-        <AddCircleOutlineRounded className={classes.infoCardIcon} />
+        <AddCircle className={classes.infoCardIcon} />
         <Typography variant="h6">
             {title}
         </Typography>
@@ -87,17 +103,10 @@ const formatListBulletedSharp = (title: string, classes: any) => (
 
 const cardInfo = [
     {
-        action: menuBookIcon,
-        title: "Starter Guide",
-        contentBody: "Read the starter guide to learn more about the VA Lighthouse dev portal and how to use it.",
-        buttonText: "READ THE STARTER GUIDE",
-        linkUrl: "/starter-guide"
-    },
-    {
-        action: addCircleOutlineRounded,
-        title: "Add to the Catalog",
-        contentBody: "Add, manage and search for VA software, including APIs, backend services, data pipelines, and other components.",
-        buttonText: "REGISTER A COMPONENT",
+        action: addCircle,
+        title: "Add an API",
+        contentBody: "Add APIs, TechDocs, and other items to the catalog.",
+        buttonText: "Add to catalog",
         linkUrl: "catalog-import"
     },
     {
@@ -106,13 +115,21 @@ const cardInfo = [
         contentBody: "Manage all your services and software components, all in one place.",
         buttonText: "EXPLORE CATALOG",
         linkUrl: "catalog"
-    }
+    },
+    {
+        action: menuBookIcon,
+        title: "Starter Guide",
+        contentBody: "Read the starter guide to learn more about the VA Lighthouse dev portal and how to use it.",
+        buttonText: "READ THE STARTER GUIDE",
+        linkUrl: "/starter-guide"
+    },
+  
 ];
 
 const bannerCardInfo = {
-    bodyMainText: 'We are in early beta!',
-    bodySubText: `Are you as over the moon with excitement as we are about this developer portal!?
-        We would like to hear from you, sign in to GitHub to send us feedback.`,
+    bodyMainText: 'We are in early Alpha!',
+    bodySubText: `Have comments, questions, or suggestions about this alpha site?
+        Give us, sign in to GitHub to send us feedback.`,
 }
 
 export const HomePage = () => {
@@ -134,38 +151,39 @@ export const HomePage = () => {
                         Things you can do to get started
                     </Typography>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Search />
-                    </Grid>
                 </Grid>
                 <Grid item xs={12}>
                     <Grid container className={classes.infoCardContainer}>
                     {cardInfo.map( e => (
                         <Grid item xs={12} md={4}>
                         <InfoCard
-                            variant="gridItem"
+                            variant='gridItem'
                             >
+                            <div  style={{height: '100%', display:'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                             <CardActions className={classes.infoCardHeader}>
                                 {e.action(e.title, classes)}
                             </CardActions>
-                            <Divider />
-                            <CardContent>
-                            <Typography>
-                                {e.contentBody}
-                            </Typography>
+                            <CardContent className={classes.infoCardContent}>
+                                <Divider />
+                                <Typography>
+                                    {e.contentBody}
+                                </Typography>
                             </CardContent>
-                            <Divider />
                             <CardContent className={classes.infoCardFooter}>
-                                <Link to={e.linkUrl}>
-                                    <Button size="small">{e.buttonText}</Button>
+                                <Divider />
+                                <Link to={e.linkUrl} className={classes.infoCardLink}>
+                                    <Button size="small" className={classes.infoCardButton}>{e.buttonText}
+                                        <ArrowForward className={classes.infoCardFooterIcon}/>
+                                    </Button>
                                 </Link>
                             </CardContent>
+                            </div>
                         </InfoCard>
                         </Grid>
                     ))}
                     </Grid>
                 </Grid>
-                <Grid item xs={12} className={classes.betaBannerGridItem}>
+                <Grid item xs={12} style={{padding: '0px'}}>
                     <BetaBannerCard {...bannerProps}/>
                 </Grid>
                 

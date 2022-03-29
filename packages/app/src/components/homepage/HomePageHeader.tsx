@@ -55,7 +55,7 @@ export const useHeaderStyles = makeStyles(theme => ({
     }
 }));
 const headerTitle = 'VA Lighthouse';
-const headerSubtitle = 'The place to contribute, manage, maintain, and discover software across teams at VA.';
+const headerSubtitle = 'The place to contribute, manage, and discover software across teams at VA.';
 
 export const HomePageDVAHeader = () => {
     const { container, gridText, mainText, subText, gridImage, svg, g, pathMain, pathGrey, pathBackground } = useHeaderStyles();
