@@ -21,7 +21,6 @@ import ListIcon from '@material-ui/icons/List';
 import MapIcon from '@material-ui/icons/MyLocation';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
-import Flag from '@material-ui/icons/Flag';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LayersIcon from '@material-ui/icons/Layers';
 import LogoFull from './LogoFull';
