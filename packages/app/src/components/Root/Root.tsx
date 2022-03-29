@@ -41,7 +41,8 @@ import {
 import { HideableSidebarItem } from '../hideableSidebarItem/HideableSitebarItem';
 import { VersionAndEnv } from '../versionAndEnv/VersionAndEnv';
 import { FeedbackModal } from '../feedback';
-import { useUserProfile } from '../../hooks/useUserProfileInfo'
+import { useUserProfile } from '../../hooks/useUserProfileInfo';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -62,6 +63,14 @@ const useSidebarLogoStyles = makeStyles({
   showItem: {
     display: 'flex',
   },
+  avatar: {
+    marginRight: '5px',
+    width: '24px',
+    height: '24px',
+  },
+  settings: {
+    fontSize: '1.5em'
+  }
 });
 
 const SidebarLogo = () => {
@@ -83,8 +92,17 @@ const SidebarLogo = () => {
 };
 
 const ProfileIcon = () => {
+  const { avatar, settings } = useSidebarLogoStyles();
   const { profile: { picture }, displayName } = useUserProfile();
-  return <Avatar src={picture} alt={displayName} style={{marginRight: '5px'}}/>
+  return (
+    <>
+      {picture ? <Avatar
+        src={picture}
+        alt={displayName}
+        className={avatar}
+      /> : <SettingsIcon className={settings} />}
+    </>
+  )
 }
 
 export const Root = ({ children }: PropsWithChildren<{}>) => {
