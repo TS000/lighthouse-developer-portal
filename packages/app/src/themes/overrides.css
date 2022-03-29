@@ -17,8 +17,3 @@ span[class^='BackstageLifecycle'] {
     width: 40px;
     height: 40px;
 }
-
-/* hide feature flag item from sidebar */
-a[aria-label="Feature Flags"] {
-    display: none !important;
-}
