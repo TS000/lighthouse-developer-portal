@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { Table, TableColumn, Progress } from '@backstage/core-components';
 import { useApi } from '@backstage/core-plugin-api';
 import Alert from '@material-ui/lab/Alert';
 import { useAsync } from 'react-use';
 import OpenInNew from '@material-ui/icons/OpenInNew';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { IconButton, Tooltip, Button } from '@material-ui/core';
 import { docServerApiRef, API } from '../../docServerApis';
 
 type DenseTableProps = {
@@ -57,10 +57,28 @@ export const DenseTable = ({ apis }: DenseTableProps) => {
     if (titleDiv) titleDiv.innerHTML = titleText;
   };
 
+  const handleAddClick = () => {
+    return; // TODO When access management ticket completed
+  };
+
+  const TableTitle = (): ReactElement => {
+    return (
+      <>
+        <span id="apiTitle">Total available {apis.length}</span>
+        <Button
+          disabled
+          onClick={handleAddClick}
+        >
+          Add
+        </Button>
+      </>
+    );
+  };
+
   return (
     <Table
-      title={<div id="apiTitle">Total available {apis.length}</div>}
-      options={{ search: true, paging: false }}
+      title={<TableTitle/>}
+      options={{ search: true, paging: false, padding: 'dense' }}
       columns={columns}
       data={rowData}
       tableRef={tableRef}

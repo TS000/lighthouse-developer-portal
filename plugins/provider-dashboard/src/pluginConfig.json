@@ -1,0 +1,43 @@
+{
+    "headerTitle": "Provider Dashboard",
+    "owner": "Team Quokka",
+    "lifecycle": "Alpha",
+    "supportText": "Dashboard offers a set of tools to view/manage provider configurations, specifications, and automated test results.",
+    "docserverPath": "/docserver",
+    "tabs": {
+        "overview": {
+            "title": "Overview",
+            "path": "/overview"
+        },
+        "configuration": {
+            "title": "Configuration",
+            "path": "/configuration"
+        },
+        "routing": {
+            "title": "Authorization/Routing",
+            "path": "/routing"
+        },
+        "versions": {
+            "title": "Manage OAS",
+            "path": "/versions"
+        },
+        "endpointStatus": {
+            "title": "Endpoint Status",
+            "path": "/endpoint-status"
+        }
+    },
+    "defaultEnv": "qa",
+    "envDropDown": {
+        "label": "Environment",
+        "options": [
+            {"label": "DEV/QA", "value": "qa"},
+            {"label": "STAGING", "value": "staging"},
+            {"label": "PROD", "value": "prod"}
+        ]
+    },
+    "envLabels": {
+        "qa": "DEV/QA",
+        "staging": "STAGING",
+        "prod": "PROD"
+    }
+}

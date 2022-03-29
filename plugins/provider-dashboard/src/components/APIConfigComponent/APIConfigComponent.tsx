@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Table, TableColumn, Progress } from '@backstage/core-components';
 import { useApi, useRouteRefParams } from '@backstage/core-plugin-api';
@@ -8,6 +8,7 @@ import Create from '@material-ui/icons/Create';
 import { IconButton, Tooltip } from '@material-ui/core';
 import { apiRoutesRef } from '../../routes';
 import { docServerApiRef, APIVersion } from '../../docServerApis';
+import EnvironmentContext from '../../EnvironmentContext';
 
 type DenseTableProps = {
   versions: APIVersion[];
@@ -70,12 +71,11 @@ const APIConfigTable = ({ apiName, versions }: DenseTableProps) => {
     { title: '', field: 'actions' },
   ];
 
-
   return (
     <Table
     // TODO: change versions.length to count configs
       title={`API Configurations ${rowData.length}`}
-      options={{ search: true, paging: false }}
+      options={{ search: true, paging: false, padding: 'dense' }}
       columns={columns}
       data={rowData}
     /> 
@@ -86,11 +86,12 @@ export const APIConfigComponent = () => {
   const params = useRouteRefParams(apiRoutesRef);
   const apiName= params.apiName;
   const apiClient = useApi(docServerApiRef);
+  const { envContext } = useContext(EnvironmentContext);
 
   const { value, loading, error } = useAsync(async (): Promise<APIVersion[]> => {
-    const docServerData = apiClient.getApiVersions(apiName);
+    const docServerData = apiClient.getApiVersions(apiName, envContext);
     return docServerData;
-  }, []);
+  }, [envContext]);
 
   if (loading) {
     return <Progress />;

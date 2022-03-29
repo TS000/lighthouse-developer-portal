@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { Table, TableColumn, Progress } from '@backstage/core-components';
 import { useApi, useRouteRefParams } from '@backstage/core-plugin-api';
@@ -9,6 +9,7 @@ import Compare from '@material-ui/icons/Compare';
 import { IconButton, Tooltip, Button} from '@material-ui/core';
 import { apiRoutesRef } from '../../routes';
 import { docServerApiRef, APIVersion } from '../../docServerApis';
+import EnvironmentContext from '../../EnvironmentContext';
 
 type DenseTableProps = {
   versions: APIVersion[];
@@ -87,7 +88,7 @@ const APIVersionTable = ({ apiName, versions }: DenseTableProps) => {
   return (
     <Table
       title={<TableTitle/>}
-      options={{ search: false, paging: false }}
+      options={{ search: false, paging: false, padding: 'dense' }}
       columns={columns}
       data={rowData}
     />
@@ -98,11 +99,12 @@ export const APIVersionComponent = () => {
   const params = useRouteRefParams(apiRoutesRef);
   const apiName= params.apiName;
   const apiClient = useApi(docServerApiRef);
+  const { envContext } = useContext(EnvironmentContext);
 
   const { value, loading, error } = useAsync(async (): Promise<APIVersion[]> => {
-    const docServerData = apiClient.getApiVersions(apiName);
+    const docServerData = apiClient.getApiVersions(apiName, envContext);
     return docServerData;
-  }, []);
+  }, [envContext]);
 
   if (loading) {
     return <Progress />;

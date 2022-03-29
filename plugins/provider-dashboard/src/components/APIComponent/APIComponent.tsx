@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useState} from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { 
   Grid,
@@ -12,6 +12,8 @@ import { TitleComponent } from '../TitleComponent';
 import { APIVersionComponent } from '../APIVersionComponent';
 import { APIConfigComponent } from '../APIConfigComponent';
 import { OASComponent } from '../OASComponent';
+import EnvironmentContext from '../../EnvironmentContext';
+import pluginConfig from '../../pluginConfig.json';
 
 const OverviewPanel = (): ReactElement => {
   return(
@@ -38,24 +40,24 @@ interface SubRoute {
 }
 
 export const APIComponent = () => {
-
+  const tabs = pluginConfig.tabs;
   const panelRoutes: SubRoute[] = [
     { 
-      title: "Overview", 
-      path: "/overview",
+      title: tabs.overview.title, 
+      path: tabs.overview.path,
       children: <OverviewPanel />
     },
     { 
-      title: "Configuration", 
-      path: "/configuration", 
+      title: tabs.configuration.title, 
+      path: tabs.configuration.path, 
       children: <APIConfigComponent />
     },
-    { title: "Authorization/Routing", 
-      path: "/routing", 
+    { title:  tabs.routing.title, 
+      path: tabs.routing.path, 
       children: <RoutingPanel />
     },
-    { title: "Manage OAS",
-      path: "/versions",
+    { title: tabs.versions.title,
+      path: tabs.versions.path,
       children: (
         <Routes>
           <Route path='' element={<APIVersionComponent />} />
@@ -64,20 +66,24 @@ export const APIComponent = () => {
         </Routes>
       )
     },
-    { title: "Endpoint Status",
-      path: "/endpoint-status",
+    { title: tabs.endpointStatus.title,
+      path: tabs.endpointStatus.path,
       children: <EndpointPanel />
     },
   ];
 
+  const [envContext, setEnvContext] = useState(pluginConfig.defaultEnv);
+
   return (
     <Content>
-      <ContentHeader titleComponent={<TitleComponent/>} />
-      <Grid container spacing={3} direction="column">
-        <Grid item>
-          <RoutedTabs routes={panelRoutes}/>
+      <EnvironmentContext.Provider value={{ envContext, setEnvContext }}>
+        <ContentHeader titleComponent={<TitleComponent/>} />
+        <Grid container spacing={3} direction="column">
+          <Grid item>
+            <RoutedTabs routes={panelRoutes}/>
+          </Grid>
         </Grid>
-      </Grid>
+      </EnvironmentContext.Provider>
     </Content>
   )
 };

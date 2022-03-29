@@ -1,0 +1,1 @@
+export { BreadcrumbComponent } from './BreadcrumbComponent';

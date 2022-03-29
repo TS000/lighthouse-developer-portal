@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { Table, TableColumn, Progress } from '@backstage/core-components';
 import { useApi, useRouteRefParams } from '@backstage/core-plugin-api';
@@ -11,6 +11,7 @@ import TransformIcon from '@material-ui/icons/Transform';
 import { IconButton, Tooltip, Button} from '@material-ui/core';
 import { apiVersionRoutesRef } from '../../routes';
 import { docServerApiRef, OAS } from '../../docServerApis';
+import EnvironmentContext from '../../EnvironmentContext';
 
 type DenseTableProps = {
   oasResults: OAS[];
@@ -117,7 +118,7 @@ const OASIterationTable = ({ apiName, apiVersion, oasResults }: DenseTableProps)
   return (
     <Table
       title={<TableTitle/>}
-      options={{ search: false, paging: true }}
+      options={{ search: false, paging: true, padding: 'dense' }}
       columns={columns}
       data={rowData}
     />
@@ -128,11 +129,11 @@ export const OASComponent = () => {
   const params = useRouteRefParams(apiVersionRoutesRef);
   const apiName= params.apiName;
   const apiVersion = params.apiVersion;
-
   const apiClient = useApi(docServerApiRef);
+  const { envContext } = useContext(EnvironmentContext);
 
   const { value, loading, error } = useAsync(async (): Promise<OAS[]> => {
-    const docServerData = apiClient.getOASIterations(apiName, apiVersion);
+    const docServerData = apiClient.getOASIterations(apiName, apiVersion, envContext);
     return docServerData;
   }, []);
 
