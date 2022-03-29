@@ -11,7 +11,9 @@ data:
   APP_CONFIG_backend_cors_origin: {{ .Values.BASE_URL }}
   APP_CONFIG_backend_listen_port: "7007"
   AWS_BUCKET_NAME: {{ .Values.AWS_BUCKET_NAME }}
-  DOCSERVER_BASE_URL: {{ .Values.DOCSERVER_BASE_URL }}
+  DOCSERVER_BASE_URL_QA: {{ .Values.DOCSERVER_BASE_URL_QA }}
+  DOCSERVER_BASE_URL_STAGING: {{ .Values.DOCSERVER_BASE_URL_STAGING }}
+  DOCSERVER_BASE_URL_PROD: {{ .Values.DOCSERVER_BASE_URL_PROD }}
   APP_CONFIG_auth_environment: {{ .Values.global.DEPLOY_ENV }}
   APP_CONFIG_app_version: {{ .Values.global.VERSION | quote }}
   APP_CONFIG_app_sha: {{ .Values.global.image.tag | quote }}
@@ -58,11 +60,21 @@ data:
       '/test':
         target: 'https://example.com'
         changeOrigin: true
-      '/docserver':
-        target: ${DOCSERVER_BASE_URL}
-        changeOrigin: true
-        pathRewrite:
-          '^/api/proxy/docserver/': '/docserver/'
+    '/qa/docserver':
+      target: ${DOCSERVER_BASE_URL_QA}
+      changeOrigin: true
+      pathRewrite:
+        '^/api/proxy/qa/docserver/': '/docserver/'
+    '/staging/docserver':
+      target: ${DOCSERVER_BASE_URL_STAGING}
+      changeOrigin: true
+      pathRewrite:
+        '^/api/proxy/staging/docserver/': '/docserver/'
+    '/prod/docserver':
+      target: ${DOCSERVER_BASE_URL_PROD}
+      changeOrigin: true
+      pathRewrite:
+        '^/api/proxy/prod/docserver/': '/docserver/'
     techdocs:
       builder: 'external'
       publisher:

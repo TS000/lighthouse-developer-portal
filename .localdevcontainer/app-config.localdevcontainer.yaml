@@ -23,8 +23,18 @@ auth:
         clientSecret: '12345'
 
 proxy:
-  '/docserver':
-    target: ${DOCSERVER_BASE_URL}
+  '/qa/docserver':
+    target: ${DOCSERVER_BASE_URL_QA}
     changeOrigin: true
     pathRewrite:
-      '^/api/proxy/docserver/': '/docserver/'
+      '^/api/proxy/qa/docserver/': '/docserver/'
+  '/staging/docserver':
+    target: ${DOCSERVER_BASE_URL_STAGING}
+    changeOrigin: true
+    pathRewrite:
+      '^/api/proxy/staging/docserver/': '/docserver/'
+  '/prod/docserver':
+    target: ${DOCSERVER_BASE_URL_PROD}
+    changeOrigin: true
+    pathRewrite:
+      '^/api/proxy/prod/docserver/': '/docserver/'
