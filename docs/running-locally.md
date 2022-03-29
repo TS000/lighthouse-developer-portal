@@ -93,7 +93,9 @@ It's possible to run the application locally without docker, however there is a 
 - You will need to make local env variables that are used in the app-config.yaml file
     - `BACKEND_SECRET`
     - `GH_CLIENT_SECRET`
-    - `DOCSERVER_BASE_URL` - Needs to be a string
+    - `DOCSERVER_BASE_URL_QA` - Needs to be a string
+    - `DOCSERVER_BASE_URL_STAGING` - Needs to be a string
+    - `DOCSERVER_BASE_URL_PROD` - Needs to be a string
     - `GH_CLIENT_ID`
     - `POSTGRES_HOST` - Needs to be string
     - `GH_TOKEN`

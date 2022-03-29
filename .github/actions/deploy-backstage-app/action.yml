@@ -34,8 +34,14 @@ inputs:
   SERVICE_ACCOUNT:
     description: 'Service account name'
     required: true
-  DOCSERVER_BASE_URL:
-    description: 'Docserver base url'
+  DOCSERVER_BASE_URL_QA:
+    description: 'Docserver base url for QA'
+    required: true
+  DOCSERVER_BASE_URL_STAGING:
+    description: 'Docserver base url for Staging'
+    required: true
+  DOCSERVER_BASE_URL_PROD:
+    description: 'Docserver base url for PROD'
     required: true
   APP_CREDS_YAML:
     description: 'GitHub app secret credentials yaml file'
@@ -110,7 +116,9 @@ runs:
       --set POSTGRES_PASSWORD=${{ inputs.POSTGRES_PASSWORD }}
       --set AWS_BUCKET_NAME=${{ inputs.AWS_BUCKET_NAME }}
       --set global.SERVICE_ACCOUNT=${{ inputs.SERVICE_ACCOUNT }}
-      --set DOCSERVER_BASE_URL=${{ inputs.DOCSERVER_BASE_URL }}
+      --set DOCSERVER_BASE_URL_QA=${{ inputs.DOCSERVER_BASE_URL_QA }}
+      --set DOCSERVER_BASE_URL_STAGING=${{ inputs.DOCSERVER_BASE_URL_STAGING }}
+      --set DOCSERVER_BASE_URL_PROD=${{ inputs.DOCSERVER_BASE_URL_PROD }}
       --set MEMCACHED_USER=${{ inputs.MEMCACHED_USER }}
       --set MEMCACHED_PASSWORD=${{ inputs.MEMCACHED_PASSWORD }}
       --install

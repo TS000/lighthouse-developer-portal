@@ -62,7 +62,9 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.PG_PASSWORD }}
           AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
           SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
-          DOCSERVER_BASE_URL: ${{ secrets.DOCSERVER_BASE_URL }}
+          DOCSERVER_BASE_URL_QA: ${{ secrets.DOCSERVER_BASE_URL_QA }}
+          DOCSERVER_BASE_URL_STAGING: ${{ secrets.DOCSERVER_BASE_URL_STAGING }}
+          DOCSERVER_BASE_URL_PROD: ${{ secrets.DOCSERVER_BASE_URL_PROD }}
           APP_CREDS_YAML: ${{ secrets.APP_CREDS_YAML }}
           MEMCACHED_USER: ${{ secrets.MEMCACHED_USER }}
           MEMCACHED_PASSWORD: ${{ secrets.MEMCACHED_PASSWORD }}
