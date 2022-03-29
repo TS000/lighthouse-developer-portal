@@ -180,8 +180,13 @@ $ lightkeeper create clusterconfig nonprod > ~/.kube/config
   DEPLOY_ENV=dev
   COMMIT_SHA=<commit sha used to tag image or "latest"*>
   ```
+Dev environment:
+  - HOST=internal-adf279c17510a463bb78ac88ffe2f7dd-667251419.us-gov-west-1.elb.amazonaws.com
+  - GATEWAY=ldx-nonprod-bandicoot-dev-backstage-gateway
 
-  > Refer to [DI Routing Traffic Guide](https://github.com/department-of-veterans-affairs/lighthouse-di-platform-servicemesh/blob/main/docs/routing-traffic.md) for most recent information related to the `host_url` referenced above.
+Sandbox environment:
+  - HOST=internal-a553b74e4e49b45cc899c47d90fee0c4-2084915407.us-gov-west-1.elb.amazonaws.com
+  - GATEWAY=ldx-nonprod-bandicoot-sandbox-backstage-gateway
 
   > If you manually build, push, and tag the image with "latest", using "latest" as the image tag for the deployment can work as a temporary fix but it is preferable to use something more unique like the commit sha. The "latest" tag changes frequently due to the CI workflow so this may cause the containers to crash by pulling an image definition that the Helm release may not be configured to use.
 
@@ -208,4 +213,4 @@ lighthouse-developer-portal-dev       lighthouse-bandicoot-dev        15        
 ```
 
 - Browser
-Using a CAG browser or GFE, enter the `<host_url>` used above to access the Lighthouse Developer Portal application.
+Using a CAG browser or GFE, visit http://internal-adf279c17510a463bb78ac88ffe2f7dd-667251419.us-gov-west-1.elb.amazonaws.com to access the Lighthouse Developer Portal application.
